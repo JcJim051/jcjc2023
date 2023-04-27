@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-    <h4> REPORTE DE VOTOS <br> {{ $escrutinio->puesto}} MESA {{ $escrutinio->mesa}}</h4>
+    <h4> REPORTE DE VOTOS RECUPERADOS <br> {{ $escrutinio->puesto}} MESA {{ $escrutinio->mesa}}</h4>
 @stop
 
 @section('content')
@@ -34,7 +34,7 @@
 
 
         <div class="form-group">
-            {!! Form::label("recuperados", "David Barbosa") !!}
+            {!! Form::label("recuperados", "Juan Camilo Chavez") !!}
             {!! Form::text("recuperados", null, ["class" => "form-control disabled", 'placeholder' => 'Votos Recuperados']) !!}
 
             @error('recuperados')
@@ -54,7 +54,7 @@
             {!! Form::hidden('codcor', null) !!}
             {!! Form::hidden('status', null) !!}
 
-            {!! Form::submit('reportar resultados', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Reportar resultados', ['class' => 'btn btn-primary']) !!}
 
         {!! Form::close() !!}
     </div>

@@ -22,7 +22,7 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>David</th>
+                        <th>Juan Camilo</th>
                         {{-- <th>Felipe</th> --}}
                         <th>Comision</th>
                         <th>Codpuesto</th>
@@ -79,7 +79,7 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>David</th>
+                        <th>Juan Camilo</th>
                         {{-- <th>Felipe</th> --}}
                         <th>Comision</th>
                         <th>Codpuesto</th>

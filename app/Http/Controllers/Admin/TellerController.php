@@ -83,17 +83,13 @@ class TellerController extends Controller
      */
     public function update(Request $request, Seller $teller)
     {
-        $request->validate([
 
-            'email' => "unique:sellers,email,$teller->id",
-
-        ]);
 
 
         if($request->hasfile('e14')){
 
             $teller['e14']= $request->file('e14')->getClientOriginalName();
-            $request->file('e14')->storeAs('e14',$teller['pdf']);
+            $request->file('e14');
 
             $teller['e14']= $request->file('e14')->store('/E14-images');
 

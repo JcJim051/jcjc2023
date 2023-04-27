@@ -45,8 +45,8 @@
         <div class="row">
             <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
-                    {!! Form::label("alc1", "David Barbosa") !!}
-                    {!! Form::text("alc1", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por David']) !!}
+                    {!! Form::label("alc1", "Juan Camilo Chavez") !!}
+                    {!! Form::text("alc1", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por Juan Camilo Chavez']) !!}
 
                     @error('alc1')
                         <span class="text-danger">{{$message}}</span>
@@ -115,6 +115,7 @@
         {!! Form::hidden('codescru', null) !!}
         {!! Form::hidden('codcor', null) !!}
         {!! Form::hidden('status', null) !!}
+        <br>
         {!! Form::submit('Reportar resultados', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
     </div>
