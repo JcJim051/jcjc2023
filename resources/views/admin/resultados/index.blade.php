@@ -15,7 +15,7 @@
         <div class="col-sm-4 col-xs-12">
             <div class="card text-center card-success">
                 <div class="card-header">
-                    <h3 class="card-title">David Barbosa</h3>
+                    <h3 class="card-title">Juan Camilo Chavez</h3>
                     {{-- <h3 class="card-title">Felipe Carreño</h3> --}}
                         <div class="card-tools">
                     </div>
