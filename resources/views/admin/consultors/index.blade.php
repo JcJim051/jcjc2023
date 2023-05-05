@@ -10,6 +10,83 @@
 @stop
 
 @section('content')
+        <div class="container" >
+            <div class="row">
+
+                <div class="col-2" >
+                    <div class="small-box bg-info bg-gradient-success" >
+                        <div class="inner">
+                        <h3> {{$okd}} </h3>
+                        <p>Mesas Acreditadas a nivel departamental</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="small-box bg-info bg-gradient-danger ">
+                        <div class="inner">
+                        <h3> {{$nookd}} </h3>
+                        <p>Mesas Faltantes a nivel Departamental</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="small-box bg-info bg-gradient-success">
+                        <div class="inner">
+                        <h3>{{$okv}} </h3>
+                        <p>Mesas Acreditadas Villavicencio</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-street-view"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="small-box bg-info bg-gradient-danger ">
+                        <div class="inner">
+                        <h3>{{$nookv}} </h3>
+                        <p>Mesas Faltantes VIllavicencio</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-store-alt"></i>
+                        </div>
+
+                    </div>
+                </div><div class="col-2">
+                    <div class="small-box bg-info bg-gradient-success">
+                        <div class="inner">
+                        <h3> {{$okm}} </h3>
+                        <p>Mesas Acreditadas en municipios</p>
+                        </div>
+                        <div class="icon">
+                        <i class="fas fa-user-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="small-box bg-info bg-gradient-danger ">
+                        <div class="inner">
+                        <h3> {{$nookm}} </h3>
+                        <p>Mesas Faltantes en municipios</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
+        </div>
 
     <div class="row">
         <div class="col-sm-4 col-xs-12">
@@ -133,7 +210,6 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-12 col-xs-12">
             <div class="card card-primary">

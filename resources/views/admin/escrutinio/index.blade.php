@@ -28,7 +28,11 @@
                     <th>comision</th>
                     <th>codpuesto</th>
                     <th></th>
+                    @if (Auth::user()->role == 4)
+
+                    @else
                     <th></th>
+                    @endif
                 </tr>
             </thead>
 
@@ -63,7 +67,13 @@
                         @endif
 
                     </td>
+                    @if (Auth::user()->role == 4)
+
+                    @else
                     <td> <a href="{{route("admin.escrutinio.edit", $seller)}}" class="btn btn-primary btn-sm">Reportar</a></td>
+
+                    @endif
+
 
 
 
@@ -84,7 +94,12 @@
                     <th>comision</th>
                     <th>codpuesto</th>
                     <th></th>
+                    @if (Auth::user()->role == 4)
+
+                    @else
                     <th></th>
+                    @endif
+
                 </tr>
             </tfoot>
         </table>

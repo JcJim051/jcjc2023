@@ -20,18 +20,128 @@
             <div class="card-body text-center size-14">
 
                 @if ($rol == "Coordinador")
-                     {{ $seller->municipio }}<br>
-                     {{ $seller->puesto}}<br>
+                <div class="text-center text-info text-success">
+                    <h4>Tu rol</h5>
+                    <h5>Coordinador puesto de votacion   {{ $seller->puesto}}
+                    {{ $seller->municipio }}<br>
                     Codigo del Puesto: {{ Auth::user()->codpuesto }}<br>
-                    Total de mesas: {{ $tmc }}<br>
-                    <div class="progress">
+                    </h5>
+                </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-warning">
+                                <div class="inner">
+                                <h3> {{$tmc}}</h3>
+                                <p>Total mesas en el puesto</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-store-alt"></i>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ ($tml/$tmc)*100 }}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{ ($tml/$tmc)*100 }}%</div>
+                        <div class="col-3">
+                            <div class="small-box bg-info ">
+                                <div class="inner">
+                                <h3> {{ $tml }}</h3>
+                                <p>Mesas Acreditadas</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-street-view"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-danger">
+                                <div class="inner">
+                                <h3> {{ ($tmc-$tml) }}</h3>
+                                <p>Mesas faltantes</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-slash"></i>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-success ">
+                                <div class="inner">
+                                <h3> {{ round(($tml/$tmc)*100,2)}}%</h3>
+                                <p>% de mesas Acreditadas</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
 
                 @else
                     @if ($rol == "Esctrutador")
-                        Comision Auxiliar escrutadora {{ Auth::user()->codzon }}
+
+                    <div class="text-center text-info text-success">
+                        <h5>Tu rol</h5>
+                        <p>Escrutador comision Auxiliar escrutadora {{ Auth::user()->codzon }} <br></p>
+                    </div>
+
+
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="small-box bg-info bg-gradient-warning">
+                                    <div class="inner">
+                                    <h3> {{$tmcom}}</h3>
+                                    <p>Total mesas en la comision</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="small-box bg-info ">
+                                    <div class="inner">
+                                    <h3> {{ $tmlc }}</h3>
+                                    <p>Mesas Acreditadas</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="small-box bg-info bg-gradient-danger">
+                                    <div class="inner">
+                                    <h3> {{ ($tmcom-$tmlc) }}</h3>
+                                    <p>Mesas faltantes</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="small-box bg-info bg-gradient-success ">
+                                    <div class="inner">
+                                    <h3> {{round(($tmlc/$tmcom)*100,2) }}%</h3>
+                                    <p>% de mesas Acreditadas</p>
+                                    </div>
+                                    <div class="icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     @else
                          Acreditacion, reporte y seguimiento electoral.
                     @endif

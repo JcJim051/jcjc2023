@@ -64,7 +64,12 @@
                     @endif
 
                 </td>
-                <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Acreditar</a></td>
+                @if (Auth::user()->role == 4)
+                    <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Ver</a></td>
+                @else
+                    <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Acreditar</a></td>
+                @endif
+
 
             </tr>
             @endforeach

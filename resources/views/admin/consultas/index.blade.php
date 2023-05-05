@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Reportar')
+@section('title', 'Consultar E14')
 
 @section('content_header')
-    <h1 style="text-align: center">Reportes E14</h1>
+    <h1 style="text-align: center">Ver E14 por Mesas</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <div class="card">
+<div class="card">
         <div class="card-body">
             <table id="example" class="display responsive nowrap" style="width:98%">
                 <thead>
@@ -22,16 +22,10 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Juan Camilo</th>
-                        {{-- <th>Felipe</th> --}}
+                        <th>link E14</th>
                         <th>Comision</th>
                         <th>Codpuesto</th>
-                        <th>Reporte</th>
-                        @if (Auth::user()->role == 4)
 
-                        @else
-                        <th></th>
-                        @endif
                     </tr>
                 </thead>
 
@@ -56,22 +50,22 @@
 
                             @endif
                         {{--  <td>{{$seller->cedula}}</td>  --}}
-                        <td>{{$seller->alc1}}</td>
-                        <td>{{$seller->codescru}}</td>
-                        <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
-                        <td style="font-size: 20px ; text-align:center">
-                                @if($seller->alc1 <> null)
-                                    <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Reportado</P></i>
-                                @else
-                                    <i style="color: rgb(235, 62, 10) " class="fas fa-ban"><P hidden>Sin reporte</P></i>
-                                @endif
+
+
+                        <td>
+                            @if ($seller->e14 == null)
+
+                            @else
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $seller->e14) }}">Ver E14 cargado</a>
+                            @endif
 
                         </td>
-                        @if (Auth::user()->role == 4)
 
-                        @else
-                        <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm">Reportar</a></td>
-                        @endif
+
+                        <td>{{$seller->codescru}}</td>
+                        <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
+
+
 
 
 
@@ -87,16 +81,11 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Juan Camilo</th>
-                        {{-- <th>Felipe</th> --}}
+                        <th>link E14</th>
                         <th>Comision</th>
                         <th>Codpuesto</th>
-                        <th>Reporte</th>
-                        @if (Auth::user()->role == 4)
 
-                        @else
-                        <th></th>
-                        @endif
+
                     </tr>
 
                 </tfoot>

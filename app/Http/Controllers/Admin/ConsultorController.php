@@ -69,6 +69,8 @@ class ConsultorController extends Controller
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
                 ->get();
+
+        dd($dat);
         $not =  DB::table('sellers')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')

@@ -301,9 +301,9 @@ return [
             'topnav_right' => false,
         ],
         [
-            'text' => 'Crear usuarios',
+            'text' => 'Descargar base de datos',
             'topnav_right' => true,
-            'route'  => 'admin.usuarios.index',
+            'route'  => 'admin.descargas.index',
             'can'  => 'solo_super',
 
         ],
@@ -311,7 +311,9 @@ return [
 
         // Sidebar items:
 
-
+        [
+            'header' => 'Indicadores',
+            'can'  => 'ver-data',],
         [
             'text'        => 'Indicadores acreditacion de testigos',
             'route'         => 'admin.consultors.index',
@@ -325,18 +327,25 @@ return [
             'icon'        => 'fas fa-flag',
             'label_color' => 'primary',
             'can'  => 'ver-data',
+
         ],
-        ['header' => 'Testigos'],
+        ['header' => 'Testigos',
+        // 'can'  => 'no-editar'
+       ],
         [
             'text' => 'Acreditar Testigos',
             'route'  => 'admin.superusers.index',
             'icon' => 'fas fa-fw fa-user',
+            // 'can'  => 'no-editar'
+
         ],
 
         [
              'text' => 'Reportar E14',
              'route'  => 'admin.tellers.index',
              'icon' => 'fas fa-fw fa-plus-square',
+            //  'can'  => 'no-editar'
+
 
          ],
          [
@@ -344,8 +353,22 @@ return [
             'route'  => 'admin.escrutinio.index',
             'icon' => 'fas fa-fw fa-plus-circle ',
             'can'  => 'ver-escrutinio',
+            // 'can'  => 'no-editar'
+
 
         ],
+        [
+            'header' => 'Centro de Datos',
+            'can'  => 'ver-escrutinio'
+
+        ],
+        [
+            'text' => 'Ver E14',
+            'route'  => 'admin.consultas.index',
+            'icon' => 'fas fa-fw fa-plus-square',
+            'can'  => 'ver-escrutinio'
+        ],
+
 
 
     ],
@@ -406,7 +429,7 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

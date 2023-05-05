@@ -8,8 +8,9 @@ use App\Http\Controllers\Admin\SuperUserController;
 use App\Http\Controllers\Admin\TellerController;
 use App\Http\Controllers\Admin\ResultadosController;
 use App\Http\Controllers\Admin\EscrutinioController;
-use App\Http\Controllers\Admin\UsuariosController;
+use App\Http\Controllers\Admin\DescargasController;
 use App\Http\Controllers\Admin\TestigosController;
+use App\Http\Controllers\Admin\ConsultasController;
 
 
 
@@ -29,6 +30,9 @@ Route::resource('resultados', ResultadosController::class)->names('admin.resulta
 
 Route::resource('escrutinio', EscrutinioController::class)->names('admin.escrutinio');
 
-Route::resource('usuarios', UsuariosController::class)->names('admin.usuarios');
+Route::resource('descargas', DescargasController::class)->names('admin.descargas');
 
 Route::resource('testigos', TestigosController::class)->names('admin.testigos');
+
+
+Route::resource('consultas', ConsultasController::class)->names('admin.consultas');

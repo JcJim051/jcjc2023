@@ -58,12 +58,20 @@ class AdminController extends Controller
         $tml = Seller::where('codcor', $coordinador)
                     ->where('status', '1')
                     ->count();
+        //total mesas por comision
+        $tmcom =Seller::where('codescru', $escrutador)
+                    ->count();
+           //total mesas listas por comision
+        $tmlc =Seller::where('codescru', $escrutador)
+                    ->where('status', '1')
+                    ->count();
 
-        //$data = v($array);
+
+//$data = v($array);
 
         // dd($tmc);
 
-    return view('admin.index', compact('rol', 'seller' ,'data', 'dat', 'not','tmc', 'tml'));
+    return view('admin.index', compact('rol', 'seller' ,'data', 'dat', 'not','tmc', 'tml','tmcom', 'tmlc'));
 
 
 }

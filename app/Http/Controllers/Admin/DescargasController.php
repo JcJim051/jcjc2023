@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
+use App\Models\Seller;
+
 
 
 use Illuminate\Http\Request;
 
-class UsuariosController extends Controller
+class DescargasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +20,8 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        return view('admin.usuarios.index');
+        $sellers = Seller::all();
+        return view('admin.descargas.index', compact('sellers'));
     }
 
 
@@ -40,12 +43,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        $file= request()->file('documento');
-
-            Excel::import(new UsersImport,request()->file('documento'));
-
-        dd($file);
-        return redirect()->route('admin.usuarios.index')->with('success' , 'exito');
+       //
     }
 
     /**

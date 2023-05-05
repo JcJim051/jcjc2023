@@ -84,36 +84,43 @@
                 @enderror
 
             </div>
-            <div class="row">
-                <div class="col-6">
 
-                        {!! Form::label("pdf", "Pdf Cedula") !!}
+
+
+            <div class="row">
+                <div class="col-5">
+                    <label for=""> Puesto de votacion </label><br>
+                    <select class="form-control js-example-basic-single" name="state" style="width: 80%;">
+                    <option selected="selected">Alabama</option>
+                    <option>Alaska <tag hidden>Alias1</tag> <tag hidden>Alias2</tag></option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
+                </div>
+                <div class="col-5">
+
+                        {!! Form::label("pdf", "Pdf Cedula") !!} <br>
                         {!! Form::file("pdf", null, ["class" => "form-control disabled"]) !!}
 
                         @error('pdf')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-
-
-
-
                 </div>
-                @if ($superuser->pdf == null)
 
-                @else
-                <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $superuser->pdf) }}">Ver adjunto</a>
-                @endif
+                <div class="col-2">
 
-            </div>
+                    <label for="">Documento cargado</label>
+                    <br>
+                    @if ($superuser->pdf == null)
+                        Sin cargar
+                    @else
+                    <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $superuser->pdf) }}">Ver adjunto</a>
+                    @endif
+                </div>
 
-
-            <div class="form-group">
-                {!! Form::label("status", "Estado") !!}
-                {!! Form::select("status",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}
-
-                @error('Estado')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
 
             </div>
 
@@ -121,13 +128,46 @@
 
 
 
-            {!! Form::hidden('codescru', null) !!}
-            {!! Form::hidden('codcor', null) !!}
 
 
-            {!! Form::submit('Acreditar Testigo', ['class' => 'btn btn-info']) !!}
+
+
+
+
+
+                @can('no-editar')
+                    <div class="form-group">
+                        {!! Form::label("status", "Estado") !!}
+                        {!! Form::select("status",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}
+
+                        @error('Estado')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+
+                    </div>
+                    {!! Form::submit('Acreditar Testigo', ['class' => 'btn btn-info']) !!}
+                @endcan
+
+
+
+
 
         {!! Form::close() !!}
     </div>
 </div>
 @stop
+@section('js')
+    <script> console.log('de tu mano señor!'); </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </SCript>
+@endsection
+
+
+
+
+
+
+
