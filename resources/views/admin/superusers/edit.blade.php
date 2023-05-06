@@ -90,14 +90,17 @@
             <div class="row">
                 <div class="col-5">
                     <label for=""> Puesto de votacion </label><br>
-                    <select class="form-control js-example-basic-single" name="state" style="width: 80%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska <tag hidden>Alias1</tag> <tag hidden>Alias2</tag></option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <select class="form-control js-example-basic-single" name="dondevota" style="width: 80%;">
+                    
+                    <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
+                    
+                        
+                    
+                    @foreach ($puestos as $puesto)
+                        <option value="{{$puesto->codpuesto}}"> {{$puesto->nombre}}</option>
+                    @endforeach
+                    
+                    
                 </select>
                 </div>
                 <div class="col-5">

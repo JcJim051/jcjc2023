@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
+use App\Models\Puestos;
 use Illuminate\Http\Request;
 
 
@@ -92,7 +93,8 @@ class SuperUserController extends Controller
 
     public function edit(Seller $superuser)
     {
-        return view('admin.superusers.edit', compact('superuser'));
+        $puestos= Puestos::all();
+        return view('admin.superusers.edit', compact('superuser', 'puestos'));
     }
 
     /**

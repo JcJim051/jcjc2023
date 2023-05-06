@@ -307,6 +307,13 @@ return [
             'can'  => 'solo_super',
 
         ],
+        [
+            'text' => 'Consultar puestos de votacion',
+            'topnav_right' => true,
+            'route'  => 'admin.verpuestos.index',
+            
+
+        ],
 
 
         // Sidebar items:

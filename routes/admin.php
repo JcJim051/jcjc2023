@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\EscrutinioController;
 use App\Http\Controllers\Admin\DescargasController;
 use App\Http\Controllers\Admin\TestigosController;
 use App\Http\Controllers\Admin\ConsultasController;
+use App\Http\Controllers\Admin\VerpuestosController;
 
 
 
@@ -36,3 +37,5 @@ Route::resource('testigos', TestigosController::class)->names('admin.testigos');
 
 
 Route::resource('consultas', ConsultasController::class)->names('admin.consultas');
+
+Route::resource('Verpuestos', VerpuestosController::class)->names('admin.verpuestos');

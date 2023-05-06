@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEscrutiniosTable extends Migration
+class CreatePuestosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateEscrutiniosTable extends Migration
      */
     public function up()
     {
-        Schema::create('escrutinios', function (Blueprint $table) {
-            $table->id();
+        Schema::create('puestos', function (Blueprint $table) {
+            $table->string('codpuesto')->primary();
+            $table->string('nombre')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('mesas')->nullable();
+            $table->string('comuna')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateEscrutiniosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('escrutinios');
+        Schema::dropIfExists('puestos');
     }
 }

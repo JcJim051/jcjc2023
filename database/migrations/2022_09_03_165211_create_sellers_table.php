@@ -28,6 +28,8 @@ class CreateSellersTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('email')->nullable();
             $table->string('telefono')->nullable();
+            $table->string('dondevota')->nullable();
+            $table->foreign('dondevota')->references('codpuesto')->on('puestos');
             $table->string('codescru')->nullable();
             $table->string('codcor')->nullable();
             $table->string('status')->nullable();
