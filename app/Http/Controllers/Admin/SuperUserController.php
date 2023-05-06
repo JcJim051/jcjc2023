@@ -80,11 +80,18 @@ class SuperUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        
+        if ($request->email == null) {
 
-            'email' => 'unique:sellers',
+        } else {
+            $request->validate([
 
-        ]);
+                'email' => 'unique:sellers',
+    
+            ]);
+        }
+        
+        
 
         $seller = Seller::create($request->all());
         return redirect()->route('admin.superusers.edit', $seller)->with('info', 'El testigo se registro con exito');
@@ -106,11 +113,15 @@ class SuperUserController extends Controller
      */
     public function update(Request $request, Seller $superuser)
     {
-        $request->validate([
+        if ($request->email == null) {
 
-            'email' => "unique:sellers,email,$superuser->id",
+        } else {
+            $request->validate([
 
-        ]);
+                'email' => 'unique:sellers',
+    
+            ]);
+        }
 
 
         if($request->hasfile('pdf')){
