@@ -91,6 +91,28 @@ class ConsultorController extends Controller
                 ->groupBy('municipio')
                 ->get();
 
+        $okmun =  DB::table('sellers')
+                ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+                ->groupBy('municipio')
+                ->get();
+
+        $nookmun =  DB::table('sellers')
+                ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+                ->groupBy('municipio')
+                ->get();
+
+
+        $okani =  DB::table('sellers')
+                        ->whereStatusani("1")
+                        ->count();
+
+        $nookani =  DB::table('sellers')
+                        ->whereStatusani("0")
+                        ->count();
+
+
+        
+
 
 
          //$data = v($array);
@@ -98,7 +120,7 @@ class ConsultorController extends Controller
         //dd($lablemun);
 
 
-        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun'))
+        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okani','nookani'))
                                                     ->with('okd', $okd)
                                                     ->with('nookd', $nookd)
                                                     ->with('nookv', $nookv)
@@ -106,5 +128,6 @@ class ConsultorController extends Controller
                                                     ->with('nookm', $nookm)
                                                     ->with('okm', $okm)
                                                     ->with('data', $data);
+                                                    
 }
 }

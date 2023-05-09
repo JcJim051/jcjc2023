@@ -1,11 +1,9 @@
-@section('plugins.Datatables', true)
 @extends('adminlte::page')
 
-@section('title', 'Acreditar')
+@section('title', 'Consultar E14')
 
 @section('content_header')
-    {{--  <a href="{{route('admin.superusers.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Lista de puestos de votacion a nivel Departamental</h1>
+    <h1 style="text-align: center">Ver E14 por Mesas</h1>
 @stop
 
 @section('content')
@@ -15,39 +13,39 @@
         </div>
     @endif
 
-    <div class="card">
-    <div class="card-body">
-    <table  id="example" class="display responsive nowrap">
-        <thead >
-            <tr >
-                <th>Codigo del puesto</th>
-                <th>Nombre</th>
-                <th>Direccion</th>
-                <th># de Mesas</th>
-                <th>Comuna</th>
-                
-
-            </tr>
-        </thead>
-
-        <tbody >
-            @foreach ($verpuestos as $verpuestos)
-            <tr>
-                <td>{{ $verpuestos->codpuesto }}</td>
-                <td>{{ $verpuestos->nombre }}</td>
-                <td>{{ $verpuestos->direccion }}</td>
-                <td>{{ $verpuestos->mesas }}</td>
-                <td>{{ $verpuestos->comuna }}</td>
-
-            </tr>
-            @endforeach
-
-        </tbody>
-        
-    </table>
+<div class="card">
+        <div class="card-body">
+            <table  id="example" class="display responsive nowrap" style="width:95%" >
+                    <thead >
+                        <tr>
+                            <th>Codigo del puesto</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Mesas</th>
+                            <th>comuna</th>
 
 
+                            
+                        </tr>
+                    </thead>
 
+                    <tbody >
+                        @foreach ($verpuestos as $verpuesto)
+                        <tr>
+                            <td>{{ $verpuesto->codpuesto }}</td>
+                            <td>{{ $verpuesto->nombre }}</td>
+                            <td>{{ $verpuesto->direccion }}</td>
+                            <td>{{ $verpuesto->mesas }}</td>
+                            <td>{{ $verpuesto->comuna }}</td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                    
+</table>
+</table>
+        </div>
+    </div>
 @stop
 
 @section('css')
@@ -73,8 +71,10 @@
              "pageLength": 25,
              "columnDefs": [
 
-             { responsivePriority: 10002, targets: 0 },
-             
+             { responsivePriority: 4, targets: 4 },
+             { responsivePriority: 3, targets: 3 },
+             { responsivePriority: 2, targets: 2 },
+             { responsivePriority: 1, targets: 1 },
              
 
              ],
@@ -94,8 +94,12 @@
              }
              );
          })
-     </SCript>
+    </SCript>
 @endsection
+
+
+
+
 
 
 

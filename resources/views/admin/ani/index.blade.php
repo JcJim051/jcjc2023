@@ -5,7 +5,7 @@
 
 @section('content_header')
     {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Lista de testigo</h1>
+    <h1 style="text-align:center">Listado de testigos para Validacion Ani</h1>
 @stop
 
 @section('content')
@@ -40,14 +40,14 @@
                     {{-- <td hidden>{{ $seller->cedula }}</td>
                     <td hidden>{{ $seller->email }}</td> --}}
                     <td>{{ $seller->municipio }}</td>
-                    @if ($seller->statusani <> 0)
+                    @if ($seller->statusani <> 0 or $seller->statusani == null) 
                             <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                         @else
                             <td style="color: red" >{{$seller->puesto}}</td>
                         @endif
     
     
-                        @if ($seller->statusani <> 0)
+                        @if ($seller->statusani <> 0 or $seller->statusani == null) 
                         <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                         @else
                             <td style="color: red" >{{$seller->mesa}}</td>

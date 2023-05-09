@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-        <div class="container" >
+       
             <div class="row">
 
                 <div class="col-2" >
@@ -85,9 +85,10 @@
                     </div>
                 </div>
 
-        </div>
-        </div>
+            </div>
+        
 
+       
     <div class="row">
         <div class="col-sm-4 col-xs-12">
             <div class="card card-success">
@@ -183,6 +184,23 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="info-box">
+            <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text" >Validacion Ani y contacto</span>
+              <span class="info-box-number"> {{$okani}} </span>
+              <div class="progress">
+                <div class="progress-bar bg-info" style="width: {{($okani/($okani+$nookani))}}% "></div>
+              </div>
+              <span class="progress-description">
+                <p>{{($okani/($okani+$nookani))}}% avance total</p>
+              </span>
+            </div>
+          </div>
+    </div>
+
     <div class="row">
         <div  class="col-sm-12 col-xs-12 ">
             <div class="card card-success">
