@@ -301,81 +301,110 @@ return [
             'topnav_right' => false,
         ],
         [
-            'text' => 'Descargar base de datos',
+            'text' => 'E15',
             'topnav_right' => true,
-            'route'  => 'admin.descargas.index',
+            // 'route'  => 'admin.e15.index',
             'can'  => 'solo_super',
 
         ],
-        [
-            'text' => 'Consultar puestos de votacion',
-            'topnav_right' => true,
-            'route'  => 'admin.verpuestos.index',
-            
-
-        ],
+        
+       
 
 
         // Sidebar items:
 
-        [
-            'header' => 'Indicadores',
-            'can'  => 'ver-data',],
-        [
-            'text'        => 'Indicadores acreditacion de testigos',
-            'route'         => 'admin.consultors.index',
-            'icon'        => 'fas fa-tachometer-alt fa-fw',
-            'label_color' => 'success',
-            'can'  => 'ver-data',
-        ],
-        [
-            'text'        => 'Resultados',
-            'route'         => 'admin.resultados.index',
-            'icon'        => 'fas fa-flag',
-            'label_color' => 'primary',
-            'can'  => 'ver-data',
+        
+[
+    'header' => 'Indicadores',
+    'can'  => 'ver-data',],
+[
+    'text'        => 'Indicadores acreditacion de testigos',
+    'route'         => 'admin.consultors.index',
+    'icon'        => 'fas fa-tachometer-alt fa-fw',
+    'label_color' => 'success',
+    'can'  => 'ver-data',
+],
+[
+    'text'        => 'Resultados',
+    'route'         => 'admin.resultados.index',
+    'icon'        => 'fas fa-flag',
+    'label_color' => 'primary',
+    'can'  => 'ver-data',
 
-        ],
-        ['header' => 'Testigos',
-        // 'can'  => 'no-editar'
-       ],
-        [
-            'text' => 'Acreditar Testigos',
-            'route'  => 'admin.superusers.index',
-            'icon' => 'fas fa-fw fa-user',
-            // 'can'  => 'no-editar'
+],
+['header' => 'Testigos',
+// 'can'  => 'no-editar'
+],
+[
+    'text' => 'Acreditar Testigos',
+    'route'  => 'admin.superusers.index',
+    'icon' => 'fas fa-fw fa-user',
+    // 'can'  => 'no-editar'
 
-        ],
+],
 
-        [
-             'text' => 'Reportar E14',
-             'route'  => 'admin.tellers.index',
-             'icon' => 'fas fa-fw fa-plus-square',
-            //  'can'  => 'no-editar'
-
-
-         ],
-         [
-            'text' => 'Reportar escrutinio',
-            'route'  => 'admin.escrutinio.index',
-            'icon' => 'fas fa-fw fa-plus-circle ',
-            'can'  => 'ver-escrutinio',
-            // 'can'  => 'no-editar'
+[
+     'text' => 'Reportar E14',
+     'route'  => 'admin.tellers.index',
+     'icon' => 'fas fa-fw fa-plus-square',
+    //  'can'  => 'no-editar'
 
 
-        ],
-        [
-            'header' => 'Centro de Datos',
-            'can'  => 'ver-escrutinio'
+ ],
+ [
+    'text' => 'Reportar escrutinio',
+    'route'  => 'admin.escrutinio.index',
+    'icon' => 'fas fa-fw fa-plus-circle ',
+    'can'  => 'ver-escrutinio',
+    // 'can'  => 'no-editar'
 
-        ],
-        [
-            'text' => 'Ver E14',
-            'route'  => 'admin.consultas.index',
-            'icon' => 'fas fa-fw fa-plus-square',
-            'can'  => 'ver-escrutinio'
-        ],
 
+],
+[
+    'header' => 'Centro de Datos',
+    'can'  => 'ver-escrutinio'
+
+],
+[
+    'text' => 'Ver E14',
+    'route'  => 'admin.consultas.index',
+    'icon' => 'fas fa-fw fa-plus-square',
+    'can'  => 'ver-escrutinio'
+],
+
+[
+    'text' => 'Consultar puestos de votacion',
+    'icon' => 'fas fa- fa-store-alt',
+    'route'  => 'admin.verpuestos.index',
+    
+
+],
+[
+    'header' => 'Validacion Ani y Contacto',
+    'can'  => 'solo_ani'
+
+],
+[
+    'text' => 'Validar datos Ani',
+    
+    'route'  => 'admin.ani.index',
+    'icon' => 'fas fa-id-card',
+    'can'  => 'solo_ani',
+
+],
+
+[
+    'header' => 'Centro de Datos',
+    'can'  => 'solo_super'
+
+],
+[
+    'text' => 'Descargar base de datos',
+    'route'  => 'admin.descargas.index',
+    'icon' => 'fas fa- fa-store-alt',
+    'can'  => 'solo_super',
+
+],
 
 
     ],

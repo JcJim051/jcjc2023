@@ -65,8 +65,18 @@ class AuthServiceProvider extends ServiceProvider
             }
 
           });
+          Gate::define('solo_ani', function($user){
+            if ($user->mun == 100 or $user->id == 5) {
+                return true;
+            } else {
 
-          ;
+                    return false;
+
+            }
+
+          });
+
+          
           Gate::define('no-editar', function($user){
             if ($user->role == 4) {
                 return false;

@@ -33,6 +33,7 @@ class CreateSellersTable extends Migration
             $table->string('codescru')->nullable();
             $table->string('codcor')->nullable();
             $table->string('status')->nullable();
+            $table->string('statusani')->nullable();
             $table->string('pdf')->nullable();
             $table->string('gob1')->nullable();
             $table->string('gob2')->nullable();

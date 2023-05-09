@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use App\Models\Puestos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 
 class SuperUserController extends Controller
@@ -46,7 +48,7 @@ class SuperUserController extends Controller
                         if ($role == 3) {
                             $sellers = Seller::where('codcor' , $coordinador)->get();
                         } else {
-                                if ($role == 4) {
+                                if ($role == 4 or $role == 5) {
                                     $sellers = Seller::all();
                                 } else {
 
@@ -94,12 +96,15 @@ class SuperUserController extends Controller
         
 
         $seller = Seller::create($request->all());
+        
+        
         return redirect()->route('admin.superusers.edit', $seller)->with('info', 'El testigo se registro con exito');
 
     }
 
     public function edit(Seller $superuser)
     {
+        
         $puestos= Puestos::all();
         return view('admin.superusers.edit', compact('superuser', 'puestos'));
     }
@@ -113,30 +118,37 @@ class SuperUserController extends Controller
      */
     public function update(Request $request, Seller $superuser)
     {
+
+        
         if ($request->email == null) {
 
         } else {
             $request->validate([
 
-                'email' => 'unique:sellers',
-    
+                'email' => 'unique:sellers,email,' . $superuser->id,
+                'cedula' => 'unique:sellers,cedula,' . $superuser->id,
             ]);
-        }
-
-
+        };
         if($request->hasfile('pdf')){
 
-            $superuser['pdf']= $request->file('pdf')->getClientOriginalName();
-            $request->file('pdf');
+        $superuser['pdf']= $request->file('pdf')->getClientOriginalName();
+        $request->file('pdf');
 
-            $superuser['pdf']= $request->file('pdf')->store('/cedulas-pdf');
+        $superuser['pdf']= $request->file('pdf')->store('/cedulas-pdf');
 
 
-        }
+    }
 
             $superuser->update($request->all());
 
-        return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
+            if ($request->statusani == null) {
+                return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
+            } else {
+                return redirect()->route('admin.ani.index', $superuser)->with('info', ' Validacion Ani Guardada con Exito');
+            }
+            
+
+       
     }
 
     /**
