@@ -301,7 +301,7 @@ return [
             'topnav_right' => false,
         ],
         [
-            'text' => 'E15',
+            'text' => 'e15',
             'topnav_right' => true,
             // 'route'  => 'admin.e15.index',
             'can'  => 'solo_super',
