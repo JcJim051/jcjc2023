@@ -31,7 +31,7 @@
                         @if ($superuser[0]->pdf == null)
                             Sin cargar
                         @else
-                        <a style="font-size: 18px" target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $superuser[0]->pdf) }}">Ver adjunto</a>
+                        <a style="font-size: 18px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $superuser[0]->pdf) }}">Ver adjunto</a>
                         @endif
                     </div>
                 

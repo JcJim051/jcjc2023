@@ -40,7 +40,7 @@
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                     <svg viewBox="0 0 651 192" fill="none"  class="h-16 w-auto text-gray-700 sm:h-20">
                         <g clip-path="url(#clip0)" fill="#EF3B6D">
-                            <img  src="img/logo.png" alt="">
+                            <img  src="{{ asset('img/logo.png')}}" alt="">
                         </g>
                     </svg>
                 </div>

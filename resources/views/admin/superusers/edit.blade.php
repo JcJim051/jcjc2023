@@ -120,7 +120,7 @@
                     @if ($superuser->pdf == null)
                         Sin cargar
                     @else
-                    <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $superuser->pdf) }}">Ver adjunto</a>
+                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $superuser->pdf) }}">Ver adjunto</a>
                     @endif
                 </div>
 

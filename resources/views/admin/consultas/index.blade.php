@@ -56,7 +56,7 @@
                             @if ($seller->e14 == null)
 
                             @else
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $seller->e14) }}">Ver E14 cargado</a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $seller->e14) }}">Ver E14 cargado</a>
                             @endif
 
                         </td>
