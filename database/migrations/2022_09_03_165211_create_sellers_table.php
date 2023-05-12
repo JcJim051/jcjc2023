@@ -29,11 +29,13 @@ class CreateSellersTable extends Migration
             $table->string('email')->nullable();
             $table->string('telefono')->nullable();
             $table->string('dondevota')->nullable();
-            $table->foreign('dondevota')->references('codpuesto')->on('puestos');
+            $table->foreign('dondevota')->references('codpuesto')->on('puestos')->onUpdate('cascade');
             $table->string('codescru')->nullable();
             $table->string('codcor')->nullable();
             $table->string('status')->nullable();
             $table->string('statusani')->nullable();
+            $table->string('reclamacion')->nullable();
+            $table->string('observacion')->nullable();
             $table->string('pdf')->nullable();
             $table->string('gob1')->nullable();
             $table->string('gob2')->nullable();
