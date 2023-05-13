@@ -64,7 +64,9 @@ class ConsultorController extends Controller
         $data =  DB::table('sellers')
                     ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                     ->groupBy('codescru')
+                    ->orderBy('codescru', 'asc')
                     ->get();
+                    
         $dat =  DB::table('sellers')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
@@ -112,7 +114,7 @@ class ConsultorController extends Controller
 
 
         
-
+      
 
 
          //$data = v($array);

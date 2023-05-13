@@ -78,6 +78,26 @@
         </div>
 
         <div class="row">
+            <div class="col-sm-3 col-xs-12">
+               
+                    {!! Form::label("reclamacion", "Reclaciones en esta mesa") !!}
+                    {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Si!' ], null, ["class" => "form-control disabled"]) !!}
+
+                    @error('Estado')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+
+                    <br>
+            </div>
+            <div class="col-sm-9 col-xs-12">
+                <div class="form-floating">
+                    <label for="floatingTextarea">Comentarios</label>
+                    <textarea class="form-control" placeholder="Describe la reclamacion" id="floatingTextarea" name="observaciones"> {{$teller->observacion}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-6 col-x-12">
 
                     {!! Form::label("e14", "Cargar E14") !!} <br>

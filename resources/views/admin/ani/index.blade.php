@@ -64,7 +64,13 @@
                         @endif
     
                     </td>
-                    <td> <a href="{{route("admin.ani.edit", $seller)}}" class="btn btn-primary btn-sm">validar</a></td>
+                    @if ($seller->statusani == 1)
+                        <td> <a href="{{route("admin.ani.edit", $seller)}}" class="btn btn-secondary btn-sm">Validado</a></td>
+                    @else
+                        <td> <a href="{{route("admin.ani.edit", $seller)}}" class="btn btn-primary btn-sm">validar</a></td>
+                    @endif
+
+                   
 
     
     
