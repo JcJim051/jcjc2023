@@ -22,7 +22,7 @@
                     <th>Municipio</th>
                     <th>Puesto</th>
                     <th>Mesa</th>
-                    <th>Juan Camilo</th>
+                    <th>Felipe Carreño</th>
                     {{-- <th>Felipe</th> --}}
                     <th>Recuperado</th>
                     <th>comision</th>
@@ -88,7 +88,7 @@
                     <th>Municipio</th>
                     <th>Puesto</th>
                     <th>Mesa</th>
-                    <th>Juan Camilo</th>
+                    <th>Feliper Carreño</th>
                     {{-- <th>Felipe</th> --}}
                     <th>Recuperado</th>
                     <th>comision</th>

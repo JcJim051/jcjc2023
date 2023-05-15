@@ -70,12 +70,14 @@ class ConsultorController extends Controller
         $dat =  DB::table('sellers')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
                 ->get();
 
         
         $not =  DB::table('sellers')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
                 ->get();
 
         $lablemun =  DB::table('sellers')

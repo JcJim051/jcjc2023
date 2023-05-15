@@ -45,10 +45,10 @@
         <div class="row">
             <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
-                    {!! Form::label("alc1", "Juan Camilo Chavez") !!}
-                    {!! Form::text("alc1", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por Juan Camilo Chavez']) !!}
+                    {!! Form::label("gob1", "Felipe Carreño") !!}
+                    {!! Form::text("gob1", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por Felipe Carreño']) !!}
 
-                    @error('alc1')
+                    @error('gob1')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
 
@@ -56,20 +56,20 @@
             </div>
             <div class="col-sm-4 col-xs-12 ">
                 <div class="form-group">
-                    {!! Form::label("alc2", "Candidato alcaldia 2") !!}
-                    {!! Form::text("alc2", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 2']) !!}
+                    {!! Form::label("gob2", "Candidato  2") !!}
+                    {!! Form::text("gob2", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 2']) !!}
 
-                    @error('alc2')
+                    @error('gob2')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
             </div>
             <div class="col-sm-4 col-xs-12">
                 <div class="form-group">
-                    {!! Form::label("alc3", "Candidato alcaldia 3") !!}
-                    {!! Form::text("alc3", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 3']) !!}
+                    {!! Form::label("gob3", "Candidato  3") !!}
+                    {!! Form::text("gob3", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 3']) !!}
 
-                    @error('alc3')
+                    @error('gob3')
                         <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
@@ -92,7 +92,7 @@
             <div class="col-sm-9 col-xs-12">
                 <div class="form-floating">
                     <label for="floatingTextarea">Comentarios</label>
-                    <textarea class="form-control" placeholder="Describe la reclamacion" id="floatingTextarea" name="observaciones"> {{$teller->observacion}}</textarea>
+                    <textarea class="form-control" placeholder="Describe la reclamacion" id="floatingTextarea" name="observacion"> {{$teller->observacion}}</textarea>
                 </div>
             </div>
         </div>

@@ -34,7 +34,7 @@
 
 
         <div class="form-group">
-            {!! Form::label("recuperados", "Juan Camilo Chavez") !!}
+            {!! Form::label("recuperados", "Felipe Carreño") !!}
             {!! Form::text("recuperados", null, ["class" => "form-control disabled", 'placeholder' => 'Votos Recuperados']) !!}
 
             @error('recuperados')

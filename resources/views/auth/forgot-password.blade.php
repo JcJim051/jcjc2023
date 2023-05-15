@@ -26,7 +26,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-jet-button>
-                    {{ __('Enviar linl de recuperacion') }}
+                    {{ __('Enviar link de recuperacion') }}
                 </x-jet-button>
             </div>
         </form>
