@@ -94,12 +94,12 @@ class TellerController extends Controller
 
 
         }
-        if($request->hasfile('foto-rec')){
+        if($request->hasfile('fotorec')){
 
-            $teller['foto-rec']= $request->file('foto-rec')->getClientOriginalName();
-            $request->file('foto-rec');
+            $teller['fotorec']= $request->file('fotorec')->getClientOriginalName();
+            $request->file('fotorec');
 
-            $teller['foto-rec']= $request->file('foto-rec')->store('/reclamaciones-images');
+            $teller['fotorec']= $request->file('fotorec')->store('/reclamaciones-images');
 
 
         }

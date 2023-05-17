@@ -41,7 +41,7 @@
                         <td>{{ $seller->id }}</td>
                         <td>{{ $seller->municipio }}</td>
 
-                        @if ($seller->alc1 <> null)
+                        @if ($seller->gob1 <> null)
                         <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                         @else
                             <td style="color: red" >{{$seller->puesto}}</td>
@@ -49,18 +49,18 @@
                         @endif
 
 
-                            @if ($seller->alc1 <> null)
+                            @if ($seller->gob1 <> null)
                                 <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
                                 <td style="color: red" >{{$seller->mesa}}</td>
 
                             @endif
                         {{--  <td>{{$seller->cedula}}</td>  --}}
-                        <td>{{$seller->alc1}}</td>
+                        <td>{{$seller->gob1}}</td>
                         <td>{{$seller->codescru}}</td>
                         <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
                         <td style="font-size: 20px ; text-align:center">
-                                @if($seller->alc1 <> null)
+                                @if($seller->gob1 <> null)
                                     <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Reportado</P></i>
                                 @else
                                     <i style="color: rgb(235, 62, 10) " class="fas fa-ban"><P hidden>Sin reporte</P></i>
