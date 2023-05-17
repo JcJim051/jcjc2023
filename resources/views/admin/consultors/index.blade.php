@@ -11,82 +11,95 @@
 
 @section('content')
        
-            <div class="row">
+    <div class="row">
 
-                <div class="col-2" >
-                    <div class="small-box bg-info bg-gradient-success" >
-                        <div class="inner">
-                        <h3> {{$okd}} </h3>
-                        <p>Mesas Acreditadas a nivel departamental</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                    </div>
+        <div class="col-sm-2 col-xs-12" >
+            <div class="small-box bg-info bg-gradient-success" >
+                <div class="inner">
+                    <h3> {{$okd}} </h3>
+                    <p>Mesas Acreditadas Departamental</p>
+                    <span class="info-box-text">Remanentes</span>
+                    <span class="info-box-number"> {{$remokd}} </span>
                 </div>
-
-                <div class="col-2">
-                    <div class="small-box bg-info bg-gradient-danger ">
-                        <div class="inner">
-                        <h3> {{$nookd}} </h3>
-                        <p>Mesas Faltantes a nivel Departamental</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-slash"></i>
-                        </div>
-
-                    </div>
+                
+                <div class="icon">
+                    <i class="fas fa-user-check"></i>
                 </div>
-                <div class="col-2">
-                    <div class="small-box bg-info bg-gradient-success">
-                        <div class="inner">
-                        <h3>{{$okv}} </h3>
-                        <p>Mesas Acreditadas Villavicencio</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-street-view"></i>
-                        </div>
-                    </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2 col-xs-12">
+            <div class="small-box bg-info bg-gradient-danger ">
+                <div class="inner">
+                <h3> {{$nookd}} </h3>
+                <p>Mesas Faltantes Departamental</p>
+                <span class="info-box-text">Remanentes</span>
+                <span class="info-box-number"> {{$remnookd}} </span>
                 </div>
-
-                <div class="col-2">
-                    <div class="small-box bg-info bg-gradient-danger ">
-                        <div class="inner">
-                        <h3>{{$nookv}} </h3>
-                        <p>Mesas Faltantes VIllavicencio</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-store-alt"></i>
-                        </div>
-
-                    </div>
-                </div><div class="col-2">
-                    <div class="small-box bg-info bg-gradient-success">
-                        <div class="inner">
-                        <h3> {{$okm}} </h3>
-                        <p>Mesas Acreditadas en municipios</p>
-                        </div>
-                        <div class="icon">
-                        <i class="fas fa-user-check"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-2">
-                    <div class="small-box bg-info bg-gradient-danger ">
-                        <div class="inner">
-                        <h3> {{$nookm}} </h3>
-                        <p>Mesas Faltantes en municipios</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-user-slash"></i>
-                        </div>
-
-                    </div>
+                <div class="icon">
+                    <i class="fas fa-user-slash"></i>
                 </div>
 
             </div>
-        
+        </div>
+        <div class="col-sm-2 col-xs-12">
+            <div class="small-box bg-info bg-gradient-success">
+                <div class="inner">
+                <h3>{{$okv}} </h3>
+                <p>Mesas Acreditadas Villavicencio</p>
+                <span class="info-box-text">Remanentes</span>
+                <span class="info-box-number"> {{$remokv}} </span>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-street-view"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2 col-xs-12">
+            <div class="small-box bg-info bg-gradient-danger ">
+                <div class="inner">
+                <h3>{{$nookv}} </h3>
+                <p>Mesas Faltantes VIllavicencio</p>
+                <span class="info-box-text">Remanentes</span>
+                <span class="info-box-number"> {{$remnookv}} </span>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-store-alt"></i>
+                </div>
+
+            </div>
+        </div><div class="col-sm-2 col-xs-12">
+            <div class="small-box bg-info bg-gradient-success">
+                <div class="inner">
+                <h3> {{$okm}} </h3>
+                <p>Mesas Acreditadas en municipios</p>
+                <span class="info-box-text">Remanentes</span>
+                <span class="info-box-number"> {{$remokm}} </span>
+                </div>
+                <div class="icon">
+                <i class="fas fa-user-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2 col-xs-12">
+            <div class="small-box bg-info bg-gradient-danger ">
+                <div class="inner">
+                <h3> {{$nookm}} </h3>
+                <p>Mesas Faltantes en municipios</p>
+                <span class="info-box-text">Remanentes</span>
+                <span class="info-box-number"> {{$remnookm}} </span>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-slash"></i>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+   
 
        
     <div class="row">
@@ -195,7 +208,7 @@
                 <div class="progress-bar bg-info" style="width: {{($okani/($okani+$nookani))}}% "></div>
               </div>
               <span class="progress-description">
-                <p>{{($okani/($okani+$nookani))}}% avance total</p>
+                <p>{{  round(($okani/($okani+$nookani)),2)}}% Avance total</p>
               </span>
             </div>
           </div>

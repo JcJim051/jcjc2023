@@ -17,10 +17,10 @@
         </div>
 @endif
 
-<div class="card">
+<div class="card ">
     <div class="card-body">
         {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-        <div class="card">
+        <div class="card card-outline card-warning">
             <div class="card-body">
             
                 <div class="row">

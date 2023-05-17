@@ -26,25 +26,24 @@ class TellerController extends Controller
                 if ($role == 1) {
                     // 1 = villao
                     if ($municipio == 1) {
-                        $sellers = Seller::where('codmun' , 001)->get();
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , 001)->get();
                     } else {
                         // 0 = municipios
                         if ($municipio == 0) {
-                            $sellers = Seller::where('codmun' , '<>', 001)->get();
                         } else {
-                            $sellers = Seller::all();
+                            $sellers = Seller::where('mesa','<>', 'Rem')->get();
                         }
                     }
                 } else {
                     if ($role == 2) {
-                        $sellers = Seller::where('codescru' , $escrutador)->get();
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codescru' , $escrutador)->get();
                     } else {
 
                         if ($role == 3) {
-                            $sellers = Seller::where('codcor' , $coordinador)->get();
+                            $sellers = Seller::where('mesa','<>', 'Rem')->where('codcor' , $coordinador)->get();
                         } else {
                                 if ($role == 4) {
-                                    $sellers = Seller::all();
+                                    $sellers = Seller::where('mesa','<>', 'Rem')->get();
                                 } else {
 
                                 }
@@ -92,6 +91,15 @@ class TellerController extends Controller
             $request->file('e14');
 
             $teller['e14']= $request->file('e14')->store('/E14-images');
+
+
+        }
+        if($request->hasfile('foto-rec')){
+
+            $teller['foto-rec']= $request->file('foto-rec')->getClientOriginalName();
+            $request->file('foto-rec');
+
+            $teller['foto-rec']= $request->file('foto-rec')->store('/reclamaciones-images');
 
 
         }

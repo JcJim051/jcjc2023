@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
      */
     public function create(Request $request): RegisterViewResponse
     {
-        return app(RegisterViewResponse::class);
+        // return app(RegisterViewResponse::class);
     }
 
     /**

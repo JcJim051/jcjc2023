@@ -23,6 +23,7 @@
                         <th>Puesto</th>
                         <th>Mesa</th>
                         <th>link E14</th>
+                        <th>link Reclamacion</th>
                         <th>Comision</th>
                         <th>Codpuesto</th>
 
@@ -60,6 +61,14 @@
                             @endif
 
                         </td>
+                        <td>
+                            @if ($seller->fotorec == null)
+
+                            @else
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $seller->fotorec) }}">Ver Reclamacion</a>
+                            @endif
+
+                        </td>
 
 
                         <td>{{$seller->codescru}}</td>
@@ -82,6 +91,7 @@
                         <th>Puesto</th>
                         <th>Mesa</th>
                         <th>link E14</th>
+                        <th>link Reclamacion</th>
                         <th>Comision</th>
                         <th>Codpuesto</th>
 
@@ -120,8 +130,8 @@
             { responsivePriority: 10002, targets: 0 },
             { responsivePriority: 2, targets: 2 },
             { responsivePriority: 1, targets: 3 },
-            { target: 5, visible: false},
             { target: 6, visible: false},
+            { target: 7, visible: false},
 
             ],
             "dom": 'Bfrtip',
