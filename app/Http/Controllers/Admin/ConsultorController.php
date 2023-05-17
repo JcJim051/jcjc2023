@@ -113,6 +113,7 @@ class ConsultorController extends Controller
         // $snook = 0;
 
         $data =  DB::table('sellers')
+                ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
@@ -121,6 +122,7 @@ class ConsultorController extends Controller
       
                     
         $dat =  DB::table('sellers')
+                ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
@@ -129,6 +131,7 @@ class ConsultorController extends Controller
 
         
         $not =  DB::table('sellers')
+                ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
                 ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
                 ->groupBy('codescru')
