@@ -18,26 +18,26 @@ class ResultadosController extends Controller
         $tm = DB::table('sellers')
                 ->count('mesa');
         $tmi= DB::table('sellers')
-                ->where('alc1', '<>' , '')
+                ->where('gob1', '<>' , '')
                 ->count();
 
         $tmi2= DB::table('sellers')
-                ->where('alc2', '<>' , '')
+                ->where('gob2', '<>' , '')
                 ->count();
         $tmi3= DB::table('sellers')
-                ->where('alc3', '<>' , '')
+                ->where('gob3', '<>' , '')
                 ->count();
 
         $tv1 = DB::table('sellers')
-                ->select("alc1")
-                ->sum('alc1');
+                ->select("gob1")
+                ->sum('gob1');
 
         $tv2 = DB::table('sellers')
-                ->select("alc2")
-                ->sum('alc2');
+                ->select("gob2")
+                ->sum('gob2');
         $tv3 = DB::table('sellers')
-                ->select("alc3")
-                ->sum('alc3');
+                ->select("gob3")
+                ->sum('gob3');
 
         $tr =  DB::table('sellers')
                 ->select("recuperados")
