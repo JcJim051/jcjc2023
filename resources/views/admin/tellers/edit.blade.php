@@ -94,7 +94,7 @@
                 @else
                 <div class="row">
                     <div>
-                        <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $teller->e14) }}">Ver E14 cargado</a>
+                        <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 cargado</a>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                         @else
                         <div class="row">
                             <div>
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ url('/storage/' . $teller->fotorec) }}">Ver reclamacion cargada</a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->fotorec) }}">Ver reclamacion cargada</a>
                             </div>
                         </div>
         
