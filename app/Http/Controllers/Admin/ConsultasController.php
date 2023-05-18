@@ -29,10 +29,9 @@ class ConsultasController extends Controller
                 $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , 001)->get();
             } else {
                 // 0 = municipios
-                if ($municipio == 0) {
-                } else {
-                    $sellers = Seller::where('mesa','<>', 'Rem')->get();
-                }
+               
+                    $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , '<>', '001')->get();
+                
             }
         } else {
             if ($role == 2) {

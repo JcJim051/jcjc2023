@@ -333,13 +333,14 @@ return [
 
 ],
 ['header' => 'Testigos',
-// 'can'  => 'no-editar'
+'can'  => 'no-ve-ani'
 ],
+    
 [
     'text' => 'Acreditar Testigos',
     'route'  => 'admin.superusers.index',
     'icon' => 'fas fa-fw fa-user',
-    // 'can'  => 'no-editar'
+    'can'  => 'no-ve-ani'
 
 ],
 
@@ -347,7 +348,7 @@ return [
      'text' => 'Reportar E14',
      'route'  => 'admin.tellers.index',
      'icon' => 'fas fa-fw fa-plus-square',
-    //  'can'  => 'no-editar'
+     'can'  => 'no-ve-ani'
 
 
  ],
@@ -356,20 +357,21 @@ return [
     'route'  => 'admin.escrutinio.index',
     'icon' => 'fas fa-fw fa-plus-circle ',
     'can'  => 'ver-escrutinio',
-    // 'can'  => 'no-editar'
+    'can'  => 'no-ve-ani'
 
 
 ],
 [
     'header' => 'Centro de Datos',
-    'can'  => 'ver-escrutinio'
-
+    'can'  => 'ver-escrutinio',
+    'can'  => 'no-ve-ani'
 ],
 [
     'text' => 'Ver E14',
     'route'  => 'admin.consultas.index',
     'icon' => 'fas fa-fw fa-plus-square',
-    'can'  => 'ver-escrutinio'
+    'can'  => 'ver-escrutinio',
+    'can'  => 'no-ve-ani',
 ],
 
 [
@@ -386,7 +388,6 @@ return [
 ],
 [
     'text' => 'Validar datos Ani',
-    
     'route'  => 'admin.ani.index',
     'icon' => 'fas fa-id-card',
     'can'  => 'solo_ani',
@@ -396,6 +397,7 @@ return [
 [
     'header' => 'Centro de Datos',
     'can'  => 'solo_super'
+
 
 ],
 [

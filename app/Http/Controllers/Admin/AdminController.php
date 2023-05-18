@@ -27,7 +27,11 @@ class AdminController extends Controller
                     if ($role == 4) {
                         $rol = 'Consulta';
                     } else {
-
+                        if ($role == 5) {
+                            $rol = 'Validador Ani';
+                        } else {
+                            
+                        }
                     }
                 }
             }

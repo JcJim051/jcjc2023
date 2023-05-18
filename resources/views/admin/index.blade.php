@@ -20,13 +20,13 @@
             <div class="card-body text-center size-14">
 
                 @if ($rol == "Coordinador")
-                <div class="text-center text-info text-success">
-                    <h4>Tu rol</h5>
-                    <h5>Coordinador puesto de votacion   {{ $seller->puesto}}
-                    {{ $seller->municipio }}<br>
-                    Codigo del Puesto: {{ Auth::user()->codpuesto }}<br>
-                    </h5>
-                </div>
+                    <div class="text-center text-info text-success">
+                        <h4>Tu rol</h5>
+                        <h5>Coordinador puesto de votacion   {{ $seller->puesto}}
+                        {{ $seller->municipio }}<br>
+                        Codigo del Puesto: {{ Auth::user()->codpuesto }}<br>
+                        </h5>
+                    </div>
                     <div class="row">
                         <div class="col-3">
                             <div class="small-box bg-info bg-gradient-warning">
@@ -68,7 +68,11 @@
                         <div class="col-3">
                             <div class="small-box bg-info bg-gradient-success ">
                                 <div class="inner">
-                                <h3> {{ round(($tml/$tmc)*100,2)}}%</h3>
+                                @if ($tmc == 0)
+                                <h3> 0% </h3>    
+                                @else
+                                <h3>{{ round(($tml/$tmc)*100,2)}}%</h3>
+                                @endif 
                                 <p>% de mesas Acreditadas</p>
                                 </div>
                                 <div class="icon">
@@ -83,10 +87,10 @@
                 @else
                     @if ($rol == "Esctrutador")
 
-                    <div class="text-center text-info text-success">
-                        <h5>Tu rol</h5>
-                        <p>Escrutador comision Auxiliar escrutadora {{ Auth::user()->codzon }} <br></p>
-                    </div>
+                        <div class="text-center text-info text-success">
+                            <h5>Tu rol</h5>
+                            <p>Escrutador comision Auxiliar escrutadora {{ Auth::user()->codzon }} <br></p>
+                        </div>
 
 
                         <div class="row">
@@ -143,7 +147,7 @@
 
 
                     @else
-                         Acreditacion, reporte y seguimiento electoral.
+                    Acreditación, reporte y seguimiento electoral.
                     @endif
                 @endif
             </div>

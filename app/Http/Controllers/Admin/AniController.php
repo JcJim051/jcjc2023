@@ -27,12 +27,26 @@ class AniController extends Controller
 
 
 
-                
-        if ($user->mun == 100 or $role == 5) {
-            $sellers = Seller::whereStatus("1")->get();
-        } else {
+            if ($role == 1) {
+                // 1 = villao
+                if ($municipio == 1) {
+                    $sellers = Seller::whereStatus("1")->where('codmun' , 001)->get();
+                } else {
+                    // 0 = municipios
+                   
+                    $sellers = Seller::whereStatus("1")->where('codmun' ,'<>' , '001')->get();
+                    
+                }
+            }else {
 
-        }
+                if ($user->mun == 100 or $role == 5 or $role = 1) {
+                    $sellers = Seller::whereStatus("1")->get();
+                } else {
+        
+                }
+            }
+                
+       
 
                              
 
