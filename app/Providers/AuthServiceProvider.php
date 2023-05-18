@@ -25,68 +25,118 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-          Gate::define('ver-data', function($user){
-            if ($user->role == 1) {
+        Gate::define('Superuser', function($user){
+            if ($user->id == 1) {
                 return true;
             } else {
-                if ($user->role == 4) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+                return false;
 
-          });
-          Gate::define('ver-escrutinio', function($user){
-            if ($user->role == 2) {
+            }
+        });     
+
+          Gate::define('Superuser-administrador-consultor', function($user){
+            if ($user->id == 1) {
                 return true;
             } else {
                 if ($user->role == 1) {
                     return true;
                 } else {
+                    
                     if ($user->role == 4) {
                         return true;
                     } else {
+                        
                         return false;
+        
                     }
+    
                 }
 
             }
+        });     
 
-
-          });
-          Gate::define('solo_super', function($user){
+        Gate::define('Superuser-administrador-escrutador-consultor', function($user){
             if ($user->id == 1) {
                 return true;
             } else {
-
-                    return false;
+                if ($user->role == 1) {
+                    return true;
+                } else {
+                    
+                    if ($user->role == 2) {
+                        return true;
+                    } else {
+                        
+                        if ($user->role == 4) {
+                            return true;
+                        } else {
+                            
+                            return false;
+            
+                        }
+        
+                    }
+    
+                }
 
             }
-
-          });
-          Gate::define('solo_ani', function($user){
-            if ( $user->role == 5 or $user->role == 1) {
+        });     
+        Gate::define('Superuser-administrador-escrutador-coordinador-consultor', function($user){
+            if ($user->id == 1) {
                 return true;
             } else {
-
-              return false;
-
-            }
-
-          });
-
-          
-          Gate::define('no-editar', function($user){
-            if ($user->role == 4) {
-                return false;
-            } else {
-
+                if ($user->role == 1) {
                     return true;
+                } else {
+                    
+                    if ($user->role == 2) {
+                        return true;
+                    } else {
+                        
+                        if ($user->role == 3) {
+                            return true;
+                        } else {
+                            
+                            if ($user->role == 4) {
+                                return true;
+                            } else {
+                                
+                                return false;
+                
+                            }
+            
+                        }
+        
+                    }
+    
+                }
 
             }
+        });     
+        Gate::define('Superuser-administrador-consultor-validador', function($user){
+            if ($user->id == 1) {
+                return true;
+            } else {
+                if ($user->role == 1) {
+                    return true;
+                } else {
+                    
+                    if ($user->role == 4) {
+                        return true;
+                    } else {
+                        
+                        if ($user->role == 5) {
+                            return true;
+                        } else {                                                                              
+                                return false;
+                                                  
+                        }
+        
+                    }
+    
+                }
 
-          });
-          
+            }
+        }); 
     }
 }

@@ -300,13 +300,13 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => false,
         ],
-        [
-            'text' => 'e15',
-            'topnav_right' => true,
-            // 'route'  => 'admin.e15.index',
-            'can'  => 'solo_super',
+        // [
+        //     'text' => 'e15',
+        //     'topnav_right' => true,
+        //     // 'route'  => 'admin.e15.index',
+        //     'can'  => 'solo_super',
 
-        ],
+        // ],
         
        
 
@@ -316,39 +316,42 @@ return [
         
 [
     'header' => 'Indicadores',
-    'can'  => 'ver-data',],
+    'can'  => 'Superuser-administrador-consultor',
+],
+    
 [
     'text'        => 'Indicadores acreditacion de testigos',
     'route'         => 'admin.consultors.index',
     'icon'        => 'fas fa-tachometer-alt fa-fw',
     'label_color' => 'success',
-    'can'  => 'ver-data',
+    'can'  => 'Superuser-administrador-consultor',
 ],
 [
     'text'        => 'Resultados',
     'route'         => 'admin.resultados.index',
     'icon'        => 'fas fa-flag',
     'label_color' => 'primary',
-    'can'  => 'ver-data',
+    'can'  => 'Superuser-administrador-escrutador-consultor',
+    
 
 ],
-['header' => 'Testigos',
-'can'  => 'no-ve-ani'
+[   'header' => 'Testigos',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 ],
     
 [
     'text' => 'Acreditar Testigos',
     'route'  => 'admin.superusers.index',
     'icon' => 'fas fa-fw fa-user',
-    'can'  => 'no-ve-ani'
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 ],
 
 [
-     'text' => 'Reportar E14',
-     'route'  => 'admin.tellers.index',
-     'icon' => 'fas fa-fw fa-plus-square',
-     'can'  => 'no-ve-ani'
+    'text' => 'Reportar E14',
+    'route'  => 'admin.tellers.index',
+    'icon' => 'fas fa-fw fa-plus-square',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 
  ],
@@ -356,24 +359,41 @@ return [
     'text' => 'Reportar escrutinio',
     'route'  => 'admin.escrutinio.index',
     'icon' => 'fas fa-fw fa-plus-circle ',
-    'can'  => 'ver-escrutinio',
-    'can'  => 'no-ve-ani'
+    'can'  => 'Superuser-administrador-escrutador-consultor',
+    
 
 
 ],
 [
     'header' => 'Centro de Datos',
-    'can'  => 'ver-escrutinio',
-    'can'  => 'no-ve-ani'
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 ],
 [
     'text' => 'Ver E14',
     'route'  => 'admin.consultas.index',
     'icon' => 'fas fa-fw fa-plus-square',
-    'can'  => 'ver-escrutinio',
-    'can'  => 'no-ve-ani',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+],
+[
+    'header' => 'Validacion Ani y Contacto',
+    'can'  => 'Superuser-administrador-consultor-validador',
+    
+],
+[
+    'text' => 'Validar datos Ani',
+    'route'  => 'admin.ani.index',
+    'icon' => 'fas fa-id-card',
+    'can'  => 'Superuser-administrador-consultor-validador',
+    
 ],
 
+[
+    'header' => 'Centro de Datos',
+    'can'  => 'Superuser',
+  
+
+
+],
 [
     'text' => 'Consultar puestos de votacion',
     'icon' => 'fas fa- fa-store-alt',
@@ -382,29 +402,10 @@ return [
 
 ],
 [
-    'header' => 'Validacion Ani y Contacto',
-    'can'  => 'solo_ani'
-
-],
-[
-    'text' => 'Validar datos Ani',
-    'route'  => 'admin.ani.index',
-    'icon' => 'fas fa-id-card',
-    'can'  => 'solo_ani',
-
-],
-
-[
-    'header' => 'Centro de Datos',
-    'can'  => 'solo_super'
-
-
-],
-[
     'text' => 'Descargar base de datos',
     'route'  => 'admin.descargas.index',
     'icon' => 'fas fa- fa-store-alt',
-    'can'  => 'solo_super',
+    'can'  => 'Superuser',
 
 ],
 
