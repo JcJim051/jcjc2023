@@ -176,6 +176,8 @@
 @section('js')
     <script> console.log('de tu mano señor!'); </script>
     <script>
+        
+
         const ctx3 = document.getElementById('zonas').getContext('2d');
         const mis = new Chart(ctx3, {
             type: 'bar',
@@ -194,7 +196,7 @@
                     @endforeach
                 ],
                     datasets: [{
-                    label: 'Votos recuperados',
+                    label: 'Acreditados',
                     backgroundColor: 'green',
                     data: [
                         @foreach ($dat as $dat)

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ResultadosController extends Controller
-{
+{  
     /**
      * Display a listing of the resource.
      *
@@ -45,16 +45,22 @@ class ResultadosController extends Controller
 
 
 
-        $data =  DB::table('sellers')
+        $data = DB::table('sellers')
+                ->where('codmun','=','001')
+                ->where('mesa','<>','Rem')
                 ->select('codescru', DB::raw('sum(recuperados) as T'))
                 ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
                 ->get();
         $dat =  DB::table('sellers')
-            ->select('codescru', DB::raw('sum(recuperados) as T'))
-            ->groupBy('codescru')
-            ->get();
+                ->where('codmun','=','001')
+                ->where('mesa','<>','Rem')
+                ->select('codescru', DB::raw('sum(recuperados) as T'))
+                ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
+                ->get();
 
-        //dd($dat);
+        // dd($dat);
 
         return view('admin.resultados.index' , compact('tv1','tv2','tv3', 'tm', 'tmi', 'tmi2','tmi3','tr','data', 'dat'));
     }
