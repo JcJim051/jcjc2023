@@ -88,9 +88,9 @@
 
 
             <div class="row">
-                <div class="col-5">
+                <div class="col-sm-5 col-xs-12">
                     <label for=""> Puesto de votación </label><br>
-                    <select class="form-control js-example-basic-single" name="dondevota" style="width: 80%;">
+                    <select class="form-control js-example-basic-single" name="dondevota" style="width: 95%;">
                     
                     <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
                     
@@ -103,7 +103,7 @@
                     
                 </select>
                 </div>
-                <div class="col-5">
+                <div class="col-sm-5 col-xs-12">
 
                         {!! Form::label("pdf", "Pdf Cédula") !!} <br>
                         {!! Form::file("pdf", null, ["class" => "form-control disabled"]) !!}
@@ -113,7 +113,7 @@
                         @enderror
                 </div>
 
-                <div class="col-2">
+                <div class="col-sm-2 col-xs-12">
 
                     <label for="">Documento cargado</label>
                     <br>

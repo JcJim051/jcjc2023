@@ -17,7 +17,7 @@
 
     <div class="card">
     <div class="card-body">
-    <table  id="example" class="display responsive nowrap" style="width:95%">
+    <table  id="example" class="display responsive nowrap" style="width:100%">
         <thead style="tab-size: 10px">
             <tr>
                 <th>#</th>
@@ -65,7 +65,7 @@
 
                 </td>
                 @if ($seller->statusani == 1)
-                    <td><a href="#" class="btn btn-secondary btn-sm">Testigo Validado</a></td>
+                    <td><a href="#" class="btn btn-secondary btn-sm">Validado</a></td>
                 @else
                     @if (Auth::user()->role == 4)
                         <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Ver</a></td>
