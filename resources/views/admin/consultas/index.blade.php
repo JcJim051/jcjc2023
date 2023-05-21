@@ -3,7 +3,7 @@
 @section('title', 'Consultar E14')
 
 @section('content_header')
-    <h1 style="text-align: center">Ver E14 por Mesas</h1>
+    <h1 style="text-align: center">E14 por Mesa</h1>
 @stop
 
 @section('content')
@@ -23,8 +23,8 @@
                         <th>Puesto</th>
                         <th>Mesa</th>
                         <th>link E14</th>
-                        <th>link Reclamacion</th>
-                        <th>Comision</th>
+                        <th>link Reclamación</th>
+                        <th>Comisión</th>
                         <th>Codpuesto</th>
 
                     </tr>
@@ -65,7 +65,7 @@
                             @if ($seller->fotorec == null)
 
                             @else
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $seller->fotorec) }}">Ver Reclamacion</a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $seller->fotorec) }}">Ver Reclamación</a>
                             @endif
 
                         </td>
@@ -91,8 +91,8 @@
                         <th>Puesto</th>
                         <th>Mesa</th>
                         <th>link E14</th>
-                        <th>link Reclamacion</th>
-                        <th>Comision</th>
+                        <th>link Reclamación</th>
+                        <th>Comisión</th>
                         <th>Codpuesto</th>
 
 

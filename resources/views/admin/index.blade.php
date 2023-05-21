@@ -24,7 +24,7 @@
                         <h4>Tu rol</h5>
                         <h5>Coordinador puesto de votación   {{$seller1->puesto}}
                         {{ $seller1->municipio }}<br>
-                        Codigo del Puesto: {{ Auth::user()->codpuesto }}<br>
+                        Código del Puesto: {{ Auth::user()->codpuesto }}<br>
                         </h5>
                     </div>
                     <div class="row">
@@ -106,7 +106,7 @@
                             @if (Auth::user()->mun == 1)
                                 <p>Escrutador comision Auxiliar escrutadora {{ Auth::user()->codzon }} <br></p>
                             @else
-                             <p>Escrutador Municipal de {{$mun->municipio}} <br>Codigo del municipio: {{ Auth::user()->codzon }} </p>
+                             <p>Escrutador Municipal de {{$mun->municipio}} <br>Código del municipio: {{ Auth::user()->codzon }} </p>
                             @endif
                            
                         </div>
@@ -117,7 +117,7 @@
                                 <div class="small-box bg-info bg-gradient-warning">
                                     <div class="inner">
                                     <h3> {{$tmcom}}</h3>
-                                    <p>Total mesas en la comision</p>
+                                    <p>Total mesas en comision</p>
                                     <h4> {{$tremcom}}</h4>
                                     <p>Remanentes</p>
                                     </div>

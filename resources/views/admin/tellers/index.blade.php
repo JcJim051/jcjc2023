@@ -24,7 +24,7 @@
                         <th>Mesa</th>
                         <th>Felipe Carreño</th>
                         {{-- <th>Felipe</th> --}}
-                        <th>Comision</th>
+                        <th>Comisión</th>
                         <th>Codpuesto</th>
                         <th>Reporte</th>
                         @if (Auth::user()->role == 4)
@@ -89,7 +89,7 @@
                         <th>Mesa</th>
                         <th>Felipe Carreño</th>
                         {{-- <th>Felipe</th> --}}
-                        <th>Comision</th>
+                        <th>Comisión</th>
                         <th>Codpuesto</th>
                         <th>Reporte</th>
                         @if (Auth::user()->role == 4)

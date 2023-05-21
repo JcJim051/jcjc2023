@@ -56,8 +56,8 @@
         </div> --}}
 
             <div class="form-group">
-                {!! Form::label("cedula", "Cedula") !!}
-                {!! Form::text("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cedula']) !!}
+                {!! Form::label("cedula", "Cédula") !!}
+                {!! Form::text("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cédula']) !!}
 
                 @error('cedula')
                     <span class="text-danger">{{$message}}</span>
@@ -89,7 +89,7 @@
 
             <div class="row">
                 <div class="col-5">
-                    <label for=""> Puesto de votacion </label><br>
+                    <label for=""> Puesto de votación </label><br>
                     <select class="form-control js-example-basic-single" name="dondevota" style="width: 80%;">
                     
                     <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-5">
 
-                        {!! Form::label("pdf", "Pdf Cedula") !!} <br>
+                        {!! Form::label("pdf", "Pdf Cédula") !!} <br>
                         {!! Form::file("pdf", null, ["class" => "form-control disabled"]) !!}
 
                         @error('pdf')

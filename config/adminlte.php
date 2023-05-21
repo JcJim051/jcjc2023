@@ -320,7 +320,7 @@ return [
 ],
     
 [
-    'text'        => 'Indicadores acreditacion de testigos',
+    'text'        => 'Indicadores acreditación de testigos',
     'route'         => 'admin.consultors.index',
     'icon'        => 'fas fa-tachometer-alt fa-fw',
     'label_color' => 'success',
@@ -375,7 +375,7 @@ return [
     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 ],
 [
-    'header' => 'Validacion Ani y Contacto',
+    'header' => 'Validación Ani y Contacto',
     'can'  => 'Superuser-administrador-consultor-validador',
     
 ],
@@ -395,7 +395,7 @@ return [
 
 ],
 [
-    'text' => 'Consultar puestos de votacion',
+    'text' => 'Consultar puestos de votación',
     'icon' => 'fas fa- fa-store-alt',
     'route'  => 'admin.verpuestos.index',
     

@@ -109,8 +109,8 @@
                 <div class="row">
                     <div class="col-sm-3 col-xs-12">
                     
-                            {!! Form::label("reclamacion", "Reclaciones en esta mesa") !!}
-                            {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Si!' ], null, ["class" => "form-control disabled"]) !!}
+                            {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
+                            {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
 
                             @error('Estado')
                                 <span class="text-danger">{{$message}}</span>
@@ -121,7 +121,7 @@
                     <div class="col-sm-9 col-xs-12">
                         <div class="form-floating">
                             <label for="floatingTextarea">Comentarios</label>
-                            <textarea class="form-control" placeholder="Describe la reclamacion" id="floatingTextarea" name="observacion"> {{$teller->observacion}}</textarea>
+                            <textarea class="form-control" placeholder="Describa la reclamación" id="floatingTextarea" name="observacion"> {{$teller->observacion}}</textarea>
                         </div>
                     </div>
                     
@@ -129,7 +129,7 @@
                 <div class="row">
                     <div class="col-sm-6 col-x-12">
 
-                        {!! Form::label("fotorec", "Cargar Foto de la reclamacion") !!} <br>
+                        {!! Form::label("fotorec", "Cargar Foto de reclamación") !!} <br>
                         {!! Form::file("fotorec", null, ["class" => "form-control disabled"]) !!} <br>
 
                         @error('fotorec')

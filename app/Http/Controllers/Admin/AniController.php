@@ -33,25 +33,20 @@ class AniController extends Controller
                     $sellers = Seller::whereStatus("1")->where('codmun' , 001)->get();
                 } else {
                     // 0 = municipios
-                   
+                   if ($municipio == 0) {
                     $sellers = Seller::whereStatus("1")->where('codmun' ,'<>' , '001')->get();
-                    
+                   } else {
+                    $sellers = Seller::whereStatus("1")->get();
+                   }    
                 }
             }else {
 
-                if ($user->mun == 100 or $role == 5 or $role = 1) {
+                if ($role == 5 ) {
                     $sellers = Seller::whereStatus("1")->get();
                 } else {
         
                 }
             }
-                
-       
-
-                             
-
-
-
         return view('admin.ani.index', compact('sellers'));
     }
 

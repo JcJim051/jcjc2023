@@ -103,6 +103,6 @@ class TellerController extends Controller
         $teller->update($request->all());
 
 
-        return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizo con exito');
+        return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
     }
 }

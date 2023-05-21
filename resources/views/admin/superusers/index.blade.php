@@ -5,7 +5,7 @@
 
 @section('content_header')
     {{--  <a href="{{route('admin.superusers.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Lista de testigo</h1>
+    <h1 style="text-align:center">Lista de testigos</h1>
 @stop
 
 @section('content')
@@ -85,7 +85,7 @@
         <tfoot>
             <tr>
                 <th>#</th>
-                <th>Municipi</th>
+                <th>Municipio</th>
                 <th>Puesto</th>
                 <th>Mesa</th>
                 <th>Nombre</th>

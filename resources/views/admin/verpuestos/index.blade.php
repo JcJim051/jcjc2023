@@ -3,7 +3,7 @@
 @section('title', 'Consultar E14')
 
 @section('content_header')
-    <h1 style="text-align: center">Ver E14 por Mesas</h1>
+    <h1 style="text-align: center">Puestos de votación</h1>
 @stop
 
 @section('content')
@@ -18,9 +18,9 @@
             <table  id="example" class="display responsive nowrap" style="width:95%" >
                     <thead >
                         <tr>
-                            <th>Codigo del puesto</th>
+                            <th>Código del puesto</th>
                             <th>Nombre</th>
-                            <th>Direccion</th>
+                            <th>Dirección</th>
                             <th>Mesas</th>
                             <th>comuna</th>
 
@@ -42,8 +42,8 @@
 
                     </tbody>
                     
-</table>
-</table>
+                </table>
+            </table>
         </div>
     </div>
 @stop

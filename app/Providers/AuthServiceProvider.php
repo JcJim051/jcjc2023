@@ -138,5 +138,13 @@ class AuthServiceProvider extends ServiceProvider
 
             }
         }); 
+
+        Gate::define('no-editar', function($user){
+            if ($user->role == 4) {
+                return false;
+            } else {
+                    return true;
+            }
+          });
     }
 }

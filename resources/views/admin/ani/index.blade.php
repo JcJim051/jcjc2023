@@ -5,7 +5,7 @@
 
 @section('content_header')
     {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Listado de testigos para Validacion Ani</h1>
+    <h1 style="text-align:center">Testigos para Validación Ani</h1>
 @stop
 
 @section('content')
@@ -25,7 +25,7 @@
                     <th>Puesto</th>
                     <th>Mesa</th>
                     <th>Nombre</th>
-                    <th>Comision</th>
+                    <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>
                     <th></th>
@@ -81,11 +81,11 @@
             <tfoot>
                 <tr>
                     <th>#</th>
-                    <th>Municipi</th>
+                    <th>Municipio</th>
                     <th>Puesto</th>
                     <th>Mesa</th>
                     <th>Nombre</th>
-                    <th>Comision</th>
+                    <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>
                     <th></th>
@@ -94,7 +94,7 @@
             </tfoot>
         </table>
 
-    <table  id="example" class="display responsive nowrap" style="width:98%">
+    {{-- <table  id="example" class="display responsive nowrap" style="width:98%">
         <thead style="tab-size: 10px">
             <tr>
                 <th>#</th>
@@ -115,7 +115,7 @@
 
         </tbody>
        
-    </table>
+    </table> --}}
 
 
 

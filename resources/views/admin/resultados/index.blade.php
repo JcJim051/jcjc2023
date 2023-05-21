@@ -138,7 +138,7 @@
         <div class="col-sm-8 col-xs-12">
             <div class="card card-info text-center">
                 <div class="card-header">
-                <h3 class="card-title" >Votos recuperados por comision escrutadora</h3>
+                <h3 class="card-title" >Votos recuperados por comisión escrutadora</h3>
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->

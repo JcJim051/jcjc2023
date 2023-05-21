@@ -6,7 +6,7 @@
 
 
 
-    <h1 style="text-align: center">Metricas</h1>
+    <h1 style="text-align: center">Métricas</h1>
 @stop
 
 @section('content')
@@ -73,7 +73,7 @@
             <div class="small-box bg-info bg-gradient-success">
                 <div class="inner">
                 <h3> {{$okm}} </h3>
-                <p>Mesas Acreditadas en municipios</p>
+                <p>Mesas Acreditadas municipios</p>
                 <span class="info-box-text">Remanentes</span>
                 <span class="info-box-number"> {{$remokm}} </span>
                 </div>
@@ -87,7 +87,7 @@
             <div class="small-box bg-info bg-gradient-danger ">
                 <div class="inner">
                 <h3> {{$nookm}} </h3>
-                <p>Mesas Faltantes en municipios</p>
+                <p>Mesas Faltantes municipios</p>
                 <span class="info-box-text">Remanentes</span>
                 <span class="info-box-number"> {{$remnookm}} </span>
                 </div>
@@ -118,7 +118,7 @@
                 <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body " >
+                <div class="card-body" >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
                             <canvas id="goodCanvas1" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
@@ -202,7 +202,7 @@
         <div class="info-box">
             <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text" >Validacion Ani y contacto</span>
+              <span class="info-box-text" >Validación Ani y contacto</span>
               <span class="info-box-number"> {{$okani}} </span>
               <div class="progress">
                 <div class="progress-bar bg-info" style="width: {{($okani/($okani+$nookani))}}% "></div>
@@ -218,7 +218,7 @@
         <div  class="col-sm-12 col-xs-12 ">
             <div class="card card-success">
                 <div class="card-header">
-                <h3   class="card-title">Avence por Comisiones Auxiliares</h3>
+                <h3   class="card-title">Avance por Comisiones Auxiliares</h3>
                     <div class="card-tools">
                 </div>
                 <!-- /.card-tools -->
@@ -284,7 +284,7 @@
         const myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Pendientes', 'Listos'],
+                labels: ['Pendientes', 'Acreditados'],
                 datasets: [{
                     label: '# of Votes',
                     data: [{{ $nookd}},{{ $okd}}],
@@ -312,7 +312,7 @@
         const my = new Chart(ctxa, {
             type: 'doughnut',
             data: {
-                labels: ['Pendiente', 'Listo'],
+                labels: ['Pendientes', 'Acreditados'],
                 datasets: [{
                     label: '# de testigos',
                     data: [{{ $nookv}},{{ $okv}}],
@@ -341,7 +341,7 @@
         const my1 = new Chart(ctx2, {
             type: 'doughnut',
             data: {
-                labels: ['Pendiente', 'Acreditados'],
+                labels: ['Pendientes', 'Acreditados'],
                 datasets: [{
                     label: '# of Votes',
                     data: [{{ $nookm}},{{ $okm}}],
