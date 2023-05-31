@@ -17,7 +17,7 @@
 
     <div class="card">
     <div class="card-body">
-    <table  id="example" class="display responsive nowrap" style="width:100%">
+    <table  id="cuadro1" class="display responsive nowrap" style="width:100%">
         <thead style="tab-size: 10px">
             <tr>
                 <th>#</th>
@@ -121,7 +121,7 @@
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     <script>$(document).ready(function () {
-        $('#example').DataTable({
+        $('#cuadro1').DataTable({
              "pageLength": 25,
              "columnDefs": [
 
@@ -135,15 +135,15 @@
              ],
              "dom": 'Bfrtip',
              "buttons": [
-                 {
-                 "extend": 'excelHtml5',
-                 "title": 'testigos_acreditados_xls'
-                  },
-                  {
-                 "extend": 'pdfHtml5',
-                 "title": 'testigos_acreditados_pdf',
-                 "download": 'open'
-                  }
+                //  {
+                //  "extend": 'excelHtml5',
+                //  "title": 'testigos_acreditados_xls'
+                //   },
+                //   {
+                //  "extend": 'pdfHtml5',
+                //  "title": 'testigos_acreditados_pdf',
+                //  "download": 'open'
+                //   }
              ]
 
              }

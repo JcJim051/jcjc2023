@@ -13,9 +13,7 @@ use App\Http\Controllers\Admin\TestigosController;
 use App\Http\Controllers\Admin\ConsultasController;
 use App\Http\Controllers\Admin\VerpuestosController;
 use App\Http\Controllers\Admin\AniController;
-
-
-
+use App\Http\Controllers\Admin\RevisionController;
 
 
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
@@ -44,3 +42,5 @@ Route::resource('consultas', ConsultasController::class)->names('admin.consultas
 Route::resource('Verpuestos', VerpuestosController::class)->names('admin.verpuestos');
 
 Route::resource('Ani', AniController::class)->names('admin.ani');
+
+Route::resource('revision', RevisionController::class)->names('admin.revision');

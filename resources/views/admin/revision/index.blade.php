@@ -5,7 +5,7 @@
 
 @section('content_header')
     {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Testigos para Validación Ani</h1>
+    <h1 style="text-align:center">Verificacion de cambios en escrutinio</h1>
 @stop
 
 @section('content')
@@ -17,14 +17,15 @@
 
     <div class="card">
     <div class="card-body">
-        <table  id="example" class="display responsive nowrap" style="width:99%">
+        <table  id="example" class="display responsive nowrap" style="width:95%">
             <thead style="tab-size: 10px">
                 <tr>
                     <th>#</th>
                     <th>Municipio</th>
                     <th>Puesto</th>
                     <th>Mesa</th>
-                    <th>Nombre</th>
+                    <th>Votos</th>
+                    <th>Recuperados</th>
                     <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>
@@ -40,34 +41,35 @@
                     {{-- <td hidden>{{ $seller->cedula }}</td>
                     <td hidden>{{ $seller->email }}</td> --}}
                     <td>{{ $seller->municipio }}</td>
-                    @if ($seller->statusani <> 0 or $seller->statusani == null) 
+                    @if ($seller->statusrec <> 0) 
                             <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                         @else
                             <td style="color: red" >{{$seller->puesto}}</td>
                         @endif
     
     
-                        @if ($seller->statusani <> 0 or $seller->statusani == null) 
+                        @if ($seller->statusrec <> 0 ) 
                         <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                         @else
                             <td style="color: red" >{{$seller->mesa}}</td>
                         @endif
                     {{--  <td>{{$seller->cedula}}</td>  --}}
-                    <td>{{$seller->nombre}}</td>
+                    <th>{{$seller->gob1}}</th>
+                    <th>{{$seller->recuperados}}</th>
                     <th>{{$seller->codescru}}</th>
                     <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
                     <td style="font-size: 20px ; text-align:center">
-                        @if($seller->statusani == 1)
+                        @if($seller->statusrec == 1)
                             <i style="color: rgb(22, 161, 22)" class="fas fa-vote-yea"><p hidden>listo</p></i>
                         @else
                             <i style="color: rgb(235, 62, 10) " class="fas fa-window-close"><p hidden>Pendiente</p></i>
                         @endif
     
                     </td>
-                    @if ($seller->statusani == 1)
-                        <td> <a href="{{route("admin.ani.edit", $seller)}}" class="btn btn-secondary btn-sm">Validado</a></td>
+                    @if ($seller->statusrec == 1)
+                        <td> <a href="{{route("admin.revision.edit", $seller)}}" class="btn btn-secondary btn-sm">Confirmado</a></td>
                     @else
-                        <td> <a href="{{route("admin.ani.edit", $seller)}}" class="btn btn-primary btn-sm">validar</a></td>
+                        <td> <a href="{{route("admin.revision.edit", $seller)}}" class="btn btn-primary btn-sm">Confirmar</a></td>
                     @endif
 
                    
@@ -84,7 +86,8 @@
                     <th>Municipio</th>
                     <th>Puesto</th>
                     <th>Mesa</th>
-                    <th>Nombre</th>
+                    <th>Votos</th>
+                    <th>Recuperados</th>
                     <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>
@@ -148,21 +151,21 @@
              { responsivePriority: 3, targets: 8 },
              { responsivePriority: 2, targets: 2 },
              { responsivePriority: 1, targets: 3 },
-             { target: 5, visible: false},
              { target: 6, visible: false},
+             { target: 7, visible: false},
 
              ],
              "dom": 'Bfrtip',
              "buttons": [
-                //  {
-                //  "extend": 'excelHtml5',
-                //  "title": 'testigos_acreditados_xls'
-                //   },
-                //   {
-                //  "extend": 'pdfHtml5',
-                //  "title": 'testigos_acreditados_pdf',
-                //  "download": 'open'
-                //   }
+                 {
+                 "extend": 'excelHtml5',
+                 "title": 'testigos_acreditados_xls'
+                  },
+                  {
+                 "extend": 'pdfHtml5',
+                 "title": 'testigos_acreditados_pdf',
+                 "download": 'open'
+                  }
              ]
 
              }

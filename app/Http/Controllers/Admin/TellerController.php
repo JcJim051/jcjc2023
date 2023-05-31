@@ -27,7 +27,11 @@ class TellerController extends Controller
                    if ($municipio == 0) {
                         $sellers = Seller::where('mesa','<>', 'Rem')->get();
                    } else {
-                    $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , 001)->get();
+                    if ($municipio == 0) {
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->get();
+                       } else {
+                        $sellers = Seller::all();
+                       }    
                    }
                        
                 } else {

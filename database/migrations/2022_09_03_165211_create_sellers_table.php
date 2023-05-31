@@ -47,6 +47,7 @@ class CreateSellersTable extends Migration
             $table->string('alc2')->nullable();
             $table->string('alc3')->nullable();
             $table->string('recuperados')->nullable();
+            $table->string('statusrec')->nullable();
             $table->string('e14')->nullable();
             $table->string('fotorec')->nullable();
 

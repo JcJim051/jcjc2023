@@ -60,9 +60,54 @@ class ResultadosController extends Controller
                 ->orderBy('codescru', 'asc')
                 ->get();
 
-        // dd($dat);
+        $d = DB::table('sellers')
+                ->where('codmun','=','001')
+                ->where('mesa','<>','Rem')
+                ->select('codescru', DB::raw('sum(gob1) as T'))
+                ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
+                ->get();
+        $dt = DB::table('sellers')
+                ->where('codmun','=','001')
+                ->where('mesa','<>','Rem')
+                ->select('codescru', DB::raw('sum(gob1) as T'))
+                ->groupBy('codescru')
+                ->orderBy('codescru', 'asc')
+                ->get();
+        // Votos por municipios
+        $lablemun =  DB::table('sellers')
+        ->select('municipio', DB::raw('sum(gob1) as T'))
+        ->where('municipio','<>','VILLAVICENCIO')
+        ->groupBy('municipio')
+        ->get();
 
-        return view('admin.resultados.index' , compact('tv1','tv2','tv3', 'tm', 'tmi', 'tmi2','tmi3','tr','data', 'dat'));
+        $okmun =  DB::table('sellers')
+        ->where('mesa','<>','Rem')
+        ->select('municipio', DB::raw('sum(gob1) as T'))
+        ->where('municipio','<>','VILLAVICENCIO')
+        ->groupBy('municipio')
+        ->get();
+
+        $nookmun =  DB::table('sellers')
+        ->where('mesa','<>','Rem')
+        ->select('municipio', DB::raw('sum(gob1) as T'))
+        ->where('municipio','<>','VILLAVICENCIO')
+        ->groupBy('municipio')
+        ->get();
+
+
+
+        
+
+
+
+        $recl = DB::table('sellers')                
+                ->where('reclamacion','=','1')              
+                ->sum('reclamacion');
+
+        // dd($datos);
+
+        return view('admin.resultados.index' , compact('tv1','tv2','tv3', 'tm', 'tmi', 'tmi2','tmi3','tr','data', 'dat', 'd', 'dt', 'recl' ,'lablemun','okmun','nookmun'));
     }
 
     /**

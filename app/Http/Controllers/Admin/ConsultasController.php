@@ -30,8 +30,14 @@ class ConsultasController extends Controller
             } else {
                 // 0 = municipios
                
-                    $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , '<>', '001')->get();
-                
+                    if ($municipio == 0) {
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , '<>', '001')->get();
+                    } else {
+                        // 0 = municipios
+                       
+                            $sellers = Seller::where('mesa','<>', 'Rem')->get();
+                        
+                    }
             }
         } else {
             if ($role == 2) {
@@ -44,7 +50,11 @@ class ConsultasController extends Controller
                         if ($role == 4) {
                             $sellers = Seller::where('mesa','<>', 'Rem')->get();
                         } else {
-
+                            if ($role == 6) {
+                                $sellers = Seller::where('mesa','<>', 'Rem')->get();
+                            } else {
+    
+                            }
                         }
                      }
 

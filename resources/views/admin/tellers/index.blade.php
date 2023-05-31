@@ -137,15 +137,15 @@
             ],
             "dom": 'Bfrtip',
             "buttons": [
-                {
-                "extend": 'excelHtml5',
-                "title": 'testigos_acreditados_xls'
-                 },
-                 {
-                "extend": 'pdfHtml5',
-                "title": 'testigos_acreditados_pdf',
-                "download": 'open'
-                 }
+                // {
+                // "extend": 'excelHtml5',
+                // "title": 'testigos_acreditados_xls'
+                //  },
+                //  {
+                // "extend": 'pdfHtml5',
+                // "title": 'testigos_acreditados_pdf',
+                // "download": 'open'
+                //  }
             ]
 
             }
