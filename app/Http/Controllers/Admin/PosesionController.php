@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
-use App\Models\Seller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Seller;
+use App\Models\Puestos;
 
-class EscrutinioController extends Controller
+class PosesionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,18 +21,15 @@ class EscrutinioController extends Controller
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
-
-
-
         if ($role == 1) {
             // 1 = villao
             if ($municipio == 1) {
-                $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' , 001)->get();
+                $sellers = Seller::where('codmun' , 001)->where('statusani' , 1)->get();
             } else {
                if ($municipio == 0) {
-                $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->get();
+                $sellers = Seller::where('codmun' ,'<>', '001')->where('statusani' , 1)->get();
                } else {
-                $sellers = Seller::all();
+                $sellers = Seller::where('statusani' , 1)->get();
                }            
                 
                    
@@ -40,21 +37,13 @@ class EscrutinioController extends Controller
             }
         } else {
             if ($role == 2) {
-                $sellers = Seller::where('mesa','<>', 'Rem')->where('codescru' , $escrutador)->get();
+                $sellers = Seller::where('codescru' , $escrutador)->where('statusani' , 1)->get();
             } else {
 
                 if ($role == 3) {
-                    $sellers = Seller::where('mesa','<>', 'Rem')->where('codcor' , $coordinador)->get();
+                    $sellers = Seller::where('codcor' , $coordinador)->where('statusani' , 1)->get();
                 } else {
-                        if ($role == 4) {
-                            $sellers = Seller::where('mesa','<>', 'Rem')->get();
-                        } else {
-                            if ($role == 5) {
-                                $sellers = Seller::where('mesa','<>', 'Rem')->get();
-                            } else {
-    
-                            }
-                        }
+                        
                      }
 
 
@@ -63,7 +52,8 @@ class EscrutinioController extends Controller
 
 
 
-        return view('admin.escrutinio.index', compact('sellers'));
+        return view('admin.posesion.index', compact('sellers'));
+
 
     }
 
@@ -91,10 +81,10 @@ class EscrutinioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Escrutinio  $seller
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(seller $seller)
+    public function show($id)
     {
         //
     }
@@ -102,36 +92,37 @@ class EscrutinioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\seller  $esc
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(seller $escrutinio)
+    public function edit($ani)
     {
+        $superuser = Seller::where('id' , $ani)->get();
 
-        return view('admin.escrutinio.edit', compact('escrutinio'));
+        return view('admin.posesion.edit', compact('ani',))->with('superuser', $superuser);
+    
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\seller  $seller
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, seller $escrutinio)
+    public function update(Request $request, $id)
     {
-        $escrutinio->update($request->all());
-
-        return redirect()->route('admin.escrutinio.index', $escrutinio)->with('info', 'Se Reporto recuperacion de votos correctamente');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Escrutinio  $escrutinio
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(seller $seller)
+    public function destroy($id)
     {
         //
     }

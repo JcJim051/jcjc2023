@@ -182,12 +182,24 @@ class AdminController extends Controller
         ->where('status', '1')
         ->count();
 
+        $ttpc =Seller::where('codescru', $escrutador)
+        ->where('mesa','<>', 'Rem')
+        ->where('statusasistencia','=', '1')            
+        ->count();
+        $trpc =Seller::where('codescru', $escrutador)
+        ->where('mesa','=', 'Rem')
+        ->where('statusasistencia','=', '1')            
+        ->count();
+
+
+
+
 
 //$data = v($array);
 
         //dd($data);
 
-    return view('admin.index', compact('rol', 'mun','seller' , 'seller1' ,'data','datas', 'dat', 'dats', 'not', 'nots','tmc','tremc', 'tml','treml','tmcom','tremcom', 'tmlc', 'tremlc'));
+    return view('admin.index', compact('rol', 'mun','seller' , 'seller1' ,'data','datas', 'dat', 'dats', 'not', 'nots','tmc','tremc', 'tml','treml','tmcom','tremcom', 'tmlc', 'tremlc','ttpc','trpc'));
 
 
 }

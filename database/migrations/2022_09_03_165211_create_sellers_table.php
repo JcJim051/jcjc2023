@@ -35,6 +35,7 @@ class CreateSellersTable extends Migration
             $table->string('status')->default('0')->nullable();
             $table->string('statusani')->default('0')->nullable();
             $table->string('reclamacion')->nullable();
+            $table->string('fotorec')->nullable();
             $table->string('observacion')->nullable();
             $table->string('pdf')->nullable();
             $table->string('gob1')->nullable();
@@ -47,9 +48,11 @@ class CreateSellersTable extends Migration
             $table->string('alc2')->nullable();
             $table->string('alc3')->nullable();
             $table->string('recuperados')->nullable();
-            $table->string('statusrec')->nullable();
+            $table->string('statusrec')->default('0')->nullable();
+            $table->string('statusasistencia')->default('0')->nullable();
+            $table->string('remenmesa')->default('0')->nullable();
             $table->string('e14')->nullable();
-            $table->string('fotorec')->nullable();
+          
 
 
 

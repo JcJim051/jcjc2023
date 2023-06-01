@@ -141,13 +141,17 @@ class SuperUserController extends Controller
 
             $superuser->update($request->all());
 
-            if ($request->statusani == null  & $request->statusrec == null)  {
+            if ($request->statusani == null  & $request->statusrec == null & $request->statusasistencia == null)  {
                 return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
             } else {
-                if ($request->statusrec == null) {
+                if ($request->statusrec == null & $request->statusasistencia == null) {
                     return redirect()->route('admin.ani.index', $superuser)->with('info', ' Validacion Ani Guardada con Exito');
                 } else {
-                    return redirect()->route('admin.revision.index', $superuser)->with('info', 'Revicion E24 Guardada con Exito');
+                    if ($request->statusasistencia == null) {
+                        return redirect()->route('admin.ani.index', $superuser)->with('info', 'Revicion E24 Guardada con Exito');
+                    } else {
+                        return redirect()->route('admin.posesion.index', $superuser)->with('info', 'Reporte de asistencia Guardado con Exito');
+                    }
                 }
             }
             

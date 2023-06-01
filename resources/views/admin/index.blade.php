@@ -183,6 +183,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="info-box ">
+                                <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Testigos Posesionados : {{$ttpc}}</span>
+                                    <span class="info-box-number">Remanentes Disponibles: {{$trpc}} </span>
+                                  
+                                </div>
+                            </div>   
+                        </div>
 
 
                     @else

@@ -199,19 +199,38 @@
     </div>
 
     <div class="row">
-        <div class="info-box">
-            <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text" >Validación Ani y contacto</span>
-              <span class="info-box-number"> {{$okani}} </span>
-              <div class="progress">
-                <div class="progress-bar bg-info" style="width: {{($okani/($okani+$nookani))}}% "></div>
-              </div>
-              <span class="progress-description">
-                <p>{{  round(($okani/($okani+$nookani)),2)}}% Avance total</p>
-              </span>
+        <div class="col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text" ><h5>Villavicencio</h5></span>
+                  <span class="info-box-text" >Validación Ani y contacto</span>
+                  <span class="info-box-number"> {{$okaniv}} </span>
+                  <div class="progress">
+                    <div class="progress-bar bg-info" style="width: {{($okaniv/($okaniv+$nookaniv))}}% "></div>
+                  </div>
+                  <span class="progress-description">
+                    <p>{{  round(($okaniv/($okaniv+$nookaniv)),2)}}% Avance total</p>
+                  </span>
+                </div>
             </div>
-          </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text" ><h5>Municipios</h5></span>
+                  <span class="info-box-text" >Validación Ani y contacto</span>
+                  <span class="info-box-number"> {{$okanim}} </span>
+                  <div class="progress">
+                    <div class="progress-bar bg-info" style="width: {{($okanim/($okanim+$nookanim))}}% "></div>
+                  </div>
+                  <span class="progress-description">
+                    <p>{{  round(($okanim/($okanim+$nookanim)),2)}}% Avance total</p>
+                  </span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">

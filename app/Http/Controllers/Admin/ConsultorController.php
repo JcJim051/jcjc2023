@@ -164,16 +164,27 @@ class ConsultorController extends Controller
        
 
 
-        $okani =  DB::table('sellers')
+        $okaniv =  DB::table('sellers')
+                        ->where('codmun', '=' ,'001')
                         ->whereStatusani("1")
                         ->count();
 
-        $nookani =  DB::table('sellers')
+        $nookaniv =  DB::table('sellers')
+                        ->where('codmun', '=' ,'001')
                         ->whereStatusani("0")
                         ->count();
 
 
-        
+        $okanim =  DB::table('sellers')
+                        ->where('codmun', '<>' ,'001')
+                        ->whereStatusani("1")
+                        ->count();
+
+        $nookanim =  DB::table('sellers')
+                        ->where('codmun', '<>' ,'001')
+                        ->whereStatusani("0")
+                        ->count();
+                        
       
 
 
@@ -182,7 +193,7 @@ class ConsultorController extends Controller
         //dd($lablemun);
 
 
-        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okani','nookani','remokd','remnookd','remokv','remnookv','remokm','remnookm'))
+        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm'))
                                                     ->with('okd', $okd)
                                                     ->with('nookd', $nookd)
                                                     ->with('nookv', $nookv)
