@@ -143,7 +143,7 @@
       <div class="container">
 
         <div class="row">
-          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-xl-start" data-aos="fade-right" data-aos-delay="150">
+          <div class="image col-xl-5 col-sm-5 d-flex align-items-stretch justify-content-center justify-content-xl-start" data-aos="fade-right" data-aos-delay="150">
             <img src=" {{asset('assets/img/counts-img.svg')}} " alt="" class="img-fluid">
           </div>
 
