@@ -66,14 +66,14 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <div class="order-2 pt-5 col-lg-6 pt-lg-0 order-lg-1 d-flex flex-column justify-content-center">
           <h1 data-aos="fade-up">App de Auditoría Electoral</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">Asegurando la transparencia y confiabilidad en los procesos electorales.</h2>
           <div data-aos="fade-up" data-aos-delay="800">
             <a href="#about" class="btn-get-started scrollto">Ir</a>
           </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
+        <div class="order-1 col-lg-6 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
           <img src=" {{asset('assets/img/hero-img.png')}} " class="img-fluid animated" alt="">
         </div>
       </div>
@@ -84,7 +84,7 @@
   <main id="main">
 
     {{-- <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients clients">
+    <section id="clients" class="clients">
       <div class="container">
 
         <div class="row">
@@ -147,7 +147,7 @@
             <img src=" {{asset('assets/img/counts-img.svg')}} " alt="" class="img-fluid">
           </div>
 
-          <div class="col-xl-7 d-flex align-items-stretch pt-4 pt-xl-0" data-aos="fade-left" data-aos-delay="300">
+          <div class="pt-4 col-xl-7 col-sm-7 d-flex align-items-stretch pt-xl-0" data-aos="fade-left" data-aos-delay="300">
             <div class="content d-flex flex-column justify-content-center">
               <div class="row">
                 <div class="col-md-12 d-md-flex align-items-md-stretch">
@@ -177,27 +177,27 @@
         </div>
        
         <div class="row">
-          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="mb-5 col-md-6 col-lg-4 d-flex align-items-stretch mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Asesoría Electoral:</a></h4>
+              <h4 class="title"><a href="">Asesoría Electoral</a></h4>
               <p class="description">Nuestro equipo multidisciplinario está listo para brindar asesoramiento estratégico en temas legales, acreditación de testigos electorales, capacitación de testigos de mesa y de escrutinio, transmision y analisis de datos el dia D. Trabajaremos de la mano contigo y tu equipo para desarrollar estrategias efectivas que te ayuden a alcanzar tus objetivos electorales.</p>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="mb-5 col-md-6 col-lg-4 d-flex align-items-stretch mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
               <div class="icon"><i class="bx bx-file"></i></div>
               <h4 class="title"><a href="">Plataforma de Gestión Electoral</a></h4>
-              <p class="description">Nuestra plataforma en línea te permite administrar los diferentes actividades que conlleva la auditoria electoral de manera eficiente. Desde el manejo de bases de datos de los testigos electorales hasta la el reporte de cambios en los escrutinios (auxiliar, nunucipal y departamental), nuestra herramienta permitiá la compatimentacion de la informacion en cada paso, asiganndo roles especificos a los miembros del equipo, con el fin de facilitar las tareas, sin perder el control de la información.</p>
+              <p class="description">Nuestra plataforma en línea te permite administrar los diferentes actividades que conlleva la auditoria electoral de manera eficiente. Desde el manejo de bases de datos de los testigos electorales hasta la el reporte de cambios en los escrutinios (auxiliar, municipal y departamental), nuestra herramienta permitirá la compatimentacion de la información en cada paso, asiganando roles específicos a los miembros del equipo, con el fin de facilitar las tareas, sin perder el control de la información.</p>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+          <div class="mb-5 col-md-6 col-lg-4 d-flex align-items-stretch mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Auditoría Electoral:</a></h4>
-              <p class="description"> Nos especializamos en la realización de auditoría electoral en tiempo real. Nuestro equipo revisará minuciosamente los procesos electorales para garantizar la transparencia, la confiabilidad y la equidad. Emitiendo informes detallados grafcos e intuitivos.</p>
+              <h4 class="title"><a href="">Auditoría Electoral</a></h4>
+              <p class="description"> Nos especializamos en la realización de auditoría electoral en tiempo real. Nuestro equipo revisará minuciosamente los procesos electorales para garantizar la transparencia y la confiabilidad . Emitiendo informes detallados gráficos e intuitivos.</p>
             </div>
           </div>
 
@@ -224,70 +224,70 @@
               <h3><a href="">Divipol Actualizada</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="mt-4 col-lg-3 col-md-4 mt-md-0">
             <div class="icon-box">
               <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
               <h3><a href="">Indicadores  </a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="mt-4 col-lg-3 col-md-4 mt-md-0">
             <div class="icon-box">
               <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
               <h3><a href="">Calendario Electoral</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
+          <div class="mt-4 col-lg-3 col-md-4 mt-lg-0">
             <div class="icon-box">
               <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
               <h3><a href="">Reportes gráficos</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-database-2-line" style="color: #47aeff;"></i>
               <h3><a href="">Bases de datos Testigos</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
               <h3><a href="">Reporte de Asistencia de testigos</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-              <h3><a href="">Transmision de E14 y reclamaciones</a></h3>
+              <h3><a href="">Transmisión de E14 y reclamaciones</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
-              <h3><a href="">Puetos de Votacion</a></h3>
+              <h3><a href="">Puetos de Votación</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-anchor-line" style="color: #b2904f;"></i>
               <h3><a href="">Roles de usuario</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-disc-line" style="color: #b20969;"></i>
               <h3><a href="">Monitoreo de escrutinios</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-base-station-line" style="color: #ff5828;"></i>
-              <h3><a href="">Transmision de resultados</a></h3>
+              <h3><a href="">Transmisión de resultados</a></h3>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 mt-4">
+          <div class="mt-4 col-lg-3 col-md-4">
             <div class="icon-box">
               <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
-              <h3><a href="">Identificacion de testigos</a></h3>
+              <h3><a href="">Identificación de testigos</a></h3>
             </div>
           </div>
         </div>
@@ -395,7 +395,7 @@
   <footer id="footer">
     <div class="container">
       <div class="row d-flex align-items-center">
-        <div class="col-lg-6 text-lg-left text-center">
+        <div class="text-center col-lg-6 text-lg-left">
           <div class="copyright">
             &copy; Copyright <strong>TestiAPP</strong>. All Rights Reserved
           </div>
@@ -404,14 +404,14 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/vesperr-free-bootstrap-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">Jonathan Jimenez y Santiago Jimenez</a>
+            App Designed by <a href="https://bootstrapmade.com/">Jonathan Jimenez y Santiago Jimenez</a>
           </div>
         </div>
         <div class="col-lg-6">
-          <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-             <a href="#about" class="scrollto">About</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
+          <nav class="pt-2 text-center footer-links text-lg-right pt-lg-0">
+             <a href="#about" class="scrollto">nosotros</a>
+            <a href="#">Politica de privacidad</a>
+            <a href="#">Terminos de uso</a>
           </nav>
         </div>
       </div>

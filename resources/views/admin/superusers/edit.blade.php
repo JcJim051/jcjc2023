@@ -74,17 +74,31 @@
                 @enderror
 
             </div>
-
-            <div class="form-group">
-                {!! Form::label("telefono", "Telefono") !!}
-                {!! Form::text("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono']) !!}
-
-                @error('telefono')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
-
+            
+            <div class="card card-outline card-warning">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-sm-6 ">
+                            {!! Form::label("telefono", "Telefono") !!}
+                            {!! Form::text("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono']) !!}
+            
+                            @error('telefono')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror    
+                        </div>
+                        <div class="form-group col-sm-6">
+                            {!! Form::label("banco", "Banco") !!}
+                            {!! Form::select("banco",[ 0 => 'Seleccione un banco','Nequi' => 'Nequi', 'Daviplata' => 'Daviplata' ], null, ["class" => "form-control disabled"]) !!}
+            
+                            @error('telefono')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror    
+                        </div>
+                    </div>
+        
+                </div>
             </div>
-
+            
 
 
             <div class="row">
@@ -127,8 +141,7 @@
 
             </div>
 
-
-
+            
 
 
 

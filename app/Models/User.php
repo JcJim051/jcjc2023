@@ -35,6 +35,7 @@ class User extends Authenticatable
         'codzon',
         'codpuesto',
         'mun',
+        'status',
 
     ];
 

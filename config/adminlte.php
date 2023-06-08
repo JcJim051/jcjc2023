@@ -376,7 +376,7 @@ return [
     'can'  => 'Superuser-administrador-escrutador-consultor',
         
 
-],
+    ],
 
 
     
@@ -386,7 +386,7 @@ return [
     'text' => 'Ver E14 y Reclamaciones',
     'route'  => 'admin.consultas.index',
     'icon' => 'fas fa-fw fa-vote-yea',
-    'can'  => 'Superuser-coordinador',
+    'can'  => 'Superuser-administrador-escrutador-consultor',
         
     
 ],
