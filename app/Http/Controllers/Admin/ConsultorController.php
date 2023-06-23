@@ -184,6 +184,17 @@ class ConsultorController extends Controller
                         ->where('codmun', '<>' ,'001')
                         ->whereStatusani("0")
                         ->count();
+
+        // calcular numero de puestos 
+        $puestosd = DB::table('puestos')
+                        ->where('mun','<>','3')
+                        ->count();
+        $puestosv = DB::table('puestos')
+                        ->where('mun','=','1')
+                        ->count();
+        $puestosm = DB::table('puestos')
+                        ->where('mun','=','0')
+                        ->count();
                         
       
 
@@ -193,7 +204,7 @@ class ConsultorController extends Controller
         //dd($lablemun);
 
 
-        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm'))
+        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm', 'puestosd', 'puestosv' , 'puestosm'))
                                                     ->with('okd', $okd)
                                                     ->with('nookd', $nookd)
                                                     ->with('nookv', $nookv)

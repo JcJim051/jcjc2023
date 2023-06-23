@@ -19,6 +19,9 @@ class CreatePuestosTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('mesas')->nullable();
             $table->string('comuna')->nullable();
+            $table->string('mun')->nullable();
+            $table->string('cordinador')->nullable();
+            $table->string('telefono')->nullable();
             $table->timestamps();
         });
     }

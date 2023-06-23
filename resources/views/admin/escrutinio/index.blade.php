@@ -61,7 +61,7 @@
                     <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
                     <td style="font-size: 20px ; text-align:center">
                         @if($seller->recuperados <> null)
-                            <i style="color: rgb(22, 161, 22)" class="fas fa-gavel   "></i>
+                            <i style="color: rgb(22, 161, 22)" class="fas fa-gavel "></i>
                         @else
                             <i style="color: rgb(235, 62, 10) " class="fas fa-ban"></i>
                         @endif
@@ -150,5 +150,5 @@
 
         }
         );
-    });</SCript>
+    });</script>
 @endsection

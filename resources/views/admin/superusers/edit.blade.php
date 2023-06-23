@@ -146,23 +146,23 @@
 
 
 
+            <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
 
 
 
 
+            @can('no-editar')
+                <div class="form-group">
+                    {!! Form::label("status", "Estado") !!}
+                    {!! Form::select("status",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}
 
-                @can('no-editar')
-                    <div class="form-group">
-                        {!! Form::label("status", "Estado") !!}
-                        {!! Form::select("status",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}
+                    @error('Estado')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
 
-                        @error('Estado')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-
-                    </div>
-                    {!! Form::submit('Acreditar Testigo', ['class' => 'btn btn-info']) !!}
-                @endcan
+                </div>
+                {!! Form::submit('Acreditar Testigo', ['class' => 'btn btn-info']) !!}
+            @endcan
 
 
 

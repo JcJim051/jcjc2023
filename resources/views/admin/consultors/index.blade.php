@@ -10,7 +10,45 @@
 @stop
 
 @section('content')
+    <div class="row">
+        <div class="col-sm-4 col-xs-12">
+            <div class="info-box bg-gradient-warning">
+                <div class="info-box-content">
+
+                    <span class="info-box-text">Colegios en Departamento</span>
+                    <span class="info-box-number">{{$puestosd}}</span>
+                                           
+                </div>
+                   
+    
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="info-box bg-gradient-warning">
+                <div class="info-box-content">
+
+                    <span class="info-box-text">Colegios en Villacicencio</span>
+                    <span class="info-box-number">{{$puestosv}}</span>
+                                           
+                </div>
+                   
+    
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="info-box bg-gradient-warning">
+                <div class="info-box-content">
+
+                    <span class="info-box-text">Colegios en Municipios</span>
+                    <span class="info-box-number">{{$puestosm}}</span>
+                                           
+                </div>
+                   
+    
+            </div>
+        </div>
        
+    </div>
     <div class="row">
 
         <div class="col-sm-2 col-xs-12" >
@@ -110,7 +148,7 @@
                     @if ($okd+$nookd == 0);
                         0
                     @else
-                        {{ round(($okd/($okd+$nookd))*100, 2) }};
+                        {{ round(($okd/($okd+$nookd))*100, 2) }}
                     @endif
                 %</h3>
                     <div class="card-tools">

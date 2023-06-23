@@ -23,6 +23,8 @@ class CreateSellersTable extends Migration
             $table->string('municipio')->nullable();
             $table->string('puesto')->nullable();
             $table->string('mesa')->nullable();
+            $table->string('codigomesa')->nullable();
+            $table->foreign('codigomesa')->references('codigomesa_id')->on('votos')->onUpdate('cascade');;
             $table->string('codpar')->nullable();
             $table->string('cedula')->nullable();
             $table->string('nombre')->nullable();
@@ -35,28 +37,29 @@ class CreateSellersTable extends Migration
             $table->string('status')->default('0')->nullable();
             $table->string('statusani')->default('0')->nullable();
             $table->string('reclamacion')->nullable();
-            $table->string('fotorec')->nullable();
             $table->string('observacion')->nullable();
             $table->string('pdf')->nullable();
-            $table->string('gob1')->nullable();
-            $table->string('gob2')->nullable();
-            $table->string('gob3')->nullable();
-            $table->string('asa1')->nullable();
-            $table->string('asa2')->nullable();
-            $table->string('asa3')->nullable();
-            $table->string('alc1')->nullable();
-            $table->string('alc2')->nullable();
-            $table->string('alc3')->nullable();
-            $table->string('recuperados')->nullable();
+            $table->integer('censodemesa')->nullable();
+            $table->integer('votosenurna')->nullable();
+            $table->integer('votosincinerados')->nullable();
+            $table->integer('gob1')->nullable();
+            $table->integer('gob2')->nullable();
+            $table->integer('gob3')->nullable();
+            $table->integer('gob4')->nullable();
+            $table->integer('gob5')->nullable();
+            $table->integer('gob6')->nullable();
+            $table->integer('gob7')->nullable();
+            $table->integer('nulos')->nullable();
+            $table->integer('enblanco')->nullable();
+            $table->integer('nomarcados')->nullable();
+            $table->integer('recuperados')->nullable();
             $table->string('statusrec')->default('0')->nullable();
             $table->string('statusasistencia')->default('0')->nullable();
             $table->string('remenmesa')->default('0')->nullable();
             $table->string('e14')->nullable();
-          
-
-
-
-
+            $table->string('banco')->default(0);
+            $table->string('fotorec')->nullable();
+            $table->string('modificadopor')->nullable();
             $table->timestamps();
         });
     }

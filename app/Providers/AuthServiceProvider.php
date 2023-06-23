@@ -246,5 +246,26 @@ class AuthServiceProvider extends ServiceProvider
                     return true;
             }
           });
+
+          Gate::define('Superuser-administrador-auditor', function($user){
+            if ($user->id == 1) {
+                return true;
+            } else {
+                if ($user->role == 1) {
+                    return true;
+                } else {
+                    
+                    if ($user->role == 6) {
+                        return true;
+                    } else {
+                        
+                        return false;
+        
+                    }
+    
+                }
+
+            }
+        });  
     }
 }

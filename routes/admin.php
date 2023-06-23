@@ -16,6 +16,10 @@ use App\Http\Controllers\Admin\AniController;
 use App\Http\Controllers\Admin\RevisionController;
 use App\Http\Controllers\Admin\PosesionController;
 use App\Http\Controllers\Admin\AsistenciaController;
+use App\Http\Controllers\Admin\ZonalController;
+use App\Http\Controllers\Admin\ZonalrController;
+
+
 
 
 
@@ -51,3 +55,7 @@ Route::resource('revision', RevisionController::class)->names('admin.revision');
 Route::resource('posesion', PosesionController::class)->names('admin.posesion');
 
 Route::resource('Asistencia', AsistenciaController::class)->names('admin.asistencia');
+
+Route::resource('zonal', ZonalController::class)->names('admin.zonal');
+
+Route::resource('zonalr', ZonalrController::class)->names('admin.zonalr');

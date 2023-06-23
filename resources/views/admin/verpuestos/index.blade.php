@@ -15,7 +15,7 @@
 
 <div class="card">
         <div class="card-body">
-            <table  id="example" class="display responsive nowrap" style="width:95%" >
+            <table  id="example" class="display responsive nowrap" style="width:100%" >
                     <thead >
                         <tr>
                             <th>Código del puesto</th>
@@ -23,6 +23,8 @@
                             <th>Dirección</th>
                             <th>Mesas</th>
                             <th>comuna</th>
+                            <th>Coordinador</th>
+                            <th>Telefono</th>
 
 
                             
@@ -37,6 +39,8 @@
                             <td>{{ $verpuesto->direccion }}</td>
                             <td>{{ $verpuesto->mesas }}</td>
                             <td>{{ $verpuesto->comuna }}</td>
+                            <td>{{ $verpuesto->cordinador }}</td>
+                            <td>{{ $verpuesto->telefono }}</td>
                         </tr>
                         @endforeach
 
@@ -78,18 +82,18 @@
              
 
              ],
-             "dom": 'Bfrtip',
-             "buttons": [
-                 {
-                 "extend": 'excelHtml5',
-                 "title": 'testigos_acreditados_xls'
-                  },
-                  {
-                 "extend": 'pdfHtml5',
-                 "title": 'testigos_acreditados_pdf',
-                 "download": 'open'
-                  }
-             ]
+            //  "dom": 'Bfrtip',
+            //  "buttons": [
+            //      {
+            //      "extend": 'excelHtml5',
+            //      "title": 'testigos_acreditados_xls'
+            //       },
+            //       {
+            //      "extend": 'pdfHtml5',
+            //      "title": 'testigos_acreditados_pdf',
+            //      "download": 'open'
+            //       }
+            //  ]
 
              }
              );

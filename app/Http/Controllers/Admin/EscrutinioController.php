@@ -32,7 +32,7 @@ class EscrutinioController extends Controller
                if ($municipio == 0) {
                 $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->get();
                } else {
-                $sellers = Seller::all();
+                $sellers = Seller::where('mesa','<>', 'Rem')->get();
                }            
                 
                    

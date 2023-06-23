@@ -24,13 +24,13 @@ class TellerController extends Controller
 
 
                 if ($role == 1) {
-                   if ($municipio == 0) {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->get();
+                   if ($municipio == 1) {
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'=', '001')->get();
                    } else {
                     if ($municipio == 0) {
                         $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->get();
                        } else {
-                        $sellers = Seller::all();
+                        $sellers = Seller::where('mesa','<>', 'Rem')->get();
                        }    
                    }
                        
@@ -45,7 +45,7 @@ class TellerController extends Controller
                                 if ($role == 4) {
                                     $sellers = Seller::where('mesa','<>', 'Rem')->get();
                                 } else {
-
+                                    
                                 }
                              }
 

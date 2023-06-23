@@ -38,12 +38,12 @@ class RevisionController extends Controller
                 }
             }else {
 
-                if ($role == 6 ) {
+                if ($role == 6 or $role == 2) {
                     $sellers = Seller::where('recuperados','<>', '' )->get();
                 } else {
         
                 }
-            }
+                }
         return view('admin.revision.index', compact('sellers'));
     }
 

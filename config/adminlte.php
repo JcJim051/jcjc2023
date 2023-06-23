@@ -410,6 +410,43 @@ return [
     'can'  => 'Superuser',
 
 ],
+[   'text' => 'Master de Auditoria',
+    'icon'        => 'fas fa-tachometer-alt fa-rotate-90',  
+    'can'  => 'Superuser-administrador-auditor',  
+    'submenu' => [
+        [
+            'text'        => 'Escrutinio Preconteo',
+            'route'         => 'admin.zonal.index',
+            'icon'        => 'fas fa-flag',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+            
+        
+        ],
+        [
+            'text'        => 'Escrutinio Zonal',
+            'route'         => 'admin.zonalr.index',
+            'icon'        => 'fas fa-flag',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+        ],
+        // [
+        //     'text'        => 'Escrutinio Municipal',
+        //     'route'         => 'admin.consultors.index',
+        //     'icon'        => 'fas fa-tachometer-alt fa-fw',
+        //     'label_color' => 'success',
+        //     'can'  => 'Superuser-administrador-consultor-auditor',
+        // ],
+       
+        // [   'text'        => 'Escrutinio Departamental',
+        //     'route'         => 'admin.asistencia.index',
+        //     'icon'        => 'fas fa-user-lock',
+        //     'label_color' => 'primary',
+        //     'can'  => 'Superuser-administrador-consultor-auditor',
+        // ],
+    
+    ]
+],
 [    'header' => 'Centro de Datos',
     'can'  => 'Superuser',
 ],
