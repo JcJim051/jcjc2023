@@ -30,7 +30,7 @@ class ZonalController extends Controller
                 $resultados = Seller::pluck('gob1')->toArray();
 
                 // Calcular la desviación estándar
-                $desviacion_estandar = DB::table('Sellers')->whereNotNull('gob1')->select(DB::raw('STDDEV(gob1) as desviacion_estandar'))->value('desviacion_estandar');
+                $desviacion_estandar = DB::table('sellers')->whereNotNull('gob1')->select(DB::raw('STDDEV(gob1) as desviacion_estandar'))->value('desviacion_estandar');
                 
 
         return view('admin.zonal.index', compact('zonal','tmi' ,'tv1', 'desviacion_estandar'));

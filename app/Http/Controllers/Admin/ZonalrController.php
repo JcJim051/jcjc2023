@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Seller;
-use App\Models\votos;
+use App\Models\Votos;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
