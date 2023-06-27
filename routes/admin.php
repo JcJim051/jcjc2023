@@ -18,6 +18,11 @@ use App\Http\Controllers\Admin\PosesionController;
 use App\Http\Controllers\Admin\AsistenciaController;
 use App\Http\Controllers\Admin\ZonalController;
 use App\Http\Controllers\Admin\ZonalrController;
+use App\Http\Controllers\Admin\MunicipalController;
+use App\Http\Controllers\Admin\DepartamentalController;
+use App\Http\Controllers\Admin\TableroController;
+
+
 
 
 
@@ -59,3 +64,9 @@ Route::resource('Asistencia', AsistenciaController::class)->names('admin.asisten
 Route::resource('zonal', ZonalController::class)->names('admin.zonal');
 
 Route::resource('zonalr', ZonalrController::class)->names('admin.zonalr');
+
+Route::resource('municipal', MunicipalController::class)->names('admin.municipal');
+
+Route::resource('departamental', DepartamentalController::class)->names('admin.departamental');
+
+Route::resource('tablero', TableroController::class)->names('admin.tablero');

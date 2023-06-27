@@ -3,7 +3,7 @@
 @section('title', 'Reportar')
 
 @section('content_header')
-    <h1 style="text-align: center">Alertas de valanceo Pre-Conteo</h1>
+    <h1 style="text-align: center">Alertas de valanceo Escrutinio Departamental</h1>
 @stop
 
 @section('content')
@@ -15,7 +15,7 @@
    
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-info">
+            <div class="text-center card card-danger">
                 <div class="card-header">
                     <h3 class="card-title">Promedio de votos por mesa</h3>
                     
@@ -51,7 +51,7 @@
             </div>
         </div> 
         <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-info">
+            <div class="text-center card card-danger">
                 <div class="card-header">
                     <h3 class="card-title">Desviación estandar</h3>
                     
@@ -97,65 +97,67 @@
                 <thead>
                     <tr>
                         <th> id </th>
-                        <th> municipio </th>
-                        <th> puesto </th>
-                        <th> mesa </th>
-                        <th> Preconteo </th>
+                        <th>municipio</th>
+                        <th>puesto</th>
+                        <th>mesa</th>
+                        <th>Preconteo</th>
+                        <th>Zonal</th> 
+                        <th>Municipal</th> 
+                        <th>Departamental</th>
                         <th> E11 - Total </th>
-                        {{-- <th> distancia a la media </th> --}}
-                        {{-- <th> gob1 </th>
-                        <th> gob2 </th>
-                        <th> gob3 </th>
-                        <th> gob4 </th>
-                        <th> gob5 </th>
-                        <th> gob6 </th>
-                        <th> gob7 </th>
-                        <th> nulos </th>
-                        <th> En blanco </th>
-                        <th> no marcados </th> --}}
                         <th> Banlance </th>
                         
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($zonal as $zonal)
+                    @foreach ($data as $data)
                     <tr>
-                        <td> {{ $zonal->id }}</td>
-                        <td> {{ $zonal->municipio }}</td>
-                        <td> {{ $zonal->puesto }}</td>
-                        <td> {{ $zonal->mesa }}</td>
-                        <td> {{ $zonal->gob1 }}</td>
-                        <td>    @if ($zonal->censodemesa - $zonal->votosenurna == 0 )
+                        
+                        <td>{{ $data->id }}</td>
+                        <td>{{ $data->municipio }}</td>
+                        <td>{{ $data->puesto }}</td>
+                        <td>{{ $data->mesa }}</td>
+                        <td>{{ $data->gob1 }}</td>
+                            {{-- zonal --}}
+                            @if ( $data->votos->gob1_zonal == $data->gob1)
+                                <td>{{ $data->votos->gob1_zonal }}</td>   
+                            @else
+                                <td style="color:red">{{ $data->votos->gob1_zonal }}</td>
+                            @endif  
+                            {{-- municipal    --}}
+                            @if ( $data->votos->gob1_zonal ==$data->votos->gob1_municipal )
+                                <td>{{ $data->votos->gob1_municipal }}</td>   
+                            @else
+                                <td style="color:red">{{ $data->votos->gob1_municipal }}</td>
+                            @endif
+                            {{-- Departamental --}}
+                            @if ( $data->votos->gob1_municipal == $data->votos->gob1_departamental)
+                                <td>{{ $data->votos->gob1_departamental }}</td>   
+                            @else
+                                <td style="color:red">{{ $data->votos->gob1_departamental }}</td>
+                            @endif
+                            
+                        
+                        <td>
+                            @if ($data->votos->censodemesa_departamental - $data->votos->votosenurna_departamental == 0 )
                                         <div class="btn btn-success">0</div>
                                 @else
-                                    @if ($zonal->censodemesa - $zonal->votosenurna < 0 )
-                                    <div class="btn btn-danger">{{ $zonal->censodemesa - $zonal->votosenurna }}</div>
+                                    @if ($data->votos->censodemesa_departamental - $data->votos->votosenurna_departamental < 0 )
+                                    <div class="btn btn-danger">{{ $data->votos->censodemesa_departamental - $data->votos->votosenurna_departamental}}</div>
                                     @else
-                                        <a class="btn btn-warning btn-smclass=">{{ $zonal->censodemesa - $zonal->votosenurna }}</div>
+                                        <a class="btn btn-warning btn-smclass=">{{ $data->votos->censodemesa_departamental - $data->votos->votosenurna_departamental }}</div>
                                     @endif 
                                 @endif  
                             
-                            
-                            </td>
-                        {{-- <td> {{ ($zonal->gob1 - ($tv1/$tmi)) }}</td> --}}
-                        {{-- 
-                        <td> {{ $zonal->gob2 }}</td>
-                        <td> {{ $zonal->gob3 }}</td>
-                        <td> {{ $zonal->gob4 }}</td>
-                        <td> {{ $zonal->gob5 }}</td>
-                        <td> {{ $zonal->gob6 }}</td>
-                        <td> {{ $zonal->gob7 }}</td>
-                        <td> {{ $zonal->nulos }}</td>
-                        <td> {{ $zonal->enblaco }}</td>
-                        <td> {{ $zonal->nomarcados }}</td> --}}
-                        <td> @if ($zonal->gob1+$zonal->gob2+$zonal->gob3+$zonal->gob4+$zonal->gob5+$zonal->gob6+$zonal->gob7+$zonal->nulos+$zonal->enblanco+$zonal->nomarcados == $zonal->votosenurna )
+                        </td>
+                        <td> @if ($data->votos->gob1_departamental+$data->votos->gob2_departamental+$data->votos->gob3_departamental+$data->votos->gob4_departamental+$data->votos->gob5_departamental+$data->votos->gob6_departamental+$data->votos->gob7_departamental+$data->votos->nulos_departamental+$data->votos->enblanco_departamental+$data->votos->nomarcados_departamental == $data->votos->votosenurna_departamental )
                             <div class="btn btn-success">Balanceada</div>
-                        @else
-                            <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-smclass=">Desbalanceada</div>
-                        @endif 
+                            @else
+                                <a href="#"  class="btn btn-danger btn-smclass=">Desbalanceada</div>
+                            @endif 
                             
-                            </td>
+                        </td>
                         
                     </tr>
                     @endforeach
@@ -210,7 +212,7 @@
             }
             );
         })
-    </SCript>
+        </SCript>
 @endsection
 
 

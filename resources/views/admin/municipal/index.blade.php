@@ -3,7 +3,7 @@
 @section('title', 'Reportar')
 
 @section('content_header')
-    <h1 style="text-align: center">Alertas de valanceo Pre-Conteo</h1>
+    <h1 style="text-align: center">Alertas de valanceo Escrutinio Municipal</h1>
 @stop
 
 @section('content')
@@ -15,7 +15,7 @@
    
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-info">
+            <div class="text-center card card-warning">
                 <div class="card-header">
                     <h3 class="card-title">Promedio de votos por mesa</h3>
                     
@@ -51,7 +51,7 @@
             </div>
         </div> 
         <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-info">
+            <div class="text-center card card-warning">
                 <div class="card-header">
                     <h3 class="card-title">Desviación estandar</h3>
                     
@@ -97,65 +97,60 @@
                 <thead>
                     <tr>
                         <th> id </th>
-                        <th> municipio </th>
-                        <th> puesto </th>
-                        <th> mesa </th>
-                        <th> Preconteo </th>
+                        <th>municipio</th>
+                        <th>puesto</th>
+                        <th>mesa</th>
+                        <th>Preconteo</th>
+                        <th>Zonal</th> 
+                        <th>Municipal</th> 
+
                         <th> E11 - Total </th>
-                        {{-- <th> distancia a la media </th> --}}
-                        {{-- <th> gob1 </th>
-                        <th> gob2 </th>
-                        <th> gob3 </th>
-                        <th> gob4 </th>
-                        <th> gob5 </th>
-                        <th> gob6 </th>
-                        <th> gob7 </th>
-                        <th> nulos </th>
-                        <th> En blanco </th>
-                        <th> no marcados </th> --}}
                         <th> Banlance </th>
                         
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($zonal as $zonal)
+                    @foreach ($data as $data)
                     <tr>
-                        <td> {{ $zonal->id }}</td>
-                        <td> {{ $zonal->municipio }}</td>
-                        <td> {{ $zonal->puesto }}</td>
-                        <td> {{ $zonal->mesa }}</td>
-                        <td> {{ $zonal->gob1 }}</td>
-                        <td>    @if ($zonal->censodemesa - $zonal->votosenurna == 0 )
+                        
+                        <td>{{ $data->id }}</td>
+                        <td>{{ $data->municipio }}</td>
+                        <td>{{ $data->puesto }}</td>
+                        <td>{{ $data->mesa }}</td>
+                        <td>{{ $data->gob1 }}</td>
+                            @if ( $data->votos->gob1_zonal == $data->gob1)
+                                <td>{{ $data->votos->gob1_municipal }}</td>   
+                            @else
+                                <td style="color:red">{{ $data->votos->gob1_municipal }}</td>
+                            @endif
+
+                            @if ( $data->votos->gob1_zonal == $data->gob1)
+                                <td>{{ $data->votos->gob1_municipal }}</td>   
+                            @else
+                                <td style="color:red">{{ $data->votos->gob1_municipal }}</td>
+                            @endif
+                            
+                        
+                        <td>
+                            @if ($data->votos->censodemesa_municipal - $data->votos->votosenurna_municipal == 0 )
                                         <div class="btn btn-success">0</div>
                                 @else
-                                    @if ($zonal->censodemesa - $zonal->votosenurna < 0 )
-                                    <div class="btn btn-danger">{{ $zonal->censodemesa - $zonal->votosenurna }}</div>
+                                    @if ($data->votos->censodemesa_municipal - $data->votos->votosenurna_municipal < 0 )
+                                    <div class="btn btn-danger">{{ $data->votos->censodemesa_municipal - $data->votos->votosenurna_municipal}}</div>
                                     @else
-                                        <a class="btn btn-warning btn-smclass=">{{ $zonal->censodemesa - $zonal->votosenurna }}</div>
+                                        <a class="btn btn-warning btn-smclass=">{{ $data->votos->censodemesa_municipal - $data->votos->votosenurna_municipal }}</div>
                                     @endif 
                                 @endif  
                             
-                            
-                            </td>
-                        {{-- <td> {{ ($zonal->gob1 - ($tv1/$tmi)) }}</td> --}}
-                        {{-- 
-                        <td> {{ $zonal->gob2 }}</td>
-                        <td> {{ $zonal->gob3 }}</td>
-                        <td> {{ $zonal->gob4 }}</td>
-                        <td> {{ $zonal->gob5 }}</td>
-                        <td> {{ $zonal->gob6 }}</td>
-                        <td> {{ $zonal->gob7 }}</td>
-                        <td> {{ $zonal->nulos }}</td>
-                        <td> {{ $zonal->enblaco }}</td>
-                        <td> {{ $zonal->nomarcados }}</td> --}}
-                        <td> @if ($zonal->gob1+$zonal->gob2+$zonal->gob3+$zonal->gob4+$zonal->gob5+$zonal->gob6+$zonal->gob7+$zonal->nulos+$zonal->enblanco+$zonal->nomarcados == $zonal->votosenurna )
+                        </td>
+                        <td> @if ($data->votos->gob1_municipal+$data->votos->gob2_municipal+$data->votos->gob3_municipal+$data->votos->gob4_municipal+$data->votos->gob5_municipal+$data->votos->gob6_municipal+$data->votos->gob7_municipal+$data->votos->nulos_municipal+$data->votos->enblanco_municipal+$data->votos->nomarcados_municipal == $data->votos->votosenurna_municipal )
                             <div class="btn btn-success">Balanceada</div>
-                        @else
-                            <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-smclass=">Desbalanceada</div>
-                        @endif 
+                            @else
+                                <a href="#"  class="btn btn-danger btn-smclass=">Desbalanceada</div>
+                            @endif 
                             
-                            </td>
+                        </td>
                         
                     </tr>
                     @endforeach
@@ -210,7 +205,7 @@
             }
             );
         })
-    </SCript>
+        </SCript>
 @endsection
 
 

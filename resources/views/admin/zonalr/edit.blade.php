@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-    <h4>VOTOS REPORTADOS EN PRECONTEO EN EL PUESTO {{ $zonal->puesto}} MESA {{ $zonal->mesa}}</h4>
+    <h4>VOTOS REPORTADOS EN PRECONTEO EN EL PUESTO {{ $municipal->puesto}} MESA {{ $municipal->mesa}}</h4>
 @stop
 
 @section('content')
@@ -16,7 +16,7 @@
 
 <div class="card">
     <div class="card-body">
-        {!! Form::model($zonal, ['route' => ['admin.zonalr.update',$zonal], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::model($municipal, ['route' => ['admin.municipal.update',$municipal], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
 
         {!! Form::hidden('coddep', null) !!}
         {!! Form::hidden('codmun', null) !!}
@@ -62,8 +62,8 @@
                     </div>
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
-                            {!! Form::label("votosincinerados", "Votos Incinerados en zonal") !!}
-                            {!! Form::text("votosincinerados", null, ["class" => "form-control disabled", 'placeholder' => 'Total de Votos incinerados en el zonal' ,'readonly' => 'readonly']) !!}
+                            {!! Form::label("votosincinerados", "Votos Incinerados en municipal") !!}
+                            {!! Form::text("votosincinerados", null, ["class" => "form-control disabled", 'placeholder' => 'Total de Votos incinerados en el municipal' ,'readonly' => 'readonly']) !!}
 
                             @error('votosincinerados')
                                 <span class="text-danger">{{$message}}</span>
@@ -203,12 +203,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
-                            @if ($zonal->e14 == null)
+                            @if ($municipal->e14 == null)
                             <p>No Cargado!</p>
                             @else
                             <div class="row">
                                 <div class="col-sm-6 col-x-12">
-                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14) }}">Ver E14 cargado</a>
+                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $municipal->e14) }}">Ver E14 cargado</a>
                                 </div>
                             </div>
 
@@ -228,12 +228,12 @@
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
                         <br>
-                        @if ($zonal->fotorec == null)
+                        @if ($municipal->fotorec == null)
                         <p>Sin reclamacion</p>
                         @else
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->fotorec) }}">Ver reclamacion cargada</a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $municipal->fotorec) }}">Ver reclamacion cargada</a>
                             </div>
                         </div>
         

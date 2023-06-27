@@ -400,7 +400,8 @@ return [
 [   'text' => 'Verificación de escrutinios',
     'icon' => 'fas fa-thermometer-full',
     'route'  => 'admin.revision.index',
-    
+    'can'  => 'Superuser-administrador-escrutador-consultor',
+
 
 ],
 
@@ -411,13 +412,13 @@ return [
 
 ],
 [   'text' => 'Master de Auditoria',
-    'icon'        => 'fas fa-tachometer-alt fa-rotate-90',  
+    'icon'        => 'fas fa-exclamation-circle',  
     'can'  => 'Superuser-administrador-auditor',  
     'submenu' => [
         [
             'text'        => 'Escrutinio Preconteo',
             'route'         => 'admin.zonal.index',
-            'icon'        => 'fas fa-flag',
+            'icon'        => 'fas fa-battery-empty',
             'label_color' => 'primary',
             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
             
@@ -426,24 +427,30 @@ return [
         [
             'text'        => 'Escrutinio Zonal',
             'route'         => 'admin.zonalr.index',
-            'icon'        => 'fas fa-flag',
+            'icon'        => 'fas fa-battery-quarter',
             'label_color' => 'primary',
             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
         ],
-        // [
-        //     'text'        => 'Escrutinio Municipal',
-        //     'route'         => 'admin.consultors.index',
-        //     'icon'        => 'fas fa-tachometer-alt fa-fw',
-        //     'label_color' => 'success',
-        //     'can'  => 'Superuser-administrador-consultor-auditor',
-        // ],
+        [
+            'text'        => 'Escrutinio Municipal',
+            'route'         => 'admin.municipal.index',
+            'icon'        => 'fas fa-battery-half',
+            'label_color' => 'success',
+            'can'  => 'Superuser-administrador-consultor-auditor',
+        ],
        
-        // [   'text'        => 'Escrutinio Departamental',
-        //     'route'         => 'admin.asistencia.index',
-        //     'icon'        => 'fas fa-user-lock',
-        //     'label_color' => 'primary',
-        //     'can'  => 'Superuser-administrador-consultor-auditor',
-        // ],
+        [   'text'        => 'Escrutinio Departamental',
+            'route'         => 'admin.departamental.index',
+            'icon'        => 'fas fa-battery-full',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-consultor-auditor',
+        ],
+        [   'text'        => 'Tablero de cambios',
+            'route'         => 'admin.tablero.index',
+            'icon'        => 'fas fa-chart-line',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-consultor-auditor',
+        ],
     
     ]
 ],
