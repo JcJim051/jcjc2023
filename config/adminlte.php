@@ -325,6 +325,20 @@ return [
             'label_color' => 'success',
             'can'  => 'Superuser-administrador-consultor-auditor',
         ],
+        [   'text'        => 'Asistencia de testigos',
+            'route'         => 'admin.asistencia.index',
+            'icon'        => 'fas fa-user-lock',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-consultor-auditor',
+        ],
+       
+       
+        [   'text'        => 'Afluencia de votantes',
+            'route'         => 'admin.afluencia.index',
+            'icon'        => 'fas fa-user-lock',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-consultor-auditor',
+         ],
         [
             'text'        => 'Resultados',
             'route'         => 'admin.resultados.index',
@@ -334,13 +348,6 @@ return [
             
         
         ],
-        [   'text'        => 'Asistencia de testigos',
-            'route'         => 'admin.asistencia.index',
-            'icon'        => 'fas fa-user-lock',
-            'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-consultor-auditor',
-        ],
-    
     ]
 ],
 
@@ -361,7 +368,15 @@ return [
 
 
     ],
-[
+    [
+        'text' => 'Reportar afluencia',
+        'route'  => 'admin.votantes.index',
+        'icon' => 'fas fa-vote-yea',
+        'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+    
+    
+        ],
+    [
     'text' => 'Reportar E14',
     'route'  => 'admin.tellers.index',
     'icon' => 'fas fa-person-booth',

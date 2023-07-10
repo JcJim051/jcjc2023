@@ -32,14 +32,14 @@
         {!! Form::hidden("nombre", null) !!}
 
         
-        <div class="card card-warning">
+        <div class="card card-outline card-warning">
             <div class="card-header">
                 <h5>Datos de la mesa</h5>
             </div>    
             <div class="card-body">
                 
                 <div class="row">
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-3 col-xs-12">
                         <div class="form-group">
                             {!! Form::label("censodemesa", "Votantes en E11") !!}
                             {!! Form::text("censodemesa", null, ["class" => "form-control disabled  ", 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?']) !!}
@@ -50,7 +50,7 @@
 
                         </div>
                     </div>
-                    <div class="col-sm-4 col-xs-2 ">
+                    <div class="col-sm-3 col-xs-2 ">
                         <div class="form-group">
                             {!! Form::label("votosenurna", "Votos en la Urna") !!}
                             {!! Form::text("votosenurna", null, ["class" => "form-control disabled", 'placeholder' => 'Cuantos votos en la hay en la urna?']) !!}
@@ -60,7 +60,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-3 col-xs-12">
                         <div class="form-group">
                             {!! Form::label("votosincinerados", "Votos Incinerados en preconteo") !!}
                             {!! Form::text("votosincinerados", null, ["class" => "form-control disabled", 'placeholder' => 'Total de Votos incinerados en el preconteo']) !!}
@@ -70,11 +70,20 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-sm-3 col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
+                            {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
+                            @error('status_reconteo')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
 
                 </div>
             </div>    
         </div>
-        <div class="card card-success">
+        <div class="card card-outline card-success">
             <div class="card-header">
                 <h5>Candidatos</h5>
             </div>   
@@ -196,7 +205,7 @@
                 </div>
             </div>
         </div> 
-        <div class="card card-primary">
+        <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h5>Cargar Foto E14</h5>
                 </div>    
@@ -228,7 +237,7 @@
         </div>  
         
             
-        <div class="card card-danger">
+        <div class="card card-outline card-danger">
             <div class="card-header">
                 <h5>Reclamaciones</h5>
             </div>    

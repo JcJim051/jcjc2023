@@ -10,7 +10,7 @@ use App\Models\Votos;
 class Seller extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'coddep', 'codmun', 'codzon', 'codpuesto', 'departamento', 'municipio', 'puesto', 'mesa', 'codigodemesa','codpar', 'cedula', 'nombre', 'email', 'telefono', 'dondevota', 'cosescru', 'status','statusani', 'reclamacion', 'observacion', 'censodemesa', 'votosenurna', 'votosincinerados', 'gob1', 'gob2', 'gob3' ,'gob4','gob5','gob6','gob7','nulos','enblanco','nomarcados','recuperados', 'statusrec','statusasistencia','remenmesa', 'created_at', 'updated_at', 'banco', 'modificadopor'];
+    protected $fillable = ['id', 'coddep', 'codmun', 'codzon', 'codpuesto', 'departamento', 'municipio', 'puesto', 'mesa', 'codigodemesa','codpar', 'cedula', 'nombre', 'email', 'telefono', 'dondevota', 'cosescru', 'status','statusani', 'reclamacion', 'observacion', 'censodemesa', 'votosenurna', 'votosincinerados', 'gob1', 'gob2', 'gob3' ,'gob4','gob5','gob6','gob7','nulos','enblanco','nomarcados','recuperados', 'statusrec','statusasistencia','remenmesa', 'created_at', 'updated_at', 'banco', 'modificadopor', 'status_reconteo', 'reporte_1', 'reporte_2', 'reporte_3'];
 
     public function puestos()
 

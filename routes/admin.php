@@ -21,8 +21,8 @@ use App\Http\Controllers\Admin\ZonalrController;
 use App\Http\Controllers\Admin\MunicipalController;
 use App\Http\Controllers\Admin\DepartamentalController;
 use App\Http\Controllers\Admin\TableroController;
-
-
+use App\Http\Controllers\Admin\VotantesController;
+use App\Http\Controllers\Admin\AfluenciaController;
 
 
 
@@ -31,42 +31,23 @@ use App\Http\Controllers\Admin\TableroController;
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
 
 Route::resource('superusers', SuperUserController::class)->names('admin.superusers');
-
-
 Route::resource('tellers', TellerController::class)->names('admin.tellers');
-
 Route::resource('coordinators', CoordinatorController::class)->names('admin.coordinators');
-
-
 Route::resource('consultors', ConsultorController::class)->names('admin.consultors');
-
 Route::resource('resultados', ResultadosController::class)->names('admin.resultados');
-
 Route::resource('escrutinio', EscrutinioController::class)->names('admin.escrutinio');
-
 Route::resource('descargas', DescargasController::class)->names('admin.descargas');
-
 Route::resource('testigos', TestigosController::class)->names('admin.testigos');
-
-
 Route::resource('consultas', ConsultasController::class)->names('admin.consultas');
-
 Route::resource('Verpuestos', VerpuestosController::class)->names('admin.verpuestos');
-
 Route::resource('Ani', AniController::class)->names('admin.ani');
-
 Route::resource('revision', RevisionController::class)->names('admin.revision');
-
 Route::resource('posesion', PosesionController::class)->names('admin.posesion');
-
 Route::resource('Asistencia', AsistenciaController::class)->names('admin.asistencia');
-
 Route::resource('zonal', ZonalController::class)->names('admin.zonal');
-
 Route::resource('zonalr', ZonalrController::class)->names('admin.zonalr');
-
 Route::resource('municipal', MunicipalController::class)->names('admin.municipal');
-
 Route::resource('departamental', DepartamentalController::class)->names('admin.departamental');
-
 Route::resource('tablero', TableroController::class)->names('admin.tablero');
+Route::resource('votantes', VotantesController::class)->names('admin.votantes');
+Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
