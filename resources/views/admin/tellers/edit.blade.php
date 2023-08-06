@@ -3,6 +3,38 @@
 @section('title', 'Admin')
 
 @section('content_header')
+    <style>
+       /* public/css/styles.css */
+       .table {
+        table-layout: fixed; /* Fijar el ancho de las celdas de la tabla */
+        }
+        .id-cell{
+        width: 10%; /* Esto es equivalente al ancho de col-xs-3 */
+        
+         }
+       .votos-cell {
+        width: 23%; /* Esto es equivalente al ancho de col-xs-3 */
+        block-size: 0%;
+         }
+        .table-container {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+
+        .table-container th, .table-container td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        
+
+
+       
+
+       
+    </style>
     <h4> REPORTE DE VOTOS <br> {{ $teller->puesto}} MESA {{ $teller->mesa}}</h4>
 @stop
 
@@ -31,264 +63,142 @@
         {!! Form::hidden("telefono", null) !!}
         {!! Form::hidden("nombre", null) !!}
 
-        
-        <div class="card card-outline card-warning">
-            <div class="card-header">
-                <h5>Datos de la mesa</h5>
-            </div>    
-            <div class="card-body">
-                
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("censodemesa", "Votantes en E11") !!}
-                            {!! Form::text("censodemesa", null, ["class" => "form-control disabled  ", 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?']) !!}
+        <div class="row">
+            <div class="col-4">
+                {!! Form::label("censodemesa", "Votantes en E11") !!}
+                {!! Form::text("censodemesa", null, ["class" => "form-control disabled  ", 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?']) !!}
 
-                            @error('censodemesa')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-2 ">
-                        <div class="form-group">
-                            {!! Form::label("votosenurna", "Votos en la Urna") !!}
-                            {!! Form::text("votosenurna", null, ["class" => "form-control disabled", 'placeholder' => 'Cuantos votos en la hay en la urna?']) !!}
-
-                            @error('votosenurna')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("votosincinerados", "Votos Incinerados en preconteo") !!}
-                            {!! Form::text("votosincinerados", null, ["class" => "form-control disabled", 'placeholder' => 'Total de Votos incinerados en el preconteo']) !!}
-
-                            @error('votosincinerados')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
-                            {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
-                            @error('status_reconteo')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                </div>
-            </div>    
-        </div>
-        <div class="card card-outline card-success">
-            <div class="card-header">
-                <h5>Candidatos</h5>
+            </div>     
+            <div class="col-4">
+                {!! Form::label("votosenurna", "Votos en la Urna") !!}
+                {!! Form::text("votosenurna", null, ["class" => "form-control ", 'placeholder' => 'Cuantos votos en la hay en la urna?']) !!}
             </div>   
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob1", "Felipe Carreño") !!}
-                            {!! Form::text("gob1", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por Felipe Carreño']) !!}
-
-                            @error('gob1')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12 ">
-                        <div class="form-group">
-                            {!! Form::label("gob2", "Candidato  2") !!}
-                            {!! Form::text("gob2", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 2']) !!}
-
-                            @error('gob2')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob3", "Candidato  3") !!}
-                            {!! Form::text("gob3", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 3']) !!}
-
-                            @error('gob3')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob4", "Candidato  4") !!}
-                            {!! Form::text("gob4", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 4']) !!}
-
-                            @error('gob4')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob5", "Candidato  5") !!}
-                            {!! Form::text("gob5", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 5']) !!}
-
-                            @error('gob5')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob6", "Candidato  6") !!}
-                            {!! Form::text("gob6", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candidato 6']) !!}
-
-                            @error('gob6')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-           
-       
-                <div class="row">
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("gob7", "candidato 7") !!}
-                            {!! Form::text("gob7", null, ["class" => "form-control disabled", 'placeholder' => 'Votos por candicato 7']) !!}
-
-                            @error('gob7')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12 ">
-                        <div class="form-group">
-                            {!! Form::label("nulos", "Votos Nulos") !!}
-                            {!! Form::text("nulos", null, ["class" => "form-control disabled", 'placeholder' => 'Votos Nulos']) !!}
-
-                            @error('nulos')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("nomarcados", "Votos No marcados") !!}
-                            {!! Form::text("nomarcados", null, ["class" => "form-control disabled", 'placeholder' => 'Votos no marcados']) !!}
-
-                            @error('nomarcados')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="form-group">
-                            {!! Form::label("enblanco", "Total Votos en blanco") !!}
-                            {!! Form::text("enblanco", null, ["class" => "form-control disabled", 'placeholder' => 'Votos en blanco']) !!}
-
-                            @error('enblanco')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                    
-                    </div>
-
-                </div>
+            <div class="col-4">
+                {!! Form::label("votosincinerados", "Votos Incinerados") !!}
+                {!! Form::text("votosincinerados", null, ["class" => "form-control ", 'placeholder' => 'Total de Votos incinerados en el preconteo']) !!}
             </div>
-        </div> 
-        <div class="card card-outline card-primary">
-                <div class="card-header">
-                    <h5>Cargar Foto E14</h5>
-                </div>    
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6 col-x-12">
-                                {!! Form::label("e14", "Cargar E14") !!} <br>
-                                {!! Form::file("e14", null, ["class" => "form-control disabled"]) !!} <br>
+        </div><br>
 
-                                @error('e14')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            @if ($teller->e14 == null)
-
-                            @else
-                            <div class="row">
-                                <div class="col-sm-6 col-x-12">
-                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 cargado</a>
-                                </div>
-                            </div>
-
-                            @endif
-                            
-                        </div>
-                    </div>
-                </div>           
-        </div>  
-        
-            
-        <div class="card card-outline card-danger">
-            <div class="card-header">
-                <h5>Reclamaciones</h5>
-            </div>    
-            <div class="card-body">                
-                <div class="row">
-                    <div class="col-sm-3 col-xs-12">                    
-                            {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
-                            {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
-
-                            @error('Estado')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                            <br>
-                    </div>
-                    <div class="col-sm-9 col-xs-12">
-                        <div class="form-floating">
-                            <label for="floatingTextarea">Comentarios</label>
-                            <textarea class="form-control" placeholder="Describa la reclamación" id="floatingTextarea" name="observacion"> {{$teller->observacion}}</textarea>
-                        </div>
-                    </div>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="id-cell">#</th>
+                        <th>Candidato</th>
+                        <th class="votos-cell">Votos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label for="gob1">01</label></td>
+                        <td><label type="text" name="gob1">Rafaela Cortes</td>
+                        <td ><input class="form-control" name="gob1" value="{{$teller->gob1}}"></td>
+                    </tr>
+                
+                        <tr>
+                            <td><label for="gob2">02</label></td>
+                            <td><label type="text" name="gob2">Marcela Amaya</td>
+                            <td><input class="form-control"type="text" name="gob2" value="{{$teller->gob2}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gob3">03</label></td>
+                            <td><label type="text" name="gob3">Dario Vasquez</td>
+                            <td><input class="form-control"type="text" name="gob3" value="{{$teller->gob3}}"></td>
+                        </tr>
                     
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-x-12">
+                        <tr>
+                            <td><label for="gob4">04</label></td>
+                            <td><label type="text" name="gob4">Wilmar Barbosa</td>
+                            <td><input class="form-control"type="text" name="gob4" value="{{$teller->gob4}}"></td>
+                        </tr>
+                    
+                        <tr>
+                            <td><label for="gob5">05</label></td>
+                            <td><label type="text" name="gob5">Edward Libreros</td>
+                            <td><input class="form-control"type="text" name="gob5" value="{{$teller->gob5}}"></td>
+                        </tr>
+                    
+                        <tr>
+                            <td><label for="gob6">06</label></td>
+                            <td><label type="text" name="gob6">Harold Barreto</td>
+                            <td><input class="form-control"type="text" name="gob6" value="{{$teller->gob6}}"></td>
+                        </tr>
+                    
+                        <tr>
+                            <td><label for="gob7">07</label></td>
+                            <td><label type="text" name="gob7">Bairon Muñoz</td>
+                            <td><input class="form-control"type="text" name="gob7" value="{{$teller->gob7}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gob8">08</label></td>
+                            <td><label type="text" name="gob8">Antonio Amaya</td>
+                            <td><input class="form-control"type="text" name="gob8" value="{{$teller->gob8}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gob9">09</label></td>
+                            <td><label type="text" name="gob9">Florentino Vasquez</td>
+                            <td><input class="form-control"type="text" name="gob9" value="{{$teller->gob9}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gob10">10</label></td>
+                            <td><label type="text" name="gob10">Eudoro Alvarez</td>
+                            <td><input class="form-control"type="text" name="gob10" value="{{$teller->gob10}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="gob11">11</label></td>
+                            <td><label type="text" name="gob11">Jose L Silva</td>
+                            <td><input class="form-control" type="text" name="gob11" value="{{$teller->gob11}}"></td>
+                        </tr>
+                       
+                    
 
-                        {!! Form::label("fotorec", "Cargar Foto de reclamación") !!} <br>
-                        {!! Form::file("fotorec", null, ["class" => "form-control disabled"]) !!} <br>
+                    
+                    
+                    <tr>
+                        
+                        <td colspan="2">Votos en blanco</td>
+                        <td><input class="form-control"type="text" name="enblanco" value="{{$teller->enblanco}}"></td>
+                    </tr>
+                    <tr>
+                        
+                        <td colspan="2">Votos nulos</td>
+                        <td><input class="form-control" type="text" name="nulos" value="{{$teller->nulos}}"></td>
+                    </tr>
+                    <tr>
+                       
+                        <td colspan="2">Votos no marcados</td>
+                        <td><input class="form-control"type="text" name="nomarcados" value="{{$teller->nomarcados}}"></td>
+                    </tr>
+                </tbody>
+            </table>      
+        </div>   
 
-                        @error('fotorec')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <br>
-                        @if ($teller->fotorec == null)
+        <div class="row">
+            <div class="col-6">
+                {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
+                {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
         
-                        @else
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->fotorec) }}">Ver reclamacion cargada</a>
-                            </div>
-                        </div>
-        
-                        @endif
-                        <br>
-                    </div>
-                </div>
+            </div>
+            <div class="col-6">
+                {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
+                {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled"]) !!}
+               
             </div>
         </div>
 
+      
+       
+                            
+                         
+                           
 
+                          
+                           
+                          
+                            
+
+                          
+                          
 
 
         <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />

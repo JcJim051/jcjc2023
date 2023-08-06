@@ -22,7 +22,7 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Felipe Carreño</th>
+                        <th>Rafaela Cortes</th>
                         {{-- <th>Felipe</th> --}}
                         <th>Comisión</th>
                         <th>Codpuesto</th>
@@ -31,6 +31,8 @@
 
                         @else
                         <th></th>
+                        <th></th>
+                        
                         @endif
                     </tr>
                 </thead>
@@ -71,6 +73,8 @@
 
                         @else
                         <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm">Reportar</a></td>
+                        <td> <a href="{{route("admin.tellers.show", $seller)}}" class="btn btn-primary btn-sm">Enviar E14</a></td>
+                        
                         @endif
 
 
@@ -87,7 +91,7 @@
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Felipe Carreño</th>
+                        <th>Rafaela Cortes</th>
                         {{-- <th>Felipe</th> --}}
                         <th>Comisión</th>
                         <th>Codpuesto</th>
@@ -96,6 +100,8 @@
 
                         @else
                         <th></th>
+                        <th></th>
+
                         @endif
                     </tr>
 

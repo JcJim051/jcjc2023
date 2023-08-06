@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use Illuminate\Http\Request;
@@ -73,6 +75,11 @@ class TellerController extends Controller
         return view('admin.tellers.edit', compact('teller'));
     }
 
+    public function show(Seller $teller)
+    {
+           return view('admin.tellers.edit1', compact('teller'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -86,21 +93,37 @@ class TellerController extends Controller
 
 
         if($request->hasfile('e14')){
-
-            $teller['e14']= $request->file('e14')->getClientOriginalName();
-            $request->file('e14');
-
-            $teller['e14']= $request->file('e14')->store('/E14-images');
-
+            $image = $request->file('e14');
+            $imageName = $image->getClientOriginalName();
+            
+            // Redimensionar la imagen
+            $resizedImage = Image::make($image)->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+    
+            // Almacenar la imagen redimensionada
+            $path = 'E14-images/' . $imageName;
+            Storage::put($path, (string) $resizedImage->encode());
+    
+            $teller['e14'] = $path;
 
         }
         if($request->hasfile('fotorec')){
-
-            $teller['fotorec']= $request->file('fotorec')->getClientOriginalName();
-            $request->file('fotorec');
-
-            $teller['fotorec']= $request->file('fotorec')->store('/reclamaciones-images');
-
+            $image1 = $request->file('fotorec');
+            $imageName = $image1->getClientOriginalName();
+            
+            // Redimensionar la imagen
+            $resizedImage = Image::make($image1)->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+    
+            // Almacenar la imagen redimensionada
+            $path = 'reclamaciones-images/' . $imageName;
+            Storage::put($path, (string) $resizedImage->encode());
+    
+            $teller['fotorec'] = $path;
 
         }
 
