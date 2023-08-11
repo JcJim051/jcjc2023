@@ -51,3 +51,5 @@ Route::resource('departamental', DepartamentalController::class)->names('admin.d
 Route::resource('tablero', TableroController::class)->names('admin.tablero');
 Route::resource('votantes', VotantesController::class)->names('admin.votantes');
 Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
+
+Route::get('get-data', 'App\Http\Controllers\Admin\ConsultorController@getData')->name('getData');

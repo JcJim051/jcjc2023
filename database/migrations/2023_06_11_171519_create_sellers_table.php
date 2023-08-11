@@ -49,6 +49,10 @@ class CreateSellersTable extends Migration
             $table->integer('gob5')->nullable();
             $table->integer('gob6')->nullable();
             $table->integer('gob7')->nullable();
+            $table->integer('gob8')->nullable();
+            $table->integer('gob9')->nullable();
+            $table->integer('gob10')->nullable();
+            $table->integer('gob11')->nullable();
             $table->integer('nulos')->nullable();
             $table->integer('enblanco')->nullable();
             $table->integer('nomarcados')->nullable();
@@ -60,6 +64,10 @@ class CreateSellersTable extends Migration
             $table->string('banco')->default(0);
             $table->string('fotorec')->nullable();
             $table->string('modificadopor')->nullable();
+            $table->string('status_reconteo')->default('0')->nullable();
+            $table->integer('reporte_1')->nullable();
+            $table->integer('reporte_2')->nullable();
+            $table->integer('reporte_3')->nullable();
             $table->timestamps();
         });
     }

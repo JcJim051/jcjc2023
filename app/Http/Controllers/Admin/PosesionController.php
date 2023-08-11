@@ -24,12 +24,12 @@ class PosesionController extends Controller
         if ($role == 1) {
             // 1 = villao
             if ($municipio == 1) {
-                $sellers = Seller::where('codmun' , 001)->where('statusani' , 1)->get();
+                $sellers = Seller::where('codmun' , 001)->get();
             } else {
                if ($municipio == 0) {
-                $sellers = Seller::where('codmun' ,'<>', '001')->where('statusani' , 1)->get();
+                $sellers = Seller::where('codmun' ,'<>', '001')->get();
                } else {
-                $sellers = Seller::where('statusani' , 1)->get();
+                $sellers = Seller::all();
                }            
                 
                    
@@ -37,11 +37,11 @@ class PosesionController extends Controller
             }
         } else {
             if ($role == 2) {
-                $sellers = Seller::where('codescru' , $escrutador)->where('statusani' , 1)->get();
+                $sellers = Seller::where('codescru' , $escrutador)->get();
             } else {
 
                 if ($role == 3) {
-                    $sellers = Seller::where('codcor' , $coordinador)->where('statusani' , 1)->get();
+                    $sellers = Seller::where('codcor' , $coordinador)->get();
                 } else {
                         
                      }

@@ -15,7 +15,7 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="display responsive nowrap" style="width:98%">
+            <table id="example" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -85,78 +85,89 @@
 
                 </tbody>
 
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Municipio</th>
-                        <th>Puesto</th>
-                        <th>Mesa</th>
-                        <th>Rafaela Cortes</th>
-                        {{-- <th>Felipe</th> --}}
-                        <th>Comisión</th>
-                        <th>Codpuesto</th>
-                        <th>Reporte</th>
-                        @if (Auth::user()->role == 4)
-
-                        @else
-                        <th></th>
-                        <th></th>
-
-                        @endif
-                    </tr>
-
-                </tfoot>
+               
             </table>
         </div>
     </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.2.0/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+
+
 @endsection
 
 
 
 @section('js')
     <script> console.log('de tu mano señor!'); </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/searchpanes/2.2.0/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+    
+       
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
-    <script>$(document).ready(function () {
+    <script>
+    
+    $(document).ready(function () {
        $('#example').DataTable({
+             
+            searchPanes: {
+                layout: 'columns-6',
+                initCollapsed: true
+            },
             "pageLength": 25,
+            "responsive": true,
             "columnDefs": [
-
-            { responsivePriority: 10002, targets: 0 },
-            { responsivePriority: 2, targets: 2 },
-            { responsivePriority: 1, targets: 3 },
-            { target: 5, visible: false},
-            { target: 6, visible: false},
+                
+                {searchPanes: {show: false},targets: [4]},
+                
+                { responsivePriority: 10002, targets: 0 },
+                { responsivePriority: 2, targets: 2 },
+                { responsivePriority: 1, targets: 3 },
+                { target: 5, visible: false},
+                { target: 6, visible: false},
+            
 
             ],
-            "dom": 'Bfrtip',
+            "dom":'BPrtip' ,
+            
             "buttons": [
-                // {
-                // "extend": 'excelHtml5',
-                // "title": 'testigos_acreditados_xls'
-                //  },
-                //  {
-                // "extend": 'pdfHtml5',
-                // "title": 'testigos_acreditados_pdf',
-                // "download": 'open'
-                //  }
-            ]
+                {
+                "extend": 'excelHtml5',
+                "title": 'Alertas_preconteo_xls'
+                 },
+                 
+            ],
+            "language": { // Traducción al español
+             "searchPanes": {
+                "title": {
+                    _: 'Filtros Aplicados - %d',
+                    0: 'Sin filtros',
+                    1: 'Un Filtro Aplicado'
+                        }
+                        // Agrega más traducciones aquí según tus necesidades
+                 }
+            },
+            
 
             }
             );
-        })
+        });
+    
+    
+       
     </SCript>
 @endsection
 

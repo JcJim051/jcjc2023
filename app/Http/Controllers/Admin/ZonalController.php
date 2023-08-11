@@ -16,6 +16,7 @@ class ZonalController extends Controller
      */
     public function index()
     {
+        
         $zonal = Seller::where('mesa', '<>', 'Rem')->get();
         
         $tmi= DB::table('sellers')
@@ -76,7 +77,11 @@ class ZonalController extends Controller
      */
     public function edit(Seller $zonal)
     {
-        return view('admin.zonal.edit', compact('zonal'));
+        $cordinador = DB::table('puestos')
+                            ->where('codpuesto', '=' , $zonal->codcor)
+                            ->get();
+        // dd($cordinador);
+        return view('admin.zonal.edit', compact('zonal', 'cordinador'));
     }
 
     /**

@@ -26,6 +26,10 @@ class CreateVotosTable extends Migration
             $table->integer('gob5_zonal')->nullable();
             $table->integer('gob6_zonal')->nullable();
             $table->integer('gob7_zonal')->nullable();
+            $table->integer('gob8_zonal')->nullable();
+            $table->integer('gob9_zonal')->nullable();
+            $table->integer('gob10_zonal')->nullable();
+            $table->integer('gob11_zonal')->nullable();
             $table->integer('nulos_zonal')->nullable();
             $table->integer('enblanco_zonal')->nullable();
             $table->integer('nomarcados_zonal')->nullable();
@@ -41,6 +45,10 @@ class CreateVotosTable extends Migration
             $table->integer('gob5_municipal')->nullable();
             $table->integer('gob6_municipal')->nullable();
             $table->integer('gob7_municipal')->nullable();
+            $table->integer('gob8_municipal')->nullable();
+            $table->integer('gob9_municipal')->nullable();
+            $table->integer('gob10_municipal')->nullable();
+            $table->integer('gob11_municipal')->nullable();
             $table->integer('nulos_municipal')->nullable();
             $table->integer('enblanco_municipal')->nullable();
             $table->integer('nomarcados_municipal')->nullable();
@@ -56,6 +64,10 @@ class CreateVotosTable extends Migration
             $table->integer('gob5_departamental')->nullable();
             $table->integer('gob6_departamental')->nullable();
             $table->integer('gob7_departamental')->nullable();
+            $table->integer('gob8_departamental')->nullable();
+            $table->integer('gob9_departamental')->nullable();
+            $table->integer('gob10_departamental')->nullable();
+            $table->integer('gob11_departamental')->nullable();
             $table->integer('nulos_departamental')->nullable();
             $table->integer('enblanco_departamental')->nullable();
             $table->integer('nomarcados_departamental')->nullable();

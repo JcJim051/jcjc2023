@@ -3,7 +3,7 @@
 @section('title', 'Reportar')
 
 @section('content_header')
-    <h1 style="text-align: center">Alertas de valanceo Escrutinio Municipal</h1>
+    <h1 style="text-align: center">Alertas de balanceo Escrutinio Municipal</h1>
 @stop
 
 @section('content')

@@ -115,27 +115,27 @@ class ConsultorController extends Controller
         $data =  DB::table('sellers')
                 ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
       
                     
         $dat =  DB::table('sellers')
                 ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
 
         
         $not =  DB::table('sellers')
                 ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
 
 

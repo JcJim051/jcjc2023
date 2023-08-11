@@ -47,22 +47,22 @@ class AsistenciaController extends Controller
 
         $d = DB::table('sellers')
                 ->where('codmun','=','001')                   
-                ->select('codescru', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
         $dt = DB::table('sellers')
                 ->where('codmun','=','001')                   
-                ->select('codescru', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
 
         $ndt = DB::table('sellers')
                 ->where('codmun','=','001')                   
-                ->select('codescru', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();     
         // testigos y remanentes presentes por municipio
         $lablemun =  DB::table('sellers')

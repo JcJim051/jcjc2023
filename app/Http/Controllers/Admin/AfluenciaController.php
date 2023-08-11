@@ -47,69 +47,68 @@ class AfluenciaController extends Controller
             $data = DB::table('sellers')
                     ->where('codmun','=','001')
                     ->where('mesa','<>','Rem')
-                    ->select('codescru', DB::raw('sum(reporte_1) as T'))
-                    ->groupBy('codescru')
-                    ->orderBy('codescru', 'asc')
+                    ->select('codzon', DB::raw('sum(reporte_1) as T'))
+                    ->groupBy('codzon')
+                    ->orderBy('codzon', 'asc')
                     ->get();
             $dat =  DB::table('sellers')
                     ->where('codmun','=','001')
                     ->where('mesa','<>','Rem')
-                    ->select('codescru', DB::raw('sum(reporte_1) as T'))
-                    ->groupBy('codescru')
-                    ->orderBy('codescru', 'asc')
+                    ->select('codzon', DB::raw('sum(reporte_1) as T'))
+                    ->groupBy('codzon')
+                    ->orderBy('codzon', 'asc')
                     ->get();
 
                 $d = DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_1) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_1) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
                 $dt =  DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_1) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_1) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
 
                 $d2 = DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_2) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_2) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
                 $dt2 =  DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_3) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_3) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
                 $d3 = DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_3) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_3) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
                         
                         
                 $dt3 =  DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codescru', DB::raw('sum(reporte_2) as T'))
-                        ->groupBy('codescru')
-                        ->orderBy('codescru', 'asc')
+                        ->select('codzon', DB::raw('sum(reporte_2) as T'))
+                        ->groupBy('codzon')
+                        ->orderBy('codzon', 'asc')
                         ->get();
 
 
 
 
             // Votantes por municipios
-
 
 
             $lablemun =  DB::table('sellers')

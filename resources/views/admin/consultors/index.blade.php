@@ -275,7 +275,7 @@
         <div  class="col-sm-12 col-xs-12 ">
             <div class="card card-success">
                 <div class="card-header">
-                <h3   class="card-title">Avance por Comisiones Auxiliares</h3>
+                <h3   class="card-title">Avance villavicencio por zonas</h3>
                     <div class="card-tools">
                 </div>
                 <!-- /.card-tools -->
@@ -437,7 +437,7 @@
             data: {
                 labels: [
                     @foreach ($data as $data)
-                        '{{ $data->codescru}}',
+                        '{{ $data->codzon}}',
                     @endforeach
                 ],
                     datasets: [{

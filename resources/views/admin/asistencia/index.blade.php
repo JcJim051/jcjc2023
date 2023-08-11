@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-sm-6 col-xs-12">
-            <div class="card text-center card-success">
+            <div class="text-center card card-success">
                 <div class="card-header">
                     <h3 class="card-title">Total Testigos en mesa (Villavicencio)  </h3>
                     
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <div class="card text-center card-info">
+            <div class="text-center card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Total Testigos en mesa (Municipios)  </h3>
                     
@@ -72,9 +72,9 @@
  
     <div class="row">
         <div class="col-sm-12 col-xs-12">
-            <div class="card card-info text-center">
+            <div class="text-center card card-info">
                 <div class="card-header">
-                <h3 class="card-title" >Testigos Presentes por comisión escrutadora</h3>
+                <h3 class="card-title" >Testigos Presentes por zona en villavicencio</h3>
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->
@@ -101,7 +101,7 @@
 
     <div class="row">
         <div class="col-sm-12 col-xs-12">
-            <div class="card card-info text-center">
+            <div class="text-center card card-info">
                 <div class="card-header">
                     <h3 class="card-title" >Testigos presentes por municipios</h3>
                     <div class="card-tools">
@@ -159,7 +159,7 @@
                 data: {
                 labels: [
                     @foreach ($d as $d)
-                        '{{ $d->codescru}}',
+                        '{{ $d->codzon}}',
                     @endforeach
                 ],
                     datasets: [{
