@@ -14,76 +14,63 @@ class AsistenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function index()
+     {
+         
+ 
+         return view('admin.asistencia.index');
+        
+         
+        }
+    public function getAsistencia()
     {
+        
+                // Total testigos posesionados en villao
+                        $ttpv = DB::table('sellers')
+                                ->where('codmun','=','001')
+                                ->where('mesa', '<>' , 'Rem')
+                                ->where('statusasistencia', '=' , '1')
+                                ->count();
+                // Total remanenets posesionados en villao
+                        $trpv = DB::table('sellers')
+                                ->where('codmun','=','001')
+                                ->where('mesa', '=' , 'Rem')
+                                ->where('statusasistencia', '=' , '1')
+                                ->count();    
+                // Total testigos posesionados en municipios
+                        $ttpm = DB::table('sellers')
+                                ->where('codmun','<>','001')
+                                ->where('mesa', '<>' , 'Rem')
+                                ->where('statusasistencia', '=' , '1')
+                                ->count();    
+                                        
+                // Total remanentes posesionados en municipios
+                        $trpm = DB::table('sellers')
+                                ->where('codmun','<>','001')
+                                ->where('mesa', '=' , 'Rem')
+                                ->where('statusasistencia', '=' , '1')
+                                ->count();            
 
-// Total testigos posesionados en villao
-        $ttpv = DB::table('sellers')
-                ->where('codmun','=','001')
-                ->where('mesa', '<>' , 'Rem')
-                ->where('statusasistencia', '=' , '1')
-                ->count();
-// Total remanenets posesionados en villao
-        $trpv = DB::table('sellers')
-                ->where('codmun','=','001')
-                ->where('mesa', '=' , 'Rem')
-                ->where('statusasistencia', '=' , '1')
-                ->count();    
-// Total testigos posesionados en municipios
-        $ttpm = DB::table('sellers')
-                ->where('codmun','<>','001')
-                ->where('mesa', '<>' , 'Rem')
-                ->where('statusasistencia', '=' , '1')
-                ->count();    
-                        
-// Total remanentes posesionados en municipios
-        $trpm = DB::table('sellers')
-                ->where('codmun','<>','001')
-                ->where('mesa', '=' , 'Rem')
-                ->where('statusasistencia', '=' , '1')
-                ->count();            
+                //       testigos y remanentes presentes por comision 
 
-//       testigos y remanentes presentes por comision 
-
-        $d = DB::table('sellers')
-                ->where('codmun','=','001')                   
-                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codzon')
-                ->orderBy('codzon', 'asc')
-                ->get();
-        $dt = DB::table('sellers')
-                ->where('codmun','=','001')                   
-                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codzon')
-                ->orderBy('codzon', 'asc')
-                ->get();
-
-        $ndt = DB::table('sellers')
-                ->where('codmun','=','001')                   
-                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->groupBy('codzon')
-                ->orderBy('codzon', 'asc')
-                ->get();     
-        // testigos y remanentes presentes por municipio
-        $lablemun =  DB::table('sellers')
                 
-                ->select('municipio', DB::raw('count(statusasistencia) as T'))
-                ->where('municipio','<>','VILLAVICENCIO')
-                ->groupBy('municipio')
-                ->get();
+                        $dt = DB::table('sellers')
+                                ->where('codmun','=','001')                   
+                                ->select('codzon', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
+                                ->groupBy('codzon')
+                                ->orderBy('codzon', 'asc')
+                                ->get();
 
-        $okmun =  DB::table('sellers')  
-                             
-                ->select('municipio', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->where('municipio','<>','VILLAVICENCIO')
-                ->groupBy('municipio')
-                ->get();
-        $nookmun =  DB::table('sellers') 
-                              
-                ->select('municipio', DB::raw('sum(statusasistencia) as T'), DB::raw('count(*) - sum(statusasistencia) as F'))
-                ->where('municipio','<>','VILLAVICENCIO')
-                ->groupBy('municipio')
-                ->get();
+                        // testigos y remanentes presentes por municipio
+                        $lablemun =  DB::table('sellers')
+                                
+                                ->select('municipio', DB::raw('count(statusasistencia) as T'))
+                                ->where('municipio','<>','VILLAVICENCIO')
+                                ->groupBy('municipio')
+                                ->get();
+
+                        
         
 
 
@@ -91,8 +78,18 @@ class AsistenciaController extends Controller
 
         //dd($dt);
 
-        return view('admin.asistencia.index' , compact( 'ttpv', 'trpv', 'ttpm', 'trpm',  'd','ndt', 'dt', 'lablemun','okmun', 'nookmun'));
-    }
+        // return view('admin.asistencia.index' , compact( 'ttpv', 'trpv', 'ttpm', 'trpm',  'd','ndt', 'dt', 'lablemun','okmun', 'nookmun'));
+        return response()->json([
+                'dt'=> $dt,
+                'lablemun' => $lablemun,
+                'ttpv'=> $ttpv,
+                'trpv'=> $trpv,
+                'ttpm'=> $ttpm,
+                'trpm'=> $trpm,
+        ]);
+        
+                   
+}
 
     /**
      * Show the form for creating a new resource.

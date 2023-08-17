@@ -18,13 +18,7 @@
                     <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Promedio votantes por mesa 9 am</span>
-                        <span class="info-box-number"> @if ($tmi_1 == 0)
-                            Sin reporte
-                        @else
-                        
-                            {{round($tv1/$tmi_1)}} votantes por mesa
-                        
-                        @endif </span>
+                        <span  class="info-box-number"><span id="primer"></span></span>
                     </div>
                 </div>        
         </div>        
@@ -34,13 +28,7 @@
                 <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Promedio votantes por mesa 11 am</span>
-                    <span class="info-box-number"> @if ($tmi_1 == 0)
-                        Sin reporte
-                    @else
-                    
-                        {{round($tv2/$tmi_2)}} votantes por mesa
-                    
-                    @endif </span>
+                    <span id="segundo" class="info-box-number">  </span>
                 </div>
             </div>        
         </div>
@@ -49,13 +37,7 @@
                 <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Promedio votantes por mesa 2 pm</span>
-                    <span class="info-box-number"> @if ($tmi_1 == 0)
-                        Sin reporte
-                    @else
-                    
-                        {{round($tv3/$tmi_3)}} votantes por mesa
-                    
-                    @endif </span>
+                    <span class="info-box-number" id="tercero">  </span>
                 </div>
             </div>        
         </div>
@@ -78,7 +60,7 @@
                     
                         <div class="chart">
                             <div class="chartjs-size-monitor">
-                                <canvas id="zona" width="400" height="130" aria-label="" role="img"></canvas>
+                                <canvas id="zonas" width="400" height="130" aria-label="" role="img"></canvas>
                             </div>
                         </div>
                     
@@ -112,7 +94,7 @@
                     <div  id="collapseContent5"  class="card-body " >
                         <div class="chart">
                             <div class="chartjs-size-monitor">
-                                <canvas id="barchar" width="400" height="150" aria-label="" role="img"></canvas>
+                                <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
                             </div>
                         </div>
 
@@ -140,8 +122,8 @@
 
        
 
-        const ctx1 = document.getElementById('zona').getContext('2d');
-        const mr = new Chart(ctx1, {
+        const ctx1 = document.getElementById('zonas').getContext('2d');
+        const zonas = new Chart(ctx1, {
             type: 'bar',
             scales: {
 
@@ -153,17 +135,14 @@
                 },
             data: {
                 labels: [
-                    @foreach ($d as $d)
-                        '{{ $d->codzon}}',
-                    @endforeach
+                    
                 ],
                     datasets: [{
                     label: '9 am',
                     backgroundColor: 'green',
                     data: [
-                        @foreach ($dt as $dt)
-                            {{ $dt->T}},
-                        @endforeach
+                       
+                        
 
                     ]
                      }, {
@@ -171,18 +150,14 @@
                     backgroundColor: 'orange',
                     data: [
 
-                        @foreach ($dt3 as $dt3)
-                            {{ $dt3->T}},
-                        @endforeach
+                        
                     ]},
                     {
                     label: '2pm',
                     backgroundColor: 'brown',
                     data: [
 
-                        @foreach ($dt2 as $dt2)
-                            {{ $dt2->T}},
-                        @endforeach
+                       
                     ]
                     
                 }]
@@ -202,9 +177,9 @@
      
 
 
-        const ctx4 = document.getElementById('barchar').getContext('2d');
+        const ctx4 = document.getElementById('municipios').getContext('2d');
         
-        const mir = new Chart(ctx4, {
+        const municipios = new Chart(ctx4, {
             type: 'bar',
 
             scales: {
@@ -218,36 +193,28 @@
                 },
             data: {
                 labels: [
-                    @foreach ($lablemun as $lablemun)
-                        '{{ $lablemun->municipio}}',
-                    @endforeach
+                   
                 ],
                     datasets: [{
                     label: 'Votos',
                     backgroundColor: 'turquoise',
                     data: [
 
-                        @foreach ($okmun as $okmun)
-                        {{ $okmun->T }},
-                         @endforeach
+                      
                     ]
                     }, {
                     label: '11 am',
                     backgroundColor: 'purple',
                     data: [
 
-                        @foreach ($okmun2 as $okmun2)
-                        {{ $okmun2->T }},
-                         @endforeach
+                       
                     ]},
                     {
                     label: '2pm',
                     backgroundColor: 'tan',
                     data: [
 
-                        @foreach ($okmun3 as $okmun3)
-                        {{ $okmun3->T }},
-                         @endforeach
+                       
                     ]
                 }]
             },
@@ -281,5 +248,94 @@
 
        
     </script>
+
+<script>
+    function actualizarGraficos() {
+        $.ajax({
+            url: "{{ route('getAfluencia') }}",
+            method: 'GET',
+            dataType: 'json',
+            success: function(newData) {
+                console.log('ok');
+            
+                var labels = [];
+                var tData = [];
+                var fData = [];
+                var wData = [];
+
+                var labelmun = [];
+                var tDatamun = [];
+                var fDatamun = [];
+                var wDatamun = [];
+
+                // Iterar sobre el nuevo JSON y extraer los datos
+                newData.dt.forEach(function(item) {
+                    labels.push(item.codzon);
+                    tData.push(item.T);
+                    fData.push(item.F);
+                    wData.push(item.W);
+                });
+                newData.labelmun.forEach(function(item) {
+                        labelmun.push(item.municipio);
+                        tDatamun.push(item.T);
+                        fDatamun.push(item.F);
+                        wDatamun.push(item.W);
+
+                    });
+               
+               
+
+                // Actualizar los datos en la instancia de la gráfica
+                zonas.data.labels = labels;
+                zonas.data.datasets[0].data = tData;
+                zonas.data.datasets[1].data = fData;
+                zonas.data.datasets[2].data = wData;
+                zonas.update();
+
+                municipios.data.labels = labelmun;
+                municipios.data.datasets[0].data = tDatamun;
+                municipios.data.datasets[1].data = fDatamun;
+                municipios.data.datasets[2].data = wDatamun;
+                municipios.update();
+               
+               
+                var primer = 0;
+                if (newData.tmi_1 != 0) {
+                    primer = (newData.tv1 / newData.tmi_1) ;
+                    primer = Math.round(primer * 100) / 100; // Redondear a 2 decimales
+                }
+                $('#primer').text(primer);
+
+                var segundo = 0;
+                if (newData.tmi_2 != 0) {
+                    segundo = (newData.tv2 / newData.tmi_2) ;
+                    segundo = Math.round(segundo * 100) / 100; // Redondear a 2 decimales
+                }
+                $('#segundo').text(segundo);
+
+                var tercero = 0;
+                if (newData.tmi_3 != 0) {
+                    tercero = (newData.tv3 / newData.tmi_3) ;
+                    tercero = Math.round(tercero * 100) / 100; // Redondear a 2 decimales
+                }
+                $('#tercero').text(tercero);
+
+
+               
+
+             
+                
+
+                
+            }
+           
+                });
+                    
+    }
+    
+    // Llama a la función de actualización cada cierto intervalo de tiempo
+    setInterval(actualizarGraficos, 3000); // Actualiza cada 5 segundos, ajusta según tus necesidades
+</script>
+
 @stop
 

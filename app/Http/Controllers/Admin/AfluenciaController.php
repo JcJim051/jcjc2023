@@ -16,7 +16,15 @@ class AfluenciaController extends Controller
      */
     public function index()
     {
+           
+   
+            return view('admin.afluencia.index' );
+
+    }
+    public function getAfluencia()
+    {
             $tm = DB::table('sellers')
+                     ->where('mesa', '<>' , 'Rem')
                      ->count('mesa');
             $tmi_1= DB::table('sellers')
                     ->where('reporte_1', '<>' , '')
@@ -44,66 +52,16 @@ class AfluenciaController extends Controller
 
             $tr=1;
 
-            $data = DB::table('sellers')
-                    ->where('codmun','=','001')
-                    ->where('mesa','<>','Rem')
-                    ->select('codzon', DB::raw('sum(reporte_1) as T'))
-                    ->groupBy('codzon')
-                    ->orderBy('codzon', 'asc')
-                    ->get();
-            $dat =  DB::table('sellers')
-                    ->where('codmun','=','001')
-                    ->where('mesa','<>','Rem')
-                    ->select('codzon', DB::raw('sum(reporte_1) as T'))
-                    ->groupBy('codzon')
-                    ->orderBy('codzon', 'asc')
-                    ->get();
-
-                $d = DB::table('sellers')
-                        ->where('codmun','=','001')
-                        ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_1) as T'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
-                        ->get();
+           
                 $dt =  DB::table('sellers')
                         ->where('codmun','=','001')
                         ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_1) as T'))
+                        ->select('codzon', DB::raw('sum(reporte_1) as T'),DB::raw('sum(reporte_2) as F'),DB::raw('sum(reporte_3) as W'))
                         ->groupBy('codzon')
                         ->orderBy('codzon', 'asc')
                         ->get();
 
-                $d2 = DB::table('sellers')
-                        ->where('codmun','=','001')
-                        ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_2) as T'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
-                        ->get();
-                $dt2 =  DB::table('sellers')
-                        ->where('codmun','=','001')
-                        ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_3) as T'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
-                        ->get();
-                $d3 = DB::table('sellers')
-                        ->where('codmun','=','001')
-                        ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_3) as T'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
-                        ->get();
-                        
-                        
-                $dt3 =  DB::table('sellers')
-                        ->where('codmun','=','001')
-                        ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_2) as T'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
-                        ->get();
+               
 
 
 
@@ -111,56 +69,25 @@ class AfluenciaController extends Controller
             // Votantes por municipios
 
 
-            $lablemun =  DB::table('sellers')
-                        ->select('municipio', DB::raw('sum(reporte_1) as T'))
+            $labelmun =  DB::table('sellers')
+                        ->select('municipio', DB::raw('sum(reporte_1) as T'),DB::raw('sum(reporte_2) as F'), DB::raw('sum(reporte_3) as W'))
                         ->where('municipio','<>','VILLAVICENCIO')
                         ->groupBy('municipio')
                         ->get();
-
-            $okmun =  DB::table('sellers')
-                        ->select('municipio', DB::raw('sum(reporte_1) as T'))
-                        ->where('municipio','<>','VILLAVICENCIO')
-                        ->groupBy('municipio')
-                        ->get();
-
-            $lablemun2 =  DB::table('sellers')
-                        ->where('mesa','<>','Rem')
-                        ->select('municipio', DB::raw('sum(reporte_2) as T'))
-                        ->where('municipio','<>','VILLAVICENCIO')
-                        ->groupBy('municipio')
-                        ->get();
-
-            $okmun2 =  DB::table('sellers')
-                        ->where('mesa','<>','Rem')
-                        ->select('municipio', DB::raw('sum(reporte_2) as T'))
-                        ->where('municipio','<>','VILLAVICENCIO')
-                        ->groupBy('municipio')
-                        ->get();
-
-            $lablemun3 =  DB::table('sellers')
-                        ->where('mesa','<>','Rem')
-                        ->select('municipio', DB::raw('sum(reporte_3) as T'))
-                        ->where('municipio','<>','VILLAVICENCIO')
-                        ->groupBy('municipio')
-                        ->get();
-
-
-            $okmun3 =  DB::table('sellers')
-                        ->where('mesa','<>','Rem')
-                        ->select('municipio', DB::raw('sum(reporte_3) as T'))
-                        ->where('municipio','<>','VILLAVICENCIO')
-                        ->groupBy('municipio')
-                        ->get();
-
-
-
-
-            
 
             // dd($datos);
-
-            return view('admin.afluencia.index' , compact('tv1','tv2','tv3', 'tm', 'tmi_1', 'tmi_2','tmi_3','data', 'dat', 'd', 'dt', 'd2', 'dt2', 'd3', 'dt3' ,'lablemun','okmun','lablemun2','okmun2','lablemun3','okmun3'));
-
+            return response()->json([
+                'dt'=> $dt,
+                'labelmun' => $labelmun,
+                'tm' => $tm,
+                'tmi_1' => $tmi_1,
+                'tmi_2' => $tmi_2,
+                'tmi_3' => $tmi_3,
+                'tv1' => $tv1,
+                'tv2' => $tv2,
+                'tv3' => $tv3,
+        ]);
+        
     }
 
     /**

@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-sm-4 col-xs-12">
             <div class="info-box bg-gradient-warning">
                 <div class="info-box-content">
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-    </div> --}}
+    </div>
    
 
        
@@ -145,8 +145,11 @@
             <div class="card card-success">
                 <div class="card-header">
                 <h3 class="card-title">Avance Departamental
-                    <span id="avancedepartamental"></span>         
-                   
+                    @if ($okd+$nookd == 0);
+                        0
+                    @else
+                        {{ round(($okd/($okd+$nookd))*100, 2) }}
+                    @endif
                 %</h3>
                     <div class="card-tools">
                 </div>
@@ -172,7 +175,11 @@
             <div class="card card-indigo">
                 <div class="card-header">
                 <h3 class="card-title" >Avance Villavicencio
-                   <span id="avancevillao"></span>
+                    @if ($okv+$nookv == 0)
+                        0
+                    @else
+                        {{ round(($okv/($okv+$nookv))*100, 2)}}
+                    @endif
                 %</h3>
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
@@ -201,7 +208,11 @@
             <div class="card card-info">
                 <div class="card-header">
                 <h3 class="card-title">Avance Municipios
-                    <span id="avancemunicipal"></span>
+                    @if ($okm+$nookm == 0)
+                    0
+                    @else
+                        {{ round(($okm/($okm+$nookm))*100, 2)}}
+                    @endif
                 %</h3>
                     <div class="card-tools">
                 </div>
@@ -223,10 +234,9 @@
                 <!-- /.card-footer -->
             </div>
         </div>
-        
     </div>
 
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-info"><i class="far fa-bookmark"></i></span>
@@ -259,7 +269,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="row">
         <div  class="col-sm-12 col-xs-12 ">
@@ -301,7 +311,7 @@
                 <div class="card-body " >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
-                            <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
+                            <canvas id="barchar" width="400" height="150" aria-label="" role="img"></canvas>
                         </div>
                     </div>
 
@@ -325,48 +335,142 @@
 @endsection
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-   <script>const ctx3 = document.getElementById('zonas').getContext('2d');
-    const zonas = new Chart(ctx3, {
-        type: 'bar',
-        scales: {
-
-            x: {
-                stacked: true,
-
-            },
-
-            },
-        data: {
-            labels: [
-                
-            ],
+    <script>
+        const ctx = document.getElementById('goodCanvas1').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pendientes', 'Acreditados'],
                 datasets: [{
-                label: 'Acreditados',
-                backgroundColor: 'green',
-                data: [
-                    
+                    label: '# of Votes',
+                    data: [{{ $nookd}},{{ $okd}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
 
-                ]
-            }, {
-                label: 'Pendientes',
-                backgroundColor: 'red',
-                data: [
-                   
-                ]
-            }]
-        },
-        options: {
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+
+        const ctxa = document.getElementById('goodCanvas2').getContext('2d');
+        const my = new Chart(ctxa, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pendientes', 'Acreditados'],
+                datasets: [{
+                    label: '# de testigos',
+                    data: [{{ $nookv}},{{ $okv}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+
+                        'rgba(75, 192, 192, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+
+                        'rgba(75, 192, 192, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+        const ctx2 = document.getElementById('vill').getContext('2d');
+        const my1 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Pendientes', 'Acreditados'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [{{ $nookm}},{{ $okm}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+
+
+        const ctx3 = document.getElementById('zonas').getContext('2d');
+        const mis = new Chart(ctx3, {
+            type: 'bar',
             scales: {
 
-            }
-        }
-    });
+                x: {
+                    stacked: true,
 
-        const ctx4 = document.getElementById('municipios').getContext('2d');
+                },
+
+                },
+            data: {
+                labels: [
+                    @foreach ($data as $data)
+                        '{{ $data->codzon}}',
+                    @endforeach
+                ],
+                    datasets: [{
+                    label: 'Acreditados',
+                    backgroundColor: 'green',
+                    data: [
+                        @foreach ($dat as $dat)
+                            {{ $dat->T}},
+                        @endforeach
+
+                    ]
+                }, {
+                    label: 'Pendientes',
+                    backgroundColor: 'red',
+                    data: [
+
+                        @foreach ($not as $not)
+                        {{ $not->F }},
+                         @endforeach
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+
+
+        const ctx4 = document.getElementById('barchar').getContext('2d');
         Chart.defaults.font.size = 11;
-        const municipios = new Chart(ctx4, {
+        const mir = new Chart(ctx4, {
             type: 'bar',
 
             scales: {
@@ -381,20 +485,26 @@
             data: {
                 labels: [
 
-                    
+                    @foreach ($lablemun as $lablemun)
+                        '{{ $lablemun->municipio}}',
+                    @endforeach
                 ],
                     datasets: [{
                     label: 'Acreditados',
                     backgroundColor: 'green',
                     data: [
 
-                        
+                        @foreach ($okmun as $okmun)
+                        {{ $okmun->T }},
+                         @endforeach
                     ]
                 }, {
                     label: 'Pendientes',
                     backgroundColor: 'red',
                     data: [
-                       
+                        @foreach ($nookmun as $nookmun)
+                        {{ $nookmun->F }},
+                         @endforeach
 
                     ]
                 }]
@@ -419,174 +529,8 @@
                 }
             }
         });
-        const ctx = document.getElementById('goodCanvas1').getContext('2d');
-        const goodCanvas1 = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Pendientes', 'Acreditados'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
+    </script>
 
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(75, 192, 192, 1)',
-
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-
-                }
-            }
-         });
-         const ctxa = document.getElementById('goodCanvas2').getContext('2d');
-        const goodCanvas2 = new Chart(ctxa, {
-            type: 'doughnut',
-            data: {
-                labels: ['Pendientes', 'Acreditados'],
-                datasets: [{
-                    label: '# de testigos',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-
-                        'rgba(75, 192, 192, 0.2)',
-
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-
-                        'rgba(75, 192, 192, 1)',
-
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-
-                }
-            }
-        });
-        const ctx2 = document.getElementById('vill').getContext('2d');
-        const vill = new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Pendientes', 'Acreditados'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-
-                }
-            }
-        });
-
-   
-</script>
- <script>
-    function actualizarGraficos() {
-        $.ajax({
-            url: "{{ route('getData') }}",
-            method: 'GET',
-            dataType: 'json',
-            success: function(newData) {
-                console.log('ok');
-            
-                var labels = [];
-                var tData = [];
-                var fData = [];
-
-                var labelmun = [];
-                var tDatamun = [];
-                var fDatamun = [];
-
-                // Iterar sobre el nuevo JSON y extraer los datos
-                newData.dat.forEach(function(item) {
-                    labels.push(item.codzon);
-                    tData.push(item.T);
-                    fData.push(item.F);
-                });
-                newData.lablemun.forEach(function(item) {
-                    labelmun.push(item.municipio);
-                    tDatamun.push(item.T);
-                    fDatamun.push(item.F);
-                });
-               
-
-                // Actualizar los datos en la instancia de la gráfica
-                zonas.data.labels = labels;
-                zonas.data.datasets[0].data = tData;
-                zonas.data.datasets[1].data = fData;
-                zonas.update();
-
-                municipios.data.labels = labelmun;
-                municipios.data.datasets[0].data = tDatamun;
-                municipios.data.datasets[1].data = fDatamun;
-                municipios.update();
-
-                goodCanvas1.data.datasets[0].data = [newData.nookd, newData.okd];
-                goodCanvas1.update();
-                goodCanvas2.data.datasets[0].data = [newData.nookv, newData.okv];
-                goodCanvas2.update();
-                vill.data.datasets[0].data = [newData.nookm, newData.okm];
-                vill.update();
-                
-               
-
-                var departamental = 0;
-                if (newData.okd + newData.nookd != 0) {
-                    departamental = (newData.okd / (newData.okd + newData.nookd)) * 100;
-                    departamental = Math.round(departamental * 100) / 100; // Redondear a 2 decimales
-                }
-                $('#avancedepartamental').text(departamental);
-
-                var municipal = 0;
-                if (newData.okd + newData.nookd != 0) {
-                    municipal = (newData.okm / (newData.okm + newData.nookm)) * 100;
-                    municipal = Math.round(municipal * 100) / 100; // Redondear a 2 decimales
-                }
-                $('#avancemunicipal').text(municipal);
-
-                var villao = 0;
-                if (newData.okd + newData.nookd != 0) {
-                    villao = (newData.okv / (newData.okv + newData.nookv)) * 100;
-                    villao = Math.round(villao * 100) / 100; // Redondear a 2 decimales
-                }
-                $('#avancevillao').text(villao);
-               
-
-                
-            }
-           
-                });
-                    
-    }
-    
-    // Llama a la función de actualización cada cierto intervalo de tiempo
-    setInterval(actualizarGraficos, 3000); // Actualiza cada 5 segundos, ajusta según tus necesidades
-</script>
 
 
 @endsection

@@ -15,6 +15,10 @@ class ResultadosController extends Controller
      */
     public function index()
     {
+        return view('admin.resultados.index' );
+    }
+
+    public function getResultados() {
         $tm = DB::table('sellers')
                 ->count('mesa');
         $tmi= DB::table('sellers')
@@ -43,7 +47,11 @@ class ResultadosController extends Controller
                 ->select("recuperados")
                 ->sum('recuperados');
 
-
+        $candidatos = DB::table('sellers')
+                ->where('mesa','<>','Rem')
+                ->select( DB::raw('sum(Gob1) as Rafaela'), DB::raw('sum(Gob2) as Marcela'), DB::raw('sum(Gob3) as Dario'), DB::raw('sum(Gob4) as Wilmar'), DB::raw('sum(gob5) as libreros'), DB::raw('sum(Gob6) as Barreto'), DB::raw('sum(Gob7) as Bairon'), DB::raw('sum(Gob8) as Antonio'), DB::raw('sum(Gob9) as Florentino'), DB::raw('sum(Gob10) as Eudoro'), DB::raw('sum(Gob11) as Jose'))
+                
+                ->get();
 
         $data = DB::table('sellers')
                 ->where('codmun','=','001')
@@ -52,52 +60,22 @@ class ResultadosController extends Controller
                 ->groupBy('codescru')
                 ->orderBy('codescru', 'asc')
                 ->get();
-        $dat =  DB::table('sellers')
-                ->where('codmun','=','001')
-                ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(recuperados) as T'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
-                ->get();
-
-        $d = DB::table('sellers')
-                ->where('codmun','=','001')
-                ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(gob1) as T'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
-                ->get();
+        
         $dt = DB::table('sellers')
                 ->where('codmun','=','001')
                 ->where('mesa','<>','Rem')
-                ->select('codescru', DB::raw('sum(gob1) as T'))
-                ->groupBy('codescru')
-                ->orderBy('codescru', 'asc')
+                ->select('codzon', DB::raw('sum(gob1) as T'))
+                ->groupBy('codzon')
+                ->orderBy('codzon', 'asc')
                 ->get();
         // Votos por municipios
-        $lablemun =  DB::table('sellers')
+        $labelmun =  DB::table('sellers')
         ->select('municipio', DB::raw('sum(gob1) as T'))
         ->where('municipio','<>','VILLAVICENCIO')
         ->groupBy('municipio')
         ->get();
 
-        $okmun =  DB::table('sellers')
-        ->where('mesa','<>','Rem')
-        ->select('municipio', DB::raw('sum(gob1) as T'))
-        ->where('municipio','<>','VILLAVICENCIO')
-        ->groupBy('municipio')
-        ->get();
-
-        $nookmun =  DB::table('sellers')
-        ->where('mesa','<>','Rem')
-        ->select('municipio', DB::raw('sum(gob1) as T'))
-        ->where('municipio','<>','VILLAVICENCIO')
-        ->groupBy('municipio')
-        ->get();
-
-
-
-        
+      
 
 
 
@@ -107,7 +85,26 @@ class ResultadosController extends Controller
 
         // dd($datos);
 
-        return view('admin.resultados.index' , compact('tv1','tv2','tv3', 'tm', 'tmi', 'tmi2','tmi3','tr','data', 'dat', 'd', 'dt', 'recl' ,'lablemun','okmun','nookmun'));
+        // return view('admin.resultados.index' , compact('tv1','tv2','tv3', 'tm', 'tmi', 'tmi2','tmi3','tr','data', 'dat', 'd', 'dt', 'recl' ,'lablemun','okmun','nookmun'));
+        return response()->json([
+                'candidatos'=> $candidatos,
+                'tv1' => $tv1,
+                'tv2'=> $tv2,
+                'tv3'=> $tv3,
+                'tm'=> $tm,
+                'tmi'=> $tmi,
+                'tmi2'=> $tmi2,
+                'tmi3'=> $tmi3,
+                'tr'=> $tr,
+                'data'=> $data,
+                
+                'dt'=> $dt,
+                'recl'=> $recl,
+                'labelmun'=> $labelmun,
+                
+        ]);
+        
+
     }
 
     /**

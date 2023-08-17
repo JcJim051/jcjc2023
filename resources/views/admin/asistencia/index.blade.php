@@ -25,7 +25,7 @@
                 <div class="card-body " >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
-                            <h4>Principales : {{ $ttpv }}</h4>
+                            <h4>Principales : <span id="principalesv"></span></h4>
                                
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <h4>Remanentes: {{ $trpv }}</h4>
+                    <h4>Remanentes: <span id="remanentesv"></span></h4>
 
 
                 </div>
@@ -43,7 +43,7 @@
         <div class="col-sm-6 col-xs-12">
             <div class="text-center card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Total Testigos en mesa (Municipios)  </h3>
+                    <h3 class="card-title">Total Testigos en mesa (municipios)  </h3>
                     
                         <div class="card-tools">
                     </div>
@@ -53,7 +53,7 @@
                 <div class="card-body " >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
-                            <h4>Principales : {{ $ttpm }}</h4>
+                            <h4>Principales : <span id="principalesm"></span></h4>
                                
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <h4>Remanentes: {{ $trpm }}</h4>
+                    <h4>Remanentes: <span id="remanentesm"></span></h4>
 
 
                 </div>
@@ -86,7 +86,7 @@
                 <div class="card-body " >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
-                            <canvas id="zona" width="400" height="150" aria-label="" role="img"></canvas>
+                            <canvas id="zonas" width="400" height="150" aria-label="" role="img"></canvas>
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@
                 <div class="card-body " >
                     <div class="chart">
                         <div class="chartjs-size-monitor">
-                            <canvas id="barchar" width="400" height="150" aria-label="" role="img"></canvas>
+                            <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
                         </div>
                     </div>
 
@@ -141,12 +141,11 @@
 @section('js')
     <script> console.log('de tu mano señor!'); </script>
     <script>
-        
 
         
 
-        const ctx1 = document.getElementById('zona').getContext('2d');
-        const mr = new Chart(ctx1, {
+        const ctx1 = document.getElementById('zonas').getContext('2d');
+        const zonas = new Chart(ctx1, {
             type: 'bar',
             scales: {
 
@@ -158,27 +157,21 @@
                 },
                 data: {
                 labels: [
-                    @foreach ($d as $d)
-                        '{{ $d->codzon}}',
-                    @endforeach
+                   
                 ],
                     datasets: [{
-                    label: 'Acreditados',
+                    label: 'En mesa',
                     backgroundColor: 'green',
                     data: [
-                        @foreach ($dt as $dt)
-                            {{ $dt->T}},
-                        @endforeach
+                        
 
                     ]
                 }, {
-                    label: 'Pendientes',
+                    label: 'Sin Testigo',
                     backgroundColor: 'red',
                     data: [
 
-                        @foreach ($ndt as $ndt)
-                        {{ $ndt->F }},
-                         @endforeach
+                       
                     ]
                 }]
             },
@@ -190,9 +183,9 @@
         });
 
 
-        const ctx4 = document.getElementById('barchar').getContext('2d');
+        const ctx4 = document.getElementById('municipios').getContext('2d');
         
-        const mir = new Chart(ctx4, {
+        const municipios = new Chart(ctx4, {
             type: 'bar',
 
             scales: {
@@ -205,18 +198,14 @@
 
                 },
                 data: {
-                labels: [
-                    @foreach ($lablemun as $lablemun)
-                        '{{ $lablemun->municipio}}',
-                    @endforeach
+                label: [
+                    
                 ],
                     datasets: [{
                     label: 'Acreditados',
                     backgroundColor: 'green',
                     data: [
-                        @foreach ($okmun as $okmun)
-                            {{ $okmun->T}},
-                        @endforeach
+                       
 
                     ]
                 }, {
@@ -224,9 +213,7 @@
                     backgroundColor: 'red',
                     data: [
 
-                        @foreach ($nookmun as $nookmun)
-                        {{ $nookmun->F }},
-                         @endforeach
+                       
                     ]
                 }]
             },
@@ -251,6 +238,67 @@
                 }
             }
         });
+    </script>
+     <script>
+        function actualizarGraficos() {
+            $.ajax({
+                url: "{{ route('getAsistencia') }}",
+                method: 'GET',
+                dataType: 'json',
+                success: function(newData) {
+                    console.log('ok');
+                
+                    var labels = [];
+                    var tData = [];
+                    var fData = [];
+    
+                    var labelmun = [];
+                    var tDatamun = [];
+                    var fDatamun = [];
+    
+                    // Iterar sobre el nuevo JSON y extraer los datos
+                    newData.dt.forEach(function(item) {
+                        labels.push(item.codzon);
+                        tData.push(item.T);
+                        fData.push(item.F);
+                    });
+                    newData.lablemun.forEach(function(item) {
+                        labelmun.push(item.municipio);
+                        tDatamun.push(item.T);
+                        fDatamun.push(item.F);
+                    });
+                   
+    
+                    // Actualizar los datos en la instancia de la gráfica
+                    zonas.data.labels = labels;
+                    zonas.data.datasets[0].data = tData;
+                    zonas.data.datasets[1].data = fData;
+                    zonas.update();
+    
+                    municipios.data.labels = labelmun;
+                    municipios.data.datasets[0].data = tDatamun;
+                    municipios.data.datasets[1].data = fDatamun;
+                    municipios.update();
+    
+                    
+                    
+                   
+    
+                    $('#principalesv').text(newData.ttpv);
+                    $('#remanentesv').text(newData.trpv);
+                    $('#principalesm').text(newData.ttpm);
+                    $('#remanentesm').text(newData.trpm);
+                    
+    
+                    
+                }
+               
+                    });
+                        
+        }
+        
+        // Llama a la función de actualización cada cierto intervalo de tiempo
+        setInterval(actualizarGraficos, 3000); // Actualiza cada 5 segundos, ajusta según tus necesidades
     </script>
 @stop
 

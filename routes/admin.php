@@ -53,3 +53,6 @@ Route::resource('votantes', VotantesController::class)->names('admin.votantes');
 Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
 
 Route::get('get-data', 'App\Http\Controllers\Admin\ConsultorController@getData')->name('getData');
+Route::get('get-asistencia', 'App\Http\Controllers\Admin\AsistenciaController@getAsistencia')->name('getAsistencia');
+Route::get('get-afluencia', 'App\Http\Controllers\Admin\AfluenciaController@getAfluencia')->name('getAfluencia');
+Route::get('get-resultados', 'App\Http\Controllers\Admin\ResultadosController@getResultados')->name('getResultados');
