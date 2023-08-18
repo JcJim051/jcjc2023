@@ -16,25 +16,58 @@ class ZonalController extends Controller
      */
     public function index()
     {
+        $role = auth()->user()->role;
+        $escrutador = auth()->user()->codzon;
+        $coordinador = auth()->user()->codpuesto;
+        $municipio = auth()->user()->mun;
+
+      
         
-        $zonal = Seller::where('mesa', '<>', 'Rem')->get();
-        
-        $tmi= DB::table('sellers')
-                ->where('gob1', '<>' , 'null')
-                ->count();
-
-        $tv1 = DB::table('sellers')
-                ->select("gob1")
-                ->sum('gob1');
+       
 
 
-                $resultados = Seller::pluck('gob1')->toArray();
+        $resultados = Seller::pluck('gob1')->toArray();
 
-                // Calcular la desviación estándar
-                $desviacion_estandar = DB::table('sellers')->whereNotNull('gob1')->select(DB::raw('STDDEV(gob1) as desviacion_estandar'))->value('desviacion_estandar');
+        // Calcular la desviación estándar
+        $desviacion_estandar = DB::table('sellers')->whereNotNull('gob1')->select(DB::raw('STDDEV(gob1) as desviacion_estandar'))->value('desviacion_estandar');
                 
 
-        return view('admin.zonal.index', compact('zonal','tmi' ,'tv1', 'desviacion_estandar'));
+
+
+      
+
+
+
+                if ($role == 1) {
+                    // 1 = villao
+                    if ($municipio == 1) {
+                        $zonal = Seller::where('mesa', '<>', 'Rem')->where('codmun' , 001)->get();
+                       
+                    } else {
+                        // 0 = municipios
+                        if ($municipio == 0) {
+                            $zonal = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->get();
+                        } else {
+                            $zonal = Seller::where('mesa', '<>', 'Rem')->get();
+                        }
+                    }
+                } else {
+                    if ($role == 2) {
+                        
+                        $zonal = Seller::where('mesa', '<>', 'Rem')->where('codescru' , $escrutador)->get();
+                    } else {
+
+                        if ($role == 4 or $role == 5) {
+                            $zonal = Seller::where('mesa', '<>', 'Rem')->get();
+                        } else {
+                               
+                             }
+
+
+                    }
+                 }
+
+        return view('admin.zonal.index', compact('zonal'));
     }
 
     /**

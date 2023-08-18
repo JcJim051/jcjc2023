@@ -62,7 +62,7 @@ class AuthServiceProvider extends ServiceProvider
             }
         });     
 
-        Gate::define('Superuser-administrador-escrutador-consultor', function($user){
+        Gate::define('Superuser-administrador-consultor', function($user){
             if ($user->id == 1) {
                 return true;
             } else {
@@ -70,17 +70,14 @@ class AuthServiceProvider extends ServiceProvider
                     return true;
                 } else {
                     
-                    if ($user->role == 2) {
+                    if ($user->role == 4) {
                         return true;
                     } else {
-                        
-                        if ($user->role == 4) {
-                            return true;
-                        } else {
+                                        
                             
                             return false;
             
-                        }
+                        
         
         
                     }
@@ -247,7 +244,7 @@ class AuthServiceProvider extends ServiceProvider
             }
           });
 
-          Gate::define('Superuser-administrador-auditor', function($user){
+          Gate::define('Superuser-administrador-auditor-escrutador', function($user){
             if ($user->id == 1) {
                 return true;
             } else {
@@ -259,7 +256,13 @@ class AuthServiceProvider extends ServiceProvider
                         return true;
                     } else {
                         
-                        return false;
+                        if ($user->role == 2) {
+                            return true;
+                        } else {
+                            
+                            return false;
+            
+                        }
         
                     }
     

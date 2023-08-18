@@ -17,7 +17,11 @@ class ZonalrController extends Controller
      */
     public function index()
     {
-       
+        $role = auth()->user()->role;
+        $escrutador = auth()->user()->codzon;
+        $coordinador = auth()->user()->codpuesto;
+        $municipio = auth()->user()->mun;
+
         $data = Seller::all();
         $tmi= DB::table('votos')
                 ->where('gob1_zonal', '<>' , 'null')
@@ -32,7 +36,36 @@ class ZonalrController extends Controller
 
         // Calcular la desviación estándar
         $desviacion_estandar = DB::table('votos')->whereNotNull('gob1_zonal')->select(DB::raw('STDDEV(gob1_zonal) as desviacion_estandar'))->value('desviacion_estandar');
+    
+        if ($role == 1) {
+            // 1 = villao
+            if ($municipio == 1) {
+                $data = Seller::where('mesa', '<>', 'Rem')->where('codmun' , 001)->get();
+               
+            } else {
+                // 0 = municipios
+                if ($municipio == 0) {
+                    $data = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->get();
+                } else {
+                    $data = Seller::where('mesa', '<>', 'Rem')->get();
+                }
+            }
+        } else {
+            if ($role == 2) {
                 
+                $data = Seller::where('mesa', '<>', 'Rem')->where('codescru' , $escrutador)->get();
+            } else {
+
+                if ($role == 4 or $role == 5) {
+                    $data = Seller::where('mesa', '<>', 'Rem')->get();
+                } else {
+                       
+                     }
+
+
+            }
+         }
+
 
         return view('admin.zonalr.index', compact('data','tmi' ,'tv1', 'desviacion_estandar'));
     }

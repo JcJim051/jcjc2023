@@ -323,13 +323,15 @@ return [
             'route'         => 'admin.consultors.index',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
             'label_color' => 'success',
-            'can'  => 'Superuser-administrador-consultor-auditor',
+            // 'can'  => 'Superuser-administrador-consultor-auditor',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
         ],
         [   'text'        => 'Asistencia de testigos',
             'route'         => 'admin.asistencia.index',
             'icon'        => 'fas fa-user-lock',
             'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-consultor-auditor',
+            // 'can'  => 'Superuser-administrador-consultor-auditor',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
         ],
        
        
@@ -337,7 +339,8 @@ return [
             'route'         => 'admin.afluencia.index',
             'icon'        => 'fas fa-user-lock',
             'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-consultor-auditor',
+            // 'can'  => 'Superuser-administrador-consultor-auditor',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
          ],
         [
             'text'        => 'Resultados',
@@ -388,13 +391,10 @@ return [
     'text' => 'Reportar escrutinio',
     'route'  => 'admin.escrutinio.index',
     'icon' => 'fas fa-fw fa-plus-circle ',
-    'can'  => 'Superuser-administrador-escrutador-consultor',
+    'can'  => 'Superuser',
         
 
     ],
-
-
-    
 
 [  
 
@@ -428,7 +428,7 @@ return [
 ],
 [   'text' => 'Master de Auditoria',
     'icon'        => 'fas fa-exclamation-circle',  
-    'can'  => 'Superuser-administrador-auditor',  
+    'can'  => 'Superuser-administrador-auditor-escrutador',  
     'submenu' => [
         [
             'text'        => 'Escrutinio Preconteo',
