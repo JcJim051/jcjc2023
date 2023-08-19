@@ -415,7 +415,7 @@ return [
 [   'text' => 'Verificación de escrutinios',
     'icon' => 'fas fa-thermometer-full',
     'route'  => 'admin.revision.index',
-    'can'  => 'Superuser-administrador-escrutador-consultor',
+    'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
 
 
 ],

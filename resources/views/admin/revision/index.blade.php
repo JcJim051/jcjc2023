@@ -4,7 +4,7 @@
 @section('title', 'Acreditar')
 
 @section('content_header')
-    {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
+    {{--  <a href="{{route('admin.validacion.create')}}" class="float-right btn btn-secondary btn-sm">Agregar vendedor</a>  --}}
     <h1 style="text-align:center">Verificacion de cambios en escrutinio</h1>
 @stop
 
@@ -17,7 +17,7 @@
 
     <div class="card">
     <div class="card-body">
-        <table  id="example" class="display responsive nowrap" style="width:95%">
+        <table  id="example" class="display responsive nowrap" style="width:100%">
             <thead style="tab-size: 10px">
                 <tr>
                     <th>#</th>

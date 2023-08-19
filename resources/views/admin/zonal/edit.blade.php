@@ -280,7 +280,7 @@
                         <div class="card-body" >
                         
                             @if ($zonal->fotorec == null)
-                                <p>Mesa sin reclamasion</p>
+                                <p>Mesa sin reclamación</p>
                             @else
                                 <img src="{{ asset('/storage/' . $zonal->fotorec) }}"  alt="">
                             @endif
@@ -346,9 +346,20 @@
                             </div>
                             <div class="col-12 col-sm-3">
                                 <h5>¿Reclamacion en comision?</h5> 
+                                <select  class="form-control" name="" id="">
+                                    <option  value="0">No</option>
+                                    <option value="0">Si</option>
+
+                                </select>
+
                             </div>
                             <div class="col-12 col-sm-3">
                                 <h5> ¿Apelacion?  </h5> 
+                                <select  class="form-control" name="" id="">
+                                    <option  value="0">No</option>
+                                    <option value="0">Si</option>
+
+                                </select>
                             </div>
                         </div>
                     </div>
