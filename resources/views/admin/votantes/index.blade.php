@@ -15,10 +15,10 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="display responsive nowrap" style="width:100%">
-                <thead>
+            <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 13px;">
+                <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
                     <tr>
-                        <th>#</th>
+                        
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
@@ -38,11 +38,23 @@
                 <tbody>
                     @foreach ($sellers as $seller)
                     <tr>
-                        <td>{{ $seller->id }}</td>
-                        <td>{{ $seller->municipio }}</td>
-
-                        <td>{{$seller->puesto}}</td>
-                        <td >{{$seller->mesa}}</td>
+                        @if ($seller->reporte_1 <> null && $seller->reporte_2 <> null && $seller->reporte_3 <> null) 
+                            <td style="color: rgb(0, 169, 14)" >{{ $seller->municipio }}</td>
+                        @else
+                            <td style="color: red" >{{ $seller->municipio }}</td>
+                        @endif
+                        
+                        @if ($seller->reporte_1 <> null && $seller->reporte_2 <> null && $seller->reporte_3 <> null) 
+                        <td style="color: rgb(0, 169, 14)" >{{ $seller->puesto }}</td>
+                        @else
+                            <td style="color: red" >{{ $seller->puesto }}</td>
+                        @endif
+                        @if ($seller->reporte_1 <> null && $seller->reporte_2 <> null && $seller->reporte_3 <> null) 
+                            <td style="color: rgb(0, 169, 14)" >{{ $seller->mesa }}</td>
+                        @else
+                            <td style="color: red" >{{ $seller->mesa }}</td>
+                        @endif
+                      
                            
                         {{--  <td>{{$seller->cedula}}</td>  --}}
                         @if ($seller->reporte_1 <> null)
@@ -116,11 +128,12 @@
             { responsivePriority: 10002, targets: 0 },
             { responsivePriority: 2, targets: 2 },
             { responsivePriority: 1, targets: 3 },
-            { target: 7, visible: false},
-            { target: 8, visible: false},
+            { target: 6, visible: false},
+            { target: 7 , visible: false},
 
             ],
             "dom": 'Bfrtip',
+            "responsive": true,
             "buttons": [
                 // {
                 // "extend": 'excelHtml5',

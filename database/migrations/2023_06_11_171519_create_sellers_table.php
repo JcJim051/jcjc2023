@@ -34,6 +34,7 @@ class CreateSellersTable extends Migration
             $table->foreign('dondevota')->references('codpuesto')->on('puestos')->onUpdate('cascade');
             $table->string('codescru')->nullable();
             $table->string('codcor')->nullable();
+            $table->string('codmesa_crisis')->nullable();
             $table->string('status')->default('0')->nullable();
             $table->string('statusani')->default('0')->nullable();
             $table->string('reclamacion')->nullable();

@@ -23,9 +23,9 @@ use App\Http\Controllers\Admin\DepartamentalController;
 use App\Http\Controllers\Admin\TableroController;
 use App\Http\Controllers\Admin\VotantesController;
 use App\Http\Controllers\Admin\AfluenciaController;
-
-
-
+use App\Http\Controllers\Admin\QrController;
+use App\Http\Controllers\Admin\ActualizarController;
+use App\Http\Controllers\Admin\PmuController;
 
 
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
@@ -51,8 +51,16 @@ Route::resource('departamental', DepartamentalController::class)->names('admin.d
 Route::resource('tablero', TableroController::class)->names('admin.tablero');
 Route::resource('votantes', VotantesController::class)->names('admin.votantes');
 Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
+Route::resource('qr', QrController::class)->names('admin.qr');
+
+
 
 Route::get('get-data', 'App\Http\Controllers\Admin\ConsultorController@getData')->name('getData');
 Route::get('get-asistencia', 'App\Http\Controllers\Admin\AsistenciaController@getAsistencia')->name('getAsistencia');
 Route::get('get-afluencia', 'App\Http\Controllers\Admin\AfluenciaController@getAfluencia')->name('getAfluencia');
 Route::get('get-resultados', 'App\Http\Controllers\Admin\ResultadosController@getResultados')->name('getResultados');
+
+
+Route::post('/actualizar-registros', 'App\Http\Controllers\Admin\ActualizarController@actualizarRegistros')->name('actualizarRegistros')->middleware('web');
+
+Route::resource('pmu', PmuController::class)->names('admin.pmu');

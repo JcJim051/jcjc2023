@@ -14,10 +14,10 @@
         @endif
 
         <div class="card ">
-            <div class="card-header text-center text-success ">
+            <div class="text-center card-header text-success ">
                 <h5>{{ $rol }}</h5>
             </div>
-            <div class="card-body text-center size-14">
+            <div class="text-center card-body size-14">
 
                 @if ($rol == "Coordinador")
                     <div class="text-center text-info text-success">
@@ -82,7 +82,7 @@
                                 @endif 
                                 <p>% de mesas Acreditadas</p>
 
-                                @if ($tmc == 0)
+                                @if ($tremc == 0)
                                 <h4> 0% </h4>    
                                 @else
                                 <h4>{{ round(($treml/$tremc)*100,2)}}%</h4>
@@ -204,7 +204,7 @@
 
 
 
-            <div class="card-footer text-muted text-center" >
+            <div class="text-center card-footer text-muted" >
                 <h6>TestiApp todos los derechos reservados</h6>
             </div>
         </div>

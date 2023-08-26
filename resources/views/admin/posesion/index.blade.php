@@ -4,7 +4,7 @@
 @section('title', 'Acreditar')
 
 @section('content_header')
-    {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
+    {{--  <a href="{{route('admin.validacion.create')}}" class="float-right btn btn-secondary btn-sm">Agregar vendedor</a>  --}}
     <h1 style="text-align:center">Reporte de Asistencia</h1>
 @stop
 
@@ -17,10 +17,10 @@
 
     <div class="card">
     <div class="card-body">
-        <table  id="example" class="display responsive nowrap" style="width:99%">
-            <thead style="tab-size: 10px">
+        <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 13px;">
+            <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
                 <tr>
-                    <th>#</th>
+                   
                  
                     <th>Puesto</th>
                     <th>Mesa</th>
@@ -36,10 +36,8 @@
             <tbody>
                 @foreach ($sellers as $seller)
                 <tr>
-                    <td>{{ $seller->id }}</td>
                     
-                   
-                    @if ($seller->statusasistencia == 1 or $seller->remenmesa == 1 ) 
+                        @if ($seller->statusasistencia == 1 or $seller->remenmesa == 1 ) 
                             <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                         @else
                             <td style="color: red" >{{$seller->puesto}}</td>
@@ -52,7 +50,12 @@
                             <td style="color: red" >{{$seller->mesa}}</td>
                         @endif
                    
-                    <td>{{$seller->nombre}}</td>
+                        @if ($seller->statusasistencia == 1 or $seller->remenmesa == 1 ) 
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->nombre}}</td>
+                        @else
+                            <td style="color: red" >{{$seller->nombre}}</td>
+                        @endif
+                   
                     <th>{{$seller->codescru}}</th>
                     <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
                     <td style="font-size: 20px ; text-align:center">
@@ -77,20 +80,7 @@
                 @endforeach
     
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                   
-                    <th>Puesto</th>
-                    <th>Mesa</th>
-                    <th>Nombre</th>
-                    <th>Comisión</th>
-                    <th>Codpuesto</th>
-                    <th>status</th>
-                    <th></th>
-    
-                </tr>
-            </tfoot>
+          
         </table>
 
     {{-- <table  id="example" class="display responsive nowrap" style="width:98%">
@@ -144,14 +134,15 @@
              "columnDefs": [
 
              { responsivePriority: 10002, targets: 0 },
-             { responsivePriority: 3, targets: 7 },
+             { responsivePriority: 3, targets: 6 },
              { responsivePriority: 2, targets: 2 },
              { responsivePriority: 1, targets: 3 },
+             { target: 3, visible: false},
              { target: 4, visible: false},
-             { target: 5, visible: false},
 
              ],
              "dom": 'Bfrtip',
+             "responsive": true,
              "buttons": [
                 //  {
                 //  "extend": 'excelHtml5',

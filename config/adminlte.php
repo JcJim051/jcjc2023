@@ -353,7 +353,14 @@ return [
         ],
     ]
 ],
+[
+    'text' => 'mesas de crisis',
+    'route'  => 'admin.pmu.index',
+    'icon' => 'fas fa-person-booth',
+    'can'  => 'Superuser-administrador-crisis',
 
+
+    ],
 
 
 [
@@ -387,6 +394,14 @@ return [
 
 
     ],
+    [
+        'text' => 'Enviar Fotos E14',
+        'route'  => 'admin.qr.index',
+        'icon' => 'fas fa-person-booth',
+        'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+    
+    
+        ],
     [
     'text' => 'Reportar escrutinio',
     'route'  => 'admin.escrutinio.index',

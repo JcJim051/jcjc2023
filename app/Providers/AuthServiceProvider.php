@@ -86,7 +86,6 @@ class AuthServiceProvider extends ServiceProvider
 
             }
         });     
-
         Gate::define('Superuser-administrador-escrutador-consultor-auditor', function($user){
             if ($user->id == 1) {
                 return true;
@@ -113,6 +112,25 @@ class AuthServiceProvider extends ServiceProvider
             
                         }
         
+                    }
+    
+                }
+
+            }
+        });  
+        Gate::define('Superuser-administrador-crisis', function($user){
+            if ($user->id == 1) {
+                return true;
+            } else {
+                if ($user->role == 1) {
+                    return true;
+                } else {
+                    
+                    if ($user->role == 7) {
+                        return true;
+                    } else {
+                        
+                        return false;
                     }
     
                 }

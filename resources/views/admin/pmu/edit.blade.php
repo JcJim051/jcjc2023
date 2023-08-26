@@ -51,7 +51,7 @@
 
        
     </style>
-    <h4> DATOS CONSOLIDADOS <span style="color: rgb(17, 125, 232)"> {{ $zonal->puesto}} MESA {{ $zonal->mesa}}</span></h4>
+    <h4> REPORTE DE VOTOS {{ $pmu->puesto}} MESA {{ $pmu->mesa}}</h4>
 @stop
 
 @section('content')
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {!! Form::model($zonal, ['route' => ['admin.superusers.update',$zonal], 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'readonly' => 'readonly']) !!}
+                            {!! Form::model($pmu, ['route' => ['admin.superusers.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data', '' => '']) !!}
                     
                             {!! Form::hidden('coddep', null) !!}
                             {!! Form::hidden('codmun', null) !!}
@@ -91,16 +91,16 @@
                             <div class="row">
                                 <div class="col-4">
                                     {!! Form::label("censodemesa", "Votantes en E11") !!}
-                                    {!! Form::text("censodemesa", null, ["class" => "form-control disabled " , 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?' , 'readonly' => 'readonly', 'readonly' => 'readonly']) !!}
+                                    {!! Form::text("censodemesa", null, ["class" => "form-control disabled " , 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?' , '' => '', '' => '']) !!}
                     
                                 </div>     
                                 <div class="col-4">
                                     {!! Form::label("votosenurna", "Votos en la Urna") !!}
-                                    {!! Form::text("votosenurna", null, ["class" => "form-control ", 'placeholder' => 'Cuantos votos en la hay en la urna?', 'readonly' => 'readonly']) !!}
+                                    {!! Form::text("votosenurna", null, ["class" => "form-control ", 'placeholder' => 'Cuantos votos en la hay en la urna?', '' => '']) !!}
                                 </div>   
                                 <div class="col-4">
                                     {!! Form::label("votosincinerados", "Votos Incinerados") !!}
-                                    {!! Form::text("votosincinerados", null, ["class" => "form-control ", 'placeholder' => 'Total de Votos incinerados en el preconteo', 'readonly' => 'readonly']) !!}
+                                    {!! Form::text("votosincinerados", null, ["class" => "form-control ", 'placeholder' => 'Total de Votos incinerados en el preconteo', '' => '']) !!}
                                 </div>
                             </div><br>
                     
@@ -117,62 +117,62 @@
                                         <tr>
                                             <td><label for="gob1">01</label></td>
                                             <td><label type="text" name="gob1">Rafaela Cortes</td>
-                                            <td ><input readonly class="form-control" name="gob1" value="{{$zonal->gob1}}"></td>
+                                            <td ><input  class="form-control" name="gob1" value="{{$pmu->gob1}}"></td>
                                         </tr>
                                     
                                             <tr>
                                                 <td><label for="gob2">02</label></td>
                                                 <td><label type="text" name="gob2">Marcela Amaya</td>
-                                                <td><input readonly class="form-control"type="text" name="gob2" value="{{$zonal->gob2}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob2" value="{{$pmu->gob2}}"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="gob3">03</label></td>
                                                 <td><label type="text" name="gob3">Dario Vasquez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob3" value="{{$zonal->gob3}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob3" value="{{$pmu->gob3}}"></td>
                                             </tr>
                                         
                                             <tr>
                                                 <td><label for="gob4">04</label></td>
                                                 <td><label type="text" name="gob4">Wilmar Barbosa</td>
-                                                <td><input readonly class="form-control"type="text" name="gob4" value="{{$zonal->gob4}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob4" value="{{$pmu->gob4}}"></td>
                                             </tr>
                                         
                                             <tr>
                                                 <td><label for="gob5">05</label></td>
                                                 <td><label type="text" name="gob5">Edward Libreros</td>
-                                                <td><input readonly class="form-control"type="text" name="gob5" value="{{$zonal->gob5}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob5" value="{{$pmu->gob5}}"></td>
                                             </tr>
                                         
                                             <tr>
                                                 <td><label for="gob6">06</label></td>
                                                 <td><label type="text" name="gob6">Harold Barreto</td>
-                                                <td><input readonly class="form-control"type="text" name="gob6" value="{{$zonal->gob6}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob6" value="{{$pmu->gob6}}"></td>
                                             </tr>
                                         
                                             <tr>
                                                 <td><label for="gob7">07</label></td>
                                                 <td><label type="text" name="gob7">Bairon Muñoz</td>
-                                                <td><input readonly class="form-control"type="text" name="gob7" value="{{$zonal->gob7}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob7" value="{{$pmu->gob7}}"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="gob8">08</label></td>
                                                 <td><label type="text" name="gob8">Antonio Amaya</td>
-                                                <td><input readonly class="form-control"type="text" name="gob8" value="{{$zonal->gob8}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob8" value="{{$pmu->gob8}}"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="gob9">09</label></td>
                                                 <td><label type="text" name="gob9">Florentino Vasquez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob9" value="{{$zonal->gob9}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob9" value="{{$pmu->gob9}}"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="gob10">10</label></td>
                                                 <td><label type="text" name="gob10">Eudoro Alvarez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob10" value="{{$zonal->gob10}}"></td>
+                                                <td><input  class="form-control"type="text" name="gob10" value="{{$pmu->gob10}}"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="gob11">11</label></td>
                                                 <td><label type="text" name="gob11">Jose L Silva</td>
-                                                <td><input readonly class="form-control" type="text" name="gob11" value="{{$zonal->gob11}}"></td>
+                                                <td><input  class="form-control" type="text" name="gob11" value="{{$pmu->gob11}}"></td>
                                             </tr>
                                         
                                         
@@ -182,17 +182,17 @@
                                         <tr>
                                             
                                             <td colspan="2">Votos en blanco</td>
-                                            <td><input readonly class="form-control"type="text" name="enblanco" value="{{$zonal->enblanco}}"></td>
+                                            <td><input  class="form-control"type="text" name="enblanco" value="{{$pmu->enblanco}}"></td>
                                         </tr>
                                         <tr>
                                             
                                             <td colspan="2">Votos nulos</td>
-                                            <td><input readonly class="form-control" type="text" name="nulos" value="{{$zonal->nulos}}"></td>
+                                            <td><input  class="form-control" type="text" name="nulos" value="{{$pmu->nulos}}"></td>
                                         </tr>
                                         <tr>
                                         
                                             <td colspan="2">Votos no marcados</td>
-                                            <td><input readonly class="form-control"type="text" name="nomarcados" value="{{$zonal->nomarcados}}"></td>
+                                            <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->nomarcados}}"></td>
                                         </tr>
                                     </tbody>
                                 </table>      
@@ -201,12 +201,12 @@
                             <div class="row">
                                 <div class="col-6">
                                     {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
-                                    {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", 'readonly' => 'readonly']) !!}
+                                    {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", '' => '']) !!}
                             
                                 </div>
                                 <div class="col-6">
                                     {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
-                                    {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", 'readonly' => 'readonly']) !!}
+                                    {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", '' => '']) !!}
                                 
                                 </div>
                             </div>
@@ -234,7 +234,8 @@
                             {!! Form::hidden('codcor', null) !!}
                             {!! Form::hidden('status', null) !!}
                             <br>
-                            
+                            {!! Form::submit('Reportar Cambios', ['class' => 'btn btn-primary']) !!}
+   
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -245,20 +246,20 @@
                         <div class="card-header">
                             <div class="row">
                                 <span style="font-size: 24px">E14 testigo</span>    
-                                @if ($zonal->e14 == 0)
+                                @if ($pmu->e14 == 0)
                                     
                                 @else
-                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14) }}">Ver</a>
+                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $pmu->e14) }}">Ver</a>
                                 @endif
                                
                             </div>
                         </div>
                         <div class=" e14 card-body">
                         
-                            @if ($zonal->e14 == 0)
+                            @if ($pmu->e14 == 0)
                                <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
                             @else
-                                <img src="{{ asset('/storage/' . $zonal->e14) }}"  alt=""> 
+                                <img src="{{ asset('/storage/' . $pmu->e14) }}"  alt=""> 
                             @endif
                             
                         </div>
@@ -269,20 +270,20 @@
                         <div class="card-header">
                             <div class="row">
                                 <span style="font-size: 24px">Reclamacíon</span>  
-                                @if ($zonal->fotorec == null)
+                                @if ($pmu->fotorec == null)
                                     
                                 @else
-                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->fotorec ) }}">Ver</a>
+                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $pmu->fotorec ) }}">Ver</a>
                                 @endif
                                 
                             </div>
                         </div>
                         <div class="card-body" >
                         
-                            @if ($zonal->fotorec == null)
+                            @if ($pmu->fotorec == null)
                                 <p>Mesa sin reclamación</p>
                             @else
-                                <img src="{{ asset('/storage/' . $zonal->fotorec) }}"  alt="">
+                                <img src="{{ asset('/storage/' . $pmu->fotorec) }}"  alt="">
                             @endif
                            
                         </div>
@@ -290,10 +291,10 @@
                 </div>
             </div>
         
- 
+
     </div>
    
-   <div class="row">
+   {{-- <div class="row">
         <div class="col-12">
             <div class="card">
                     <div class="card-header">
@@ -302,7 +303,7 @@
                     <div class="card-body">
                         <div class="row">    
                             <div class="col-12 col-sm-6">
-                                {!! Form::model($zonal, ['route' => ['admin.escrutinio.update',$zonal], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+                                {!! Form::model($pmu, ['route' => ['admin.escrutinio.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                                 
                                         {!! Form::hidden('coddep', null) !!}
                                         {!! Form::hidden('codmun', null) !!}
@@ -367,7 +368,7 @@
             </div>
         </div>
    </div>
-   
+    --}}
    
    
    

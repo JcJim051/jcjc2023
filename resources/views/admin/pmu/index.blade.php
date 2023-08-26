@@ -40,11 +40,11 @@
                         
                         <th style="font-size: 2px">rec</th>
 
-                        <th> Balance</th>
-                        <th> ¿Re-conteo? </th>
-                        <th> E11-Total</th>
-                        <th> Reclam</th>
-                        <th> % Nulos</th>
+                        <th>Balance</th>
+                        <th>¿Re-conteo?</th>
+                        <th>E11-Total</th>
+                        <th>Reclam</th>
+                        <th>%Nulos</th>
                        
 
 
@@ -54,31 +54,31 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($zonal as $zonal)
+                    @foreach ($pmu as $pmu)
                     <tr>
-                        <td> {{ $zonal->id }}</td>
+                        <td> {{ $pmu->id }}</td>
                         
-                        <td> {{ $zonal->municipio }}</td>
-                        {{-- <td> {{ $zonal->codzon }}</td> --}}
-                        <td> {{ $zonal->puesto }}</td>
-                        <td> {{ $zonal->mesa }}</td>
+                        <td> {{ $pmu->municipio }}</td>
+                        {{-- <td> {{ $pmu->codzon }}</td> --}}
+                        <td> {{ $pmu->puesto }}</td>
+                        <td> {{ $pmu->mesa }}</td>
                         <td> 
-                            @if ($zonal->gob1 <> null )
+                            @if ($pmu->gob1 <> null )
                                 <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif
                         </td>
                         <td>
-                            @if ($zonal->e14 <> null )
+                            @if ($pmu->e14 <> null )
                             <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif
                         </td> 
                         <td>
-                            @if ($zonal->reclamacion == 0)
-                                @if ($zonal->fotorec <> null )
+                            @if ($pmu->reclamacion == 0)
+                                @if ($pmu->fotorec <> null )
                                 <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                                 @else
                                     <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
@@ -90,68 +90,68 @@
                         
                         
                         <td> 
-                            @if ($zonal->votosenurna == null)
+                            @if ($pmu->votosenurna == null)
                                 NR
                             @else
-                                @if ($zonal->gob1+$zonal->gob2+$zonal->gob3+$zonal->gob4+$zonal->gob5+$zonal->gob6+$zonal->gob7+$zonal->gob8+$zonal->gob9+$zonal->gob10+$zonal->gob11+$zonal->nulos+$zonal->enblanco+$zonal->nomarcados == ($zonal->votosenurna - $zonal->votosincinerados))
-                                <a href="{{ route("admin.zonal.edit", $zonal) }}" class="green-link">
+                                @if ($pmu->gob1+$pmu->gob2+$pmu->gob3+$pmu->gob4+$pmu->gob5+$pmu->gob6+$pmu->gob7+$pmu->gob8+$pmu->gob9+$pmu->gob10+$pmu->gob11+$pmu->nulos+$pmu->enblanco+$pmu->nomarcados == ($pmu->votosenurna - $pmu->votosincinerados))
+                                <a href="{{ route("admin.pmu.edit", $pmu) }}" class="green-link">
                                     <span style="color: green; font-size: 13px"><i class="fas fa-balance-scale"></i> ok</span>
                                 </a>
                                 
                                 @else
-                                <a href="{{ route("admin.zonal.edit", $zonal) }}" class="green-link">
+                                <a href="{{ route("admin.pmu.edit", $pmu) }}" class="green-link">
                                     <span style="color: red; font-size: 13px"><i class="fas fa-balance-scale-left"></i> nook</span>
                                 </a>
                         @endif   
                             @endif     
                         </td>
                         <td style="font-size: 10px ; text-align:center"> 
-                            @if ($zonal->status_reconteo == null)
+                            @if ($pmu->status_reconteo == null)
                                NR   
                             @else
-                                @if ($zonal->status_reconteo == 0)
-                                    <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-success btn-sm" style="font-size: 10px">No</a>
+                                @if ($pmu->status_reconteo == 0)
+                                    <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-success btn-sm" style="font-size: 10px">No</a>
                                 @else
-                                    <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-sm" style="font-size: 10px">Si</a>
+                                    <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-danger btn-sm" style="font-size: 10px">Si</a>
                                 @endif    
                             @endif    
                         </td>
 
 
                         <td style="font-size: 10px ; text-align:center"> 
-                            @if ($zonal->votosenurna == null)
+                            @if ($pmu->votosenurna == null)
                                 NR
                             @else
-                            @if ($zonal->censodemesa - $zonal->votosenurna == 0 )
-                            <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-success btn-sm" style="font-size: 10px">0</a>
+                            @if ($pmu->censodemesa - $pmu->votosenurna == 0 )
+                            <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-success btn-sm" style="font-size: 10px">0</a>
                             @else
-                                @if ($zonal->censodemesa - $zonal->votosenurna < 0 )
-                                <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-sm " style="font-size: 10px">{{ $zonal->censodemesa - $zonal->votosenurna }}</a>
+                                @if ($pmu->censodemesa - $pmu->votosenurna < 0 )
+                                <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-danger btn-sm " style="font-size: 10px">{{ $pmu->censodemesa - $pmu->votosenurna }}</a>
                                 @else
-                                    <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-warning btn-sm" style="font-size: 10px">{{ $zonal->censodemesa - $zonal->votosenurna }}</a>
+                                    <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-warning btn-sm" style="font-size: 10px">{{ $pmu->censodemesa - $pmu->votosenurna }}</a>
                                 @endif 
                             @endif  
                             @endif
                         </td>
                         <td style="font-size: 10px ; text-align:center"> 
-                            @if ($zonal->reclamacion == null)
+                            @if ($pmu->reclamacion == null)
                                NR   
                             @else
-                                @if ($zonal->reclamacion == 0)
-                                <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-success btn-sm" style="font-size: 10px">No</a>
+                                @if ($pmu->reclamacion == 0)
+                                <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-success btn-sm" style="font-size: 10px">No</a>
                                 @else
-                                    <a href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-sm" style="font-size: 10px">Si</a>
+                                    <a href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-danger btn-sm" style="font-size: 10px">Si</a>
                                 @endif    
                             @endif    
                         </td>
                         <td style="font-size: 10px ; text-align:center"> 
-                            @if (($zonal->votosenurna) == 0)
+                            @if (($pmu->votosenurna) == 0)
                                 NR
                             @else
-                            @if (($zonal->nulos/$zonal->votosenurna) > 0.2)
-                                <a  href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-danger btn-sm"  style="font-size: 10px">{{ round(($zonal->nulos/$zonal->votosenurna)*100, 0)}}%</a>
+                            @if (($pmu->nulos/$pmu->votosenurna) > 0.2)
+                                <a  href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-danger btn-sm"  style="font-size: 10px">{{ round(($pmu->nulos/$pmu->votosenurna)*100, 0)}}%</a>
                                 @else
-                                <a  href="{{route("admin.zonal.edit", $zonal)}}" class="btn btn-success btn-sm"  style="font-size: 10px">Ok</a>
+                                <a  href="{{route("admin.pmu.edit", $pmu)}}" class="btn btn-success btn-sm"  style="font-size: 10px">Ok</a>
                                 @endif
                             @endif
                         </td>

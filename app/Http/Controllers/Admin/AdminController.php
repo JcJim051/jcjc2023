@@ -33,7 +33,11 @@ class AdminController extends Controller
                             if ($role == 6) {
                                 $rol = 'Auditor';
                             } else {
-                                
+                                if ($role == 7) {
+                                    $rol = 'Mesa de Crisis';
+                                } else {
+                                    
+                                }
                             }
                         }
                     }

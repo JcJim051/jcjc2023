@@ -3,7 +3,12 @@
 @section('title', 'Reportar')
 
 @section('content_header')
-    <h1 style="text-align: center">Reportes E14</h1>
+    <h4 style="text-align: center">Reporte de E14</h4>
+    <style>
+        .long-text {
+            white-space: nowrap;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -15,67 +20,126 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="display responsive nowrap" style="width:100%">
-                <thead>
+            <table id="example" class="table display n+owrap table-bordered" style="width:100%; font-size: 13px;">
+                <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
                     <tr>
-                        <th>#</th>
+                       
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Rafaela Cortes</th>
+                        <th>Rafaela</th>
+                        {{-- <th>Can2</th>
+                        <th>Can3</th>
+                        <th>Can4</th>
+                        <th>Can5</th>
+                        <th>Can6</th>
+                        <th>Can7</th>
+                        <th>Can8</th>
+                        <th>Can9</th>
+                        <th>Can10</th>
+                        <th>Can11</th> --}}
                         {{-- <th>Felipe</th> --}}
-                        <th>Comisión</th>
-                        <th>Codpuesto</th>
-                        <th>Reporte</th>
+                        
+                        <th>Foto1</th>
+                        {{-- <th>Foto2</th> --}}
+                        <th>Recl</th>
+
                         @if (Auth::user()->role == 4)
 
                         @else
                         <th></th>
                         <th></th>
+                        
                         
                         @endif
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="long-text" >
                     @foreach ($sellers as $seller)
                     <tr>
-                        <td>{{ $seller->id }}</td>
-                        <td>{{ $seller->municipio }}</td>
-
-                        @if ($seller->gob1 <> null)
-                        <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                        @if ($seller->reclamacion == 1) 
+                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->municipio}}</td>
+                            @endif                            
                         @else
-                            <td style="color: red" >{{$seller->puesto}}</td>
-
+                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->municipio}}</td>
+                            @endif
                         @endif
 
 
-                            @if ($seller->gob1 <> null)
-                                <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
+                        @if ($seller->reclamacion == 1) 
+                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->puesto}}</td>
+                            @endif                            
+                        @else
+                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->puesto}}</td>
+                            @endif
+                        @endif
+                        
+
+                        @if ($seller->reclamacion == 1) 
+                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
                                 <td style="color: red" >{{$seller->mesa}}</td>
-
+                            @endif                            
+                        @else
+                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->mesa}}</td>
                             @endif
-                        {{--  <td>{{$seller->cedula}}</td>  --}}
-                        <td>{{$seller->gob1}}</td>
-                        <td>{{$seller->codescru}}</td>
-                        <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
-                        <td style="font-size: 20px ; text-align:center">
-                                @if($seller->gob1 <> null)
-                                    <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Reportado</P></i>
-                                @else
-                                    <i style="color: rgb(235, 62, 10) " class="fas fa-ban"><P hidden>Sin reporte</P></i>
-                                @endif
+                        @endif
 
+                        
+                        <td>{{$seller->gob1}}</td>
+                        
+                                             
+                        <td style="font-size: 10px ; text-align:center">
+                            @if($seller->e14 <> null)
+                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
+                            @else
+                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
+                            @endif
+                        </td>
+                        {{-- <td style="font-size: 10px ; text-align:center">
+                            @if($seller->e14 <> null)
+                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
+                            @else
+                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
+                            @endif
+                        </td> --}}
+                        <td style="font-size: 10px ; text-align:center">
+                            @if($seller->fotorec <> null)
+                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
+                            @else
+                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
+                            @endif
                         </td>
                         @if (Auth::user()->role == 4)
 
                         @else
-                        <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm">Reportar</a></td>
-                        <td> <a href="{{route("admin.tellers.show", $seller)}}" class="btn btn-primary btn-sm">Enviar E14</a></td>
-                        
+                        <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm" style="font-size: 11px;">Reportar</a></td>
+                        <td> <a href="{{route("admin.tellers.show", $seller)}}" class="btn btn-primary btn-sm long-text" style="font-size: 11px;">Fotos</a></td>
                         @endif
+                       
 
 
 
@@ -122,27 +186,19 @@
     
     $(document).ready(function () {
        $('#example').DataTable({
-             
-            searchPanes: {
-                layout: 'columns-6',
-                initCollapsed: true
-            },
+           
+          
             "pageLength": 25,
-            "responsive": true,
+            
+           
             "columnDefs": [
-                
-                {searchPanes: {show: false},targets: [4]},
-                
-                { responsivePriority: 10002, targets: 0 },
-                { responsivePriority: 2, targets: 2 },
-                { responsivePriority: 1, targets: 3 },
-                { target: 5, visible: false},
-                { target: 6, visible: false},
-            
-
+                           
             ],
-            "dom":'BPrtip' ,
-            
+            "dom":'frtip' ,
+            scrollX: true,
+            // scrollY: "55vh",
+            scrollCollapse: true,
+            responsive: true,
             "buttons": [
                 {
                 "extend": 'excelHtml5',
@@ -151,14 +207,7 @@
                  
             ],
             "language": { // Traducción al español
-             "searchPanes": {
-                "title": {
-                    _: 'Filtros Aplicados - %d',
-                    0: 'Sin filtros',
-                    1: 'Un Filtro Aplicado'
-                        }
-                        // Agrega más traducciones aquí según tus necesidades
-                 }
+            //
             },
             
 
@@ -168,7 +217,7 @@
     
     
        
-    </SCript>
+    </script>
 @endsection
 
 
