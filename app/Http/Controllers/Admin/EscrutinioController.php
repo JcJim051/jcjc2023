@@ -122,7 +122,7 @@ class EscrutinioController extends Controller
     {
         $escrutinio->update($request->all());
 
-        return redirect()->route('admin.escrutinio.index', $escrutinio)->with('info', 'Se Reporto recuperacion de votos correctamente');
+        return redirect()->route('admin.zonal.index', $escrutinio)->with('info', 'Se Reporto recuperacion de votos correctamente');
     }
 
     /**

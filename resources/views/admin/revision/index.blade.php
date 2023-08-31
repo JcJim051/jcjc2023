@@ -26,6 +26,7 @@
                     <th>Mesa</th>
                     <th>Votos</th>
                     <th>Recuperados</th>
+                    <th>Total</th>
                     <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>
@@ -56,6 +57,7 @@
                     {{--  <td>{{$seller->cedula}}</td>  --}}
                     <th>{{$seller->gob1}}</th>
                     <th>{{$seller->recuperados}}</th>
+                    <th>{{$seller->gob1 + $seller->recuperados}}</th>
                     <th>{{$seller->codescru}}</th>
                     <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
                     <td style="font-size: 20px ; text-align:center">
@@ -80,21 +82,7 @@
                 @endforeach
     
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Municipio</th>
-                    <th>Puesto</th>
-                    <th>Mesa</th>
-                    <th>Votos</th>
-                    <th>Recuperados</th>
-                    <th>Comisión</th>
-                    <th>Codpuesto</th>
-                    <th>status</th>
-                    <th></th>
-    
-                </tr>
-            </tfoot>
+          
         </table>
 
     {{-- <table  id="example" class="display responsive nowrap" style="width:98%">
@@ -151,8 +139,8 @@
              { responsivePriority: 3, targets: 8 },
              { responsivePriority: 2, targets: 2 },
              { responsivePriority: 1, targets: 3 },
-             { target: 6, visible: false},
              { target: 7, visible: false},
+             { target: 8, visible: false},
 
              ],
              "dom": 'Bfrtip',

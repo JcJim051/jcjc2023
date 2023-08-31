@@ -62,9 +62,11 @@ class CreateSellersTable extends Migration
             $table->string('statusasistencia')->default('0')->nullable();
             $table->string('remenmesa')->default('0')->nullable();
             $table->string('e14')->nullable();
+            $table->string('e14_2')->nullable();
             $table->string('banco')->default(0);
             $table->string('fotorec')->nullable();
             $table->string('modificadopor')->nullable();
+            $table->string('modificadopor_pmu')->nullable();
             $table->string('status_reconteo')->default('0')->nullable();
             $table->integer('reporte_1')->nullable();
             $table->integer('reporte_2')->nullable();

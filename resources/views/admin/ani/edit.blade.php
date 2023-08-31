@@ -21,10 +21,11 @@
             <strong>{{(session('info'))}}</strong>
         </div>
 @endif
+
         <div class="container" style="">
             <div class="card card-outline card-warning">
                 <div class="card-body">
-                                        
+                    {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}                   
                     <div class="form-group">
                         <div class="row">
                             <div class="col-10">
@@ -52,12 +53,8 @@
                 <div class="col-6">
                     <div class="card ">
                         <div class="card-body">
-                            {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                            
-            
-                            
-                                
-            
+                           
                             {!! Form::hidden('coddep', null) !!}
                             {!! Form::hidden('codmun', null) !!}
                             {!! Form::hidden('codzon', null) !!}

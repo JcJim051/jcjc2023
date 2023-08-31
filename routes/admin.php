@@ -62,5 +62,6 @@ Route::get('get-resultados', 'App\Http\Controllers\Admin\ResultadosController@ge
 
 
 Route::post('/actualizar-registros', 'App\Http\Controllers\Admin\ActualizarController@actualizarRegistros')->name('actualizarRegistros')->middleware('web');
+Route::post('fotos-redimensionada', 'App\Http\Controllers\Admin\TellerController@fotos')->name('fotos');
 
 Route::resource('pmu', PmuController::class)->names('admin.pmu');

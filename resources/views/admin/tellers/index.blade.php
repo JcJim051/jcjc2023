@@ -23,11 +23,11 @@
             <table id="example" class="table display n+owrap table-bordered" style="width:100%; font-size: 13px;">
                 <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
                     <tr>
-                       
+                        <th>id</th>
                         <th>Municipio</th>
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Rafaela</th>
+                        <th>Datos</th>
                         {{-- <th>Can2</th>
                         <th>Can3</th>
                         <th>Can4</th>
@@ -40,7 +40,7 @@
                         <th>Can11</th> --}}
                         {{-- <th>Felipe</th> --}}
                         
-                        <th>Foto1</th>
+                        <th>Foto1</th><th>Foto2</th>
                         {{-- <th>Foto2</th> --}}
                         <th>Recl</th>
 
@@ -58,6 +58,7 @@
                 <tbody class="long-text" >
                     @foreach ($sellers as $seller)
                     <tr>
+                        <td>{{$seller->id}}</td>
                         @if ($seller->reclamacion == 1) 
                             @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
                             
@@ -108,8 +109,13 @@
                             @endif
                         @endif
 
-                        
-                        <td>{{$seller->gob1}}</td>
+                        <td>
+                            @if ($seller->gob1 <> null) 
+                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>                    
+                            @else
+                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                            @endif
+                        </td>
                         
                                              
                         <td style="font-size: 10px ; text-align:center">
@@ -119,13 +125,13 @@
                                 <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
                             @endif
                         </td>
-                        {{-- <td style="font-size: 10px ; text-align:center">
-                            @if($seller->e14 <> null)
+                        <td style="font-size: 10px ; text-align:center">
+                            @if($seller->e14_2 <> null)
                                 <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
                             @else
                                 <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
                             @endif
-                        </td> --}}
+                        </td>
                         <td style="font-size: 10px ; text-align:center">
                             @if($seller->fotorec <> null)
                                 <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
@@ -192,7 +198,8 @@
             
            
             "columnDefs": [
-                           
+                     
+                { target: 0, visible: false},        
             ],
             "dom":'frtip' ,
             scrollX: true,

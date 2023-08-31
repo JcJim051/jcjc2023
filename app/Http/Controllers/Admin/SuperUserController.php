@@ -141,16 +141,20 @@ class SuperUserController extends Controller
 
             $superuser->update($request->all());
 
-            if ($request->statusani == null  & $request->statusrec == null & $request->statusasistencia == null)  {
+            if ($request->statusani == null  & $request->statusrec == null & $request->statusasistencia == null & $request->modificadopor_pmu == null)  {
                 return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
             } else {
-                if ($request->statusrec == null & $request->statusasistencia == null) {
+                if ($request->statusrec == null & $request->statusasistencia == null  & $request->modificadopor_pmu == null) {
                     return redirect()->route('admin.ani.index', $superuser)->with('info', ' Validación Ani Guardada con Exito');
                 } else {
-                    if ($request->statusasistencia == null) {
-                        return redirect()->route('admin.revision.index', $superuser)->with('info', 'Revisión E24 Guardada con Exito');
-                    } else {
+                    if ($request->statusasistencia <> null  & $request->modificadopor_pmu == null) {
                         return redirect()->route('admin.posesion.index', $superuser)->with('info', 'Reporte de asistencia Guardado con Exito');
+                    } else {
+                        if ($request->modificadopor_pmu <> null) {
+                            return redirect()->route('admin.pmu.index', $superuser)->with('info', 'Correccion mesa de crisis, reportada con exito');
+                        } else {
+                            return redirect()->route('admin.revision.index', $superuser)->with('info', 'Revisión E24 Guardada con Exito');
+                        }
                     }
                 }
             }

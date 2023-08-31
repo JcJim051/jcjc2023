@@ -66,16 +66,16 @@
         <div class="row">
             <div class="col-4">
                 {!! Form::label("censodemesa", "Votantes E11") !!}
-                {!! Form::number("censodemesa", null, ["class" => "form-control disabled  ", ]) !!}
+                {!! Form::number("censodemesa", null, ["class" => "form-control disabled  ","required" => "required" ]) !!}
               
             </div>     
             <div class="col-4">
                 {!! Form::label("votosenurna", "Votos en Urna") !!}
-                {!! Form::number("votosenurna", null, ["class" => "form-control ", ]) !!}
+                {!! Form::number("votosenurna", null, ["class" => "form-control ", "required" => "required"]) !!}
             </div>   
             <div class="col-4">
                 {!! Form::label("votosincinerados", "Incinerados") !!}
-                {!! Form::number("votosincinerados", null, ["class" => "form-control ",]) !!}
+                {!! Form::number("votosincinerados", null, ["class" => "form-control ","required" => "required"]) !!}
             </div>
         </div><br>
 

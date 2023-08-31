@@ -356,7 +356,7 @@ return [
 [
     'text' => 'mesas de crisis',
     'route'  => 'admin.pmu.index',
-    'icon' => 'fas fa-person-booth',
+    'icon' => 'fas fa-headset',
     'can'  => 'Superuser-administrador-crisis',
 
 
@@ -397,7 +397,7 @@ return [
     [
         'text' => 'Enviar Fotos E14',
         'route'  => 'admin.qr.index',
-        'icon' => 'fas fa-person-booth',
+        'icon' => 'fas fa-camera',
         'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
     
     

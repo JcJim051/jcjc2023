@@ -132,4 +132,79 @@ class TellerController extends Controller
 
         return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
     }
+
+    public function fotos(Request $request , Seller $teller  )
+    {  
+        
+        $id = $request->id;
+        if ($request->input('e14_resized') !== null) {
+            // Obtén la imagen redimensionada del campo oculto
+            $e14Resized = $request->input('e14_resized');
+        
+            // Decodifica la imagen redimensionada desde formato base64
+            $decodedImage = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $e14Resized));
+        
+            // Genera un nombre único para el archivo JPEG
+            $uniqueFilename = uniqid() . '_' . $request->user()->id . '.jpg';
+        
+            // Ruta donde deseas guardar la imagen redimensionada
+            $path = 'E14-images/' . $uniqueFilename;
+        
+            // Guarda la imagen redimensionada en la ubicación deseada
+            Storage::put($path, $decodedImage);
+        
+            // Actualiza el campo 'e14' en el modelo Seller
+            $teller = Seller::where('id', $id)->first();
+            $teller->e14 = $path;
+            $teller->save();
+        }
+        if ($request->input('e14_2_resized') !== null) {
+            // Obtén la imagen redimensionada del campo oculto
+            $e14_2Resized = $request->input('e14_2_resized');
+        
+            // Decodifica la imagen redimensionada desde formato base64
+            $decodedImage = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $e14_2Resized));
+        
+            // Genera un nombre único para el archivo JPEG
+            $uniqueFilename = uniqid() . '_' . $request->user()->id . '.jpg';
+        
+            // Ruta donde deseas guardar la imagen redimensionada
+            $path = 'e14-images/' . $uniqueFilename;
+        
+            // Guarda la imagen redimensionada en la ubicación deseada
+            Storage::put($path, $decodedImage);
+        
+            // Actualiza el campo 'e14_2' en el modelo Seller
+            $teller = Seller::where('id', $id)->first();
+            $teller->e14_2 = $path;
+            $teller->save();
+        }
+
+        if ($request->input('fotorec_resized') !== null) {
+            // Obtén la imagen redimensionada del campo oculto
+            $fotorecResized = $request->input('fotorec_resized');
+        
+            // Decodifica la imagen redimensionada desde formato base64
+            $decodedImage = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $fotorecResized));
+        
+            // Genera un nombre único para el archivo JPEG
+            $uniqueFilename = uniqid() . '_' . $request->user()->id . '.jpg';
+        
+            // Ruta donde deseas guardar la imagen redimensionada
+            $path = 'fotorec-images/' . $uniqueFilename;
+        
+            // Guarda la imagen redimensionada en la ubicación deseada
+            Storage::put($path, $decodedImage);
+        
+            // Actualiza el campo 'fotorec' en el modelo Seller
+            $teller = Seller::where('id', $id)->first();
+            $teller->fotorec = $path;
+            $teller->save();
+        }
+        
+
+       
+        return redirect()->route('admin.tellers.index')->with('info', 'Reporte de votos se actualizó con Éxito');
+    }
+
 }

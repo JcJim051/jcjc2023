@@ -77,11 +77,12 @@
                             @endif
                         </td> 
                         <td>
-                            @if ($pmu->reclamacion == 0)
-                                @if ($pmu->fotorec <> null )
-                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
-                                @else
+                            @if ($pmu->reclamacion == 1)
+                                @if ($pmu->fotorec == null )
                                     <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+
+                                @else
+                                    <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                                 @endif
                             @else
                                 No Rec

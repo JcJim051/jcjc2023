@@ -241,54 +241,88 @@
             </div>
             <div class="col-12 col-sm-6">
                 <div class="row">
-                    <div class="card container-fluid">
-                        <div class="card-header">
-                            <div class="row">
-                                <span style="font-size: 24px">E14 testigo</span>    
-                                @if ($zonal->e14 == 0)
-                                    
-                                @else
-                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14) }}">Ver</a>
-                                @endif
-                               
-                            </div>
-                        </div>
-                        <div class=" e14 card-body">
+                    <div class="col-12 col-sm-6">
                         
-                            @if ($zonal->e14 == 0)
-                               <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
-                            @else
-                                <img src="{{ asset('/storage/' . $zonal->e14) }}"  alt=""> 
-                            @endif
-                            
-                        </div>
+                            <div class="card container-fluid">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <span style="font-size: 24px">E14 Cara 1 testigo</span>    
+                                        @if ($zonal->e14 == 0)
+                                            
+                                        @else
+                                        <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14) }}">Ver</a>
+                                        @endif
+                                    
+                                    </div>
+                                </div>
+                                <div class=" e14 card-body">
+                                
+                                    @if ($zonal->e14 == 0)
+                                    <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
+                                    @else
+                                        <img src="{{ asset('/storage/' . $zonal->e14) }}"  alt=""> 
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        
+                            <div class="card container-fluid">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <span style="font-size: 24px">E14 Cara 2 testigo</span>    
+                                        @if ($zonal->e14_2 == 0)
+                                            
+                                        @else
+                                        <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14_2) }}">Ver</a>
+                                        @endif
+                                    
+                                    </div>
+                                </div>
+                                <div class=" e14 card-body">
+                                
+                                    @if ($zonal->e14_2 == 0)
+                                    <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
+                                    @else
+                                        <img src="{{ asset('/storage/' . $zonal->e14_2) }}"  alt=""> 
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                        
                     </div>
                 </div>
                 <div class="row">
-                    <div class="e14 card container-fluid">
-                        <div class="card-header">
-                            <div class="row">
-                                <span style="font-size: 24px">Reclamacíon</span>  
-                                @if ($zonal->fotorec == null)
-                                    
-                                @else
-                                <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->fotorec ) }}">Ver</a>
-                                @endif
+                    <div class="col-12 col-sm-12">
+                        <div class="row">
+                            <div class="e14 card container-fluid">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <span style="font-size: 24px">Reclamacíon</span>  
+                                        @if ($zonal->fotorec == null)
+                                            
+                                        @else
+                                        <a target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->fotorec ) }}">Ver</a>
+                                        @endif
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body" >
                                 
+                                    @if ($zonal->fotorec == null)
+                                        <p>Mesa sin reclamación</p>
+                                    @else
+                                        <img src="{{ asset('/storage/' . $zonal->fotorec) }}"  alt="">
+                                    @endif
+                                
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body" >
-                        
-                            @if ($zonal->fotorec == null)
-                                <p>Mesa sin reclamación</p>
-                            @else
-                                <img src="{{ asset('/storage/' . $zonal->fotorec) }}"  alt="">
-                            @endif
-                           
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         
  
     </div>
@@ -304,20 +338,9 @@
                             <div class="col-12 col-sm-6">
                                 {!! Form::model($zonal, ['route' => ['admin.escrutinio.update',$zonal], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                                 
-                                        {!! Form::hidden('coddep', null) !!}
-                                        {!! Form::hidden('codmun', null) !!}
-                                        {!! Form::hidden('codzon', null) !!}
-                                        {!! Form::hidden('codpuesto', null) !!}
-                                        {!! Form::hidden('departamento', null) !!}
-                                        {!! Form::hidden('municipio', null) !!}
-                                        {!! Form::hidden('puesto', null) !!}
-                                        {!! Form::hidden('mesa', null) !!}
-                                        {!! Form::hidden('codpar', null) !!}
-                                        {!! Form::hidden("email", null) !!}
-                                        {!! Form::hidden("telefono", null) !!}
-                                        {!! Form::hidden("nombre", null) !!}
+                                        
                                 
-                                
+                                        
                                 
                                         <div class="form-group">
                                             {!! Form::label("recuperados", "Perdida o Ganancia de votos de Rafaela Cortes") !!}
@@ -329,18 +352,12 @@
                                 
                                         </div>
                                 
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                            {!! Form::hidden('codescru', null) !!}
-                                            {!! Form::hidden('codcor', null) !!}
-                                            {!! Form::hidden('status', null) !!}
-                                
-                                            {!! Form::submit('Reportar Cambios', ['class' => 'btn btn-primary']) !!}
+                                        @if ($zonal->statusrec == 1)
+                                        {!! Form::submit('Reportar Cambios', ['class' => 'btn btn-secondary', 'disabled' => 'disabled']) !!}
+                                        @else
+                                        {!! Form::submit('Reportar Cambios', ['class' => 'btn btn-primary']) !!}
+                                        @endif                              
+                                        
                                 
                                         {!! Form::close() !!}
                             </div>
