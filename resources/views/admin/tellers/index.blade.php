@@ -24,9 +24,11 @@
                 <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
                     <tr>
                         <th>id</th>
-                        <th>Municipio</th>
+                        
                         <th>Puesto</th>
                         <th>Mesa</th>
+                        <th>Municipio</th>
+                        
                         <th>Datos</th>
                         {{-- <th>Can2</th>
                         <th>Can3</th>
@@ -42,7 +44,10 @@
                         
                         <th>Foto1</th><th>Foto2</th>
                         {{-- <th>Foto2</th> --}}
-                        <th>Recl</th>
+                       
+                        <th>Reclamacion</th>
+                       
+                        
 
                         @if (Auth::user()->role == 4)
 
@@ -59,86 +64,100 @@
                     @foreach ($sellers as $seller)
                     <tr>
                         <td>{{$seller->id}}</td>
+                        
+
+
                         @if ($seller->reclamacion == 1) 
                             @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                             @else
-                                <td style="color: red" >{{$seller->municipio}}</td>
+                                <td style="color: red" >{{$seller->puesto}}</td>
                             @endif                            
                         @else
                             @if ($seller->gob1 <> null && $seller->e14 <> null)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                             @else
-                                <td style="color: red" >{{$seller->municipio}}</td>
+                                <td style="color: red" >{{$seller->puesto}}</td>
                             @endif
                         @endif
 
-
                         @if ($seller->reclamacion == 1) 
                             @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
-                                <td style="color: red" >{{$seller->puesto}}</td>
+                                <td style="color: red" >{{$seller->mesa}}</td>
                             @endif                            
                         @else
                             @if ($seller->gob1 <> null && $seller->e14 <> null)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
-                                <td style="color: red" >{{$seller->puesto}}</td>
+                                <td style="color: red" >{{$seller->mesa}}</td>
+                            @endif
+                        @endif
+
+                        @if ($seller->reclamacion == 1) 
+                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->municipio}}</td>
+                            @endif                            
+                        @else
+                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            
+                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                            @else
+                                <td style="color: red" >{{$seller->municipio}}</td>
                             @endif
                         @endif
                         
 
-                        @if ($seller->reclamacion == 1) 
-                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
-                            
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->mesa}}</td>
-                            @endif                            
-                        @else
-                            @if ($seller->gob1 <> null && $seller->e14 <> null)
-                            
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->mesa}}</td>
-                            @endif
-                        @endif
+                       
 
                         <td>
                             @if ($seller->gob1 <> null) 
-                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>                    
+                                <span style="color: green"><i class="fas fa-check-circle"></i> Enviado</i></span>                    
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                                <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
                             @endif
                         </td>
                         
                                              
                         <td style="font-size: 10px ; text-align:center">
                             @if($seller->e14 <> null)
-                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
+                                <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
                             @else
-                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
+                                <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
                             @endif
                         </td>
                         <td style="font-size: 10px ; text-align:center">
                             @if($seller->e14_2 <> null)
-                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
-                            @else
-                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
-                            @endif
+                            <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
+                        @else
+                            <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
+                        @endif
                         </td>
-                        <td style="font-size: 10px ; text-align:center">
-                            @if($seller->fotorec <> null)
-                                <i style="color: rgb(22, 161, 22)" class="fas fa-bullhorn"><P hidden>Foto</P></i>
-                            @else
-                                <i style="color: rgb(235, 62, 10)" class="fas fa-ban"><P hidden>Sin Foto</P></i>
-                            @endif
-                        </td>
+
+                       
+                            <td style="font-size: 10px ; text-align:center">
+                               @if ($seller->reclamacion ==1)
+                                    @if($seller->fotorec <> null)
+                                        <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
+                                    @else
+                                        <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
+                                    @endif
+                               @else
+                                    <span style="color: green">No requiere</span>
+                               @endif
+                               
+                               
+                            </td>
+                       
+                        
                         @if (Auth::user()->role == 4)
 
                         @else

@@ -19,10 +19,10 @@ class AdminController extends Controller
             $rol = 'Administrador';
         } else {
             if ($role == 2) {
-                $rol = 'Esctrutador';
+                $rol = 'Coordinador';
             } else {
                 if ($role == 3) {
-                    $rol = 'Coordinador';
+                    $rol = 'Delegado';
                 } else {
                     if ($role == 4) {
                         $rol = 'Consulta';

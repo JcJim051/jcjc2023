@@ -19,20 +19,11 @@
 
 <div class="card">
     <div class="card-body">
-        {!! Form::model($teller, ['route' => ['fotos',$teller], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-
-        {!! Form::hidden('id', null) !!}
+       
        
        
        <div class="row">
-            {{-- <div class="col-12">
-                {!! Form::label("e14", "Cargar E14") !!} <br>
-                {!! Form::file("e14", null, ["class" => "form-control disabled", 'data-teller' => $teller->id]) !!}<br>
-              
-                          
-                   
-                              
-            </div> --}}
+           
 
             <div class="col-12">
                 <div class="row">
@@ -116,22 +107,19 @@
             @else
                 
             @endif
+            <input hidden type="text" value="{{$teller->id}}" id="id" name="id">
+            <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
             {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
             {!! Form::close() !!}
 
        </div>
 
       
-        <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
+        
         
                 
        
-        {!! Form::hidden('codescru', null) !!}
-        {!! Form::hidden('codcor', null) !!}
-        {!! Form::hidden('status', null) !!}
-       <br>
-       
-        {!! Form::close() !!}
+        
     </div>
 </div>
 @stop

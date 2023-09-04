@@ -87,56 +87,57 @@ class TellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $teller)
-    {
+    // public function update(Request $request, Seller $teller)
+    // {
 
 
 
-        if($request->hasfile('e14')){
-            $image = $request->file('e14');
-            $imageName = $image->getClientOriginalName();
+    //     if($request->hasfile('e14')){
+    //         $image = $request->file('e14');
+    //         $imageName = $image->getClientOriginalName();
             
-            // Redimensionar la imagen
-            $resizedImage = Image::make($image)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
+    //         // Redimensionar la imagen
+    //         $resizedImage = Image::make($image)->resize(800, null, function ($constraint) {
+    //             $constraint->aspectRatio();
+    //             $constraint->upsize();
+    //         });
     
-            // Almacenar la imagen redimensionada
-            $path = 'E14-images/' . $imageName;
-            Storage::put($path, (string) $resizedImage->encode());
-    
-            $teller['e14'] = $path;
-
-        }
-        if($request->hasfile('fotorec')){
-            $image1 = $request->file('fotorec');
-            $imageName = $image1->getClientOriginalName();
+    //         // Almacenar la imagen redimensionada
+    //         $path = 'E14-images/' . $imageName;
+    //         Storage::put($path, (string) $resizedImage->encode());
+    //         dd($path);
+    //         $teller['e14'] = $path;
+           
+    //     }
+    //     if($request->hasfile('fotorec')){
+    //         $image1 = $request->file('fotorec');
+    //         $imageName = $image1->getClientOriginalName();
             
-            // Redimensionar la imagen
-            $resizedImage = Image::make($image1)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
+    //         // Redimensionar la imagen
+    //         $resizedImage = Image::make($image1)->resize(800, null, function ($constraint) {
+    //             $constraint->aspectRatio();
+    //             $constraint->upsize();
+    //         });
     
-            // Almacenar la imagen redimensionada
-            $path = 'reclamaciones-images/' . $imageName;
-            Storage::put($path, (string) $resizedImage->encode());
+    //         // Almacenar la imagen redimensionada
+    //         $path = 'reclamaciones-images/' . $imageName;
+    //         Storage::put($path, (string) $resizedImage->encode());
     
-            $teller['fotorec'] = $path;
+    //         $teller['fotorec'] = $path;
 
-        }
+    //     }
 
-        $teller->update($request->all());
+    //     $teller->update($request->all());
 
 
-        return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
-    }
+    //     return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
+    // }
 
     public function fotos(Request $request , Seller $teller  )
-    {  
+    {   
         
         $id = $request->id;
+        
         if ($request->input('e14_resized') !== null) {
             // Obtén la imagen redimensionada del campo oculto
             $e14Resized = $request->input('e14_resized');

@@ -130,12 +130,13 @@
                 { responsivePriority: 3, targets: 8 },
                 { responsivePriority: 2, targets: 2 },
                 { responsivePriority: 1, targets: 3 },
+                { target: 0, visible: false},
                 { target: 5, visible: false},
                 { target: 6, visible: false},
 
             ],
            
-            "dom":'BPrtip   ' ,
+            "dom":'frtip   ' ,
             
             "buttons": [
                 {

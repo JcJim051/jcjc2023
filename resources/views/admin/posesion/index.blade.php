@@ -24,7 +24,7 @@
                  
                     <th>Puesto</th>
                     <th>Mesa</th>
-                    <th>Nombre</th>
+                    <th>Testigo</th>
                     <th>Comisión</th>
                     <th>Codpuesto</th>
                     <th>status</th>

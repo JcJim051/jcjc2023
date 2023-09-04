@@ -4,7 +4,7 @@
 @section('title', 'Acreditar')
 
 @section('content_header')
-    {{--  <a href="{{route('admin.validacion.create')}}" class="btn btn-secondary btn-sm float-right">Agregar vendedor</a>  --}}
+    {{--  <a href="{{route('admin.validacion.create')}}" class="float-right btn btn-secondary btn-sm">Agregar vendedor</a>  --}}
     <h1 style="text-align:center">Testigos para Validación Ani</h1>
 @stop
 
@@ -148,6 +148,7 @@
              { responsivePriority: 3, targets: 8 },
              { responsivePriority: 2, targets: 2 },
              { responsivePriority: 1, targets: 3 },
+             { target: 0, visible: false},
              { target: 5, visible: false},
              { target: 6, visible: false},
 
@@ -168,7 +169,7 @@
              }
              );
          })
-     </SCript>
+     </script>
 @endsection
 
 

@@ -19,10 +19,10 @@
             </div>
             <div class="text-center card-body size-14">
 
-                @if ($rol == "Coordinador")
+                @if ($rol == "Delegado")
                     <div class="text-center text-info text-success">
                         <h4>Tu rol</h5>
-                        <h5>Coordinador puesto de votación   {{$seller1->puesto}}
+                        <h5>Delegado de puesto de votación   {{$seller1->puesto}}
                         {{ $seller1->municipio }}<br>
                         Código del Puesto: {{ Auth::user()->codpuesto }}<br>
                         </h5>
