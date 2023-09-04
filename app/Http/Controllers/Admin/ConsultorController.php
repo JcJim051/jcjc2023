@@ -50,6 +50,7 @@ public function getData()
                     ->where('mesa','=','Rem')
                     ->whereStatus("0")  
                     ->count(); 
+
         // fin Departamental
     $okv = DB::table('sellers')
                     ->select("codmun")

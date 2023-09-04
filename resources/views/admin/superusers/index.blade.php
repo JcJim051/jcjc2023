@@ -5,7 +5,7 @@
 
 @section('content_header')
     {{--  <a href="{{route('admin.superusers.create')}}" class="float-right btn btn-secondary btn-sm">Agregar vendedor</a>  --}}
-    <h1 style="text-align:center">Lista de testigos</h1>
+    <h1 style="text-align:center">Acreditacion de testigos electorales.</h1>
 @stop
 
 @section('content')
@@ -17,16 +17,23 @@
 
     <div class="card">
     <div class="card-body">
-    <table  id="example" class="display nowrap responsive " style="width:100%">
-        <thead>
+        <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 10px;" width ="100%">
+            <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
             <tr>
                 <th>#</th>
-                <th>Municipio</th>
+                <th>Codpuesto</th>
+                @if (Auth::user()->role == 3)
+                    
+                @else
+                    <th>Municipio</th>
+                @endif
+                <th>clase</th>
+                
                 <th>Puesto</th>
                 <th>Mesa</th>
                 <th>Nombre</th>
-                <th>Comision</th>
-                <th>Codpuesto</th>
+               
+                
                 <th>Status</th>
                 <th></th>
 
@@ -36,11 +43,40 @@
         <tbody>
             @foreach ($sellers as $seller)
             <tr>
+                
                 <td>{{ $seller->id }}</td>
-                {{-- <td hidden>{{ $seller->cedula }}</td>
-                <td hidden>{{ $seller->email }}</td> --}}
-                <td>{{ $seller->municipio }}</td>
-                @if ($seller->status <> 0)
+                    @if ($seller->status <> 0)
+                        <td style="color: rgb(0, 169, 14)" >{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
+                    @else
+                        <td style="color: red" >{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
+                    @endif
+                
+                    @if (Auth::user()->role == 3)
+                    
+                    @else
+                        @if ($seller->status <> 0)
+                            <td style="color: rgb(0, 169, 14)" >{{ $seller->municipio }}</td>
+                        @else
+                            <td style="color: red" >{{ $seller->municipio }}</td>
+                        @endif                    
+                    @endif
+                
+                    @if ($seller->codzon == 99)
+                        @if ($seller->status <> 0)
+                            <td style="color: rgb(0, 169, 14)" >Rural</td>
+                        @else
+                            <td style="color: red" >Rural</td>
+                        @endif                         
+                    @else
+                        @if ($seller->status <> 0)
+                            <td style="color: rgb(0, 169, 14)" >Urbano</td>
+                        @else
+                            <td style="color: red" >Urbano</td>
+                        @endif     
+                    @endif
+                
+               
+                    @if ($seller->status <> 0)
                         <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                     @else
                         <td style="color: red" >{{$seller->puesto}}</td>
@@ -53,9 +89,14 @@
                         <td style="color: red" >{{$seller->mesa}}</td>
                     @endif
                 {{--  <td>{{$seller->cedula}}</td>  --}}
-                <td>{{$seller->nombre}}</td>
-                <th>{{$seller->codescru}}</th>
-                <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
+                    @if ($seller->status <> 0)
+                        <td style="color: rgb(0, 169, 14)" >{{$seller->nombre}}</td>
+                    @else
+                        <td style="color: red" >{{$seller->nombre}}</td>
+                    @endif    
+                    
+                
+               
                 <td style="font-size: 20px ; text-align:center">
                     @if($seller->status == 1)
                         <i style="color: rgb(22, 161, 22)" class="fas fa-vote-yea"><p hidden>listo</p></i>
@@ -118,25 +159,19 @@
        $('#example').DataTable({
              
             searchPanes: {
-                layout: 'columns-6',
+                layout: 'columns-8',
                 initCollapsed: true
             },
             "pageLength": 25,
             
             "columnDefs": [
-                {searchPanes: {show: true},targets: [7]},
-                
-                { responsivePriority: 10002, targets: 0 },
-                { responsivePriority: 3, targets: 8 },
-                { responsivePriority: 2, targets: 2 },
-                { responsivePriority: 1, targets: 3 },
+                {searchPanes: {show: true},targets: []},
                 { target: 0, visible: false},
-                { target: 5, visible: false},
-                { target: 6, visible: false},
+              
 
             ],
            
-            "dom":'frtip   ' ,
+            "dom":'Prtip' ,
             
             "buttons": [
                 {

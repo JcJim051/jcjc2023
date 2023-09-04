@@ -354,16 +354,6 @@ return [
     ]
 ],
 [
-    'text' => 'mesas de crisis',
-    'route'  => 'admin.pmu.index',
-    'icon' => 'fas fa-headset',
-    'can'  => 'Superuser-administrador-crisis',
-
-
-    ],
-
-
-[
     'text' => 'Acreditar Testigos',
     'route'  => 'admin.superusers.index',
     'icon' => 'fas fa-fw fa-user',
@@ -394,14 +384,14 @@ return [
 
 
     ],
-    [
-        'text' => 'Enviar Fotos E14',
-        'route'  => 'admin.qr.index',
-        'icon' => 'fas fa-camera',
-        'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+    // [
+    //     'text' => 'Enviar Fotos E14',
+    //     'route'  => 'admin.qr.index',
+    //     'icon' => 'fas fa-camera',
+    //     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
     
     
-        ],
+    //     ],
     [
     'text' => 'Reportar escrutinio',
     'route'  => 'admin.escrutinio.index',
@@ -439,6 +429,14 @@ return [
     'route'  => 'admin.descargas.index',
     'icon' => 'fas fa- fa-store-alt',
     'can'  => 'Superuser',
+
+],
+[
+    'text' => 'mesas de crisis',
+    'route'  => 'admin.pmu.index',
+    'icon' => 'fas fa-headset',
+    'can'  => 'Superuser-administrador-crisis',
+
 
 ],
 [   'text' => 'Master de Auditoria',
