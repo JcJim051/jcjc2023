@@ -130,13 +130,13 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/5.0.0/pica.min.js"></script>
  
+
 {{-- <script>
-    function handleImageUpload() {
-        const e14Input = document.getElementById('e14Input');
-        const e14Preview = document.getElementById('e14Preview');
-        const e14Resized = document.getElementById('e14Resized');
-        const file = e14Input.files[0];
-        
+    function handleImageUpload(inputId, previewId, resizedId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const resized = document.getElementById(resizedId);
+        const file = input.files[0];
 
         if (file) {
             const reader = new FileReader();
@@ -146,7 +146,7 @@
                 img.src = e.target.result;
 
                 img.onload = function () {
-                    const targetWidth = 800; // Adjust the desired width
+                    const targetWidth = 300; // Ajustar el ancho deseado
                     const targetHeight = img.height * (targetWidth / img.width);
 
                     const canvas = document.createElement('canvas');
@@ -156,25 +156,26 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
 
-                    pica().resize(canvas, e14Preview, {
-                        quality: 0.7,
+                    pica().resize(canvas, preview, {
+                        quality: 0.3,
                     });
 
-                    // Convert the resized image to data URL and set it to the hidden input field
+                    // Convertir la imagen redimensionada en una URL de datos y establecerla en el campo de entrada oculto
                     canvas.toBlob(function (blob) {
                         const reader = new FileReader();
                         reader.onload = function () {
-                            e14Resized.value = reader.result;
+                            resized.value = reader.result;
                         };
                         reader.readAsDataURL(blob);
                     });
                 };
             };
           
-            reader.readAsDataURL(file,);
+            reader.readAsDataURL(file);
         }
     }
 </script> --}}
+
 <script>
     function handleImageUpload(inputId, previewId, resizedId) {
         const input = document.getElementById(inputId);
@@ -190,7 +191,7 @@
                 img.src = e.target.result;
 
                 img.onload = function () {
-                    const targetWidth = 800; // Ajustar el ancho deseado
+                    const targetWidth = 300; // Ajustar el ancho deseado
                     const targetHeight = img.height * (targetWidth / img.width);
 
                     const canvas = document.createElement('canvas');
@@ -198,10 +199,21 @@
                     canvas.height = targetHeight;
 
                     const ctx = canvas.getContext('2d');
+                    
+                    // Dibuja la imagen en blanco y negro
                     ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+                    const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+                    const data = imageData.data;
+                    for (let i = 0; i < data.length; i += 4) {
+                        const grayscale = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                        data[i] = grayscale;
+                        data[i + 1] = grayscale;
+                        data[i + 2] = grayscale;
+                    }
+                    ctx.putImageData(imageData, 0, 0);
 
                     pica().resize(canvas, preview, {
-                        quality: 0.7,
+                        quality: 0.3,
                     });
 
                     // Convertir la imagen redimensionada en una URL de datos y establecerla en el campo de entrada oculto
