@@ -298,7 +298,7 @@
         }
         
         // Llama a la función de actualización cada cierto intervalo de tiempo
-        setInterval(actualizarGraficos, 3000); // Actualiza cada 5 segundos, ajusta según tus necesidades
+        setInterval(actualizarGraficos, 300000); // Actualiza cada 5 segundos, ajusta según tus necesidades
     </script>
 @stop
 

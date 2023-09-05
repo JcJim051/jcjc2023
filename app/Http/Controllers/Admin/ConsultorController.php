@@ -140,8 +140,8 @@ public function getData()
             } else {
                 $lablemun =  DB::table('sellers')
                 ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->where('municipio','<>','VILLAVICENCIO')
                 ->where('cod_ruta','=', $ruta)
+                ->where('municipio','<>','VILLAVICENCIO')
                 ->groupBy('municipio')
                 ->get();
             }
