@@ -19,6 +19,7 @@ class PmuController extends Controller
     {
         $role = auth()->user()->role;
         $codigo_zona = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
         
@@ -31,7 +32,7 @@ class PmuController extends Controller
                     } else {
                         // 0 = municipios
                         if ($municipio == 0) {
-                            $pmu = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->get();
+                            $pmu = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->where('cod_ruta' , $ruta)->get();
                         } else {
                             $pmu = Seller::where('mesa', '<>', 'Rem')->get();
                         }

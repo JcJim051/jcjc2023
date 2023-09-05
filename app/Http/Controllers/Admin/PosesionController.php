@@ -18,6 +18,8 @@ class PosesionController extends Controller
     {
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
+        
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
@@ -27,7 +29,7 @@ class PosesionController extends Controller
                 $sellers = Seller::where('codmun' , 001)->get();
             } else {
                if ($municipio == 0) {
-                $sellers = Seller::where('codmun' ,'<>', '001')->get();
+                $sellers = Seller::where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
                } else {
                 $sellers = Seller::all();
                }            

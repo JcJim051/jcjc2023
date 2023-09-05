@@ -17,6 +17,7 @@ class VotantesController extends Controller
     {
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
@@ -28,7 +29,7 @@ class VotantesController extends Controller
                         $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'=', '001')->get();
                    } else {
                     if ($municipio == 0) {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->get();
+                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
                        } else {
                         $sellers = Seller::where('mesa','<>', 'Rem')->get();
                        }    

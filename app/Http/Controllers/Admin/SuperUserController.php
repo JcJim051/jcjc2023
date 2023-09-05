@@ -22,6 +22,7 @@ class SuperUserController extends Controller
 
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
@@ -35,7 +36,7 @@ class SuperUserController extends Controller
                     } else {
                         // 0 = municipios
                         if ($municipio == 0) {
-                            $sellers = Seller::where('codmun' , '<>', 001)->get();
+                            $sellers = Seller::where('codmun' , '<>', 001)->where('cod_ruta' , $ruta)->get();
                         } else {
                             $sellers = Seller::all();
                         }

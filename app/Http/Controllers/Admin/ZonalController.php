@@ -18,26 +18,11 @@ class ZonalController extends Controller
     {
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
       
-        
-       
-
-
-        $resultados = Seller::pluck('gob1')->toArray();
-
-        // Calcular la desviación estándar
-        $desviacion_estandar = DB::table('sellers')->whereNotNull('gob1')->select(DB::raw('STDDEV(gob1) as desviacion_estandar'))->value('desviacion_estandar');
-                
-
-
-
-      
-
-
-
                 if ($role == 1) {
                     // 1 = villao
                     if ($municipio == 1) {
@@ -46,7 +31,7 @@ class ZonalController extends Controller
                     } else {
                         // 0 = municipios
                         if ($municipio == 0) {
-                            $zonal = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->get();
+                            $zonal = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->where('cod_ruta' , $ruta)->get();
                         } else {
                             $zonal = Seller::where('mesa', '<>', 'Rem')->get();
                         }

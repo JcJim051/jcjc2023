@@ -32,6 +32,7 @@ class CreateSellersTable extends Migration
             $table->string('telefono')->nullable();
             $table->string('dondevota')->nullable();
             $table->foreign('dondevota')->references('codpuesto')->on('puestos')->onUpdate('cascade');
+            $table->string('cod_ruta')->nullable();
             $table->string('codescru')->nullable();
             $table->string('codcor')->nullable();
             $table->string('codmesa_crisis')->nullable();

@@ -19,6 +19,7 @@ class ZonalrController extends Controller
     {
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
@@ -45,7 +46,7 @@ class ZonalrController extends Controller
             } else {
                 // 0 = municipios
                 if ($municipio == 0) {
-                    $data = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->get();
+                    $data = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->where('cod_ruta' , $ruta)->get();
                 } else {
                     $data = Seller::where('mesa', '<>', 'Rem')->get();
                 }
