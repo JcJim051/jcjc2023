@@ -300,13 +300,13 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => false,
         ],
-        // [
-        //     'text' => 'e15',
-        //     'topnav_right' => true,
-        //     // 'route'  => 'admin.e15.index',
-        //     'can'  => 'solo_super',
+        // // [
+        // //     'text' => 'e15',
+        // //     'topnav_right' => true,
+        // //     // 'route'  => 'admin.e15.index',
+        // //     'can'  => 'solo_super',
 
-        // ],
+        // // ],
         
        
 

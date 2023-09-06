@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-       <h4> REPORTE DE FOTO1  <span style="color:rgb(50, 135, 205)">{{ $teller->puesto}} MESA {{ $teller->mesa}}</span> </h4>
+       <h4> REPORTE FOTO 3  <span style="color:rgb(50, 135, 205)">{{ $foto->puesto}} MESA {{ $foto->mesa}}</span> </h4>
        <!-- Agrega este script en la sección <head> de tu página -->
        
 
@@ -25,35 +25,35 @@
        <div class="row">
            
 
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-12">
-                        {!! Form::open(['route' => 'fotos', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            {!! Form::label("e14", "Cargar E14 hoja 1") !!} <br>
-                            {!! Form::file("e14", ["class" => "fole-control disabled", 'data-teller' => $teller->id, 'id' => 'e14Input', 'onchange' => 'handleImageUpload("e14Input", "e14Preview", "e14Resized")']) !!}<br>
-                            <img hidden id="e14Preview" src="" alt="E14 Preview" style="max-width: 300px; max-height: 300px;"><br>
-                            {!! Form::hidden("e14_resized", "", ['id' => 'e14Resized']) !!} <!-- Campo oculto para la imagen redimensionada -->
-                       
-                    </div> 
-                    <div class="col-sm-6 col-xs-12">
-                        @if ($teller->e14 == null)
 
-                        @else
-                        <div class="row">
-                            <div class="col-sm-6 col-x-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Hoja 1</a>
+           <div class="col-12">
+            {!! Form::open(['route' => 'reclamacion', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::label("fotorec", "Cargar foto de la reclamacion") !!} <br>
+                            {!! Form::file("fotorec", ["class" => "file-control disabled", 'data-foto' => $foto->id, 'id' => 'fotorecInput', 'onchange' => 'handleImageUpload("fotorecInput", "fotorecPreview", "fotorecResized")']) !!}<br>
+                            <img hidden id="fotorecPreview" src="" alt="fotorec Preview" style="max-width: 300px; max-height: 300px;">
+                            {!! Form::hidden("fotorec_resized", "", ['id' => 'fotorecResized']) !!} <!-- Campo oculto para la imagen redimensionada -->
+                            
+                            
+                        <div class="col-sm-6 col-xs-12">
+                            <br>
+                            @if ($foto->fotorec == null)
+            
+                            @else
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->fotorec) }}">Ver reclamacion cargada</a>
+                                </div>
                             </div>
+            
+                            @endif
+                            <br>
                         </div>
-
-                        @endif
-                        
-                    </div>
-                </div>
-            </div>
-            <input hidden type="text" value="{{$teller->id}}" id="id" name="id">
+                       
+                </div> 
+           
+            <input hidden type="text" value="{{$foto->id}}" id="id" name="id">
             <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
             {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
-            
             {!! Form::close() !!}
 
        </div>

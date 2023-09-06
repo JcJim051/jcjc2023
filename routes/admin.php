@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\AfluenciaController;
 use App\Http\Controllers\Admin\QrController;
 use App\Http\Controllers\Admin\ActualizarController;
 use App\Http\Controllers\Admin\PmuController;
-
+use App\Http\Controllers\Admin\FotosController;
 
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
 
@@ -52,7 +52,7 @@ Route::resource('tablero', TableroController::class)->names('admin.tablero');
 Route::resource('votantes', VotantesController::class)->names('admin.votantes');
 Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
 Route::resource('qr', QrController::class)->names('admin.qr');
-
+Route::resource('fotos', FotosController::class)->names('admin.fotos');
 
 
 Route::get('get-data', 'App\Http\Controllers\Admin\ConsultorController@getData')->name('getData');
@@ -63,5 +63,13 @@ Route::get('get-resultados', 'App\Http\Controllers\Admin\ResultadosController@ge
 
 Route::post('/actualizar-registros', 'App\Http\Controllers\Admin\ActualizarController@actualizarRegistros')->name('actualizarRegistros')->middleware('web');
 Route::post('fotos-redimensionada', 'App\Http\Controllers\Admin\TellerController@fotos')->name('fotos');
+Route::post('foto2-redimensionada', 'App\Http\Controllers\Admin\FotosController@segundafoto')->name('segundafoto');
+Route::post('foto3-redimensionada', 'App\Http\Controllers\Admin\FotosController@reclamacion')->name('reclamacion');
+
+// Route::get('admin/foto1/{teller}', 'App\Http\Controllers\Admin\TellerController@foto1')->name('admin.tellers.foto1');
+// Route::get('admin/foto2/{teller}', 'App\Http\Controllers\Admin\TellerController@foto2')->name('admin.tellers.foto2');
+// Route::get('admin/foto3/{teller}', 'App\Http\Controllers\Admin\TellerController@foto3')->name('admin.tellers.foto3');
+
+
 
 Route::resource('pmu', PmuController::class)->names('admin.pmu');

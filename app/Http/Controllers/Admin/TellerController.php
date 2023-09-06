@@ -77,9 +77,19 @@ class TellerController extends Controller
     }
 
     public function show(Seller $teller)
-    {
+    {   
            return view('admin.tellers.edit1', compact('teller'));
     }
+
+    // public function foto2(Seller $teller)
+    // {   
+    //        return view('admin.tellers.edit2', compact('teller'));
+    // }
+
+    // public function foto3(Seller $teller)
+    // {   
+    //        return view('admin.tellers.edit3', compact('teller'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -91,42 +101,6 @@ class TellerController extends Controller
     public function update(Request $request, Seller $teller)
     {
 
-
-
-        if($request->hasfile('e14')){
-            $image = $request->file('e14');
-            $imageName = $image->getClientOriginalName();
-            
-            // Redimensionar la imagen
-            $resizedImage = Image::make($image)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-    
-            // Almacenar la imagen redimensionada
-            $path = 'E14-images/' . $imageName;
-            Storage::put($path, (string) $resizedImage->encode());
-            dd($path);
-            $teller['e14'] = $path;
-           
-        }
-        if($request->hasfile('fotorec')){
-            $image1 = $request->file('fotorec');
-            $imageName = $image1->getClientOriginalName();
-            
-            // Redimensionar la imagen
-            $resizedImage = Image::make($image1)->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-    
-            // Almacenar la imagen redimensionada
-            $path = 'reclamaciones-images/' . $imageName;
-            Storage::put($path, (string) $resizedImage->encode());
-    
-            $teller['fotorec'] = $path;
-
-        }
 
         $teller->update($request->all());
 
@@ -204,9 +178,9 @@ class TellerController extends Controller
             $teller->save();
         }
         
-
+        $foto = $id;
        
-        return redirect()->route('admin.tellers.index')->with('info', 'Reporte de votos se actualizó con Éxito');
+        return redirect()->route('admin.fotos.edit',compact('foto'))->with('info', 'Primera cara del E14 enviada con Éxito');
     }
 
 }

@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-       <h4> REPORTE DE FOTO1  <span style="color:rgb(50, 135, 205)">{{ $teller->puesto}} MESA {{ $teller->mesa}}</span> </h4>
+       <h4> REPORTE FOTO 2  <span style="color:rgb(50, 135, 205)">{{ $foto->puesto}} MESA {{ $foto->mesa}}</span> </h4>
        <!-- Agrega este script en la sección <head> de tu página -->
        
 
@@ -25,23 +25,24 @@
        <div class="row">
            
 
+
             <div class="col-12">
                 <div class="row">
                     <div class="col-12">
-                        {!! Form::open(['route' => 'fotos', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            {!! Form::label("e14", "Cargar E14 hoja 1") !!} <br>
-                            {!! Form::file("e14", ["class" => "fole-control disabled", 'data-teller' => $teller->id, 'id' => 'e14Input', 'onchange' => 'handleImageUpload("e14Input", "e14Preview", "e14Resized")']) !!}<br>
-                            <img hidden id="e14Preview" src="" alt="E14 Preview" style="max-width: 300px; max-height: 300px;"><br>
-                            {!! Form::hidden("e14_resized", "", ['id' => 'e14Resized']) !!} <!-- Campo oculto para la imagen redimensionada -->
+                        {!! Form::open(['route' => 'segundafoto', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                            {!! Form::label("e14_2", "Cargar E14 hoja 2") !!} <br>
+                            {!! Form::file("e14_2", ["class" => "fole-control disabled", 'data-foto' => $foto->id, 'id' => 'e14_2Input', 'onchange' => 'handleImageUpload("e14_2Input", "e14_2Preview", "e14_2Resized")']) !!}<br>
+                            <img hidden id="e14_2Preview" src="" alt="e14_2 Preview" style="max-width: 300px; max-height: 300px;"><br>
+                            {!! Form::hidden("e14_2_resized", "", ['id' => 'e14_2Resized']) !!} <!-- Campo oculto para la imagen redimensionada -->
                        
                     </div> 
                     <div class="col-sm-6 col-xs-12">
-                        @if ($teller->e14 == null)
+                        @if ($foto->e14_2 == null)
 
                         @else
                         <div class="row">
                             <div class="col-sm-6 col-x-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Hoja 1</a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver E14 hoja 2</a>
                             </div>
                         </div>
 
@@ -50,10 +51,13 @@
                     </div>
                 </div>
             </div>
-            <input hidden type="text" value="{{$teller->id}}" id="id" name="id">
+            
+
+            
+           
+            <input hidden type="text" value="{{$foto->id}}" id="id" name="id">
             <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
             {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
-            
             {!! Form::close() !!}
 
        </div>
