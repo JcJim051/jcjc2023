@@ -300,13 +300,13 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => false,
         ],
-        // // [
-        // //     'text' => 'e15',
-        // //     'topnav_right' => true,
-        // //     // 'route'  => 'admin.e15.index',
-        // //     'can'  => 'solo_super',
+        // [
+        //     'text' => 'e15',
+        //     'topnav_right' => true,
+        //     // 'route'  => 'admin.e15.index',
+        //     'can'  => 'solo_super',
 
-        // // ],
+        // ],
         
        
 
@@ -326,31 +326,31 @@ return [
             // 'can'  => 'Superuser-administrador-consultor-auditor',
             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
         ],
-        [   'text'        => 'Asistencia de testigos',
-            'route'         => 'admin.asistencia.index',
-            'icon'        => 'fas fa-user-lock',
-            'label_color' => 'primary',
-            // 'can'  => 'Superuser-administrador-consultor-auditor',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
-        ],
+        // [   'text'        => 'Asistencia de testigos',
+        //     'route'         => 'admin.asistencia.index',
+        //     'icon'        => 'fas fa-user-lock',
+        //     'label_color' => 'primary',
+        //     // 'can'  => 'Superuser-administrador-consultor-auditor',
+        //     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+        // ],
        
        
-        [   'text'        => 'Afluencia de votantes',
-            'route'         => 'admin.afluencia.index',
-            'icon'        => 'fas fa-user-lock',
-            'label_color' => 'primary',
-            // 'can'  => 'Superuser-administrador-consultor-auditor',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
-         ],
-        [
-            'text'        => 'Resultados',
-            'route'         => 'admin.resultados.index',
-            'icon'        => 'fas fa-flag',
-            'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+        // [   'text'        => 'Afluencia de votantes',
+        //     'route'         => 'admin.afluencia.index',
+        //     'icon'        => 'fas fa-user-lock',
+        //     'label_color' => 'primary',
+        //     // 'can'  => 'Superuser-administrador-consultor-auditor',
+        //     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+        //  ],
+        // [
+        //     'text'        => 'Resultados',
+        //     'route'         => 'admin.resultados.index',
+        //     'icon'        => 'fas fa-flag',
+        //     'label_color' => 'primary',
+        //     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
             
         
-        ],
+        // ],
     ]
 ],
 [
@@ -360,30 +360,30 @@ return [
     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 ],
-[
-    'text' => 'Reporte de asistencia',
-    'route'  => 'admin.posesion.index',
-    'icon' => 'fas fa-user-check',
-    'can'  => 'Superuser-escrutador-coordinador',
+// [
+//     'text' => 'Reporte de asistencia',
+//     'route'  => 'admin.posesion.index',
+//     'icon' => 'fas fa-user-check',
+//     'can'  => 'Superuser-escrutador-coordinador',
 
 
-    ],
-    [
-        'text' => 'Reportar afluencia',
-        'route'  => 'admin.votantes.index',
-        'icon' => 'fas fa-vote-yea',
-        'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+//     ],
+//     [
+//         'text' => 'Reportar afluencia',
+//         'route'  => 'admin.votantes.index',
+//         'icon' => 'fas fa-vote-yea',
+//         'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
     
     
-        ],
-    [
-    'text' => 'Reportar E14',
-    'route'  => 'admin.tellers.index',
-    'icon' => 'fas fa-person-booth',
-    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+//         ],
+//     [
+//     'text' => 'Reportar E14',
+//     'route'  => 'admin.tellers.index',
+//     'icon' => 'fas fa-person-booth',
+//     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 
-    ],
+//     ],
     // [
     //     'text' => 'Enviar Fotos E14',
     //     'route'  => 'admin.qr.index',
@@ -392,24 +392,24 @@ return [
     
     
     //     ],
-    [
-    'text' => 'Reportar escrutinio',
-    'route'  => 'admin.escrutinio.index',
-    'icon' => 'fas fa-fw fa-plus-circle ',
-    'can'  => 'Superuser',
+//     [
+//     'text' => 'Reportar escrutinio',
+//     'route'  => 'admin.escrutinio.index',
+//     'icon' => 'fas fa-fw fa-plus-circle ',
+//     'can'  => 'Superuser',
         
 
-    ],
+//     ],
 
-[  
+// [  
 
-    'text' => 'Ver E14 y Reclamaciones',
-    'route'  => 'admin.consultas.index',
-    'icon' => 'fas fa-fw fa-vote-yea',
-    'can'  => 'Superuser-administrador-escrutador-consultor',
+//     'text' => 'Ver E14 y Reclamaciones',
+//     'route'  => 'admin.consultas.index',
+//     'icon' => 'fas fa-fw fa-vote-yea',
+//     'can'  => 'Superuser-administrador-escrutador-consultor',
         
     
-],
+// ],
 
 [   'text' => 'Validación Ani y Contacto',
     'route'  => 'admin.ani.index',
@@ -417,13 +417,13 @@ return [
     'can'  => 'Superuser-administrador-consultor-validador',
 ],
 
-[   'text' => 'Verificación de escrutinios',
-    'icon' => 'fas fa-thermometer-full',
-    'route'  => 'admin.revision.index',
-    'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+// [   'text' => 'Verificación de escrutinios',
+//     'icon' => 'fas fa-thermometer-full',
+//     'route'  => 'admin.revision.index',
+//     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
 
 
-],
+// ],
 
 [   'text' => 'Descargar base de datos',
     'route'  => 'admin.descargas.index',
@@ -431,57 +431,57 @@ return [
     'can'  => 'Superuser',
 
 ],
-[
-    'text' => 'mesas de crisis',
-    'route'  => 'admin.pmu.index',
-    'icon' => 'fas fa-headset',
-    'can'  => 'Superuser-administrador-crisis',
+// [
+//     'text' => 'mesas de crisis',
+//     'route'  => 'admin.pmu.index',
+//     'icon' => 'fas fa-headset',
+//     'can'  => 'Superuser-administrador-crisis',
 
 
-],
-[   'text' => 'Master de Auditoria',
-    'icon'        => 'fas fa-exclamation-circle',  
-    'can'  => 'Superuser-administrador-auditor-escrutador',  
-    'submenu' => [
-        [
-            'text'        => 'Escrutinio Preconteo',
-            'route'         => 'admin.zonal.index',
-            'icon'        => 'fas fa-battery-empty',
-            'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+// ],
+// [   'text' => 'Master de Auditoria',
+//     'icon'        => 'fas fa-exclamation-circle',  
+//     'can'  => 'Superuser-administrador-auditor-escrutador',  
+//     'submenu' => [
+//         [
+//             'text'        => 'Escrutinio Preconteo',
+//             'route'         => 'admin.zonal.index',
+//             'icon'        => 'fas fa-battery-empty',
+//             'label_color' => 'primary',
+//             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
             
         
-        ],
-        [
-            'text'        => 'Escrutinio Zonal',
-            'route'         => 'admin.zonalr.index',
-            'icon'        => 'fas fa-battery-quarter',
-            'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
-        ],
-        // [
-        //     'text'        => 'Escrutinio Municipal',
-        //     'route'         => 'admin.municipal.index',
-        //     'icon'        => 'fas fa-battery-half',
-        //     'label_color' => 'success',
-        //     'can'  => 'Superuser-administrador-consultor-auditor',
-        // ],
+//         ],
+//         [
+//             'text'        => 'Escrutinio Zonal',
+//             'route'         => 'admin.zonalr.index',
+//             'icon'        => 'fas fa-battery-quarter',
+//             'label_color' => 'primary',
+//             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+//         ],
+//         // [
+//         //     'text'        => 'Escrutinio Municipal',
+//         //     'route'         => 'admin.municipal.index',
+//         //     'icon'        => 'fas fa-battery-half',
+//         //     'label_color' => 'success',
+//         //     'can'  => 'Superuser-administrador-consultor-auditor',
+//         // ],
        
-        // [   'text'        => 'Escrutinio Departamental',
-        //     'route'         => 'admin.departamental.index',
-        //     'icon'        => 'fas fa-battery-full',
-        //     'label_color' => 'primary',
-        //     'can'  => 'Superuser-administrador-consultor-auditor',
-        // ],
-        [   'text'        => 'Tablero de cambios',
-            'route'         => 'admin.tablero.index',
-            'icon'        => 'fas fa-chart-line',
-            'label_color' => 'primary',
-            'can'  => 'Superuser-administrador-consultor-auditor',
-        ],
+//         // [   'text'        => 'Escrutinio Departamental',
+//         //     'route'         => 'admin.departamental.index',
+//         //     'icon'        => 'fas fa-battery-full',
+//         //     'label_color' => 'primary',
+//         //     'can'  => 'Superuser-administrador-consultor-auditor',
+//         // ],
+//         [   'text'        => 'Tablero de cambios',
+//             'route'         => 'admin.tablero.index',
+//             'icon'        => 'fas fa-chart-line',
+//             'label_color' => 'primary',
+//             'can'  => 'Superuser-administrador-consultor-auditor',
+//         ],
     
-    ]
-],
+//     ]
+// ],
 [    'header' => 'Centro de Datos',
     'can'  => 'Superuser',
 ],

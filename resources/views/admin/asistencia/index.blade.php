@@ -297,8 +297,13 @@
                         
         }
         
-        // Llama a la función de actualización cada cierto intervalo de tiempo
-        setInterval(actualizarGraficos, 300000); // Actualiza cada 5 segundos, ajusta según tus necesidades
+        $(document).ready(function() {
+            // Llama a la función de actualización una vez al cargar la página
+            actualizarGraficos();
+
+            // Llama a la función de actualización cada 5 minutos
+            setInterval(actualizarGraficos, 300000);
+        });
     </script>
 @stop
 

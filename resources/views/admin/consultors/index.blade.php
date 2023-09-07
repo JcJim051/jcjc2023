@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-sm-4 col-xs-12">
             <div class="info-box bg-gradient-warning">
                 <div class="info-box-content">
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-    </div> --}}
+    </div>
    
 
        
@@ -583,10 +583,15 @@
                 });
                     
     }
+        $(document).ready(function() {
+            // Llama a la función de actualización una vez al cargar la página
+            actualizarGraficos();
+
+            // Llama a la función de actualización cada 5 minutos
+            setInterval(actualizarGraficos, 300000);
+        });
     
-    // Llama a la función de actualización cada cierto intervalo de tiempo
-    setInterval(actualizarGraficos, 300000); // Actualiza cada 5 segundos, ajusta según tus necesidades
-</script>
+   </script>
 
 
 @endsection
