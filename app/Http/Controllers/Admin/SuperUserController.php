@@ -121,15 +121,34 @@ class SuperUserController extends Controller
     {
 
         
-        if ($request->email == null) {
-
-        } else {
+       if ($superuser->pdf == null) {
             $request->validate([
-
-                'email' => 'unique:sellers,email,' . $superuser->id,
-                'cedula' => 'unique:sellers,cedula,' . $superuser->id,
+                'email' => [
+                    'nullable',
+                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
+                ],
+                'cedula' => [
+                    'nullable',
+                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
+                ],
+                'pdf' => 'required|mimes:pdf', 
+                
+                         
             ]);
-        };
+        } else {
+                $request->validate([
+                'email' => [
+                    'nullable',
+                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
+                ],
+                'cedula' => [
+                    'nullable',
+                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
+                ],
+                            
+            ]);
+        }
+        
         if($request->hasfile('pdf')){
 
         $superuser['pdf']= $request->file('pdf')->getClientOriginalName();

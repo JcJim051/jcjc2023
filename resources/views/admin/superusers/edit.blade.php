@@ -36,7 +36,7 @@
 
         <div class="form-group"> {{-- A continuacion se usa laravel collective para crar el formulario --}}
             {!! Form::label("nombre", "Nombre") !!}
-            {!! Form::text("nombre", null, ["class" => "form-control", 'placeholder' => 'Ingrese su nombre']) !!}
+            {!! Form::text("nombre", null, ["class" => "form-control", 'placeholder' => 'Ingrese su nombre','required' => 'required']) !!}
 
             @error('nombre')
                 <span class="text-danger">{{$message}}</span>
@@ -57,7 +57,7 @@
 
             <div class="form-group">
                 {!! Form::label("cedula", "Cédula") !!}
-                {!! Form::text("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cédula']) !!}
+                {!! Form::text("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cédula', 'required' => 'required' ]) !!}
 
                 @error('cedula')
                     <span class="text-danger">{{$message}}</span>
@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 {!! Form::label("email", "Email") !!}
-                {!! Form::text("email", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su email']) !!}
+                {!! Form::text("email", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su email','required' => 'required']) !!}
 
                 @error('email')
                     <span class="text-danger">{{$message}}</span>
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6 ">
                             {!! Form::label("telefono", "Telefono") !!}
-                            {!! Form::text("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono']) !!}
+                            {!! Form::text("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono', 'required' => 'required']) !!}
             
                             @error('telefono')
                                 <span class="text-danger">{{$message}}</span>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="form-group col-sm-6">
                             {!! Form::label("banco", "Banco") !!}
-                            {!! Form::select("banco",[ 0 => 'Seleccione un banco','Nequi' => 'Nequi', 'Daviplata' => 'Daviplata' ], null, ["class" => "form-control disabled"]) !!}
+                            {!! Form::select("banco",[ null => 'Seleccione un banco','Nequi' => 'Nequi', 'Daviplata' => 'Daviplata',  'Ahorro_a_la_mano' => 'Ahorro a la mano' ], null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
             
                             @error('telefono')
                                 <span class="text-danger">{{$message}}</span>
@@ -104,7 +104,7 @@
             <div class="row">
                 <div class="col-sm-5 col-xs-12">
                     <label for=""> Puesto de votación </label><br>
-                    <select class="form-control js-example-basic-single" name="dondevota" style="width: 95%;">
+                    <select class="js-example-basic-single form-select" name="dondevota" style="width: 95%;" required>
                     
                     <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
                     
@@ -120,7 +120,7 @@
                 <div class="col-sm-5 col-xs-12">
 
                         {!! Form::label("pdf", "Pdf Cédula") !!} <br>
-                        {!! Form::file("pdf", null, ["class" => "form-control disabled"]) !!}
+                        {!! Form::file("pdf", null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
 
                         @error('pdf')
                             <span class="text-danger">{{$message}}</span>
