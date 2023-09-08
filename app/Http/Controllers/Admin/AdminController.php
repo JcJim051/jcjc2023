@@ -180,11 +180,33 @@ class AdminController extends Controller
         //total mesas listas por comision
         $tmlc =Seller::where('codescru', $escrutador)
                     ->where('status', '1')
+                    ->where('mesa','<>', 'Rem')
                     ->count();
         //total remanentes listos por comision
         $tremlc =Seller::where('codescru', $escrutador)
-        ->where('status', '1')
-        ->count();
+                ->where('mesa','=', 'Rem')
+                ->where('status', '1')
+                ->count();
+
+
+         //total mesas por ruta (bloque de municipios)
+         $tmrut =Seller::where('cod_ruta', $escrutador)
+            ->where('mesa','<>', 'Rem')            
+            ->count();
+        //total remanentes por ruta (bloque de municipios)
+        $tremrut =Seller::where('cod_ruta', $escrutador)
+        ->where('mesa','=', 'Rem')->count();
+        
+        //total mesas listas por ruta (bloque de municipios)
+        $tmlr =Seller::where('cod_ruta', $escrutador)
+                    ->where('status', '1')
+                    ->where('mesa','<>', 'Rem')
+                    ->count();
+        //total remanentes listos por ruta (bloque de municipios)
+        $tremlr =Seller::where('cod_ruta', $escrutador)
+                ->where('mesa','=', 'Rem')
+                ->where('status', '1')
+                ->count();
 
         $ttpc =Seller::where('codescru', $escrutador)
         ->where('mesa','<>', 'Rem')
@@ -203,7 +225,7 @@ class AdminController extends Controller
 
         //dd($data);
 
-    return view('admin.index', compact('rol', 'mun','seller' , 'seller1' ,'data','datas', 'dat', 'dats', 'not', 'nots','tmc','tremc', 'tml','treml','tmcom','tremcom', 'tmlc', 'tremlc','ttpc','trpc'));
+    return view('admin.index', compact('rol', 'mun','seller' , 'seller1' ,'data','datas', 'dat', 'dats', 'not', 'nots','tmc','tremc', 'tml','treml','tmcom','tremcom', 'tmlc', 'tremlc','ttpc','trpc','tmrut', 'tremrut', 'tmlr','tremlr' ));
 
 
 }

@@ -284,25 +284,16 @@ public function getData()
             ->orderBy('codzon', 'asc')
             ->get();
 
-    $ruta = auth()->user()->codzon;
-    $mun = auth()->user()->mun;
+            $ruta = auth()->user()->codzon;
+            $mun = auth()->user()->mun;
 
-   
 
-            if ($mun == 100) {
-                $lablemun =  DB::table('sellers')
-                ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->where('municipio','<>','VILLAVICENCIO')
-                ->groupBy('municipio')
-                ->get();
-            } else {
-                $lablemun =  DB::table('sellers')
-                ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
-                ->where('cod_ruta','=', $ruta)
-                ->where('municipio','<>','VILLAVICENCIO')
-                ->groupBy('municipio')
-                ->get();
-            }
+
+            $lablemun =  DB::table('sellers')
+            ->select('municipio', DB::raw('sum(status) as T'), DB::raw('count(*) - sum(status) as F'))
+            ->where('municipio','<>','VILLAVICENCIO')
+            ->groupBy('municipio')
+            ->get();
             
             
          

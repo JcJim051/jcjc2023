@@ -18,7 +18,7 @@
                 <h5>{{ $rol }}</h5>
             </div>
             <div class="text-center card-body size-14">
-
+                
                 @if ($rol == "Delegado")
                     <div class="text-center text-info text-success">
                         <h4>Tu rol</h5>
@@ -100,7 +100,6 @@
 
                 @else
                     @if ($rol == "Esctrutador")
-
                         <div class="text-center text-info text-success">
                             <h5>Tu rol</h5>
                             @if (Auth::user()->mun == 1)
@@ -110,8 +109,6 @@
                             @endif
                            
                         </div>
-
-
                         <div class="row">
                             <div class="col-3">
                                 <div class="small-box bg-info bg-gradient-warning">
@@ -193,10 +190,253 @@
                                 </div>
                             </div>   
                         </div>
+                    @else                    
+                        @if (Auth::user()->role == 2)
+                            @if (Auth::user()->mun == 1)
+                                <div class="row">
+                                    <div  class="col-sm-12 col-xs-12 ">
+                                        <div class="card card-success">
+                                            <div class="card-header">
+                                            <h3   class="card-title">Avence por Comisiones Auxiliares</h3>
+                                                <div class="card-tools">
+                                            </div>
+                                            <!-- /.card-tools -->
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body " >
+                                                <div class="chart">
+                                                    <div class="chartjs-size-monitor">
+            
+                                                        <canvas id="zonas" width="400" height="150" aria-label="" role="img"></canvas>
+            
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer">
+            
+                                            </div>
+                                            <!-- /.card-footer -->
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="text-center text-info text-success">
+                                    <h5>Tu rol</h5>
+                                    @if (Auth::user()->mun == 1)
+                                        <p>Escrutador comision Auxiliar escrutadora {{ Auth::user()->codzon }} <br></p>
+                                    @else
+                                    <p>Escrutador Municipal de {{$mun->municipio}} <br>Código del municipio: {{ Auth::user()->codzon }} </p>
+                                    @endif
+                                
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="small-box bg-info bg-gradient-warning">
+                                            <div class="inner">
+                                            <h3> {{$tmcom}}</h3>
+                                            <p>Total mesas en el municipio</p>
+                                            <h4> {{$tremcom}}</h4>
+                                            <p>Remanentes</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-store-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-3">
+                                        <div class="small-box bg-info ">
+                                            <div class="inner">
+                                            <h3> {{ $tmlc }}</h3>
+                                            <p>Mesas Acreditadas</p>
+                                            <h4> {{ $tremlc }}</h4>
+                                            <p>Remanentes</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-street-view"></i>
+                                            </div>
 
-                    @else
-                    Acreditación, reporte y seguimiento electoral.
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="small-box bg-info bg-gradient-danger">
+                                            <div class="inner">
+                                            <h3> {{ ($tmcom-$tmlc) }}</h3>
+                                            <p>Mesas faltantes</p>
+                                            <h4> {{ ($tremcom-$tremlc) }}</h4>
+                                            <p>Remanentes</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-user-slash"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <div class="small-box bg-info bg-gradient-success ">
+                                            <div class="inner">
+                                                <h3> 
+                                                    @if ($tmcom == 0)
+                                                    0
+                                                    @else
+                                                    {{round(($tmlc/$tmcom)*100,2) }}% 
+                                                    @endif
+                                                </h3>
+                                            <p>% de mesas Acreditadas</p>
+                                            <h4> 
+                                                @if ($tremcom == 0)
+                                                0
+                                                @else
+                                                {{round(($tremlc/$tremcom)*100,2) }}% 
+                                                @endif
+                                            </h4>
+                                        <p>% Remanentes</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="fas fa-user-check"></i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="info-box ">
+                                        <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Testigos Posesionados : {{$ttpc}}</span>
+                                            <span class="info-box-number">Remanentes Disponibles: {{$trpc}} </span>
+                                        
+                                        </div>
+                                    </div>   
+                                </div>               
+                            @endif
+                        @else
+                            @if (Auth::user()->role == 1)
+                                @if (Auth::user()->mun == 0)
+                                    <div class="text-center text-info text-success">
+                                        <p>Bloque de municipios número: {{ Auth::user()->codzon }} </p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="small-box bg-info bg-gradient-warning">
+                                                <div class="inner">
+                                                <h3> {{$tmrut}}</h3>
+                                                <p>Total mesas</p>
+                                                <h4> {{$tremrut}}</h4>
+                                                <p>Remanentes</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fas fa-store-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3">
+                                            <div class="small-box bg-info ">
+                                                <div class="inner">
+                                                <h3> {{ $tmlr }}</h3>
+                                                <p>Mesas Acreditadas</p>
+                                                <h4> {{ $tremlr }}</h4>
+                                                <p>Remanentes</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fas fa-street-view"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="small-box bg-info bg-gradient-danger">
+                                                <div class="inner">
+                                                <h3> {{ ($tmrut-$tmlr) }}</h3>
+                                                <p>Mesas faltantes</p>
+                                                <h4> {{ ($tremrut-$tremlr) }}</h4>
+                                                <p>Remanentes</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fas fa-user-slash"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3">
+                                            <div class="small-box bg-info bg-gradient-success ">
+                                                <div class="inner">
+                                                    <h3> 
+                                                        @if ($tmrut == 0)
+                                                        0
+                                                        @else
+                                                        {{round(($tmlr/$tmrut)*100,2) }}% 
+                                                        @endif
+                                                    </h3>
+                                                <p>% de mesas Acreditadas</p>
+                                                <h4> 
+                                                    @if ($tremrut == 0)
+                                                    0
+                                                    @else
+                                                    {{round(($tremlr/$tremrut)*100,2) }}% 
+                                                    @endif
+                                                </h4>
+                                            <p>% Remanentes</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fas fa-user-check"></i>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="info-box ">
+                                            <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Testigos Posesionados : {{$ttpc}}</span>
+                                                <span class="info-box-number">Remanentes Disponibles: {{$trpc}} </span>
+                                            
+                                            </div>
+                                        </div>   
+                                    </div> 
+                                @else
+                                    @if (Auth::user()->mun == 1)
+                                        <div class="row">
+                                            <div  class="col-sm-12 col-xs-12 ">
+                                                <div class="card card-success">
+                                                    <div class="card-header">
+                                                    <h3   class="card-title">Avence por Comisiones Auxiliares</h3>
+                                                        <div class="card-tools">
+                                                    </div>
+                                                    <!-- /.card-tools -->
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <div class="card-body " >
+                                                        <div class="chart">
+                                                            <div class="chartjs-size-monitor">
+                    
+                                                                <canvas id="zonas" width="400" height="150" aria-label="" role="img"></canvas>
+                    
+                                                            </div>
+                                                        </div>
+                    
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                    <div class="card-footer">
+                    
+                                                    </div>
+                                                    <!-- /.card-footer -->
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    @else
+                                        
+                                    @endif
+                                @endif
+                            @else
+                            @endif
+                        @endif
                     @endif
                 @endif
             </div>
@@ -209,42 +449,7 @@
             </div>
         </div>
 
-            @if (Auth::user()->role == 2)
-                @if (Auth::user()->mun == 1)
-                    <div class="row">
-                        <div  class="col-sm-12 col-xs-12 ">
-                            <div class="card card-success">
-                                <div class="card-header">
-                                <h3   class="card-title">Avence por Comisiones Auxiliares</h3>
-                                    <div class="card-tools">
-                                </div>
-                                <!-- /.card-tools -->
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body " >
-                                    <div class="chart">
-                                        <div class="chartjs-size-monitor">
-
-                                            <canvas id="zonas" width="400" height="150" aria-label="" role="img"></canvas>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-
-                                </div>
-                                <!-- /.card-footer -->
-                            </div>
-                        </div>
-                    </div>
-                @else
-                   
-                @endif
-            @else
-
-            @endif
+        
 
 
 @stop
@@ -301,7 +506,6 @@
             }
         });
    
-        
 
 
        
