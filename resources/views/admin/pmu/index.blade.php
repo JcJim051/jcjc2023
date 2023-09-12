@@ -70,8 +70,8 @@
                             @endif
                         </td>
                         <td>
-                            @if ($pmu->e14 <> null )
-                            <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
+                            @if ($pmu->e14 <> null && $pmu->e14_2 <> null)
+                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif

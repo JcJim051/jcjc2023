@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Resultados;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Seller;
 
 class AfluenciaController extends Controller
 {
@@ -15,10 +16,36 @@ class AfluenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-           
+    
+    {      $primera = DB::table('sellers as s1')
+                    ->join(DB::raw('(SELECT Codcor, AVG(reporte_1) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
+                        $join->on('s1.Codcor', '=', 's2.Codcor');
+                    })
+                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_1 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->whereRaw('s1.reporte_1 > s2.promedio * 1.3')
+                    ->get()
+                    ->toArray();
+            $segundo = DB::table('sellers as s1')
+                    ->join(DB::raw('(SELECT Codcor, AVG(reporte_2) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
+                        $join->on('s1.Codcor', '=', 's2.Codcor');
+                    })
+                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_2 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->whereRaw('s1.reporte_2 > s2.promedio * 1.3')
+                    ->get()
+                    ->toArray();
+            $tercero = DB::table('sellers as s1')
+                    ->join(DB::raw('(SELECT Codcor, AVG(reporte_3) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
+                        $join->on('s1.Codcor', '=', 's2.Codcor');
+                    })
+                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_3 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->whereRaw('s1.reporte_3 > s2.promedio * 1.3')
+                    ->get()
+                    ->toArray();
+                
+            
+            //dd($promedio);
    
-            return view('admin.afluencia.index' );
+            return view('admin.afluencia.index', compact('primera', 'segundo','tercero'));
 
     }
     public function getAfluencia()

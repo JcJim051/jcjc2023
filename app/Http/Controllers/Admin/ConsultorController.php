@@ -18,11 +18,17 @@ class ConsultorController extends Controller
 
      public function index()
      {   
+        $role = auth()->user()->role;
+        $escrutador = auth()->user()->codzon;
+        $ruta = auth()->user()->codzon;
+        $coordinador = auth()->user()->codpuesto;
+        $mun = auth()->user()->mun;
+
          $okd = DB::table('sellers')
-         ->select("status")
-         ->whereStatus("1")
-         ->where('mesa','<>','Rem')
-         ->count();
+                ->select("status")
+                ->whereStatus("1")
+                ->where('mesa','<>','Rem')
+                ->count();
 
          
          $nookd = DB::table('sellers')
@@ -164,12 +170,57 @@ class ConsultorController extends Controller
          $puestosm = DB::table('puestos')
                      ->where('mun','=','0')
                      ->count();
+                     
+        if ($role == 1) {
+            if ($mun == 1) {
+                $mesasok = DB::table('sellers')
+                    ->select('codcor', 'municipio', 'puesto', 
+                        DB::raw('COUNT(*) as mesas'), 
+                        DB::raw('SUM(status = 1) as mesas_ok'), 
+                        DB::raw('SUM(mesa = "Rem") as rem'),
+                        DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                    ->where('mesa', '<>', 'Rem') 
+                    ->where('codmun', '=', '001') 
+                    ->groupBy('codcor', 'municipio', 'puesto')
+                    ->orderBy('codcor')
+                    ->get();
+            } else {
+                if ($mun == 0) {
+                    $mesasok = DB::table('sellers')
+                             ->select('codcor', 'municipio', 'puesto', 
+                                 DB::raw('COUNT(*) as mesas'), 
+                                 DB::raw('SUM(status = 1) as mesas_ok'), 
+                                 DB::raw('SUM(mesa = "Rem") as rem'),
+                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                             ->where('mesa', '<>', 'Rem')
+                             ->where('cod_ruta' , $ruta)
+                             ->groupBy('codcor', 'municipio', 'puesto')
+                             ->orderBy('codcor')
+                             ->get();
+                } else {
+                    $mesasok = DB::table('sellers')
+                             ->select('codcor', 'municipio', 'puesto', 
+                                 DB::raw('COUNT(*) as mesas'), 
+                                 DB::raw('SUM(status = 1) as mesas_ok'), 
+                                 DB::raw('SUM(mesa = "Rem") as rem'),
+                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                             ->where('mesa', '<>', 'Rem')
+                             ->groupBy('codcor', 'municipio', 'puesto')
+                             ->orderBy('codcor')
+                             ->get();
+                }
+            }
+        } else {
+            $mesasok = null;
+        }
+                     
 
+        
                  
                      
-
+       
                      
-                 return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm', 'puestosd', 'puestosv' , 'puestosm'))
+        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm', 'puestosd', 'puestosv' , 'puestosm', 'mesasok'))
                  ->with('okd', $okd)
                  ->with('nookd', $nookd)
                  ->with('nookv', $nookv)

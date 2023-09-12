@@ -3,7 +3,11 @@
 @section('title', 'Resultados')
 
 @section('content_header')
-
+    <style>
+        .long-text {
+            white-space: nowrap;
+        }
+    </style>
 
 
     <h1 style="text-align: center">Indicadores de Afluencia de Votantes</h1>
@@ -11,72 +15,164 @@
 
 @section('content')
 
+<div class="card ">
    
-    <div class="row">
-        <div class="col-sm-4 col-xs-12">
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                    <div class="info-box ">
+                        <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Promedio votantes por mesa 9 am</span>
+                            <span  class="info-box-number"><span id="primer"></span></span>
+                        </div>
+                    </div>        
+            </div>        
+            
+            <div class="col-sm-4 col-xs-12">
                 <div class="info-box ">
                     <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Promedio votantes por mesa 9 am</span>
-                        <span  class="info-box-number"><span id="primer"></span></span>
+                        <span class="info-box-text">Promedio votantes por mesa 11 am</span>
+                        <span id="segundo" class="info-box-number">  </span>
                     </div>
                 </div>        
-        </div>        
-        
-        <div class="col-sm-4 col-xs-12">
-            <div class="info-box ">
-                <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Promedio votantes por mesa 11 am</span>
-                    <span id="segundo" class="info-box-number">  </span>
-                </div>
-            </div>        
-        </div>
-        <div class="col-sm-4 col-xs-12">
-            <div class="info-box ">
-                <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Promedio votantes por mesa 2 pm</span>
-                    <span class="info-box-number" id="tercero">  </span>
-                </div>
-            </div>        
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-12 col-xs-12">
-            <div class="card card-outline card-info">
-                <div class="card-header">
-                <h3 class="card-title" style="text-align: center"> Afluencia de Votantes en villavicencio por Zonas  </h3>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseContent">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div  id="collapseContent"  class="card-body " >
-                    
-                        <div class="chart">
-                            <div class="chartjs-size-monitor">
-                                <canvas id="zonas" width="400" height="130" aria-label="" role="img"></canvas>
-                            </div>
-                        </div>
-                    
-                   
-
-                   
-
-                </div>
-                <!-- /.card-body -->
-                
-                <!-- /.card-footer -->
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="info-box ">
+                    <span class="info-box-icon bg-info bg-success"><i class="far fa-flag"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Promedio votantes por mesa 2 pm</span>
+                        <span class="info-box-number" id="tercero">  </span>
+                    </div>
+                </div>        
             </div>
         </div>
-
-    </div>
-   
+    
+    
+    
+    
+        <div class="row">
+        
+            <div class="col-sm-4 col-xs-12">
+                    <table id="example" class="table display n+owrap table-bordered" style="width:100%; font-size: 10px;">
+                        <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
+                          
+                            <tr>
+                                <th>Municipio</th>
+                                <th>Puesto</th>
+                                <th>Reporte</th>
+                                <th>Promedio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($primera as $primera)
+                                                        
+                            <tr>
+                                <td> {{$primera->Municipio}}</td>
+                                <td> {{$primera->Puesto}}</td>
+                                <td>{{$primera->Reporte}}</td>
+                                <td>{{round ($primera->Promedio,0)}}</td>
+                            </tr>
+                            
+                            @endforeach
+                        </tbody>
+                    </table>          
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                
+                    <table id="example" class="table display n+owrap table-bordered" style="width:100%; font-size: 10px;">
+                        <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
+                            <tr>
+                            <tr>
+                                <th>Municipio</th>
+                                <th>Puesto</th>
+                               
+                                <th>Reporte</th>
+                                <th>Promedio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($segundo as $segundo)
+                                                        
+                            <tr>
+                                <td> {{$segundo->Municipio}}</td>
+                                <td> {{$segundo->Puesto}}</td>
+                                <td>{{$segundo->Reporte}}</td>
+                                <td>{{round ($segundo->Promedio,0)}}</td>
+                            </tr>
+                            
+                            @endforeach
+                        </tbody>
+                    </table>
+                
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                
+                    <table id="example" class="table display n+owrap table-bordered" style="width:100%; font-size: 10px;">
+                        <thead class="text-white" style="background-color: hsl(209, 21%, 40%)">
+                            
+                            <tr>
+                                <th>Municipio</th>
+                                <th>Puesto</th>
+                               
+                                <th>Reporte</th>
+                                <th>Promedio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($tercero as $tercero)
+                                                        
+                            <tr>
+                                <td> {{$tercero->Municipio}}</td>
+                                <td> {{$tercero->Puesto}}</td>
+                                <td>{{$tercero->Reporte}}</td>
+                                <td>{{round ($tercero->Promedio,0)}}</td>
+                            </tr>
+                            
+                            @endforeach
+                        </tbody>
+                    </table>
+                
+            </div>
+        
+        </div>
+        
+        
+        
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="card card-outline card-info">
+                    <div class="card-header">
+                    <h3 class="card-title" style="text-align: center"> Afluencia de Votantes en villavicencio por Zonas  </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseContent">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div  id="collapseContent"  class="card-body " >
+                        
+                            <div class="chart">
+                                <div class="chartjs-size-monitor">
+                                    <canvas id="zonas" width="400" height="130" aria-label="" role="img"></canvas>
+                                </div>
+                            </div>
+                        
+                    
+        
+                    
+        
+                    </div>
+                    <!-- /.card-body -->
+                    
+                    <!-- /.card-footer -->
+                </div>
+            </div>
+        
+        </div>
+        
         <div class="row">
             <div class="col-sm-12 col-xs-12">
                 <div class="card card-outline card-warning">
@@ -86,7 +182,7 @@
                             <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseContent5">
                                 <i class="fas fa-minus"></i>
                             </button>
-
+        
                         </div>
                     <!-- /.card-tools -->
                     </div>
@@ -97,14 +193,20 @@
                                 <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
                             </div>
                         </div>
-
+        
                     </div>
                     <!-- /.card-body -->
                     
                     <!-- /.card-footer -->
                 </div>
+                
         </div>
-  
+    
+</div>
+
+        
+       
+       
     
 
 

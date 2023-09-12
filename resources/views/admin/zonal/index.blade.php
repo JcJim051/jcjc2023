@@ -70,7 +70,7 @@
                             @endif
                         </td>
                         <td>
-                            @if ($zonal->e14 <> null )
+                            @if ($zonal->e14 <> null && $zonal->e14_2 <> null )
                             <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> no</span>

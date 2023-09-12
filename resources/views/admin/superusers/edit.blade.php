@@ -88,7 +88,7 @@
                         </div>
                         <div class="form-group col-sm-6">
                             {!! Form::label("banco", "Banco") !!}
-                            {!! Form::select("banco",[ null => 'Seleccione un banco','Nequi' => 'Nequi', 'Daviplata' => 'Daviplata',  'Ahorro_a_la_mano' => 'Ahorro a la mano' ], null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
+                            {!! Form::select("banco",[ null => 'Seleccione un banco','Otro' => 'Otro', 'Nequi' => 'Nequi', 'Daviplata' => 'Daviplata',  'Ahorro_a_la_mano' => 'Ahorro a la mano' ], null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
             
                             @error('telefono')
                                 <span class="text-danger">{{$message}}</span>

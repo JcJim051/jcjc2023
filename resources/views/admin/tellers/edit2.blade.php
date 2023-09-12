@@ -161,7 +161,7 @@
                     ctx.putImageData(imageData, 0, 0);
 
                     pica().resize(canvas, preview, {
-                        quality: 0.3,
+                        quality: 0.5,
                     });
 
                     // Convertir la imagen redimensionada en una URL de datos y establecerla en el campo de entrada oculto
