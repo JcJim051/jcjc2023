@@ -119,7 +119,7 @@ class SuperUserController extends Controller
      */
     public function update(Request $request, Seller $superuser)
     {
-
+    
         
        if ($superuser->pdf == null) {
             $request->validate([
@@ -131,7 +131,7 @@ class SuperUserController extends Controller
                     'nullable',
                     Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
                 ],
-                'pdf' => 'required|mimes:pdf', 
+                
                 
                          
             ]);
@@ -145,7 +145,7 @@ class SuperUserController extends Controller
                     'nullable',
                     Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
                 ],
-                            
+                'pdf' => 'required|mimes:pdf|max:8000',             
             ]);
         }
         

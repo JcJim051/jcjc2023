@@ -211,7 +211,21 @@ class ConsultorController extends Controller
                 }
             }
         } else {
-            $mesasok = null;
+            if ($role == 4) {
+                $mesasok = DB::table('sellers')
+                             ->select('codcor', 'municipio', 'puesto', 
+                                 DB::raw('COUNT(*) as mesas'), 
+                                 DB::raw('SUM(status = 1) as mesas_ok'), 
+                                 DB::raw('SUM(mesa = "Rem") as rem'),
+                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                             ->where('mesa', '<>', 'Rem')
+                             ->groupBy('codcor', 'municipio', 'puesto')
+                             ->orderBy('codcor')
+                             ->get();
+            } else {
+                $mesasok = null;
+            }
+            
         }
                      
 

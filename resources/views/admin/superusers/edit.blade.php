@@ -17,10 +17,12 @@
         </div>
 @endif
 
+
+
 <div class="card">
     <div class="card-body">
         {!! Form::model($superuser, ['route' => ['admin.superusers.update',$superuser], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-
+        @csrf
         {!! Form::hidden('coddep', null) !!}
         {!! Form::hidden('codmun', null) !!}
         {!! Form::hidden('codzon', null) !!}
@@ -41,6 +43,7 @@
             @error('nombre')
                 <span class="text-danger">{{$message}}</span>
             @enderror
+            
 
         </div>
 
@@ -104,7 +107,7 @@
             <div class="row">
                 <div class="col-sm-5 col-xs-12">
                     <label for=""> Puesto de votación </label><br>
-                    <select class="js-example-basic-single form-select" name="dondevota" style="width: 95%;" required>
+                    <select class="js-example-basic-single form-control" name="dondevota" style="width: 100%;" required>
                     
                     <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
                     
@@ -119,11 +122,11 @@
                 </div>
                 <div class="col-sm-5 col-xs-12">
 
-                        {!! Form::label("pdf", "Pdf Cédula") !!} <br>
+                        {!! Form::label("pdf", "Pdf Cédula (max 2 mb)") !!} <br>
                         {!! Form::file("pdf", null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
 
                         @error('pdf')
-                            <span class="text-danger">{{$message}}</span>
+                            <span class="text-danger">El Archivo supero el peso, favor Comprimalo</span>
                         @enderror
                 </div>
 
@@ -172,13 +175,21 @@
     </div>
 </div>
 @stop
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+@endsection
 @section('js')
     <script> console.log('de tu mano señor!'); </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
-    </SCript>
+    </script>
+    
 @endsection
 
 

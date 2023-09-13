@@ -226,7 +226,7 @@
         
     </div>
    
-    @if (Auth::user()->role == 1)
+    @if (Auth::user()->role == 1 or Auth::user()->role == 4 )
         <div class="card">
             <div class="text-center card-header">
                 <h5>Avance por puesto</h5>
@@ -390,7 +390,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script> console.log('de tu mano señor!'); </script>
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+       
         <script src="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>

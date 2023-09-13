@@ -14,6 +14,7 @@
             <strong>{{(session('info'))}}</strong>
         </div>
     @endif
+    
 
     <div class="card">
         <div class="card-body">
