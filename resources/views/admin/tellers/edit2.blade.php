@@ -139,7 +139,7 @@
                 img.src = e.target.result;
 
                 img.onload = function () {
-                    const targetWidth = 300; // Ajustar el ancho deseado
+                    const targetWidth = 800; // Ajustar el ancho deseado
                     const targetHeight = img.height * (targetWidth / img.width);
 
                     const canvas = document.createElement('canvas');

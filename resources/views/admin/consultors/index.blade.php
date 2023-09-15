@@ -241,7 +241,7 @@
                             <th>Mesas</th>
                             <th>mesa ok</th>
                             <th>% mesa ok</th>
-                            <th>Remanentes</th>
+                            <th>Rem</th>
                             <th>Rem ok</th>
                             <th>% rem ok</th>
                         </tr>
@@ -257,13 +257,13 @@
                             <td>{{$mesasok->mesas}}</td> 
                             <td>{{$mesasok->mesas_ok}}</td>  
                             <td> <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->mesas == 0)0%@else{{($mesasok->mesas_ok/$mesasok->mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->mesas == 0)0%@else{{($mesasok->mesas_ok/$mesasok->mesas)*100}}%@endif%</div>
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->mesas == 0)0%@else{{($mesasok->mesas_ok/$mesasok->mesas)*100}}@endif%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->mesas == 0)0%@else{{round(($mesasok->mesas_ok/$mesasok->mesas)*100,0)}}@endif%</div>
                                 </div>
                             </td>   
                             <td>{{$mesasok->rem}}</td>   
                             <td>{{$mesasok->rem_ok}}</td>   
                             <td> <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->rem == 0)0%@else{{($mesasok->rem_ok/$mesasok->rem)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->rem == 0)0%@else{{($mesasok->rem_ok/$mesasok->rem)*100}}%@endif</div>
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->rem == 0)0%@else{{($mesasok->rem_ok/$mesasok->rem)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->rem == 0)0%@else{{round(($mesasok->rem_ok/$mesasok->rem)*100,1)}}%@endif</div>
                                 </div>
                             </td>   
                         </tr>

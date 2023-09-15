@@ -28,12 +28,6 @@
             text-align: center;
         }
         
-        
-
-
-       
-
-       
     </style>
     <h4> REPORTE DE VOTOS <br> {{ $teller->puesto}} MESA {{ $teller->mesa}}</h4>
 @stop
@@ -63,28 +57,36 @@
         {!! Form::hidden("telefono", null) !!}
         {!! Form::hidden("nombre", null) !!}
 
-        <div class="row">
-            <div class="col-4">
-                {!! Form::label("censodemesa", "Votantes E11") !!}
-                {!! Form::number("censodemesa", null, ["class" => "form-control disabled  ","required" => "required" ]) !!}
-              
-            </div>     
-            <div class="col-4">
-                {!! Form::label("votosenurna", "Votos en Urna") !!}
-                {!! Form::number("votosenurna", null, ["class" => "form-control ", "required" => "required"]) !!}
-            </div>   
-            <div class="col-4">
-                {!! Form::label("votosincinerados", "Incinerados") !!}
-                {!! Form::number("votosincinerados", null, ["class" => "form-control ","required" => "required"]) !!}
-            </div>
-        </div><br>
+       
 
+       <table class="table">
+        
+        <tbody>
+            
+            <tr>
+                <td colspan="3" class="text-center">Votantes E11</td>
+                <td><input class="form-control"type="number"  value="{{$teller->censodemesa}}" required> </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-center">Votos en Urna</td>
+              
+                <td><input class="form-control"type="number"  value="{{$teller->votosenurna}}" required> </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-center">Incinerados</td>
+                
+                <td><input class="form-control"type="number"  value="{{$teller->votosenurna}}" required></td>
+            </tr>
+            
+        </tbody>
+       </table>
         <div class="table-container">
             <table class="table">
                 <thead>
+                    
                     <tr>
                         <th class="id-cell">#</th>
-                        <th>Candidato</th>
+                        <th class="candidato-cell" >Candidato</th>
                         <th class="votos-cell">Votos</th>
                     </tr>
                 </thead>
@@ -155,23 +157,21 @@
                     
                     
                     <tr>
-                        
                         <td colspan="2">Votos en blanco</td>
                         <td><input class="form-control"type="number" name="enblanco"  value="{{$teller->enblanco}}" required> </td>
                     </tr>
                     <tr>
-                        
                         <td colspan="2">Votos nulos</td>
                         <td><input class="form-control" type="number" name="nulos" value="{{$teller->nulos}}"required></td>
                     </tr>
                     <tr>
-                       
                         <td colspan="2">Votos no marcados</td>
                         <td><input class="form-control"type="number" name="nomarcados" value="{{$teller->nomarcados}}"required></td>
                     </tr>
                 </tbody>
             </table>      
         </div>   
+ 
 
         <div class="row">
             <div class="col-6">
@@ -181,7 +181,7 @@
             </div>
             <div class="col-6">
                 {!! Form::label("reclamacion", "Reclamaciones mesa") !!}
-                {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Sí'], null, ["class" => "form-control", "required" => "required"]) !!}
+                {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Sí, Nuestras', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
             </div>
         </div>
 
