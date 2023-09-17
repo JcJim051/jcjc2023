@@ -158,11 +158,18 @@ class FotosController extends Controller
         }
         // dd($mesa[0]->reclamacion);
         $foto = $id;
-       
+        $role = auth()->user()->role;
+
         if ($mesa[0]->reclamacion == 1) {
             return redirect()->route('admin.fotos.show',compact('foto'))->with('info', 'Segunda cara del E14 enviada                                                                                                                                                                                     con Éxito');
         } else {
-            return redirect()->route('admin.tellers.index')->with('info', 'Evidencias enviadas con Éxito');
+            
+            if ($role == 7) {
+                return redirect()->route('admin.pmu.index')->with('info', 'Evidencias enviadas con Éxito');
+            } else {
+                return redirect()->route('admin.tellers.index')->with('info', 'Evidencias enviadas con Éxito');
+            }
+            
             
         }
         

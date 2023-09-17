@@ -32,7 +32,7 @@
                         <th>id</th>
                         
                         <th>municipio</th>
-                        {{-- <th>zon</th> --}}
+                        <th>Codigo</th>
                         <th>puesto</th>
                         <th>mesa</th>
                         <th style="font-size: 2px">dat</i></th>
@@ -59,21 +59,21 @@
                         <td> {{ $pmu->id }}</td>
                         
                         <td> {{ $pmu->municipio }}</td>
-                        {{-- <td> {{ $pmu->codzon }}</td> --}}
+                        <td> {{ $pmu->codcor }}</td> 
                         <td> {{ $pmu->puesto }}</td>
                         <td> {{ $pmu->mesa }}</td>
                         <td> 
                             @if ($pmu->gob1 <> null )
                                 <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                            <a href="{{route("admin.tellers.edit", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif
                         </td>
                         <td>
                             @if ($pmu->e14 <> null && $pmu->e14_2 <> null)
                                 <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                            <a href="{{route("admin.tellers.show", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i> no</span></a>
                             @endif
                         </td> 
                         <td>

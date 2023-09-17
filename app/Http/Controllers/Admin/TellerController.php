@@ -100,12 +100,19 @@ class TellerController extends Controller
      */
     public function update(Request $request, Seller $teller)
     {
+            $teller->update($request->all());
+            $role = auth()->user()->role;
+            
+            if ($role == 7) {
+                return redirect()->route('admin.pmu.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
+            } else {
+                return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
+            }
+
+        
 
 
-        $teller->update($request->all());
-
-
-        return redirect()->route('admin.tellers.index', $teller)->with('info', 'Reporte de votos se actualizó con Éxito');
+        
     }
 
     public function fotos(Request $request , Seller $teller  )
