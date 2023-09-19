@@ -201,12 +201,12 @@
                                 <div class="row">
                                     <div class="col-6">
                                         {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
-                                        {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", '' => '']) !!}
+                                        {!! Form::select("status_reconteo", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Sí'], null, ["class" => "form-control", "required" => "required"]) !!}
                                 
                                     </div>
                                     <div class="col-6">
                                         {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
-                                        {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", '' => '']) !!}
+                                        {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Rafaela', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
                                     
                                     </div>
                                 </div>
@@ -424,7 +424,7 @@
         </div>
         <div class="col-12 col-sm 6">
             <div class="info-box">
-                <span class="info-box-icon bg-primary"><i class="far fa-phone"></i></span>
+                <span class="info-box-icon bg-primary"><i class="fa fa-phone" aria-hidden="true"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">   Telefono:</span>
                   <span class="info-box-number"> {{$cordinador[0]->telefono}}</span>

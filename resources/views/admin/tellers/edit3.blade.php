@@ -26,37 +26,42 @@
            
 
 
-           <div class="col-12">
-            {!! Form::open(['route' => 'reclamacion', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            <div class="col-12">
+                {!! Form::open(['route' => 'reclamacion', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             {!! Form::label("fotorec", "Cargar foto de la reclamacion") !!} <br>
                             {!! Form::file("fotorec", ["class" => "file-control disabled", 'data-foto' => $foto->id, 'id' => 'fotorecInput', 'onchange' => 'handleImageUpload("fotorecInput", "fotorecPreview", "fotorecResized")']) !!}<br>
                             <img hidden id="fotorecPreview" src="" alt="fotorec Preview" style="max-width: 300px; max-height: 300px;">
                             {!! Form::hidden("fotorec_resized", "", ['id' => 'fotorecResized']) !!} <!-- Campo oculto para la imagen redimensionada -->
                             
                             
-                        <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-6 col-xs-12">
                             <br>
-                            @if ($foto->fotorec == null)
-            
-                            @else
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->fotorec) }}">Ver reclamacion cargada</a>
+                                @if ($foto->fotorec == null)
+                
+                                @else
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->fotorec) }}">Ver reclamacion cargada</a>
+                                    </div>
                                 </div>
-                            </div>
-            
-                            @endif
+                
+                                @endif
                             <br>
                         </div>
                        
                 </div> 
            
-            <input hidden type="text" value="{{$foto->id}}" id="id" name="id">
-            <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
-            {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
-            {!! Form::close() !!}
+                    <input hidden type="text" value="{{$foto->id}}" id="id" name="id">
+                    <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
+                    @if ($foto->fotorec == null)
+                        {!! Form::submit('Enviar Foto', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+                    @else
+                        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+                        
+                    @endif
+                    {!! Form::close() !!}
 
-       </div>
+            </div>
 
       
         
@@ -75,50 +80,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/5.0.0/pica.min.js"></script>
  
 
-{{-- <script>
-    function handleImageUpload(inputId, previewId, resizedId) {
-        const input = document.getElementById(inputId);
-        const preview = document.getElementById(previewId);
-        const resized = document.getElementById(resizedId);
-        const file = input.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = new Image();
-                img.src = e.target.result;
-
-                img.onload = function () {
-                    const targetWidth = 300; // Ajustar el ancho deseado
-                    const targetHeight = img.height * (targetWidth / img.width);
-
-                    const canvas = document.createElement('canvas');
-                    canvas.width = targetWidth;
-                    canvas.height = targetHeight;
-
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-
-                    pica().resize(canvas, preview, {
-                        quality: 0.3,
-                    });
-
-                    // Convertir la imagen redimensionada en una URL de datos y establecerla en el campo de entrada oculto
-                    canvas.toBlob(function (blob) {
-                        const reader = new FileReader();
-                        reader.onload = function () {
-                            resized.value = reader.result;
-                        };
-                        reader.readAsDataURL(blob);
-                    });
-                };
-            };
-          
-            reader.readAsDataURL(file);
-        }
-    }
-</script> --}}
 
 <script>
     function handleImageUpload(inputId, previewId, resizedId) {

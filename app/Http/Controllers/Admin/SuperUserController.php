@@ -131,7 +131,7 @@ class SuperUserController extends Controller
                     'nullable',
                     Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
                 ],
-                
+                'pdf' => 'required|mimes:pdf|max:8000',
                 
                          
             ]);
@@ -145,7 +145,7 @@ class SuperUserController extends Controller
                     'nullable',
                     Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
                 ],
-                'pdf' => 'required|mimes:pdf|max:8000',             
+                'pdf' => 'mimes:pdf|max:8000',        
             ]);
         }
         

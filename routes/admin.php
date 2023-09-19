@@ -27,6 +27,8 @@ use App\Http\Controllers\Admin\QrController;
 use App\Http\Controllers\Admin\ActualizarController;
 use App\Http\Controllers\Admin\PmuController;
 use App\Http\Controllers\Admin\FotosController;
+use App\Http\Controllers\Admin\FotopmuController;
+use App\Http\Controllers\Admin\TransmisionController;
 
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
 
@@ -53,12 +55,14 @@ Route::resource('votantes', VotantesController::class)->names('admin.votantes');
 Route::resource('afluencia', AfluenciaController::class)->names('admin.afluencia');
 Route::resource('qr', QrController::class)->names('admin.qr');
 Route::resource('fotos', FotosController::class)->names('admin.fotos');
-
+Route::resource('fotopmu', FotosController::class)->names('admin.fotopmu');
+Route::resource('transmision', TransmisionController::class)->names('admin.transmision');
 
 Route::get('get-data', 'App\Http\Controllers\Admin\ConsultorController@getData')->name('getData');
 Route::get('get-asistencia', 'App\Http\Controllers\Admin\AsistenciaController@getAsistencia')->name('getAsistencia');
 Route::get('get-afluencia', 'App\Http\Controllers\Admin\AfluenciaController@getAfluencia')->name('getAfluencia');
 Route::get('get-resultados', 'App\Http\Controllers\Admin\ResultadosController@getResultados')->name('getResultados');
+Route::get('get-transmision', 'App\Http\Controllers\Admin\TransmisionController@getTransmision')->name('getTransmision');
 
 
 Route::post('/actualizar-registros', 'App\Http\Controllers\Admin\ActualizarController@actualizarRegistros')->name('actualizarRegistros')->middleware('web');
@@ -66,10 +70,11 @@ Route::post('fotos-redimensionada', 'App\Http\Controllers\Admin\TellerController
 Route::post('foto2-redimensionada', 'App\Http\Controllers\Admin\FotosController@segundafoto')->name('segundafoto');
 Route::post('foto3-redimensionada', 'App\Http\Controllers\Admin\FotosController@reclamacion')->name('reclamacion');
 
-// Route::get('admin/foto1/{teller}', 'App\Http\Controllers\Admin\TellerController@foto1')->name('admin.tellers.foto1');
-// Route::get('admin/foto2/{teller}', 'App\Http\Controllers\Admin\TellerController@foto2')->name('admin.tellers.foto2');
-// Route::get('admin/foto3/{teller}', 'App\Http\Controllers\Admin\TellerController@foto3')->name('admin.tellers.foto3');
-
+    
 
 
 Route::resource('pmu', PmuController::class)->names('admin.pmu');
+
+Route::get('tellers/{teller}/edit1', 'App\Http\Controllers\Admin\TellerController@edit1')->name('admin.tellers.edit1');
+Route::get('tellers/{teller}/edit2', 'App\Http\Controllers\Admin\TellerController@edit2')->name('admin.tellers.edit2');
+Route::get('tellers/{teller}/edit3', 'App\Http\Controllers\Admin\TellerController@edit3')->name('admin.tellers.edit3');

@@ -211,7 +211,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -342,6 +342,15 @@ return [
             // 'can'  => 'Superuser-administrador-consultor-auditor',
             'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
          ],
+        [
+            'text'        => 'indicador de Transmision',
+            'route'         => 'admin.transmision.index',
+            'icon'        => 'fas fa-broadcast-tower',
+            'label_color' => 'primary',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+            
+        
+        ],
         [
             'text'        => 'Resultados',
             'route'         => 'admin.resultados.index',

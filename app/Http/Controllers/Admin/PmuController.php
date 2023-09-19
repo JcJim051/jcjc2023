@@ -16,50 +16,38 @@ class PmuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+{
         $role = auth()->user()->role;
         $codigo_zona = auth()->user()->codzon;
         $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
-        
 
-                if ($role == 1) {
-                    // 1 = villao
-                    if ($municipio == 1) {
-                        $pmu = Seller::where('mesa', '<>', 'Rem')->where('codmun' , 001)->get();
-                       
-                    } else {
-                        // 0 = municipios
-                        if ($municipio == 0) {
-                            $pmu = Seller::where('mesa', '<>', 'Rem')->where('codmun' ,  '<>', 001)->where('cod_ruta' , $ruta)->get();
-                        } else {
-                            $pmu = Seller::where('mesa', '<>', 'Rem')->get();
-                        }
-                    }
+        $pmu = Seller::where('mesa', '<>', 'Rem')
+            ->leftJoin('Puestos', 'Sellers.codcor', '=', 'Puestos.codpuesto')
+            ->when($role == 1, function ($query) use ($municipio) {
+                if ($municipio == 1) {
+                    return $query->where('Sellers.codmun', 1);
                 } else {
-                    if ($role == 2) {
-                        
-                        $pmu = Seller::where('mesa', '<>', 'Rem')->where('codescru' , $codigo_zona)->get();
+                    if ($municipio == 0) {
+                        return $query->where('Sellers.codmun', '<>', 1)->where('Sellers.cod_ruta', $ruta);
                     } else {
-
-                        if ($role == 4 or $role == 5) {
-                            $pmu = Seller::where('mesa', '<>', 'Rem')->get();
-                        } else {
-                            if ($role == 7) {
-                                $pmu = Seller::where('mesa', '<>', 'Rem')->where('codmesa_crisis' , $codigo_zona)->get();
-                            } else {
-                                   
-                                 }   
-
-                             }
-
-
+                        return $query;
                     }
-                 }
-
+                }
+            })
+            ->when($role == 2, function ($query) use ($codigo_zona) {
+                return $query->where('Sellers.codescru', $codigo_zona);
+            })
+            ->when($role == 4 || $role == 5 || $role == 7, function ($query) {
+                return $query; // No se aplican restricciones adicionales para estos roles
+            })
+            ->get(['Sellers.*', 'Puestos.telefono']);
+            
         return view('admin.pmu.index', compact('pmu'));
-    }
+
+}
+
 
 
     /**

@@ -41,18 +41,23 @@
                         @else
                         <div class="row">
                             <div class="col-sm-6 col-x-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Hoja 1</a>
+                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Hoja 1 Cargado</a>
                             </div>
                         </div>
 
                         @endif
-                        
+                        <br>
                     </div>
                 </div>
             </div>
             <input hidden type="text" value="{{$teller->id}}" id="id" name="id">
             <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
+            @if ($teller->e14 == null)
             {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+            @else
+            {!! Form::submit('Siguiente', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+            @endif
+            
             
             {!! Form::close() !!}
 

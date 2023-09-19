@@ -5,6 +5,7 @@
 @section('content_header')
     <h4 style="text-align: center">Reporte de E14</h4>
     <style>
+       
         .long-text {
             white-space: nowrap;
         }
@@ -27,35 +28,16 @@
                         
                         <th>Puesto</th>
                         <th>Mesa</th>
-                        <th>Municipio</th>
-                        
+                        <th>Municipio</th>                        
                         <th>Datos</th>
-                        {{-- <th>Can2</th>
-                        <th>Can3</th>
-                        <th>Can4</th>
-                        <th>Can5</th>
-                        <th>Can6</th>
-                        <th>Can7</th>
-                        <th>Can8</th>
-                        <th>Can9</th>
-                        <th>Can10</th>
-                        <th>Can11</th> --}}
-                        {{-- <th>Felipe</th> --}}
-                        
-                        <th>Foto1</th><th>Foto2</th>
-                        {{-- <th>Foto2</th> --}}
-                       
+                        <th>Foto1</th>
+                        <th>Foto2</th>
                         <th>Reclamacion</th>
-                       
-                        
-
                         @if (Auth::user()->role == 4)
 
                         @else
-                        <th></th>
-                        <th></th>
-                        
-                        
+                            <th></th>
+                            <th></th>
                         @endif
                     </tr>
                 </thead>
@@ -68,30 +50,29 @@
 
 
                         @if ($seller->reclamacion == 1) 
-                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            @if ($seller->gob1 <> null && $seller->e14 && $seller->e14_2 <> null  && $seller->fotorec)
                             
                             <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                             @else
                                 <td style="color: red" >{{$seller->puesto}}</td>
                             @endif                            
                         @else
-                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            @if ($seller->gob1 <> null && $seller->e14 <> null && $seller->e14_2 <> null)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
+                                <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
                             @else
                                 <td style="color: red" >{{$seller->puesto}}</td>
                             @endif
                         @endif
 
                         @if ($seller->reclamacion == 1) 
-                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
-                            
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
+                            @if ($seller->gob1 <> null && $seller->e14 && $seller->e14_2 <> null  && $seller->fotorec)
+                                <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
                                 <td style="color: red" >{{$seller->mesa}}</td>
                             @endif                            
                         @else
-                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            @if ($seller->gob1 <> null && $seller->e14 <> null && $seller->e14_2 <> null)
                             
                             <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
                             @else
@@ -100,14 +81,14 @@
                         @endif
 
                         @if ($seller->reclamacion == 1) 
-                            @if ($seller->gob1 <> null && $seller->e14 <> null  && $seller->fotorec)
+                            @if ($seller->gob1 <> null && $seller->e14 && $seller->e14_2 <> null  && $seller->fotorec)
                             
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
+                                <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
                             @else
                                 <td style="color: red" >{{$seller->municipio}}</td>
                             @endif                            
                         @else
-                            @if ($seller->gob1 <> null && $seller->e14 <> null)
+                            @if ($seller->gob1 <> null && $seller->e14 <> null && $seller->e14_2 <> null)
                             
                             <td style="color: rgb(0, 169, 14)" >{{$seller->municipio}}</td>
                             @else
@@ -120,35 +101,35 @@
 
                         <td>
                             @if ($seller->gob1 <> null) 
-                                <span style="color: green"><i class="fas fa-check-circle"></i> Enviado</i></span>                    
+                               <span style="color: green"><i class="fas fa-check-circle"></i> Enviado</i></span>                    
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
                             @endif
                         </td>
                         
                                              
-                        <td style="font-size: 10px ; text-align:center">
+                        <td style=" ; text-align:center">
                             @if($seller->e14 <> null)
-                                <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
+                                <a href="{{route("admin.tellers.edit1", $seller)}}" style=""><span style="color: green"><i class="fas fa-check-circle"></i>Enviada</span></a>
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
+                                <a href="{{route("admin.tellers.edit1", $seller)}}" style=""><span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span></a>
                             @endif
                         </td>
-                        <td style="font-size: 10px ; text-align:center">
+                        <td style=" ; text-align:center">
                             @if($seller->e14_2 <> null)
-                            <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
+                            <a href="{{route("admin.tellers.edit2", $seller)}}" style=""><span style="color: green"><i class="fas fa-check-circle"></i>Enviada</span></a>
                         @else
-                            <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
+                            <a href="{{route("admin.tellers.edit2", $seller)}}" style=""><span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span></a>
                         @endif
                         </td>
 
                        
-                            <td style="font-size: 10px ; text-align:center">
+                            <td style=" ; text-align:center">
                                @if ($seller->reclamacion ==1)
                                     @if($seller->fotorec <> null)
-                                        <span style="color: green"><i class="fas fa-check-circle"></i> Enviada</i></span>
+                                        <a href="{{route("admin.tellers.edit3", $seller)}}" style=""><span style="color: green"><i class="fas fa-check-circle"></i>Enviada</span></a>
                                     @else
-                                        <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>
+                                        <a href="{{route("admin.tellers.edit3", $seller)}}" style=""><span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span></a>
                                     @endif
                                @else
                                     <span style="color: green">No requiere</span>
@@ -161,8 +142,8 @@
                         @if (Auth::user()->role == 4)
 
                         @else
-                        <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm" style="font-size: 11px;">Reportar</a></td>
-                        <td> <a href="{{route("admin.tellers.show", $seller)}}" class="btn btn-primary btn-sm long-text" style="font-size: 11px;">Fotos</a></td>
+                            <td> <a href="{{route("admin.tellers.edit", $seller)}}" class="btn btn-primary btn-sm" style="font-size: 11px;">Reportar</a></td>
+                            <td> <a href="{{route("admin.tellers.show", $seller)}}" class="btn btn-primary btn-sm long-text" style="font-size: 11px;">Fotos</a></td>
                         @endif
                        
 

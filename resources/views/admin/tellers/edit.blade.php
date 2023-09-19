@@ -65,17 +65,17 @@
             
             <tr>
                 <td colspan="3" class="text-center">Votantes E11</td>
-                <td><input class="form-control"type="number"  value="{{$teller->censodemesa}}" required> </td>
+                <td><input class="form-control" type="number" name="censodemesa"  value="{{$teller->censodemesa}}" required> </td>
             </tr>
             <tr>
                 <td colspan="3" class="text-center">Votos en Urna</td>
               
-                <td><input class="form-control"type="number"  value="{{$teller->votosenurna}}" required> </td>
+                <td><input class="form-control"type="number" name="votosenurna" value="{{$teller->votosenurna}}" required> </td>
             </tr>
             <tr>
                 <td colspan="3" class="text-center">Incinerados</td>
                 
-                <td><input class="form-control"type="number"  value="{{$teller->votosenurna}}" required></td>
+                <td><input class="form-control"type="number" name="votosincinerados" value="{{$teller->votosincinerados}}" required></td>
             </tr>
             
         </tbody>
@@ -181,7 +181,7 @@
             </div>
             <div class="col-6">
                 {!! Form::label("reclamacion", "Reclamaciones mesa") !!}
-                {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Sí, Nuestras', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
+                {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Rafaela', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
             </div>
         </div>
 

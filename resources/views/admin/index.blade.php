@@ -32,6 +32,68 @@
                             <div class="small-box bg-info bg-gradient-warning">
                                 <div class="inner">
                                 <h3> {{$tmc}}</h3>
+                                <p>Mesas a reportar</p>
+                                <h4> {{$tevidencia}} </h4>
+                                <p>Evidencias a enviar</p>
+                                
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-store-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="small-box bg-info ">
+                                <div class="inner">
+                                <h3> {{ $tde }}</h3>
+                                <p>Datos Enviados</p>
+                                <h4> {{$tevidencia_enviada}} </h4>
+                                <p>Envidencias Enviadas</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-street-view"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-danger">
+                                <div class="inner">
+                                <h3> {{$tmc-$tde}} </h3>
+                                <p>Datos por enviar</p>
+                                <h4> {{$tevidencia-$tevidencia_enviada}} </h4>
+                                <p>Evidencias por enviar</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-slash"></i>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-success ">
+                                <div class="inner">
+                                <h3>{{ round($tde/$tmc * 100,1)}}% </h3>
+                                <p>% de mesas reportada</p>
+
+                                <h4>{{ round($tevidencia_enviada/$tevidencia * 100,1)}}%</h4>
+                                <p>% evidencias enviadas</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="row">
+                        <div class="col-3">
+                            <div class="small-box bg-info bg-gradient-warning">
+                                <div class="inner">
+                                <h3> {{$tmc}}</h3>
                                 <p>Total mesas en el puesto</p>
                                 <h4> {{$tremc}}</h4>
                                 <p>Remanentes</p>
@@ -95,7 +157,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
 
                 @else

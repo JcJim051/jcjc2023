@@ -81,6 +81,21 @@ class TellerController extends Controller
            return view('admin.tellers.edit1', compact('teller'));
     }
 
+    public function edit1(Seller $teller)
+    {   
+           return view('admin.tellers.edit1', compact('teller'));
+    }
+    public function edit2(Seller $teller)
+    {       
+           $foto = $teller;
+        
+            return view('admin.tellers.edit2', compact('foto'));
+    }
+    public function edit3(Seller $teller)
+    {     $foto = $teller;
+           return view('admin.tellers.edit3', compact('foto'));
+    }
+
     // public function foto2(Seller $teller)
     // {   
     //        return view('admin.tellers.edit2', compact('teller'));

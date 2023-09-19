@@ -37,18 +37,20 @@
                        
                     </div> 
                     <div class="col-sm-6 col-xs-12">
+                        
                         @if ($foto->e14_2 == null)
 
                         @else
                         <div class="row">
                             <div class="col-sm-6 col-x-12">
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver E14 hoja 2</a>
+                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver E14 hoja 2 Cargado</a>
                             </div>
                         </div>
 
                         @endif
-                        
+                        <br>
                     </div>
+                    
                 </div>
             </div>
             
@@ -57,7 +59,12 @@
            
             <input hidden type="text" value="{{$foto->id}}" id="id" name="id">
             <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
-            {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+            @if ($foto->e14_2 == null)
+                {!! Form::submit('Enviar Fotos', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+            @else
+                {!! Form::submit('Siguiente', ['class' => 'btn btn-primary']) !!} <!-- Botón de envío -->
+            @endif
+            
             {!! Form::close() !!}
 
        </div>
