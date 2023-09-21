@@ -61,13 +61,13 @@
                         
                         <td style="font-size: 10px"> {{ $pmu->municipio }}</td>
                         <td>{{$pmu->codcor}}</td> 
-                        <td> <a  style="color: green"href="#" class="open-modal" data-telefono="{{$pmu->telefono}}">{{$pmu->puesto}}</a> </td>
+                        <td> {{$pmu->puesto}}<a  style="color: green"href="#" class="open-modal" data-telefono="{{$pmu->telefono}}"> <i class="fas fa-phone-square"></i></a> </td>
                         <td> {{ $pmu->mesa }}</td>
                         <td> 
-                            @if ($pmu->gob1 <> null )
+                            @if ($pmu->gob1 !== null)
                                 <span style="color: green"><i class="fas fa-check-circle"></i> si</span>
                             @else
-                                <a href="{{route("admin.pmu.edit", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                                <a target="_blank" href="{{route("admin.tellers.edit", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif
                         </td>
                         <td>
@@ -246,6 +246,7 @@
             
 
             ],
+            "dom": '<"top"f>rt<"bottom"lp><"clear">',
             "dom":'BPrtip' ,
             "scrollX": true,
             "buttons": [
@@ -269,6 +270,10 @@
 
             }
             );
+            $('.dtsp-pane').on('click', 'a', function (e) {
+                e.preventDefault(); // Prevenir la acción predeterminada (navegar a la página vinculada)
+            });
+
         });
 
        
@@ -280,7 +285,9 @@
                 $('#telefonoText').text(telefono);
                 $('#telefonoModal').modal('show');
             });
+       
         });
+
     </script>
     
 @endsection

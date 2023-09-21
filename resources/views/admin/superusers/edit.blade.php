@@ -123,7 +123,7 @@
                 <div class="col-sm-5 col-xs-12">
 
                         {!! Form::label("pdf", "Pdf Cédula (max 2 mb)") !!} <br>
-                        {!! Form::file("pdf", null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
+                        {!! Form::file("pdf", null, ["class" => "form-control disabled", 'required' => 'required',  'accept' => '.pdf' ]) !!}
 
                         @error('pdf')
                             <span class="text-danger">El Archivo supero el peso, favor Comprimalo</span>

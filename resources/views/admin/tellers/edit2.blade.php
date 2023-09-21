@@ -30,8 +30,11 @@
                 <div class="row">
                     <div class="col-12">
                         {!! Form::open(['route' => 'segundafoto', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            {!! Form::label("e14_2", "Cargar E14 hoja 2") !!} <br>
-                            {!! Form::file("e14_2", ["class" => "fole-control disabled", 'data-foto' => $foto->id, 'id' => 'e14_2Input', 'onchange' => 'handleImageUpload("e14_2Input", "e14_2Preview", "e14_2Resized")']) !!}<br>
+                            @csrf    
+                            <label for="e14_2" style="color: salmon" >Cargar E14 hoja 2</label>
+                            <br>
+                            {!! Form::file("e14_2", ["class" => "fole-control disabled", 'data-foto' => $foto->id, 'id' => 'e14_2Input', 'onchange' => 'handleImageUpload("e14_2Input", "e14_2Preview", "e14_2Resized")' ,'accept' =>'image/*']) !!}<br>
+                            <div id="imagePreview"></div>
                             <img hidden id="e14_2Preview" src="" alt="e14_2 Preview" style="max-width: 300px; max-height: 300px;"><br>
                             {!! Form::hidden("e14_2_resized", "", ['id' => 'e14_2Resized']) !!} <!-- Campo oculto para la imagen redimensionada -->
                        
@@ -42,8 +45,10 @@
 
                         @else
                         <div class="row">
-                            <div class="col-sm-6 col-x-12">
-                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver E14 hoja 2 Cargado</a>
+                            <div class="col-sm-12 col-x-12">
+                                <h5 style="color: green">La cara 2 del E14 ya fue cargada.</h5>
+                                        <p>Solo seleccione imagen si la va a corregir, de lo contrario click en siguiente.</p>
+                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver cara 2 del E14 Cargada</a>
                             </div>
                         </div>
 
@@ -85,51 +90,26 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/5.0.0/pica.min.js"></script>
  
+<script>
+    document.getElementById('e14_2Input').addEventListener('change', function () {
+    const file = this.files[0];
 
-{{-- <script>
-    function handleImageUpload(inputId, previewId, resizedId) {
-        const input = document.getElementById(inputId);
-        const preview = document.getElementById(previewId);
-        const resized = document.getElementById(resizedId);
-        const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
 
-        if (file) {
-            const reader = new FileReader();
+        reader.addEventListener('load', function () {
+            const imagePreview = document.getElementById('imagePreview');
+            const img = document.createElement('img');
+            img.src = reader.result;
+            img.style.maxWidth = '100%'; // Ajusta el tamaño de la imagen según tu preferencia
+            imagePreview.innerHTML = ''; // Limpia cualquier vista previa anterior
+            imagePreview.appendChild(img);
+        });
 
-            reader.onload = function (e) {
-                const img = new Image();
-                img.src = e.target.result;
-
-                img.onload = function () {
-                    const targetWidth = 300; // Ajustar el ancho deseado
-                    const targetHeight = img.height * (targetWidth / img.width);
-
-                    const canvas = document.createElement('canvas');
-                    canvas.width = targetWidth;
-                    canvas.height = targetHeight;
-
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-
-                    pica().resize(canvas, preview, {
-                        quality: 0.3,
-                    });
-
-                    // Convertir la imagen redimensionada en una URL de datos y establecerla en el campo de entrada oculto
-                    canvas.toBlob(function (blob) {
-                        const reader = new FileReader();
-                        reader.onload = function () {
-                            resized.value = reader.result;
-                        };
-                        reader.readAsDataURL(blob);
-                    });
-                };
-            };
-          
-            reader.readAsDataURL(file);
-        }
+        reader.readAsDataURL(file);
     }
-</script> --}}
+});
+</script>
 
 <script>
     function handleImageUpload(inputId, previewId, resizedId) {

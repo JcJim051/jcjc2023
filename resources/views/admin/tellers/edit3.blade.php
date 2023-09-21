@@ -28,20 +28,23 @@
 
             <div class="col-12">
                 {!! Form::open(['route' => 'reclamacion', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            {!! Form::label("fotorec", "Cargar foto de la reclamacion") !!} <br>
-                            {!! Form::file("fotorec", ["class" => "file-control disabled", 'data-foto' => $foto->id, 'id' => 'fotorecInput', 'onchange' => 'handleImageUpload("fotorecInput", "fotorecPreview", "fotorecResized")']) !!}<br>
+                            <label for="fotorec" style="color:blueviolet"> Cargar Foto de la Reclamacion</label> <br>
+                            {!! Form::file("fotorec", ["class" => "file-control disabled", 'data-foto' => $foto->id, 'id' => 'fotorecInput', 'onchange' => 'handleImageUpload("fotorecInput", "fotorecPreview", "fotorecResized")' ,'accept' =>'image/*' ] )  !!}<br>
+                            <div id="imagePreview"></div>
                             <img hidden id="fotorecPreview" src="" alt="fotorec Preview" style="max-width: 300px; max-height: 300px;">
                             {!! Form::hidden("fotorec_resized", "", ['id' => 'fotorecResized']) !!} <!-- Campo oculto para la imagen redimensionada -->
                             
                             
-                            <div class="col-sm-6 col-xs-12">
+                            <div class="col-sm-12 col-xs-12">
                             <br>
                                 @if ($foto->fotorec == null)
                 
                                 @else
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
-                                        <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->fotorec) }}">Ver reclamacion cargada</a>
+                                        <h5 style="color: green">La reclamacion ya fue cargada.</h5>
+                                        <p>Solo seleccione imagen si la va a corregir, de lo contrario click en siguiente.</p>
+                                        <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->fotorec) }}">Ver Imagen reportada</a>
                                     </div>
                                 </div>
                 
@@ -79,7 +82,26 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pica/5.0.0/pica.min.js"></script>
  
+<script>
+        document.getElementById('fotorecInput').addEventListener('change', function () {
+        const file = this.files[0];
 
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function () {
+                const imagePreview = document.getElementById('imagePreview');
+                const img = document.createElement('img');
+                img.src = reader.result;
+                img.style.maxWidth = '100%'; // Ajusta el tamaño de la imagen según tu preferencia
+                imagePreview.innerHTML = ''; // Limpia cualquier vista previa anterior
+                imagePreview.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 <script>
     function handleImageUpload(inputId, previewId, resizedId) {

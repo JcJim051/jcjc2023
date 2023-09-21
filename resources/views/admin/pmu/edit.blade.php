@@ -73,21 +73,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                {!! Form::model($pmu, ['route' => ['admin.superusers.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data', '' => '']) !!}
-                        
-                                {!! Form::hidden('coddep', null) !!}
-                                {!! Form::hidden('codmun', null) !!}
-                                {!! Form::hidden('codzon', null) !!}
-                                {!! Form::hidden('codpuesto', null) !!}
-                                {!! Form::hidden('departamento', null) !!}
-                                {!! Form::hidden('municipio', null) !!}
-                                {!! Form::hidden('puesto', null) !!}
-                                {!! Form::hidden('mesa', null) !!}
-                                {!! Form::hidden('codpar', null) !!}
-                                {!! Form::hidden("email", null) !!}
-                                {!! Form::hidden("telefono", null) !!}
-                                {!! Form::hidden("nombre", null) !!}
-                        
+                                {!! Form::model($pmu, ['route' => ['admin.tellers.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+                                @csrf
+                                
                                 <div class="row">
                                     <div class="col-4">
                                         {!! Form::label("censodemesa", "Votantes en E11") !!}

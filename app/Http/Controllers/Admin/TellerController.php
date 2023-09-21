@@ -20,6 +20,7 @@ class TellerController extends Controller
         $role = auth()->user()->role;
         $escrutador = auth()->user()->codzon;
         $ruta = auth()->user()->codzon;
+        $crisis = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
 
@@ -48,7 +49,11 @@ class TellerController extends Controller
                                 if ($role == 4) {
                                     $sellers = Seller::where('mesa','<>', 'Rem')->get();
                                 } else {
-                                    
+                                    if ($role == 7) {
+                                        $sellers = Seller::where('codmesa_crisis','=',$crisis)->get();
+                                    } else {
+                                         
+                                    }
                                 }
                              }
 
