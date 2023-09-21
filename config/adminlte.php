@@ -373,18 +373,18 @@ return [
     'text' => 'Reporte de asistencia',
     'route'  => 'admin.posesion.index',
     'icon' => 'fas fa-user-check',
-    'can'  => 'Superuser-escrutador-coordinador',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 
     ],
     [
-        'text' => 'Reportar afluencia',
-        'route'  => 'admin.votantes.index',
-        'icon' => 'fas fa-vote-yea',
-        'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
-    
-    
-        ],
+    'text' => 'Reportar afluencia',
+    'route'  => 'admin.votantes.index',
+    'icon' => 'fas fa-vote-yea',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+
+
+    ],
     [
     'text' => 'Reportar E14',
     'route'  => 'admin.tellers.index',
