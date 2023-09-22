@@ -65,7 +65,7 @@
     
     <div class="row">
        
-                <div class="col-12 col-sm-6 ">                
+                <div class="col-12 col-sm-4 ">                
                         <div class="card card-small">
                             <div class="card-header ">
                                 <div class="row">
@@ -228,7 +228,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-8 ">
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             
@@ -249,7 +249,19 @@
                                         @if ($pmu->e14 == 0)
                                         <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
                                         @else
-                                            <img src="{{ asset('/storage/' . $pmu->e14) }}"  alt=""> 
+                                        <div id="image-container">
+                                            <img id="image" src="{{ asset('/storage/' . $pmu->e14) }}"  alt="">                            
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-right col-6">
+                                                <button class="btn btn-primary btn-sm" id="rotate-left"><i class="fas fa-undo-alt"></i></button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="text-right btn btn-primary btn-sm"  id="rotate-right"><i class="fas fa-redo-alt"></i></button>
+
+                                            </div>
+                                        </div>
                                         @endif
                                         
                                     </div>
@@ -275,7 +287,18 @@
                                         @if ($pmu->e14_2 == 0)
                                         <p>Foto NO cargada, Pongase en contacto con el coordinador del puesto</p>
                                         @else
-                                            <img src="{{ asset('/storage/' . $pmu->e14_2) }}"  alt=""> 
+                                            <div id="image-container1">
+                                                <img src="{{ asset('/storage/' . $pmu->e14_2) }}"  alt=""> 
+                                            </div>
+                                            <div class="row">
+                                                <div class="text-right col-6">
+                                                    <button class="btn btn-primary btn-sm" id="rotate-left1"><i class="fas fa-undo-alt"></i></button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button class="text-right btn btn-primary btn-sm"  id="rotate-right1"><i class="fas fa-redo-alt"></i></button>
+    
+                                                </div>
+                                            </div>
                                         @endif
                                         
                                     </div>
@@ -284,7 +307,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-sm-12">
+                        <div class="col-12 col-sm-">
                             <div class="row">
                                 <div class="e14 card container-fluid">
                                     <div class="card-header">
@@ -303,8 +326,19 @@
                                         @if ($pmu->fotorec == null)
                                             <p>Mesa sin reclamación</p>
                                         @else
-                                            <img src="{{ asset('/storage/' . $pmu->fotorec) }}"  alt="">
-                                        @endif
+                                                <div id="image-container3">
+                                                    <img src="{{ asset('/storage/' . $pmu->fotorec) }}"  alt="">
+                                                </div>    
+                                                <div class="row">
+                                                <div class="text-right col-6">
+                                                    <button class="btn btn-primary btn-sm" id="rotate-left3"><i class="fas fa-undo-alt"></i></button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button class="text-right btn btn-primary btn-sm"  id="rotate-right3"><i class="fas fa-redo-alt"></i></button>
+    
+                                                </div>
+                                            </div>
+                                            @endif
                                     
                                     </div>
                                 </div>
@@ -314,8 +348,7 @@
                 </div>   
     </div>           
             
-            
-        
+    
 
     
    
@@ -394,7 +427,7 @@
         </div>
    </div>
     --}}
-   
+    
    
    
    
@@ -423,4 +456,76 @@
       
     </div>
 
+@stop
+@section('css')
+@stop
+@section('js')
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            var imageContainer = document.getElementById('image-container');
+            var image = imageContainer.querySelector('img');
+            var currentRotation = 0; // Ángulo de rotación actual en grados
+
+            // Función para rotar la imagen
+            function rotateImage(degrees) {
+                currentRotation += degrees;
+                image.style.transform = 'rotate(' + currentRotation + 'deg)';
+            }
+
+            // Rotar a la izquierda
+            document.getElementById('rotate-left').addEventListener('click', function () {
+                rotateImage(-90); // Puedes cambiar el valor del ángulo según necesites
+            });
+
+            // Rotar a la derecha
+            document.getElementById('rotate-right').addEventListener('click', function () {
+                rotateImage(90); // Puedes cambiar el valor del ángulo según necesites
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            var imageContainer = document.getElementById('image-container1');
+            var image = imageContainer.querySelector('img');
+            var currentRotation = 0; // Ángulo de rotación actual en grados
+
+            // Función para rotar la imagen
+            function rotateImage(degrees) {
+                currentRotation += degrees;
+                image.style.transform = 'rotate(' + currentRotation + 'deg)';
+            }
+
+            // Rotar a la izquierda
+            document.getElementById('rotate-left1').addEventListener('click', function () {
+                rotateImage(-90); // Puedes cambiar el valor del ángulo según necesites
+            });
+
+            // Rotar a la derecha
+            document.getElementById('rotate-right1').addEventListener('click', function () {
+                rotateImage(90); // Puedes cambiar el valor del ángulo según necesites
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            var imageContainer = document.getElementById('image-container3');
+            var image = imageContainer.querySelector('img');
+            var currentRotation = 0; // Ángulo de rotación actual en grados
+
+            // Función para rotar la imagen
+            function rotateImage(degrees) {
+                currentRotation += degrees;
+                image.style.transform = 'rotate(' + currentRotation + 'deg)';
+            }
+
+            // Rotar a la izquierda
+            document.getElementById('rotate-left3').addEventListener('click', function () {
+                rotateImage(-90); // Puedes cambiar el valor del ángulo según necesites
+            });
+
+            // Rotar a la derecha
+            document.getElementById('rotate-right3').addEventListener('click', function () {
+                rotateImage(90); // Puedes cambiar el valor del ángulo según necesites
+            });
+        });
+
+
+        </script>
 @stop
