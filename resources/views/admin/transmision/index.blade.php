@@ -38,7 +38,11 @@
                     <span class="info-box-icon bg-warning bg-success"><i class="far fa-flag"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Reclamacion con foto: {{$trf}}</span>
-                        <span class="info-box-number" id="mesas_reclamacion"> {{ round($trf/$recl *100,1) }}% </span>
+                        <span class="info-box-number" id="mesas_reclamacion"> @if ($recl == 0)
+                            0%
+                        @else
+                            {{ round($trf/$recl *100,1) }}% </span>
+                        @endif
                     </div>
                 </div>       
             
