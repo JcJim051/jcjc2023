@@ -71,7 +71,7 @@
                         <span class="info-box-number">{{$ttpm}} Testigos en mesa</span>
                         <span class="info-box-number">{{$trpm}} Remanentes en el puesto</span>
                         <div class="progress">
-                            <div class="progress-bar bg-success" style="width: " @if ($ttm == 0) 0% @else  {{ round(($ttpm/$ttm)*100,1)}}% @endif" </div>
+                            <div class="progress-bar bg-success" style= "width:  @if ($ttm == 0) 0% @else  {{ round(($ttpm/$ttm)*100,1)}}% @endif "></div>
                         </div>
                         @if ($ttm == 0) 0% @else  <span class="progress-description"> {{ round(($ttpm/$ttm)*100,1)}}%</span>@endif 
                     </div>
@@ -84,9 +84,9 @@
                         <span class="info-box-text"></span>
                         <span class="info-box-number">{{$ttm-$ttpm}} Testigos ausentes</span>
                         <div class="progress">
-                            <div class="progress-bar bg-danger" style="width: {{100 - round(($ttpm/$ttm)*100,1)}}%"></div>
+                            <div class="progress-bar bg-danger" style="width: @if ($ttm == 0) 0% @else  {{ 100 - round(($ttpm/$ttm)*100,1)}}% @endif  "></div>
                         </div>
-                        <span class="progress-description">{{100 - round(($ttpm/$ttm)*100,1)}}%</span>
+                        @if ($ttm == 0) 0% @else  <span class="progress-description"> {{ 100 - round(($ttpm/$ttm)*100,1)}}%</span>@endif
                     </div>
                 </div>
             </div>
