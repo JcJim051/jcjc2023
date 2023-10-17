@@ -79,7 +79,7 @@
                         </td> 
                         <td>
                             @if ($pmu->e14_2 <> null)
-                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $pmu->e14) }}"><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a> - <a href="{{route("admin.tellers.edit2", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-camera"></i></span></a>
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $pmu->e14_2) }}"><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a> - <a href="{{route("admin.tellers.edit2", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-camera"></i></span></a>
                             @else
                                 <a href="{{route("admin.tellers.edit2", $pmu)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i>no</span></a>
                             @endif
@@ -246,7 +246,6 @@
             
 
             ],
-            "dom": '<"top"f>rt<"bottom"lp><"clear">',
             "dom":'BPrtip' ,
             "scrollX": true,
             "buttons": [
@@ -270,9 +269,29 @@
 
             }
             );
+
             $('.dtsp-pane').on('click', 'a', function (e) {
                 e.preventDefault(); // Prevenir la acción predeterminada (navegar a la página vinculada)
             });
+            // Captura el evento de cambio en los paneles de búsqueda
+            table.on('stateChange', function () {
+            // Obtiene el estado actual de los paneles de búsqueda
+            var state = table.state.save();
+
+            // Almacena el estado en las cookies o el almacenamiento local
+            localStorage.setItem('searchPaneState', JSON.stringify(state));
+             });
+              // Restaura el estado de los paneles de búsqueda al cargar la página
+            var savedState = localStorage.getItem('searchPaneState');
+            if (savedState) {
+                table.state.clear();
+                table.state.load(JSON.parse(savedState));
+                table.draw();
+            }
+
+
+
+            
 
         });
 

@@ -28,9 +28,15 @@
                     {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}                   
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-10">
-                                {!! Form::label("statusani", "Validacion Realizada") !!}
+                            <div class="col-4">
+                                {!! Form::label("statusani", "Proceso de Validacion") !!}
                                 
+                            </div>
+                            <div class="col-6">
+                                
+                                {!! Form::text("observacion", null, ["class" => "form-control", 'placeholder' => 'observacion corta']) !!}
+            
+        
                             </div>
                             <div class="col-2">
                                 {!! Form::select("statusani",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}

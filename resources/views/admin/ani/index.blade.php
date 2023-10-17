@@ -25,8 +25,10 @@
                     <th>Puesto</th>
                     <th>Mesa</th>
                     <th>Nombre</th>
+                    
                     <th>Comisión</th>
                     <th>Codpuesto</th>
+                    <th>observacion</th>
                     <th>status</th>
                     <th></th>
     
@@ -54,8 +56,10 @@
                         @endif
                     {{--  <td>{{$seller->cedula}}</td>  --}}
                     <td>{{$seller->nombre}}</td>
+                    
                     <th>{{$seller->codescru}}</th>
                     <th>{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</th>
+                    <td>{{$seller->observacion}}</td>
                     <td style="font-size: 20px ; text-align:center">
                         @if($seller->statusani == 1)
                             <i style="color: rgb(22, 161, 22)" class="fas fa-vote-yea"><p hidden>listo</p></i>
@@ -87,6 +91,7 @@
                     <th>Nombre</th>
                     <th>Comisión</th>
                     <th>Codpuesto</th>
+                    <th>observacion</th>
                     <th>status</th>
                     <th></th>
     

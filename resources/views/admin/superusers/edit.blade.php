@@ -18,7 +18,6 @@
 @endif
 
 
-
 <div class="card">
     <div class="card-body">
         {!! Form::model($superuser, ['route' => ['admin.superusers.update',$superuser], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
