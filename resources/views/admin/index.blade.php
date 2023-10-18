@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-    <h2>Bienvenido andres {{Auth::user()->name}}</h2>
+    <h2>Bienvenido {{Auth::user()->name}}</h2>
 @stop
 
 @section('content')
