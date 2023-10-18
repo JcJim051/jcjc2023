@@ -119,6 +119,7 @@ class SuperUserController extends Controller
      */
     public function update(Request $request, Seller $superuser)
     {
+        
     
         
        if ($superuser->pdf == null) {
