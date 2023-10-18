@@ -13,9 +13,9 @@
 
     <div class="row">
         <div class="col-sm-4 col-xs-12">
-            <div class="text-center card card-success">
+            <div class="text-center card card-orange">
                 <div class="card-header">
-                    <h3 class="card-title">Rafaela Cortes - Preconteo</h3>
+                    <h3 class="card-title">Andres Castañeda  - Preconteo</h3>
                     
                         <div class="card-tools">
                     </div>
@@ -96,7 +96,7 @@
         <div class="col-sm-12 col-xs-12">
             <div class="text-center card card-info">
                 <div class="card-header">
-                <h3 class="card-title" >Votos por comisión escrutadora</h3>
+                <h3 class="card-title" >Votos por puesto</h3>
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->
@@ -121,33 +121,7 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-sm-12 col-xs-12">
-            <div class="text-center card card-info">
-                <div class="card-header">
-                    <h3 class="card-title" >Votos por municipios</h3>
-                    <div class="card-tools">
-                    <!-- Buttons, labels, and many other things can be placed here! -->
-                    <!-- Here is a label for example -->
-
-                     </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body " >
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-                            <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-                
-                <!-- /.card-footer -->
-            </div>
-        </div>
-    </div>
+    
 
      {{-- <h2 style="text-align: center">Resultados de Escrutinio</h2>
     <div class="row">
@@ -234,7 +208,7 @@
                 ],
                     datasets: [{
                     label: 'votos',
-                    backgroundColor: 'purple',
+                    backgroundColor: 'olive',
                     data: [
                      
 
@@ -264,8 +238,8 @@
                    
                 ],
                     datasets: [{
-                    label: 'Acreditados',
-                    backgroundColor: 'green',
+                    label: 'Votos',
+                    backgroundColor: 'orange',
                     data: [
                      
 
@@ -281,54 +255,7 @@
 
        
 
-        const ctx4 = document.getElementById('municipios').getContext('2d');
-        
-        const municipios = new Chart(ctx4, {
-            type: 'bar',
-
-            scales: {
-
-
-                x: {
-                    stacked: true,
-
-                },
-
-                },
-            data: {
-                labels: [
-                   
-                ],
-                    datasets: [{
-                    label: 'Votos',
-                    backgroundColor: 'green',
-                    data: [
-
-                        
-                    ]
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        ticks: {
-                        fontSize: 10,
-                        maxRotation: 90 // aquí estableces el tamaño de letra para el eje x
-                        }
-                    }]
-                },
-                plugins: {
-                    legend: {
-                        labels: {
-                            // This more specific font property overrides the global property
-                        font: {
-                            size: 12
-                            }
-                        }
-                    }
-                }
-            }
-        });
+       
     </script>
 
 <script>
@@ -358,7 +285,7 @@
 
                 // Iterar sobre el nuevo JSON y extraer los datos
                 newData.dt.forEach(function(item) {
-                    labels.push(item.codzon);
+                    labels.push(item.puesto);
                     tData.push(item.T);
                    
                 });
@@ -375,10 +302,7 @@
                 zonas.data.datasets[0].data = tData;                
                 zonas.update();
 
-                municipios.data.labels = labelmun;
-                municipios.data.datasets[0].data = tDatamun;
-                municipios.update();
-
+               
                 resultados.data.labels = candidatos;
                 resultados.data.datasets[0].data = votos;
                 resultados.update();
@@ -417,7 +341,7 @@
             actualizarGraficos();
 
             // Llama a la función de actualización cada 5 minutos
-            setInterval(actualizarGraficos, 300000);
+            setInterval(actualizarGraficos, 60000);
         });    
 
 </script>

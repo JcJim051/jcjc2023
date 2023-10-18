@@ -81,11 +81,11 @@ class AfluenciaController extends Controller
 
            
                 $dt =  DB::table('sellers')
-                        ->where('codmun','=','001')
+                        
                         ->where('mesa','<>','Rem')
-                        ->select('codzon', DB::raw('sum(reporte_1) as T'),DB::raw('sum(reporte_2) as F'),DB::raw('sum(reporte_3) as W'))
-                        ->groupBy('codzon')
-                        ->orderBy('codzon', 'asc')
+                        ->select('puesto', DB::raw('sum(reporte_1) as T'),DB::raw('sum(reporte_2) as F'),DB::raw('sum(reporte_3) as W'))
+                        ->groupBy('puesto')
+                      
                         ->get();
 
                

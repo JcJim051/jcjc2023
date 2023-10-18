@@ -31,7 +31,7 @@
                     <div class="col-12">
                         {!! Form::open(['route' => 'segundafoto', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             @csrf    
-                            <label for="e14_2" style="color: salmon" >Cargar E14 hoja 2</label>
+                            <label for="e14_2" style="font-size: 20px ;color: salmon" >Cargar Cuenta Votos</label>
                             <br>
                             {!! Form::file("e14_2", ["class" => "fole-control disabled", 'data-foto' => $foto->id, 'id' => 'e14_2Input', 'onchange' => 'handleImageUpload("e14_2Input", "e14_2Preview", "e14_2Resized")' ,'accept' =>'image/*']) !!}<br>
                             <div id="imagePreview"></div>
@@ -46,9 +46,9 @@
                         @else
                         <div class="row">
                             <div class="col-sm-12 col-x-12">
-                                <h5 style="color: green">La cara 2 del E14 ya fue cargada.</h5>
+                                <h5 style="color: green">El cuenta votos ya fue cargado.</h5>
                                         <p>Solo seleccione imagen si la va a corregir, de lo contrario click en siguiente.</p>
-                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver cara 2 del E14 Cargada</a>
+                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $foto->e14_2) }}">Ver Cuentavotos</a>
                             </div>
                         </div>
 

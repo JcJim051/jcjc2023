@@ -104,58 +104,26 @@
                                         <tbody>
                                             <tr>
                                                 <td><label for="gob4">01</label></td>
-                                                <td><label type="text" name="gob4">Wilmar Barbosa</td>
+                                                <td><label type="text" name="gob4">Fabian Hernandez</td>
                                                 <td><input  class="form-control"type="text" name="gob4" value="{{$pmu->gob4}}"></td>
                                             </tr>
+                                                    
                                             <tr>
-                                                <td><label for="gob7">02</label></td>
-                                                <td><label type="text" name="gob7">Bairon Muñoz</td>
-                                                <td><input  class="form-control"type="text" name="gob7" value="{{$pmu->gob7}}"></td>
-                                            </tr>
-                                            
-
-                                            <tr>
-                                                <td><label for="gob11">03</label></td>
-                                                <td><label type="text" name="gob11">Jose L Silva</td>
-                                                <td><input  class="form-control" type="text" name="gob11" value="{{$pmu->gob11}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob6">04</label></td>
-                                                <td><label type="text" name="gob6">Harold Barreto</td>
-                                                <td><input  class="form-control"type="text" name="gob6" value="{{$pmu->gob6}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob1">05</label></td>
-                                                <td><label type="text" name="gob1">Rafaela Cortes</td>
-                                                <td ><input  class="form-control" name="gob1" value="{{$pmu->gob1}}"></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><label for="gob8">06</label></td>
-                                                <td><label type="text" name="gob8">Antonio Amaya</td>
-                                                <td><input  class="form-control"type="text" name="gob8" value="{{$pmu->gob8}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob5">07</label></td>
-                                                <td><label type="text" name="gob5">Edward Libreros</td>
-                                                <td><input  class="form-control"type="text" name="gob5" value="{{$pmu->gob5}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob9">08</label></td>
-                                                <td><label type="text" name="gob9">Florentino Vasquez</td>
-                                                <td><input  class="form-control"type="text" name="gob9" value="{{$pmu->gob9}}"></td>
-                                            </tr>
-                                        
-                                            <tr>
-                                                <td><label for="gob2">09</label></td>
-                                                <td><label type="text" name="gob2">Marcela Amaya</td>
+                                                <td><label for="gob2">02</label></td>
+                                                <td><label type="text" name="gob2">Simon Sanbria</td>
                                                 <td><input  class="form-control"type="text" name="gob2" value="{{$pmu->gob2}}"></td>
                                             </tr>
                                             <tr>
-                                                <td><label for="gob3">10</label></td>
-                                                <td><label type="text" name="gob3">Dario Vasquez</td>
+                                                <td><label for="gob3">03</label></td>
+                                                <td><label type="text" name="gob3">Jhon Jairo Gutierrez</td>
                                                 <td><input  class="form-control"type="text" name="gob3" value="{{$pmu->gob3}}"></td>
                                             </tr>
+                                            <tr>
+                                                <td><label for="gob1">04</label></td>
+                                                <td><label type="text" name="gob1">Andres Castañeda</td>
+                                                <td ><input  class="form-control" name="gob1" value="{{$pmu->gob1}}"></td>
+                                            </tr>
+                                      
                                             <tr>
                                                 
                                                 <td colspan="2">Votos en blanco</td>
@@ -172,7 +140,7 @@
                                                 <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->nomarcados}}"></td>
                                             </tr>
                                         </tbody>
-                                    </table>      
+                                    </table>    
                                 </div>   
                         
                                 <div class="row">
@@ -183,7 +151,7 @@
                                     </div>
                                     <div class="col-6">
                                         {!! Form::label("reclamacion", "Reclamaciones mesa") !!}
-                                        {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Rafaela', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
+                                        {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Si, Andres', 2 => 'Fabian',3 => 'Simon',4 => 'Jhon'], null, ["class" => "form-control", "required" => "required"]) !!}
                                     
                                     </div>
                                 </div>
@@ -224,7 +192,7 @@
                                 <div class="card container-fluid">
                                     <div class="card-header">
                                         <div class="row">
-                                            <span style="font-size: 24px">E14 Cara 1 testigo</span>    
+                                            <span style="font-size: 24px">Foto E14</span>    
                                             @if ($pmu->e14 == 0)
                                                 
                                             @else
@@ -262,7 +230,7 @@
                                 <div class="card container-fluid">
                                     <div class="card-header">
                                         <div class="row">
-                                            <span style="font-size: 24px">E14 Cara 2 testigo</span>    
+                                            <span style="font-size: 24px">Foto Formato de transmision</span>    
                                             @if ($pmu->e14_2 == 0)
                                                 
                                             @else

@@ -143,7 +143,7 @@
             <div class="col-sm-12 col-xs-12">
                 <div class="card card-outline card-info">
                     <div class="card-header">
-                    <h3 class="card-title" style="text-align: center"> Afluencia de Votantes en villavicencio por Zonas  </h3>
+                    <h3 class="card-title" style="text-align: center"> Afluencia de Votantes por puesto de votacion.  </h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseContent">
                             <i class="fas fa-minus"></i>
@@ -173,35 +173,7 @@
         
         </div>
         
-        <div class="row">
-            <div class="col-sm-12 col-xs-12">
-                <div class="card card-outline card-warning">
-                    <div class="card-header">
-                        <h3 class="card-title "style="text-align: center">  Afluencia de Votantes por municipios</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseContent5">
-                                <i class="fas fa-minus"></i>
-                            </button>
         
-                        </div>
-                    <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div  id="collapseContent5"  class="card-body " >
-                        <div class="chart">
-                            <div class="chartjs-size-monitor">
-                                <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
-                            </div>
-                        </div>
-        
-                    </div>
-                    <!-- /.card-body -->
-                    
-                    <!-- /.card-footer -->
-                </div>
-                
-        </div>
-    
 </div>
 
         
@@ -372,18 +344,12 @@
 
                 // Iterar sobre el nuevo JSON y extraer los datos
                 newData.dt.forEach(function(item) {
-                    labels.push(item.codzon);
+                    labels.push(item.puesto);
                     tData.push(item.T);
                     fData.push(item.F);
                     wData.push(item.W);
                 });
-                newData.labelmun.forEach(function(item) {
-                        labelmun.push(item.municipio);
-                        tDatamun.push(item.T);
-                        fDatamun.push(item.F);
-                        wDatamun.push(item.W);
-
-                    });
+               
                
                
 
@@ -394,11 +360,7 @@
                 zonas.data.datasets[2].data = wData;
                 zonas.update();
 
-                municipios.data.labels = labelmun;
-                municipios.data.datasets[0].data = tDatamun;
-                municipios.data.datasets[1].data = fDatamun;
-                municipios.data.datasets[2].data = wDatamun;
-                municipios.update();
+             
                
                
                 var primer = 0;

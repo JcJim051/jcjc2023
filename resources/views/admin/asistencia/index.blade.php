@@ -43,7 +43,7 @@
         <div class="col-sm-8 col-xs-12">
             <div class="text-center card card-success">
                 <div class="card-header">
-                    <h3 class="card-title">Testigos Presentes por zona en villavicencio</h3>
+                    <h3 class="card-title">Testigos Presentes por puesto</h3>
                     <div class="card-tools">
                         <!-- Buttons, labels, and many other things can be placed here! -->
                         <!-- Here is a label for example -->
@@ -62,54 +62,7 @@
         </div>
     </div>
    
-    <div class="row">
-        <div class="col-sm-4 col-xs-12">
-            <div class="row">
-                <div class="info-box">
-                    <span class="info-box-icon bg-success"><i class="far fa-smile"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-number">{{$ttpm}} Testigos en mesa</span>
-                        <span class="info-box-number">{{$trpm}} Remanentes en el puesto</span>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style= "width:  @if ($ttm == 0) 0% @else  {{ round(($ttpm/$ttm)*100,1)}}% @endif "></div>
-                        </div>
-                        @if ($ttm == 0) 0% @else  <span class="progress-description"> {{ round(($ttpm/$ttm)*100,1)}}%</span>@endif 
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="info-box">
-                    <span class="info-box-icon bg-danger"><i class="far fa-sad-tear"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text"></span>
-                        <span class="info-box-number">{{$ttm-$ttpm}} Testigos ausentes</span>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" style="width: @if ($ttm == 0) 0% @else  {{ 100 - round(($ttpm/$ttm)*100,1)}}% @endif  "></div>
-                        </div>
-                        @if ($ttm == 0) 0% @else  <span class="progress-description"> {{ 100 - round(($ttpm/$ttm)*100,1)}}%</span>@endif
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-8 col-xs-12">
-            <div class="text-center card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Testigos presentes por municipios</h3>
-                    <div class="card-tools">
-                        <!-- Buttons, labels, and many other things can be placed here! -->
-                        <!-- Here is a label for example -->
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-                            <canvas id="municipios" width="400" height="150" aria-label="" role="img"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  
     <div class="row">
         <div class="col-12">
             @if (Auth::user()->role == 1 or Auth::user()->role == 4)
@@ -345,15 +298,11 @@
     
                     // Iterar sobre el nuevo JSON y extraer los datos
                     newData.dt.forEach(function(item) {
-                        labels.push(item.codzon);
+                        labels.push(item.puesto);
                         tData.push(item.T);
                         fData.push(item.F);
                     });
-                    newData.lablemun.forEach(function(item) {
-                        labelmun.push(item.municipio);
-                        tDatamun.push(item.T);
-                        fDatamun.push(item.F);
-                    });
+                  
                    
     
                     // Actualizar los datos en la instancia de la gráfica
@@ -362,10 +311,7 @@
                     zonas.data.datasets[1].data = fData;
                     zonas.update();
     
-                    municipios.data.labels = labelmun;
-                    municipios.data.datasets[0].data = tDatamun;
-                    municipios.data.datasets[1].data = fDatamun;
-                    municipios.update();
+                    
     
                     
                     
@@ -388,7 +334,7 @@
             actualizarGraficos();
 
             // Llama a la función de actualización cada 5 minutos
-            setInterval(actualizarGraficos, 300000);
+            setInterval(actualizarGraficos, 60000);
         });
     </script>
 @stop

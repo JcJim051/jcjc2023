@@ -53,7 +53,7 @@
         <div class="col-sm-8 col-xs-12">
             <div class="text-center card card-outline card-warning">
                 <div class="card-header">
-                    <h3 class="card-title" >Municipios Zonificados</h3>
+                    <h3 class="card-title" >Avance Municipal</h3>
                 </div>
                  
                 <div class="card-body">        
@@ -123,67 +123,11 @@
 
     
     <div class="row">
-        <div class="col-sm-6 col-xs-12">
+       
+        <div class="col-sm-12 col-xs-12">
             <div class="text-center card card-outline card-warning">
                 <div class="card-header">
-                    <h3 class="card-title" >Municipios</h3>
-                </div>
-                @if (Auth::user()->role == 1 or Auth::user()->role == 4 )
-                
-                <div class="card-body">
-                    <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 10px;" width ="100%">
-                        <thead class="text-white" style="background-color: hsl(220, 87%, 54%)">
-                                <tr>
-                            
-                                <th>Municipio</th>                    
-                                <th>Mesas</th>
-                                <th>Datos ok</th>
-                                <th>% mesa ok</th>
-                                <th>Fotos ok</th>
-                                <th>% Fotos ok</th>
-
-                                
-                            </tr>
-                        </thead>
-    
-                    
-                        <tbody>
-                            @foreach ($avance_mun as $avance_mun)
-                            <tr>
-                                <td>{{$avance_mun->municipio}}</td>                          
-                                <td>{{$avance_mun->total_mesas}}</td>                          
-                                <td>{{$avance_mun->mesas_ok}}</td>
-                                <td> 
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_mun->total_mesas == 0)0%@else{{($avance_mun->mesas_ok/$avance_mun->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_mun->total_mesas == 0)0%@else{{round(($avance_mun->mesas_ok/$avance_mun->total_mesas)*100,1)}}%@endif</div>
-                                    </div>
-                                </td>  
-                                <td>{{$avance_mun->fotos_ok}}</td> 
-                                <td> 
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_mun->total_mesas == 0)0%@else{{($avance_mun->fotos_ok/$avance_mun->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_mun->total_mesas == 0)0%@else{{round(($avance_mun->fotos_ok/$avance_mun->total_mesas)*100,1)}}%@endif</div>
-                                    </div>
-                                </td>                           
-                            
-                            </tr>
-                            @endforeach
-    
-    
-                        </tbody>
-                    
-                    </table>
-                </div>
-                
-            
-        @else
-            
-        @endif
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-outline card-warning">
-                <div class="card-header">
-                    <h3 class="card-title" >Zonas Villavicencio</h3>
+                    <h3 class="card-title" >Avance por puestos</h3>
                 </div>
                 @if (Auth::user()->role == 1 or Auth::user()->role == 4 )
                
@@ -205,20 +149,20 @@
         
                         
                             <tbody>
-                                @foreach ($avance_zonas as $avance_zonas)
+                                @foreach ($avance_puesto as $avance_puesto)
                                 <tr>
-                                    <td>Zona {{$avance_zonas->codescru}}</td>                          
-                                    <td>{{$avance_zonas->total_mesas}}</td>                          
-                                    <td>{{$avance_zonas->mesas_ok}}</td>
+                                    <td>Zona {{$avance_puesto->puesto}}</td>                          
+                                    <td>{{$avance_puesto->total_mesas}}</td>                          
+                                    <td>{{$avance_puesto->mesas_ok}}</td>
                                     <td> 
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_zonas->total_mesas == 0)0%@else{{($avance_zonas->mesas_ok/$avance_zonas->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_zonas->total_mesas == 0)0%@else{{round(($avance_zonas->mesas_ok/$avance_zonas->total_mesas)*100,1)}}%@endif</div>
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_puesto->total_mesas == 0)0%@else{{($avance_puesto->mesas_ok/$avance_puesto->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_puesto->total_mesas == 0)0%@else{{round(($avance_puesto->mesas_ok/$avance_puesto->total_mesas)*100,1)}}%@endif</div>
                                         </div>
                                     </td>  
-                                    <td>{{$avance_zonas->fotos_ok}}</td> 
+                                    <td>{{$avance_puesto->fotos_ok}}</td> 
                                     <td> 
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_zonas->total_mesas == 0)0%@else{{($avance_zonas->fotos_ok/$avance_zonas->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_zonas->total_mesas == 0)0%@else{{round(($avance_zonas->fotos_ok/$avance_zonas->total_mesas)*100,1)}}%@endif</div>
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($avance_puesto->total_mesas == 0)0%@else{{($avance_puesto->fotos_ok/$avance_puesto->total_mesas)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($avance_puesto->total_mesas == 0)0%@else{{round(($avance_puesto->fotos_ok/$avance_puesto->total_mesas)*100,1)}}%@endif</div>
                                         </div>
                                     </td>                           
                                 

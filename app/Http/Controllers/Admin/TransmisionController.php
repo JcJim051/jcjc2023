@@ -24,14 +24,14 @@ class TransmisionController extends Controller
                     
                     ->groupBy('municipio')
                     ->get();
-        $avance_zonas = DB::table('sellers')
-                            ->select('codescru', 
+        $avance_puesto = DB::table('sellers')
+                            ->select('puesto', 
                                     DB::raw('count(*) as total_mesas'), 
                                     DB::raw('SUM(CASE WHEN gob1 IS NOT NULL THEN 1 ELSE 0 END) as mesas_ok'),
                                     DB::raw('SUM(CASE WHEN e14 IS NOT NULL AND e14_2 IS NOT NULL THEN 1 ELSE 0 END) as fotos_ok')
                                     )
-                            ->where('municipio', 'VILLAVICENCIO')
-                            ->groupBy('codescru')
+                            
+                            ->groupBy('puesto')
                             ->get();
 
         $avance_pareto = DB::table('sellers')
@@ -39,10 +39,8 @@ class TransmisionController extends Controller
                                 DB::raw('count(*) as total_mesas'), 
                                 DB::raw('SUM(CASE WHEN gob1 IS NOT NULL THEN 1 ELSE 0 END) as mesas_ok'),
                                 DB::raw('SUM(CASE WHEN e14 IS NOT NULL AND e14_2 IS NOT NULL THEN 1 ELSE 0 END) as fotos_ok'))
-                            ->where('municipio', 'VILLAVICENCIO')
-                            ->orwhere('municipio', 'ACACIAS')
-                            ->orwhere('municipio', 'PUERTO GAITAN')
-                            ->orwhere('municipio', 'GRANADA')
+                            ->where('municipio', 'CABUYARO')
+                            
                             ->groupBy('municipio')
                             ->get();
 
@@ -63,7 +61,7 @@ class TransmisionController extends Controller
                             ->count();                             
           
              //dd($avance_mun);
-        return view('admin.transmision.index',compact('avance_mun', 'avance_zonas', 'avance_pareto','tm','tmi', 'trf', 'recl'));
+        return view('admin.transmision.index',compact('avance_mun', 'avance_puesto', 'avance_pareto','tm','tmi', 'trf', 'recl'));
     }
 
     /**

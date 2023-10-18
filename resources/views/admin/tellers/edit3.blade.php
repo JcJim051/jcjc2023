@@ -28,7 +28,7 @@
 
             <div class="col-12">
                 {!! Form::open(['route' => 'reclamacion', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                            <label for="fotorec" style="color:blueviolet"> Cargar Foto de la Reclamacion</label> <br>
+                            <label for="fotorec" style="font-size :20px ; color:blueviolet"> Cargar Foto de la Reclamacion</label> <br>
                             {!! Form::file("fotorec", ["class" => "file-control disabled", 'data-foto' => $foto->id, 'id' => 'fotorecInput', 'onchange' => 'handleImageUpload("fotorecInput", "fotorecPreview", "fotorecResized")' ,'accept' =>'image/*' ] )  !!}<br>
                             <div id="imagePreview"></div>
                             <img hidden id="fotorecPreview" src="" alt="fotorec Preview" style="max-width: 300px; max-height: 300px;">

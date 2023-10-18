@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-    <h1> ASISTENCIA DE TESTIGO - {{ $superuser[0]->puesto}} MESA {{ $superuser[0]->mesa}}</h1>
+    <h1> ASISTENCIA DE TESTIGO - {{ $posesion->puesto}} MESA {{ $posesion->mesa}}</h1>
 
 
 @stop
@@ -19,17 +19,19 @@
 
 <div class="card ">
     <div class="card-body">
-        {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT']) !!}
+        {!! Form::model($posesion, ['route' => ['admin.posesion.update',$posesion], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+        @csrf
+        
         <div class="card card-outline card-warning">
             <div class="card-body">
             
                 <div class="row">
                     <div class="col-8">
                         <label for=""> Nombre del testigo acreditado.</label><br>
-                        @if ($superuser[0]->nombre == null)
+                        @if ($posesion->nombre == null)
                             Sin testigo acreditado para esta mesa
                         @else
-                            {{$superuser[0]->nombre}}                        
+                            {{$posesion->nombre}}                        
                         @endif
                        
                     </div>
@@ -77,8 +79,8 @@
             
 
      
-                    <br>
-                    {!! Form::submit('Reportar Asistencia', ['class' => 'btn btn-info']) !!}
+        <br>
+        {!! Form::submit('Reportar Asistencia', ['class' => 'btn btn-info']) !!}
                 
 
 

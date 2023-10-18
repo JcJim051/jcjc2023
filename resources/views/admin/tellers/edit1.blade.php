@@ -3,7 +3,7 @@
 @section('title', 'Admin')
 
 @section('content_header')
-       <h4> REPORTE DE FOTO1  <span style="color:rgb(50, 135, 205)">{{ $teller->puesto}} MESA {{ $teller->mesa}}</span> </h4>
+       <h4> REPORTE DE FOTO E14  <span style="color:rgb(50, 135, 205)">{{ $teller->puesto}} MESA {{ $teller->mesa}}</span> </h4>
        <!-- Agrega este script en la sección <head> de tu página -->
        
 
@@ -30,7 +30,7 @@
                     <div class="col-12">
                         {!! Form::open(['route' => 'fotos', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                             @csrf
-                            <label for="e14" style="color: firebrick">Cargar E14 hoja 1 </label> <br>
+                            <label for="e14" style="font-size: 22px ; color: firebrick">Cargar E14 </label> <br>
                             {!! Form::file("e14", ["class" => "fole-control disabled", 'data-teller' => $teller->id, 'id' => 'e14Input', 'onchange' => 'handleImageUpload("e14Input", "e14Preview", "e14Resized")', 'accept' =>'image/*']) !!}<br>
                             <div id="imagePreview"></div>
                             <img hidden id="e14Preview" src="" alt="E14 Preview" style="max-width: 300px; max-height: 300px;"><br>
@@ -43,9 +43,9 @@
                         @else
                         <div class="row">
                             <div class="col-sm-12 col-x-12">
-                                <h5 style="color: green">La cara 1 del E14 ya fue cargada.</h5>
+                                <h5 style="color: green">El E14 ya fue cargado.</h5>
                                 <p>Solo seleccione imagen si la va a corregir, de lo contrario click en siguiente.</p>
-                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Hoja 1 Cargado</a>
+                                <a  style="font-size: 20px" target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $teller->e14) }}">Ver E14 Cargado</a>
                             </div>
                         </div>
 
