@@ -97,14 +97,19 @@ class PosesionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($ani)
-    {
-        $superuser = Seller::where('id' , $ani)->get();
 
-        return view('admin.posesion.edit', compact('ani',))->with('superuser', $superuser);
+     public function edit(Seller $posesion)
+     {
+         return view('admin.posesion.edit', compact('posesion'));
+     }
+    // public function edit(seller $ani)
+    // {
+    //     $superuser = Seller::where('id' , $ani)->get();
+
+    //     return view('admin.posesion.edit', compact('ani',))->with('superuser', $superuser);
     
 
-    }
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -113,11 +118,15 @@ class PosesionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        public function update(Request $request, Seller $posesion)
+        {
 
+
+            $posesion->update($request->all());
+
+
+        return redirect()->route('admin.posesion.index', $posesion)->with('info', 'Reporte de asistencia se actualizó con Éxito');
+        }
     /**
      * Remove the specified resource from storage.
      *
