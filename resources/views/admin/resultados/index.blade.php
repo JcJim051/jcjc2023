@@ -46,7 +46,7 @@
         <div class="col-sm-8 col-xs-12">
             <div class="text-center card card-info">
                 <div class="card-header">
-                <h3 class="card-title" >Total Votos por Candidato</h3>
+                <h3 class="card-title" >Total Votos por Candidato putos </h3>
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->
@@ -194,34 +194,25 @@
         const ctx9 = document.getElementById('resultados').getContext('2d');
         const resultados = new Chart(ctx9, {
             type: 'bar',
-            scales: {
-
-                x: {
-                    stacked: true,
-
-                },
-
-                },
             data: {
-                labels: [
-                   
-                ],
-                    datasets: [{
+                labels: [],
+                datasets: [{
                     label: 'votos',
                     backgroundColor: 'olive',
-                    data: [
-                     
-
-                    ]
+                    data: []
                 }]
             },
             options: {
                 scales: {
-
+                    y: {
+                        min: 0, // Establece el mínimo en 0
+                    },
+                    x: {
+                        stacked: true
+                    }
                 }
             }
         });
-
         const ctx3 = document.getElementById('zonas').getContext('2d');
         const zonas = new Chart(ctx3, {
             type: 'bar',
@@ -239,7 +230,7 @@
                 ],
                     datasets: [{
                     label: 'Votos',
-                    backgroundColor: 'orange',
+                    backgroundColor: 'green',
                     data: [
                      
 
