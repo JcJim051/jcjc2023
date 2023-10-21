@@ -318,7 +318,7 @@
                                 
                                         {!! Form::close() !!}
                             </div>
-                            <div class="col-12 col-sm-3">
+                            {{-- <div class="col-12 col-sm-3">
                                 <h5>¿Nueva Reclamacion?</h5> 
                                 <select  class="form-control" name="" id="">
                                     <option  value="0">No</option>
@@ -334,7 +334,7 @@
                                     <option value="0">Si</option>
 
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

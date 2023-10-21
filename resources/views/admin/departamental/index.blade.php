@@ -3,7 +3,7 @@
 @section('title', 'Reportar')
 
 @section('content_header')
-    <h1 style="text-align: center">Alertas de Balanceo Escrutinio Departamental</h1>
+    <h1 style="text-align: center">Alertas Escrutinio Departamental</h1>
 @stop
 
 @section('content')
@@ -13,82 +13,7 @@
         </div>
     @endif
    
-    <div class="row">
-        <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-danger">
-                <div class="card-header">
-                    <h3 class="card-title">Promedio de votos por mesa</h3>
-                    
-                        <div class="card-tools">
-                    </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body " >
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-                            <span class="info-box-number"> @if ($tmi == 0)
-                                Sin reporte
-                            @else
-                            
-                                {{round($tv1/$tmi)}} votos por mesa
-                            
-                            @endif </span>
 
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  
-                        {{-- 0% de mesas Informadas
-                   --}}
-
-
-                </div>
-                <!-- /.card-footer -->
-            </div>
-        </div> 
-        <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-danger">
-                <div class="card-header">
-                    <h3 class="card-title">Desviación estandar</h3>
-                    
-                        <div class="card-tools">
-                    </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body " >
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-
-                            <span class="info-box-number"> @if ($desviacion_estandar == 0)
-                                Sin reporte
-                            @else
-                            
-                                {{round($desviacion_estandar, 3)}}
-                            
-                            @endif </span>
-
-                        
-                           
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  
-                        {{-- 0% de mesas Informadas
-                   --}}
-
-
-                </div>
-                <!-- /.card-footer -->
-            </div>
-        </div> 
     </div>
    
     <div class="card">

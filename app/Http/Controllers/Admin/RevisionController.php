@@ -96,7 +96,7 @@ class RevisionController extends Controller
         
         $puestos= Puestos::all();
 
-        // dd($puestos);
+        
         return view('admin.revision.edit', compact('puestos', 'ani',))->with('superuser', $superuser);
     }
 
@@ -107,14 +107,11 @@ class RevisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $ani)
-    {
+    public function update(Request $request, Seller $revision)
+    {   
+          
+            $revision->update($request->all());
 
-        dd($ani);
-       
-
-            $ani->update($request->all());
-
-        return redirect()->route('admin.revision.index', $ani)->with('info', ' Confirmacion de E24 actualizada con exito');
+        return redirect()->route('admin.revision.index', $revision)->with('info', ' Confirmacion de E24 actualizada con exito');
     }
 }

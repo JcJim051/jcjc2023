@@ -121,7 +121,7 @@ class SuperUserController extends Controller
     {
         
     
-        dd($superuser);
+       
        if ($superuser->pdf == null) {
             $request->validate([
                 'email' => [

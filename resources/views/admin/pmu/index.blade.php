@@ -233,7 +233,7 @@
        
              
             searchPanes: {
-                layout: 'columns-7',
+                layout: 'columns-8',
                 initCollapsed: true
             },
             "pageLength": 25,
