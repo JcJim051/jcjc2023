@@ -100,7 +100,7 @@
                        
 
                         <td>
-                            @if ($seller->gob1 <> null) 
+                            @if ($seller->gob1 <> null or $seller->censodemesa <> null ) 
                                <span style="color: green"><i class="fas fa-check-circle"></i> Enviado</i></span>                    
                             @else
                                 <span style="color: red"><i class="fas fa-times-circle"></i> Faltante</span>

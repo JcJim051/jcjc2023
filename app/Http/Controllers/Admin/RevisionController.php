@@ -107,14 +107,14 @@ class RevisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $ani)
+    public function update(Request $request, Seller $revision)
     {
 
       
        
 
-            $ani->update($request->all());
+            $revision->update($request->all());
 
-        return redirect()->route('admin.revision.index', $ani)->with('info', ' Confirmacion de E24 actualizada con exito');
+        return redirect()->route('admin.revision.index', $revision)->with('info', ' Confirmacion de E24 actualizada con exito');
     }
 }
