@@ -94,39 +94,39 @@
                 <tr>
                     <td><label for="gob4">01</label></td>
                     <td><label type="text" name="gob4">Fabian Hernandez</td>
-                    <td><input  class="form-control"type="text" name="gob4" value="{{$teller->gob4}}"></td>
+                    <td><input  class="form-control"type="text" name="gob4" value="{{$teller->gob4}}" required></td>
                 </tr>
                         
                 <tr>
                     <td><label for="gob2">02</label></td>
                     <td><label type="text" name="gob2">Simon Sanbria</td>
-                    <td><input  class="form-control"type="text" name="gob2" value="{{$teller->gob2}}"></td>
+                    <td><input  class="form-control"type="text" name="gob2" value="{{$teller->gob2}}" required></td>
                 </tr>
                 <tr>
                     <td><label for="gob3">03</label></td>
                     <td><label type="text" name="gob3">Jhon Jairo Gutierrez</td>
-                    <td><input  class="form-control"type="text" name="gob3" value="{{$teller->gob3}}"></td>
+                    <td><input  class="form-control"type="text" name="gob3" value="{{$teller->gob3}}" required></td>
                 </tr>
                 <tr>
                     <td><label for="gob1">04</label></td>
                     <td><label type="text" name="gob1">Andres Castañeda</td>
-                    <td ><input  class="form-control" name="gob1" value="{{$teller->gob1}}"></td>
+                    <td ><input  class="form-control" name="gob1" value="{{$teller->gob1}}" required></td>
                 </tr>
           
                 <tr>
                     
                     <td colspan="2">Votos en blanco</td>
-                    <td><input  class="form-control"type="text" name="enblanco" value="{{$teller->enblanco}}"></td>
+                    <td><input  class="form-control"type="text" name="enblanco" value="{{$teller->enblanco}}" required></td>
                 </tr>
                 <tr>
                     
                     <td colspan="2">Votos nulos</td>
-                    <td><input  class="form-control" type="text" name="nulos" value="{{$teller->nulos}}"></td>
+                    <td><input  class="form-control" type="text" name="nulos" value="{{$teller->nulos}}" required></td>
                 </tr>
                 <tr>
                 
                     <td colspan="2">Votos no marcados</td>
-                    <td><input  class="form-control"type="text" name="nomarcados" value="{{$teller->nomarcados}}"></td>
+                    <td><input  class="form-control"type="text" name="nomarcados" value="{{$teller->nomarcados}}" required></td>
                 </tr>
             </tbody>
         </table>      
