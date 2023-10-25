@@ -26,25 +26,23 @@
    </div>
     <div class="card">
         <div class="card-body">
-            <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 10px;" width ="100%">
+            <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 11px;" width ="100%">
                 <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
                     <tr>
-                        <th>id</th>
-                        
+                        <th>id</th>                        
                         <th>municipio</th>
-                        {{-- <th>zon</th> --}}
+                        <th>Codigo</th>
                         <th>puesto</th>
                         <th>mesa</th>
-                        <th style="font-size: 2px">dat</i></th>
-                        <th style="font-size: 2px">Fot</th>
-                        
-                        <th style="font-size: 2px">rec</th>
-
-                        <th> Balance</th>
-                        <th> ¿Re-conteo? </th>
-                        <th> E11-Total</th>
-                        <th> Reclam</th>
-                        <th> % Nulos</th>
+                        <th>Datos</i></th>
+                        <th>Foto1</th>
+                        <th>Fotos2</th>
+                        <th>reclam</th>
+                        <th style="background-color: hsl(25, 41%, 55%)">Balance</th>
+                        <th style="background-color: hsl(25, 41%, 55%)">Reconteo</th>
+                        <th style="background-color: hsl(25, 41%, 55%)">E11-Total</th>
+                        <th style="background-color: hsl(25, 41%, 55%)">Reclam</th>
+                        <th style="background-color: hsl(25, 41%, 55%)">%Nulos</th>
                        
 
 
@@ -58,30 +56,38 @@
                     <tr>
                         <td> {{ $zonal->id }}</td>
                         
-                        <td> {{ $zonal->municipio }}</td>
-                        {{-- <td> {{ $zonal->codzon }}</td> --}}
-                        <td> {{ $zonal->puesto }}</td>
+                        <td style="font-size: 10px"> {{ $zonal->municipio }}</td>
+                        <td>{{$zonal->codcor}}</td> 
+                        <td> {{$zonal->puesto}}<a  style="color: green"href="#" class="open-modal" data-telefono="{{$zonal->telefono}}"> <i class="fas fa-phone-square"></i></a> </td>
                         <td> {{ $zonal->mesa }}</td>
                         <td> 
-                            @if ($zonal->gob1 <> null )
-                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
+                            @if ($zonal->gob1 !== null)
+                                <span style="color: green"><i class="fas fa-check-circle"></i> si</span>
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                                <a target="_blank" href="{{route("admin.tellers.edit", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i> no</span>
                             @endif
                         </td>
                         <td>
-                            @if ($zonal->e14 <> null && $zonal->e14_2 <> null )
-                            <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
+                            @if ($zonal->e14 <> null )
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14) }}"><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a> - <a href="{{route("admin.tellers.edit1", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-camera"></i></span></a>
                             @else
-                                <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                                <a href="{{route("admin.tellers.edit1", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i>no</span></a>
                             @endif
                         </td> 
                         <td>
-                            @if ($zonal->reclamacion == 0)
-                                @if ($zonal->fotorec <> null )
-                                <span style="color: green"><i class="fas fa-check-circle"></i> si</i></span>
+                            @if ($zonal->e14_2 <> null)
+                                <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->e14_2) }}"><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a> - <a href="{{route("admin.tellers.edit2", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-camera"></i></span></a>
+                            @else
+                                <a href="{{route("admin.tellers.edit2", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i>no</span></a>
+                            @endif
+                        </td> 
+                        <td>
+                            @if ($zonal->reclamacion == 1)
+                                @if ($zonal->fotorec == null )
+                                <a href="{{route("admin.tellers.edit3", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-times-circle"></i>no</span></a>
+
                                 @else
-                                    <span style="color: red"><i class="fas fa-times-circle"></i> no</span>
+                                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $zonal->fotorec) }}"><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a> - <a href="{{route("admin.tellers.edit3", $zonal)}}" style="font-size: 10px"><span style="color: red"><i class="fas fa-camera"></i></span></a>
                                 @endif
                             @else
                                 No Rec

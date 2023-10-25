@@ -40,7 +40,7 @@
 
         .table-container th, .table-container td {
             border: 1px solid #ccc;
-            padding: 8px;
+            padding: 2px;
             text-align: center;
         }
         
@@ -88,23 +88,28 @@
                             {!! Form::hidden("telefono", null) !!}
                             {!! Form::hidden("nombre", null) !!}
                     
-                            <div class="row">
-                                <div class="col-4">
-                                    {!! Form::label("censodemesa", "Votantes en E11") !!}
-                                    {!! Form::text("censodemesa", null, ["class" => "form-control disabled " , 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?' , 'readonly' => 'readonly', 'readonly' => 'readonly']) !!}
-                    
-                                </div>     
-                                <div class="col-4">
-                                    {!! Form::label("votosenurna", "Votos en la Urna") !!}
-                                    {!! Form::text("votosenurna", null, ["class" => "form-control ", 'placeholder' => 'Cuantos votos en la hay en la urna?', 'readonly' => 'readonly']) !!}
-                                </div>   
-                                <div class="col-4">
-                                    {!! Form::label("votosincinerados", "Votos Incinerados") !!}
-                                    {!! Form::text("votosincinerados", null, ["class" => "form-control ", 'placeholder' => 'Total de Votos incinerados en el preconteo', 'readonly' => 'readonly']) !!}
-                                </div>
-                            </div><br>
-                    
-                            <div class="table-container">
+                            <table class="table">
+        
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td colspan="3" class="text-center" style="padding: 1px">Votantes E11</td>
+                                        <td style="padding: 1px"><input class="form-control" type="number" name="censodemesa"  value="{{$zonal->censodemesa}}" required> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-center" style="padding: 1px">Votos en Urna</td>
+                                      
+                                        <td style="padding: 1px"><input class="form-control"type="number" name="votosenurna" value="{{$zonal->votosenurna}}" required> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-center">Incinerados</td>
+                                        
+                                        <td style="padding: 1px"><input class="form-control"type="number" name="votosincinerados" value="{{$zonal->votosincinerados}}" required></td>
+                                    </tr>
+                                    
+                                </tbody>
+                               </table>
+                               <div class="table-container">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -115,98 +120,87 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><label for="gob1">01</label></td>
+                                            <td><label for="gob4">01</label></td>
+                                            <td><label type="text" name="gob4">Wilmar Barbosa</td>
+                                            <td><input  class="form-control"type="text" name="gob4" value="{{$zonal->gob4}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob7">02</label></td>
+                                            <td><label type="text" name="gob7">Bairon Muñoz</td>
+                                            <td><input  class="form-control"type="text" name="gob7" value="{{$zonal->gob7}}" required></td>
+                                        </tr>
+                                        
+                        
+                                        <tr>
+                                            <td><label for="gob11">03</label></td>
+                                            <td><label type="text" name="gob11">Jose L Silva</td>
+                                            <td><input  class="form-control" type="text" name="gob11" value="{{$zonal->gob11}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob6">04</label></td>
+                                            <td><label type="text" name="gob6">Harold Barreto</td>
+                                            <td><input  class="form-control"type="text" name="gob6" value="{{$zonal->gob6}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob1">05</label></td>
                                             <td><label type="text" name="gob1">Rafaela Cortes</td>
-                                            <td ><input readonly class="form-control" name="gob1" value="{{$zonal->gob1}}"></td>
+                                            <td ><input  class="form-control" name="gob1" value="{{$zonal->gob1}}" required></td>
+                                        </tr>
+                        
+                                        <tr>
+                                            <td><label for="gob8">06</label></td>
+                                            <td><label type="text" name="gob8">Antonio Amaya</td>
+                                            <td><input  class="form-control"type="text" name="gob8" value="{{$zonal->gob8}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob5">07</label></td>
+                                            <td><label type="text" name="gob5">Edward Libreros</td>
+                                            <td><input  class="form-control"type="text" name="gob5" value="{{$zonal->gob5}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob9">08</label></td>
+                                            <td><label type="text" name="gob9">Florentino Vasquez</td>
+                                            <td><input  class="form-control"type="text" name="gob9" value="{{$zonal->gob9}}" required ></td>
                                         </tr>
                                     
-                                            <tr>
-                                                <td><label for="gob2">02</label></td>
-                                                <td><label type="text" name="gob2">Marcela Amaya</td>
-                                                <td><input readonly class="form-control"type="text" name="gob2" value="{{$zonal->gob2}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob3">03</label></td>
-                                                <td><label type="text" name="gob3">Dario Vasquez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob3" value="{{$zonal->gob3}}"></td>
-                                            </tr>
-                                        
-                                            <tr>
-                                                <td><label for="gob4">04</label></td>
-                                                <td><label type="text" name="gob4">Wilmar Barbosa</td>
-                                                <td><input readonly class="form-control"type="text" name="gob4" value="{{$zonal->gob4}}"></td>
-                                            </tr>
-                                        
-                                            <tr>
-                                                <td><label for="gob5">05</label></td>
-                                                <td><label type="text" name="gob5">Edward Libreros</td>
-                                                <td><input readonly class="form-control"type="text" name="gob5" value="{{$zonal->gob5}}"></td>
-                                            </tr>
-                                        
-                                            <tr>
-                                                <td><label for="gob6">06</label></td>
-                                                <td><label type="text" name="gob6">Harold Barreto</td>
-                                                <td><input readonly class="form-control"type="text" name="gob6" value="{{$zonal->gob6}}"></td>
-                                            </tr>
-                                        
-                                            <tr>
-                                                <td><label for="gob7">07</label></td>
-                                                <td><label type="text" name="gob7">Bairon Muñoz</td>
-                                                <td><input readonly class="form-control"type="text" name="gob7" value="{{$zonal->gob7}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob8">08</label></td>
-                                                <td><label type="text" name="gob8">Antonio Amaya</td>
-                                                <td><input readonly class="form-control"type="text" name="gob8" value="{{$zonal->gob8}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob9">09</label></td>
-                                                <td><label type="text" name="gob9">Florentino Vasquez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob9" value="{{$zonal->gob9}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob10">10</label></td>
-                                                <td><label type="text" name="gob10">Eudoro Alvarez</td>
-                                                <td><input readonly class="form-control"type="text" name="gob10" value="{{$zonal->gob10}}"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="gob11">11</label></td>
-                                                <td><label type="text" name="gob11">Jose L Silva</td>
-                                                <td><input readonly class="form-control" type="text" name="gob11" value="{{$zonal->gob11}}"></td>
-                                            </tr>
-                                        
-                                        
-                    
-                                        
-                                        
+                                        <tr>
+                                            <td><label for="gob2">09</label></td>
+                                            <td><label type="text" name="gob2">Marcela Amaya</td>
+                                            <td><input  class="form-control"type="text" name="gob2" value="{{$zonal->gob2}}" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label for="gob3">10</label></td>
+                                            <td><label type="text" name="gob3">Dario Vasquez</td>
+                                            <td><input  class="form-control"type="text" name="gob3" value="{{$zonal->gob3}}" required></td>
+                                        </tr>
                                         <tr>
                                             
                                             <td colspan="2">Votos en blanco</td>
-                                            <td><input readonly class="form-control"type="text" name="enblanco" value="{{$zonal->enblanco}}"></td>
+                                            <td><input  class="form-control"type="text" name="enblanco" value="{{$zonal->enblanco}}" required></td>
                                         </tr>
                                         <tr>
                                             
                                             <td colspan="2">Votos nulos</td>
-                                            <td><input readonly class="form-control" type="text" name="nulos" value="{{$zonal->nulos}}"></td>
+                                            <td><input  class="form-control" type="text" name="nulos" value="{{$zonal->nulos}}" required></td>
                                         </tr>
                                         <tr>
                                         
                                             <td colspan="2">Votos no marcados</td>
-                                            <td><input readonly class="form-control"type="text" name="nomarcados" value="{{$zonal->nomarcados}}"></td>
+                                            <td><input  class="form-control"type="text" name="nomarcados" value="{{$zonal->nomarcados}}" required></td>
                                         </tr>
                                     </tbody>
                                 </table>      
                             </div>   
-                    
+                        
                             <div class="row">
                                 <div class="col-6">
                                     {!! Form::label("status_reconteo", "¿Reconteo en mesa?") !!}
-                                    {!! Form::select("status_reconteo",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", 'readonly' => 'readonly']) !!}
+                                    {!! Form::select("status_reconteo", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Sí'], null, ["class" => "form-control", "required" => "required"]) !!}
                             
                                 </div>
                                 <div class="col-6">
-                                    {!! Form::label("reclamacion", "Reclamaciones en mesa") !!}
-                                    {!! Form::select("reclamacion",[ 0 => 'No', 1 => 'Sí' ], null, ["class" => "form-control disabled", 'readonly' => 'readonly']) !!}
+                                    {!! Form::label("reclamacion", "Reclamaciones mesa") !!}
+                                    {!! Form::select("reclamacion", ['' => 'Selecciona una opción', 0 => 'No', 1 => 'Rafaela', 2 => 'Marcela',3 => 'Wilmar',4 => 'Harold',5 => 'Dario'], null, ["class" => "form-control", "required" => "required"]) !!}
                                 
                                 </div>
                             </div>
@@ -361,20 +355,12 @@
                                 
                                         {!! Form::close() !!}
                             </div>
-                            <div class="col-12 col-sm-3">
-                                <h5>¿Nueva Reclamacion?</h5> 
-                                <select  class="form-control" name="" id="">
-                                    <option  value="0">No</option>
-                                    <option value="0">Si</option>
-
-                                </select>
-
-                            </div>
+                            
                             <div class="col-12 col-sm-3">
                                 <h5> ¿Apelacion?  </h5> 
-                                <select  class="form-control" name="" id="">
+                                <select  class="form-control" name="apelacion" id="apelacion">
                                     <option  value="0">No</option>
-                                    <option value="0">Si</option>
+                                    <option value="1">Si</option>
 
                                 </select>
                             </div>

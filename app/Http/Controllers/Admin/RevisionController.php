@@ -110,7 +110,7 @@ class RevisionController extends Controller
     public function update(Request $request, Seller $ani)
     {
 
-        dd($ani);
+      
        
 
             $ani->update($request->all());

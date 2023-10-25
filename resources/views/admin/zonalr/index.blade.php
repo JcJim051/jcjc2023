@@ -13,83 +13,7 @@
         </div>
     @endif
    
-    <div class="row">
-        <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-success">
-                <div class="card-header">
-                    <h3 class="card-title">Promedio de votos por mesa</h3>
-                    
-                        <div class="card-tools">
-                    </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body " >
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-                            <span class="info-box-number"> @if ($tmi == 0)
-                                Sin reporte
-                            @else
-                            
-                                {{round($tv1/$tmi)}} votos por mesa
-                            
-                            @endif </span>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  
-                        {{-- 0% de mesas Informadas
-                   --}}
-
-
-                </div>
-                <!-- /.card-footer -->
-            </div>
-        </div> 
-        <div class="col-sm-6 col-xs-12">
-            <div class="text-center card card-success">
-                <div class="card-header">
-                    <h3 class="card-title">Desviación estandar</h3>
-                    
-                        <div class="card-tools">
-                    </div>
-                <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body " >
-                    <div class="chart">
-                        <div class="chartjs-size-monitor">
-
-                            <span class="info-box-number"> @if ($desviacion_estandar == 0)
-                                Sin reporte
-                            @else
-                            
-                                {{round($desviacion_estandar, 3)}}
-                            
-                            @endif </span>
-
-                        
-                           
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  
-                        {{-- 0% de mesas Informadas
-                   --}}
-
-
-                </div>
-                <!-- /.card-footer -->
-            </div>
-        </div> 
-    </div>
+    
    
     <div class="card">
         <div class="card-body">
@@ -102,8 +26,9 @@
                         <th>mesa</th>
                         <th>Preconteo</th>
                         <th>Zonal</th>                        
-                        <th> E11 - Total </th>
-                        <th> Banlance </th>
+                        <th>E11 - Total </th>
+                        <th>Banlance </th> 
+                        <th>Apelacion</th> 
                         
                     </tr>
                 </thead>
@@ -131,7 +56,7 @@
                                     @if ($data->votos->censodemesa_zonal - $data->votos->votosenurna_zonal < 0 )
                                     <div class="btn btn-danger">{{ $data->votos->censodemesa_zonal - $data->votos->votosenurna_zonal}}</div>
                                     @else
-                                        <a class="btn btn-warning btn-smclass=">{{ $data->votos->censodemesa_zonal - $data->votos->votosenurna_zonal }}</div>
+                                        <a class="btn btn-warning btn-sm">{{ $data->votos->censodemesa_zonal - $data->votos->votosenurna_zonal }}</div>
                                     @endif 
                                 @endif  
                             
@@ -139,9 +64,11 @@
                         <td> @if ($data->votos->gob1_zonal+$data->votos->gob2_zonal+$data->votos->gob3_zonal+$data->votos->gob4_zonal+$data->votos->gob5_zonal+$data->votos->gob6_zonal+$data->votos->gob7_zonal+$data->votos->nulos_zonal+$data->votos->enblanco_zonal+$data->votos->nomarcados_zonal == $data->votos->votosenurna_zonal )
                             <div class="btn btn-success">Balanceada</div>
                             @else
-                                <a href="#"  class="btn btn-danger btn-smclass=">Desbalanceada</div>
-                            @endif 
-                            
+                                <a href="#"  class="btn btn-danger btn-sm">Desbalanceada</div>
+                            @endif                             
+                        </td>
+                        <td>
+                            <a  target="_blank" rel="noopener noreferrer" ><span style="color: green"><i class="fas fa-check-circle"></i> si</i></span></a></a>
                         </td>
                         
                     </tr>

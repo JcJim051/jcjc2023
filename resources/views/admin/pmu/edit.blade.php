@@ -76,21 +76,27 @@
                                 {!! Form::model($pmu, ['route' => ['admin.tellers.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                                 @csrf
                                 
-                                <div class="row">
-                                    <div class="col-4">
-                                        {!! Form::label("censodemesa", "Votantes E11") !!}
-                                        {!! Form::text("censodemesa", null, ["class" => "form-control disabled " , 'placeholder' => 'Cuantos ciudadanos pueden votar en esta mesa?' , '' => '', '' => '']) !!}
-                        
-                                    </div>     
-                                    <div class="col-4">
-                                        {!! Form::label("votosenurna", "Votos en Urna") !!}
-                                        {!! Form::text("votosenurna", null, ["class" => "form-control ", 'placeholder' => 'Cuantos votos en la hay en la urna?', '' => '']) !!}
-                                    </div>   
-                                    <div class="col-4">
-                                        {!! Form::label("votosincinerados", "Incinerados") !!}
-                                        {!! Form::text("votosincinerados", null, ["class" => "form-control ", 'placeholder' => 'Total de Votos incinerados en el preconteo', '' => '']) !!}
-                                    </div>
-                                </div><br>
+                                <table class="table">
+        
+                                    <tbody>
+                                        
+                                        <tr>
+                                            <td colspan="3" class="text-center" style="padding: 1px">Votantes E11</td>
+                                            <td style="padding: 1px"><input class="form-control" type="number" name="censodemesa"  value="{{$pmu->censodemesa}}" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center" style="padding: 1px">Votos en Urna</td>
+                                          
+                                            <td style="padding: 1px"><input class="form-control"type="number" name="votosenurna" value="{{$pmu->votosenurna}}" required> </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center">Incinerados</td>
+                                            
+                                            <td style="padding: 1px"><input class="form-control"type="number" name="votosincinerados" value="{{$pmu->votosincinerados}}" required></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                   </table>
                         
                                 <div class="table-container">
                                     <table class="table">
