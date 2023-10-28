@@ -177,6 +177,11 @@
                                                 <td colspan="2">Votos no marcados</td>
                                                 <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->nomarcados}}"></td>
                                             </tr>
+                                            <tr>
+                                            
+                                                <td colspan="2">TOTAL VOTOS</td>
+                                                <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->gob1+$pmu->gob2+$pmu->gob3+$pmu->gob4+$pmu->gob5+$pmu->gob6+$pmu->gob7+$pmu->gob8+$pmu->gob9+$pmu->gob11+$pmu->enblanco+$pmu->nulos+$pmu->nomarcados }}"></td>
+                                            </tr>
                                         </tbody>
                                     </table>      
                                 </div>   

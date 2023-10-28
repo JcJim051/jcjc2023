@@ -60,6 +60,7 @@
                             <tr>
                                 <th>Municipio</th>
                                 <th>Puesto</th>
+                                <th>Mesa</th>
                                 <th>Reporte</th>
                                 <th>Promedio</th>
                             </tr>
@@ -70,6 +71,7 @@
                             <tr>
                                 <td> {{$primera->Municipio}}</td>
                                 <td> {{$primera->Puesto}}</td>
+                                <td> {{$segundo->Mesa}}</td>
                                 <td>{{$primera->Reporte}}</td>
                                 <td>{{round ($primera->Promedio,0)}}</td>
                             </tr>
@@ -86,7 +88,7 @@
                             <tr>
                                 <th>Municipio</th>
                                 <th>Puesto</th>
-                               
+                                <th>Mesa</th>
                                 <th>Reporte</th>
                                 <th>Promedio</th>
                             </tr>
@@ -97,6 +99,7 @@
                             <tr>
                                 <td> {{$segundo->Municipio}}</td>
                                 <td> {{$segundo->Puesto}}</td>
+                                <td> {{$segundo->Mesa}}</td>
                                 <td>{{$segundo->Reporte}}</td>
                                 <td>{{round ($segundo->Promedio,0)}}</td>
                             </tr>
@@ -114,7 +117,7 @@
                             <tr>
                                 <th>Municipio</th>
                                 <th>Puesto</th>
-                               
+                                <th>Mesa</th>
                                 <th>Reporte</th>
                                 <th>Promedio</th>
                             </tr>
@@ -125,6 +128,7 @@
                             <tr>
                                 <td> {{$tercero->Municipio}}</td>
                                 <td> {{$tercero->Puesto}}</td>
+                                <td> {{$segundo->Mesa}}</td>
                                 <td>{{$tercero->Reporte}}</td>
                                 <td>{{round ($tercero->Promedio,0)}}</td>
                             </tr>

@@ -21,7 +21,7 @@ class AfluenciaController extends Controller
                     ->join(DB::raw('(SELECT Codcor, AVG(reporte_1) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
                         $join->on('s1.Codcor', '=', 's2.Codcor');
                     })
-                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_1 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->select('s1.Municipio', 's1.Puesto', 's1.Mesa','s1.reporte_1 as Reporte', DB::raw('s2.promedio as Promedio'))
                     ->whereRaw('s1.reporte_1 > s2.promedio * 1.3')
                     ->get()
                     ->toArray();
@@ -29,7 +29,7 @@ class AfluenciaController extends Controller
                     ->join(DB::raw('(SELECT Codcor, AVG(reporte_2) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
                         $join->on('s1.Codcor', '=', 's2.Codcor');
                     })
-                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_2 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->select('s1.Municipio', 's1.Puesto','s1.Mesa', 's1.reporte_2 as Reporte', DB::raw('s2.promedio as Promedio'))
                     ->whereRaw('s1.reporte_2 > s2.promedio * 1.3')
                     ->get()
                     ->toArray();
@@ -37,7 +37,7 @@ class AfluenciaController extends Controller
                     ->join(DB::raw('(SELECT Codcor, AVG(reporte_3) as promedio FROM sellers GROUP BY Codcor) as s2'), function ($join) {
                         $join->on('s1.Codcor', '=', 's2.Codcor');
                     })
-                    ->select('s1.Municipio', 's1.Puesto', 's1.reporte_3 as Reporte', DB::raw('s2.promedio as Promedio'))
+                    ->select('s1.Municipio', 's1.Puesto', 's1.Mesa','s1.reporte_3 as Reporte', DB::raw('s2.promedio as Promedio'))
                     ->whereRaw('s1.reporte_3 > s2.promedio * 1.3')
                     ->get()
                     ->toArray();
