@@ -10,7 +10,7 @@
     </style>
 
 
-    <h1 style="text-align: center">Indicadores de Afluencia de Votantes</h1>
+    <h1 style="text-align: center">Indicadores de afluencia de votantes</h1>
 @stop
 
 @section('content')

@@ -41,9 +41,6 @@ class AfluenciaController extends Controller
                     ->whereRaw('s1.reporte_3 > s2.promedio * 1.3')
                     ->get()
                     ->toArray();
-                
-            
-            //dd($primera);
    
             return view('admin.afluencia.index', compact('primera', 'segundo','tercero'));
 
