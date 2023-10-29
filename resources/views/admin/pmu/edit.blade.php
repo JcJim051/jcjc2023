@@ -75,7 +75,6 @@
                             <div class="card-body">
                                 {!! Form::model($pmu, ['route' => ['admin.tellers.update',$pmu], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                                 @csrf
-                                
                                 <table class="table">
         
                                     <tbody>
@@ -118,8 +117,6 @@
                                                 <td><label type="text" name="gob7">Bairon Muñoz</td>
                                                 <td><input  class="form-control"type="text" name="gob7" value="{{$pmu->gob7}}"></td>
                                             </tr>
-                                            
-
                                             <tr>
                                                 <td><label for="gob11">03</label></td>
                                                 <td><label type="text" name="gob11">Jose L Silva</td>
@@ -178,7 +175,6 @@
                                                 <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->nomarcados}}"></td>
                                             </tr>
                                             <tr>
-                                            
                                                 <td colspan="2">TOTAL VOTOS</td>
                                                 <td><input  class="form-control"type="text" name="nomarcados" value="{{$pmu->gob1+$pmu->gob2+$pmu->gob3+$pmu->gob4+$pmu->gob5+$pmu->gob6+$pmu->gob7+$pmu->gob8+$pmu->gob9+$pmu->gob11+$pmu->enblanco+$pmu->nulos+$pmu->nomarcados }}"></td>
                                             </tr>
