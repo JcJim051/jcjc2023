@@ -57,13 +57,9 @@
         {!! Form::hidden("email", null) !!}
         {!! Form::hidden("telefono", null) !!}
         {!! Form::hidden("nombre", null) !!}
-
-       
-
        <table class="table">
         
-        <tbody>
-            
+        <tbody>  
             <tr>
                 <td colspan="3" class="text-center" style="padding: 1px">Votantes E11</td>
                 <td style="padding: 1px"><input class="form-control" type="number" name="censodemesa"  value="{{$teller->censodemesa}}" required> </td>
@@ -77,8 +73,7 @@
                 <td colspan="3" class="text-center">Incinerados</td>
                 
                 <td style="padding: 1px"><input class="form-control"type="number" name="votosincinerados" value="{{$teller->votosincinerados}}" required></td>
-            </tr>
-            
+            </tr> 
         </tbody>
        </table>
        <div class="table-container">
@@ -101,8 +96,6 @@
                     <td><label type="text" name="gob7">Bairon Muñoz</td>
                     <td><input  class="form-control"type="text" name="gob7" value="{{$teller->gob7}}" required></td>
                 </tr>
-                
-
                 <tr>
                     <td><label for="gob11">03</label></td>
                     <td><label type="text" name="gob11">Jose L Silva</td>
@@ -176,26 +169,8 @@
         
         </div>
     </div>
-
-      
-       
-                            
-                         
-                           
-
-                          
-                           
-                          
-                            
-
-                          
-                          
-
-
         <input type="text" value="{{Auth::user()->name}}" id="modificadopor" name="modificadopor" hidden />
-        
-                
-       
+   
         {!! Form::hidden('codescru', null) !!}
         {!! Form::hidden('codcor', null) !!}
         {!! Form::hidden('status', null) !!}
