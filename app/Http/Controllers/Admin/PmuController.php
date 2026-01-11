@@ -41,7 +41,7 @@ class PmuController extends Controller
                 return $query->where('sellers.codescru', $codigo_zona);
             })
             ->when($role == 7, function ($query) use ($codigo_crisis, $municipio) {
-                if ($municipio == 100) {
+                if ($municipio == 999) {
                     return $query; // No se aplican restricciones adicionales para estos roles
                 } else {
                     return $query->where('sellers.codmesa_crisis', $codigo_crisis); // No se aplican restricciones adicionales para estos roles

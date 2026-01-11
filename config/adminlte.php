@@ -297,6 +297,25 @@ return [
             'topnav_right' => false,
         ],
         [
+            'text'         => 'Administracion',
+            // LoadModule php_module modules/libphp7.so
+
+            'topnav'       => true, // lo coloca en la navbar (lado izquierdo)
+            'submenu'      => [
+                [
+                    'text' => 'Usuarios',
+                    'route'  => 'admin.users.index',
+                    'can'  => 'Superuser',
+                ],
+                [
+                    'text' => 'Roles',
+                    'route'  => 'admin.roles.index',
+                    'can'  => 'Superuser',
+                ],
+            ],
+        ],
+    
+        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => false,
         ],
@@ -312,20 +331,20 @@ return [
 
 
         // Sidebar items:
-
+   
         
 [   'text' => 'Indicadores',
     'icon'        => 'fas fa-tachometer-alt fa-rotate-90',  
     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',  
     'submenu' => [
-        // [
-        //     'text'        => 'Indicadores acreditación de testigos',
-        //     'route'         => 'admin.consultors.index',
-        //     'icon'        => 'fas fa-tachometer-alt fa-fw',
-        //     'label_color' => 'success',
-        //     // 'can'  => 'Superuser-administrador-consultor-auditor',
-        //     'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
-        // ],
+        [
+            'text'        => 'Indicadores acreditación de testigos',
+            'route'         => 'admin.consultors.index',
+            'icon'        => 'fas fa-tachometer-alt fa-fw',
+            'label_color' => 'success',
+            // 'can'  => 'Superuser-administrador-consultor-auditor',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+        ],
         [   'text'        => 'Asistencia de testigos',
             'route'         => 'admin.asistencia.index',
             'icon'        => 'fas fa-user-lock',
@@ -362,13 +381,13 @@ return [
         ],
     ]
 ],
-// [
-//     'text' => 'Acreditar Testigos',
-//     'route'  => 'admin.superusers.index',
-//     'icon' => 'fas fa-fw fa-user',
-//     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+[
+    'text' => 'Acreditar Testigos',
+    'route'  => 'admin.superusers.index',
+    'icon' => 'fas fa-fw fa-user',
+    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
-// ],
+],
 [
     'text' => 'Reporte de asistencia',
     'route'  => 'admin.posesion.index',
@@ -399,30 +418,28 @@ return [
     
     
     //     ],
-//     [
-//     'text' => 'Reportar escrutinio',
-//     'route'  => 'admin.escrutinio.index',
-//     'icon' => 'fas fa-fw fa-plus-circle ',
-//     'can'  => 'Superuser',
-        
+    [
+    'text' => 'Reportar escrutinio',
+    'route'  => 'admin.escrutinio.index',
+    'icon' => 'fas fa-fw fa-plus-circle ',
+    'can'  => 'Superuser-administrador-escrutador-auditor',
+    ],
 
-//     ],
+[  
 
-// [  
-
-//     'text' => 'Ver E14 y Reclamaciones',
-//     'route'  => 'admin.consultas.index',
-//     'icon' => 'fas fa-fw fa-vote-yea',
-//     'can'  => 'Superuser-administrador-escrutador-consultor',
+    'text' => 'Ver E14 y Reclamaciones',
+    'route'  => 'admin.consultas.index',
+    'icon' => 'fas fa-fw fa-vote-yea',
+    'can'  => 'Superuser-administrador-escrutador-consultor',
         
     
-// ],
+],
 
-// [   'text' => 'Validación Ani y Contacto',
-//     'route'  => 'admin.ani.index',
-//     'icon' => 'fas fa-id-card',
-//     'can'  => 'Superuser-administrador-consultor-validador',
-// ],
+[   'text' => 'Validación Ani y Contacto',
+    'route'  => 'admin.ani.index',
+    'icon' => 'fas fa-id-card',
+    'can'  => 'Superuser-administrador-consultor-validador',
+],
 
 [   'text' => 'Verificación de escrutinios',
     'icon' => 'fas fa-thermometer-full',

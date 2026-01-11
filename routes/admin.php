@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\PmuController;
 use App\Http\Controllers\Admin\FotosController;
 use App\Http\Controllers\Admin\FotopmuController;
 use App\Http\Controllers\Admin\TransmisionController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
 
 Route::get('', [AdminController::class, '__invoke'])->name('admin.home');
 
@@ -69,12 +71,19 @@ Route::post('/actualizar-registros', 'App\Http\Controllers\Admin\ActualizarContr
 Route::post('fotos-redimensionada', 'App\Http\Controllers\Admin\TellerController@fotos')->name('fotos');
 Route::post('foto2-redimensionada', 'App\Http\Controllers\Admin\FotosController@segundafoto')->name('segundafoto');
 Route::post('foto3-redimensionada', 'App\Http\Controllers\Admin\FotosController@reclamacion')->name('reclamacion');
-
-    
-
-
 Route::resource('pmu', PmuController::class)->names('admin.pmu');
 
 Route::get('tellers/{teller}/edit1', 'App\Http\Controllers\Admin\TellerController@edit1')->name('admin.tellers.edit1');
 Route::get('tellers/{teller}/edit2', 'App\Http\Controllers\Admin\TellerController@edit2')->name('admin.tellers.edit2');
 Route::get('tellers/{teller}/edit3', 'App\Http\Controllers\Admin\TellerController@edit3')->name('admin.tellers.edit3');
+
+Route::get('admin/users/import', [UserController::class, 'showImportForm'])->name('admin.users.import.form');
+Route::get('admin/users/import/template', [UserController::class, 'downloadTemplate'])->name('admin.users.import.template');
+Route::post('admin/users/import', [UserController::class, 'import'])->name('admin.users.import');
+
+Route::resource('users', UserController::class)->names('admin.users');
+
+Route::resource('roles', RoleController::class)->names('admin.roles');
+
+Route::get('/puntos/{mun}', [App\Http\Controllers\Admin\PuestosController::class, 'getByMunicipio'])
+    ->name('admin.puntos.byMunicipio');

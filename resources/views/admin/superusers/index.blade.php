@@ -47,9 +47,9 @@
                         
                         <td>{{ $seller->id }}</td>
                             @if ($seller->status <> 0)
-                                <td style="color: rgb(0, 169, 14)" >{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
+                                <td style="color: rgb(0, 169, 14)" >{{$seller->coddep}}{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
                             @else
-                                <td style="color: red" >{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
+                                <td style="color: red" >{{$seller->coddep}}{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
                             @endif
                         
                             @if (Auth::user()->role == 3)

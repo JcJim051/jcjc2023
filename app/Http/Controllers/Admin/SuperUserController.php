@@ -25,22 +25,21 @@ class SuperUserController extends Controller
         $ruta = auth()->user()->codzon;
         $coordinador = auth()->user()->codpuesto;
         $municipio = auth()->user()->mun;
-
+        $idUser = auth()->id();
 
 
 
                 if ($role == 1) {
-                    // 1 = villao
-                    if ($municipio == 1) {
-                        $sellers = Seller::where('codmun' , 001)->get();
-                    } else {
-                        // 0 = municipios
-                        if ($municipio == 0) {
-                            $sellers = Seller::where('codmun' , '<>', 001)->where('cod_ruta' , $ruta)->get();
+                    // 1 = villa-{-.…o
+                        if ($idUser == 1 || $municipio == 999) {
+                            // Muestra todo
+                            $sellers = Seller::where('mesa', '<>', 'Rem')->get();
                         } else {
-                            $sellers = Seller::all();
+                            // Muestra solo los de su municipio
+                            $sellers = Seller::where('mesa', '<>', 'Rem')
+                                             ->where('codmun', $municipio)
+                                             ->get();
                         }
-                    }
                 } else {
                     if ($role == 2) {
                         $sellers = Seller::where('codescru' , $escrutador)->get();
@@ -52,7 +51,7 @@ class SuperUserController extends Controller
                                 if ($role == 4 or $role == 5) {
                                     $sellers = Seller::all();
                                 } else {
-
+                                    $sellers = [];
                                 }
 
                              }
