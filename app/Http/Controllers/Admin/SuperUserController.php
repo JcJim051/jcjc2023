@@ -203,6 +203,8 @@ class SuperUserController extends Controller
                 'nullable',
                 Rule::unique('sellers')->ignore($superuser->id),
             ],
+            'nombre' => 'required|string|max:255',
+            'telefono' => 'required|string|max:50',
         ];
 
         // 🔹 Si no tiene PDF aún, es obligatorio
