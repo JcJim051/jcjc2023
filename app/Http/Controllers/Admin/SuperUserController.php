@@ -33,11 +33,10 @@ class SuperUserController extends Controller
                     // 1 = villa-{-.…o
                         if ($idUser == 1 || $municipio == 999) {
                             // Muestra todo
-                            $sellers = Seller::where('mesa', '<>', 'Rem')->get();
+                            $sellers = Seller::get();
                         } else {
                             // Muestra solo los de su municipio
-                            $sellers = Seller::where('mesa', '<>', 'Rem')
-                                             ->where('codmun', $municipio)
+                            $sellers = Seller::where('codmun', $municipio)
                                              ->get();
                         }
                 } else {
