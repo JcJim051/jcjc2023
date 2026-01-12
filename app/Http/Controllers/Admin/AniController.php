@@ -111,19 +111,24 @@ class AniController extends Controller
 
     public function edit($ani)
     {
-        $superuser = Seller::findOrFail($ani); // 🔹 trae un registro o falla
-    
+        // 🔹 Obtener un solo registro, no colección
+        $superuser = Seller::findOrFail($ani); 
+        if (!$superuser) {
+            abort(404, 'Testigo no encontrado');
+        }
+
+        // 🔹 Generar URL temporal del PDF si existe
         $pdfUrl = null;
         if ($superuser->pdf) {
             $pdfUrl = Storage::disk('s3')->temporaryUrl(
                 $superuser->pdf,
-                now()->addMinutes(10) // enlace válido 10 minutos
+                now()->addMinutes(10) // enlace válido por 10 minutos
             );
         }
-    
+
         $puestos = Puestos::all();
-    
-        return view('admin.ani.edit', compact('superuser', 'puestos', 'pdfUrl', 'ani'));
+
+        return view('admin.ani.edit', compact('puestos', 'ani', 'pdfUrl', 'superuser'));
     }
 
 

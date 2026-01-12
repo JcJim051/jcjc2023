@@ -206,7 +206,10 @@ class SuperUserController extends Controller
             'nombre' => 'required|string|max:255',
             'telefono' => 'required|string|max:50',
             'dondevota' => 'required|string|max:255',
-            'status' => 'required|string|max:255'
+            'status' => 'required|string|max:255',
+            'statusani' => 'required|string|max:255',
+            'observacion' => 'nullable|string|max:255',
+            
         ];
 
         // 🔹 Si no tiene PDF aún, es obligatorio

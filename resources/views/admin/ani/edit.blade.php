@@ -28,29 +28,29 @@
             <div class="card card-outline card-warning">
                 <div class="card-body">
                     {!! Form::model($superuser, ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}                   
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-4">
-                                {!! Form::label("statusani", "Proceso de Validacion") !!}
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-4">
+                                        {!! Form::label("statusani", "Proceso de Validacion") !!}
+                                        
+                                    </div>
+                                    <div class="col-6">
+                                        
                                 
-                            </div>
-                            <div class="col-6">
-                                
-                                {!! Form::text("observacion", null, ["class" => "form-control", 'placeholder' => 'observacion corta']) !!}
+                                        {!! Form::text("observacion", null, ["class" => "form-control", 'placeholder' => 'observacion corta']) !!}
+                
+                                    </div>
+                                    <div class="col-2">
+                                        {!! Form::select("statusani",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control"]) !!}
+                
+                                    </div>
+                                </div>
+                            
             
-        
-                            </div>
-                            <div class="col-2">
-                                {!! Form::select("statusani",[ 0 => 'Pendiente', 1 => 'Listo' ], null, ["class" => "form-control disabled"]) !!}
-        
-                            </div>
-                        </div>
+                                    @error('Estado')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                     
-    
-                    @error('Estado')
-                        <span class="text-danger">{{$message}}</span>
-                    @enderror
-    
                             
                     </div>
                 </div>
@@ -126,7 +126,8 @@
                                     @enderror
             
                                 </div>
-            
+
+                              
             
             
                                 <div class="row" >
