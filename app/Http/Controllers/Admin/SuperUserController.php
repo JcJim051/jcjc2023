@@ -8,6 +8,7 @@ use App\Models\Puestos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 
 class SuperUserController extends Controller
@@ -103,9 +104,15 @@ class SuperUserController extends Controller
 
     public function edit(Seller $superuser)
     {
-        
+        $pdfUrl = null;
+        if ($superuser->pdf) {
+            $pdfUrl = Storage::disk('s3')->temporaryUrl(
+                $superuser->pdf,
+                now()->addMinutes(10) // enlace válido 10 minutos
+            );
+        }
         $puestos= Puestos::all();
-        return view('admin.superusers.edit', compact('superuser', 'puestos'));
+        return view('admin.superusers.edit', compact('superuser', 'puestos', 'pdfUrl'));
     }
 
     /**
@@ -115,72 +122,164 @@ class SuperUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $superuser)
-    {
+    // public function update(Request $request, Seller $superuser)
+    // {
         
     
         
-       if ($superuser->pdf == null) {
-            $request->validate([
-                'email' => [
-                    'nullable',
-                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
-                ],
-                'cedula' => [
-                    'nullable',
-                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
-                ],
-                'pdf' => 'required',
+    //    if ($superuser->pdf == null) {
+    //         $request->validate([
+    //             'email' => [
+    //                 'nullable',
+    //                 Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
+    //             ],
+    //             'cedula' => [
+    //                 'nullable',
+    //                 Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
+    //             ],
+    //             'pdf' => 'required',
                 
                          
-            ]);
-        } else {
-                $request->validate([
-                'email' => [
-                    'nullable',
-                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
-                ],
-                'cedula' => [
-                    'nullable',
-                    Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
-                ],
+    //         ]);
+    //     } else {
+    //             $request->validate([
+    //             'email' => [
+    //                 'nullable',
+    //                 Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('email'),
+    //             ],
+    //             'cedula' => [
+    //                 'nullable',
+    //                 Rule::unique('sellers')->ignore($superuser->id)->whereNotNull('cedula'),
+    //             ],
                      
-            ]);
-        }
+    //         ]);
+    //     }
         
-        if($request->hasfile('pdf')){
+    //     if($request->hasfile('pdf')){
 
-        $superuser['pdf']= $request->file('pdf')->getClientOriginalName();
-        $request->file('pdf');
+    //     $superuser['pdf']= $request->file('pdf')->getClientOriginalName();
+    //     $request->file('pdf');
 
-        $superuser['pdf']= $request->file('pdf')->store('/cedulas-pdf');
+    //     $superuser['pdf']= $request->file('pdf')->store('/cedulas-pdf');
 
 
-    }
+    //     }
 
-            $superuser->update($request->all());
+    //         $superuser->update($request->all());
 
-            if ($request->statusani == null  & $request->statusrec == null & $request->statusasistencia == null & $request->modificadopor_pmu == null)  {
-                return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
-            } else {
-                if ($request->statusrec == null & $request->statusasistencia == null  & $request->modificadopor_pmu == null) {
-                    return redirect()->route('admin.ani.index', $superuser)->with('info', ' Validación Ani Guardada con Exito');
-                } else {
-                    if ($request->statusasistencia <> null  & $request->modificadopor_pmu == null) {
-                        return redirect()->route('admin.posesion.index', $superuser)->with('info', 'Reporte de asistencia Guardado con Exito');
-                    } else {
-                        if ($request->modificadopor_pmu <> null) {
-                            return redirect()->route('admin.pmu.index', $superuser)->with('info', 'Correccion mesa de crisis, reportada con exito');
-                        } else {
-                            return redirect()->route('admin.revision.index', $superuser)->with('info', 'Revisión E24 Guardada con Exito');
-                        }
-                    }
-                }
-            }
+    //         if ($request->statusani == null  & $request->statusrec == null & $request->statusasistencia == null & $request->modificadopor_pmu == null)  {
+    //             return redirect()->route('admin.superusers.index', $superuser)->with('info', ' Testigo actualizado con exito');
+    //         } else {
+    //             if ($request->statusrec == null & $request->statusasistencia == null  & $request->modificadopor_pmu == null) {
+    //                 return redirect()->route('admin.ani.index', $superuser)->with('info', ' Validación Ani Guardada con Exito');
+    //             } else {
+    //                 if ($request->statusasistencia <> null  & $request->modificadopor_pmu == null) {
+    //                     return redirect()->route('admin.posesion.index', $superuser)->with('info', 'Reporte de asistencia Guardado con Exito');
+    //                 } else {
+    //                     if ($request->modificadopor_pmu <> null) {
+    //                         return redirect()->route('admin.pmu.index', $superuser)->with('info', 'Correccion mesa de crisis, reportada con exito');
+    //                     } else {
+    //                         return redirect()->route('admin.revision.index', $superuser)->with('info', 'Revisión E24 Guardada con Exito');
+    //                     }
+    //                 }
+    //             }
+    //         }
             
 
        
+    // }
+
+ 
+
+    public function update(Request $request, Seller $superuser)
+    {
+        // 🔹 Validaciones base
+        $rules = [
+            'email' => [
+                'nullable',
+                Rule::unique('sellers')->ignore($superuser->id),
+            ],
+            'cedula' => [
+                'nullable',
+                Rule::unique('sellers')->ignore($superuser->id),
+            ],
+        ];
+
+        // 🔹 Si no tiene PDF aún, es obligatorio
+        if ($superuser->pdf === null) {
+            $rules['pdf'] = 'required|file|mimes:pdf|max:5120';
+        } else {
+            $rules['pdf'] = 'nullable|file|mimes:pdf|max:5120';
+        }
+
+        $validated = $request->validate($rules);
+
+            if ($request->hasFile('pdf')) {
+
+                // Borrar el PDF anterior si existe
+                if ($superuser->pdf) {
+                    Storage::disk('s3')->delete($superuser->pdf);
+                }
+            
+                // Obtener el archivo y la cédula
+                $file = $request->file('pdf');
+                $nombreArchivo = $superuser->cedula . '.' . $file->getClientOriginalExtension();
+            
+                // Guardar en el bucket con el nombre personalizado
+                $path = Storage::disk('s3')->putFileAs(
+                    'cedulas-pdf', // carpeta
+                    $file,         // archivo
+                    $nombreArchivo // nombre del archivo
+                );
+            
+                // Guardar la ruta en el modelo
+                $superuser->pdf = $path;
+            }
+
+            // Actualizar otros campos validados
+            $superuser->fill($validated); // llena los demás campos
+            $superuser->save(); // guarda todo incluido PDF
+
+       
+        // 🔹 Redirecciones (lógica intacta, solo ordenada)
+        if (
+            $request->statusani === null &&
+            $request->statusrec === null &&
+            $request->statusasistencia === null &&
+            $request->modificadopor_pmu === null
+        ) {
+            return redirect()
+                ->route('admin.superusers.index')
+                ->with('info', 'Testigo actualizado con éxito');
+        }
+
+        if (
+            $request->statusrec === null &&
+            $request->statusasistencia === null &&
+            $request->modificadopor_pmu === null
+        ) {
+            return redirect()
+                ->route('admin.ani.index')
+                ->with('info', 'Validación ANI guardada con éxito');
+        }
+
+        if ($request->statusasistencia !== null && $request->modificadopor_pmu === null) {
+            return redirect()
+                ->route('admin.posesion.index')
+                ->with('info', 'Reporte de asistencia guardado con éxito');
+        }
+
+        if ($request->modificadopor_pmu !== null) {
+            return redirect()
+                ->route('admin.pmu.index')
+                ->with('info', 'Corrección PMU reportada con éxito');
+        }
+
+        return redirect()
+            ->route('admin.revision.index')
+            ->with('info', 'Revisión E24 guardada con éxito');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -131,15 +131,15 @@
                 </div>
 
                 <div class="col-sm-2 col-xs-12">
-
                     <label for="">Documento cargado</label>
                     <br>
                     @if ($superuser->pdf == null)
                         Sin cargar
                     @else
-                    <a  target="_blank" rel="noopener noreferrer" href="{{ asset('/storage/' . $superuser->pdf) }}">Ver adjunto</a>
+                        <a target="_blank" rel="noopener noreferrer" href="{{ $pdfUrl }}">Ver adjunto</a>
                     @endif
                 </div>
+                
 
 
             </div>
