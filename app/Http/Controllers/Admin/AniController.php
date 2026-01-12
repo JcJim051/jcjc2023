@@ -8,6 +8,7 @@ use App\Models\Seller;
 use App\Models\Puestos;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class AniController extends Controller
 {
@@ -86,20 +87,45 @@ class AniController extends Controller
 
     }
 
+    // public function edit($ani)
+    // {
+    //     $superuser = Seller::where('id' , $ani)->get();
+
+    //     $pdfUrl = null;
+    //     if ($superuser->pdf) {
+    //         $pdfUrl = Storage::disk('s3')->temporaryUrl(
+    //             $superuser->pdf,
+    //             now()->addMinutes(10) // enlace válido por 10 minutos
+    //         );
+    //     }
+
+        
+        
+        
+        
+    //     $puestos= Puestos::all();
+
+    //     // dd($puestos);
+    //     return view('admin.ani.edit', compact('puestos', 'ani', 'pdfUrl'))->with('superuser', $superuser);
+    // }
+
     public function edit($ani)
     {
-        $superuser = Seller::where('id' , $ani)->get();
-
-        
-        
-        
-        
-        
-        $puestos= Puestos::all();
-
-        // dd($puestos);
-        return view('admin.ani.edit', compact('puestos', 'ani',))->with('superuser', $superuser);
+        $superuser = Seller::findOrFail($ani); // 🔹 trae un registro o falla
+    
+        $pdfUrl = null;
+        if ($superuser->pdf) {
+            $pdfUrl = Storage::disk('s3')->temporaryUrl(
+                $superuser->pdf,
+                now()->addMinutes(10) // enlace válido 10 minutos
+            );
+        }
+    
+        $puestos = Puestos::all();
+    
+        return view('admin.ani.edit', compact('superuser', 'puestos', 'pdfUrl', 'ani'));
     }
+
 
     /**
      * Update the specified resource in storage.

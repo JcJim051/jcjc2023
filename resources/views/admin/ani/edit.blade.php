@@ -4,7 +4,9 @@
 
 @section('content_header')
 
-    <h1> Validacion Ani - {{ $superuser[0]->puesto}} MESA {{ $superuser[0]->mesa}}</h1>
+        <h1> Validacion Ani - {{ $superuser->puesto }} MESA {{ $superuser->mesa }}</h1>
+       
+
 
     <style>
           #pdf-viewer {
@@ -25,7 +27,7 @@
         <div class="container" style="">
             <div class="card card-outline card-warning">
                 <div class="card-body">
-                    {!! Form::model($superuser[0], ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}                   
+                    {!! Form::model($superuser, ['route' => ['admin.superusers.update',$ani], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}                   
                     <div class="form-group">
                         <div class="row">
                             <div class="col-4">
@@ -132,7 +134,7 @@
                                         <label for=""> Puesto de votacion </label><br>
                                         <select class="form-control js-example-basic-single" name="dondevota" style="width: 80%;">
                                         
-                                        <option value="{{$superuser[0]->dondevota}}">{{$superuser[0]->puestos->nombre}}</option>
+                                        <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
                                         
                                             
                                         
@@ -165,8 +167,12 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div id="pdf-viewer">
-                        <iframe src="{{ asset('/storage/' . $superuser[0]->pdf) }}" width="100%" height="100%" frameborder="0"></iframe>
+                    <div id="pdf-viewer" style="height:600px;">
+                        @if($pdfUrl)
+                            <iframe src="{{ $pdfUrl }}" width="100%" height="100%" frameborder="0"></iframe>
+                        @else
+                            <p>No hay PDF cargado.</p>
+                        @endif
                     </div>
                 </div>
             </div>
