@@ -88,14 +88,29 @@
                                 <span class="text-danger">{{$message}}</span>
                             @enderror    
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="col-sm-5 col-xs-12">
+                            <label for=""> Puesto de votación </label><br>
+                            <select class="js-example-basic-single form-control" name="dondevota" style="width: 100%;" required>
+                            
+                            <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
+                            
+                                
+                            
+                            @foreach ($puestos as $puesto)
+                                <option value="{{$puesto->codpuesto}}"> {{$puesto->nombre}}</option>
+                            @endforeach
+                            
+                            
+                            </select>
+                        </div>
+                        {{-- <div class="form-group col-sm-6">
                             {!! Form::label("banco", "Banco") !!}
                             {!! Form::select("banco",[ null => 'Seleccione un banco','Otro' => 'Otro', 'Nequi' => 'Nequi', 'Daviplata' => 'Daviplata',  'Ahorro_a_la_mano' => 'Ahorro a la mano' ], null, ["class" => "form-control disabled", 'required' => 'required' ]) !!}
             
                             @error('telefono')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror    
-                        </div>
+                        </div> --}}
                     </div>
         
                 </div>
@@ -104,21 +119,7 @@
 
 
             <div class="row">
-                <div class="col-sm-5 col-xs-12">
-                    <label for=""> Puesto de votación </label><br>
-                    <select class="js-example-basic-single form-control" name="dondevota" style="width: 100%;" required>
-                    
-                    <option value="{{$superuser->dondevota}}">{{$superuser->puestos->nombre}}</option>
-                    
-                        
-                    
-                    @foreach ($puestos as $puesto)
-                        <option value="{{$puesto->codpuesto}}"> {{$puesto->nombre}}</option>
-                    @endforeach
-                    
-                    
-                </select>
-                </div>
+               
                 <div class="col-sm-5 col-xs-12">
 
                         {!! Form::label("pdf", "Pdf Cédula (max 2 mb)") !!} <br>
