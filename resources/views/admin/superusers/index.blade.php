@@ -158,8 +158,8 @@
 <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
     
-<script>
- $(document).ready(function () {
+{{-- <script>
+    $(document).ready(function () {
        $('#example').DataTable({
              
             searchPanes: {
@@ -208,7 +208,36 @@
 
 
   
-</script>
+</script> --}}
+
+<script>
+    $(document).ready(function () {
+    
+        let config = {
+            pageLength: 25,
+            responsive: true,
+            columnDefs: [
+                { targets: 0, visible: false }
+            ],
+            language: {
+                search: "Buscar:"
+            }
+        };
+    
+        @if(Auth::user()->role == 1) // SUPERUSER
+            config.dom = 'Prtip';
+            config.searchPanes = {
+                layout: 'columns-8',
+                initCollapsed: true
+            };
+        @else
+            config.dom = 'frtip'; // 🔥 buscador normal
+        @endif
+    
+        $('#example').DataTable(config);
+    });
+    </script>
+    
 @endsection
 
 
