@@ -193,7 +193,6 @@ class SuperUserController extends Controller
 
     public function update(Request $request, Seller $superuser)
     {
-        // 🔹 Validaciones base
         $rules = [
             'email' => [
                 'nullable',
@@ -203,23 +202,31 @@ class SuperUserController extends Controller
                 'nullable',
                 Rule::unique('sellers')->ignore($superuser->id),
             ],
-            'nombre' => 'required|string|max:255',
-            'telefono' => 'required|string|max:50',
+            'nombre'    => 'required|string|max:255',
+            'telefono'  => 'required|string|max:50',
             'dondevota' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
-            'statusani' => 'required|string|max:255',
+            'status'    => 'nullable|string|max:255',
+            'statusani' => 'nullable|string|max:255',
             'observacion' => 'nullable|string|max:255',
-            
         ];
-
-        // 🔹 Si no tiene PDF aún, es obligatorio
+        
+        // 🔹 Validación del PDF (2 MB máximo)
         if ($superuser->pdf === null) {
-            $rules['pdf'] = 'required|file|mimes:pdf|max:5120';
+            $rules['pdf'] = 'required|file|mimes:pdf|max:2048';
         } else {
-            $rules['pdf'] = 'nullable|file|mimes:pdf|max:5120';
+            $rules['pdf'] = 'nullable|file|mimes:pdf|max:2048';
         }
-
-        $validated = $request->validate($rules);
+        
+        // 🔹 Mensajes personalizados
+        $messages = [
+            'pdf.required' => 'Debe adjuntar el documento en formato PDF.',
+            'pdf.file'     => 'El archivo cargado no es válido.',
+            'pdf.mimes'    => 'El archivo debe estar en formato PDF.',
+            'pdf.max'      => 'El archivo PDF no puede pesar más de 2 MB.',
+        ];
+        
+        // Ejecutar validación
+        $validated = $request->validate($rules, $messages);
 
             if ($request->hasFile('pdf')) {
 

@@ -16,7 +16,15 @@
             <strong>{{(session('info'))}}</strong>
         </div>
 @endif
-
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="card">
     <div class="card-body">
@@ -189,6 +197,30 @@
             $('.js-example-basic-single').select2();
         });
     </script>
+
+    <script>
+        document.getElementById('pdfInput').addEventListener('change', function () {
+            const file = this.files[0];
+            const maxSize = 2 * 1024 * 1024; // 2 MB
+        
+            if (!file) return;
+        
+            // Validar tipo
+            if (file.type !== 'application/pdf') {
+                alert('El archivo debe estar en formato PDF.');
+                this.value = '';
+                return;
+            }
+        
+            // Validar tamaño
+            if (file.size > maxSize) {
+                alert('El archivo no puede pesar más de 2 MB.');
+                this.value = '';
+                return;
+            }
+        });
+    </script>
+    
     
 @endsection
 
