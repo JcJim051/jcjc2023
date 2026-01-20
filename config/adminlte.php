@@ -388,28 +388,28 @@ return [
     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 ],
-[
-    'text' => 'Reporte de asistencia',
-    'route'  => 'admin.posesion.index',
-    'icon' => 'fas fa-user-check',
-    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+//     [
+//     'text' => 'Reporte de asistencia',
+//     'route'  => 'admin.posesion.index',
+//     'icon' => 'fas fa-user-check',
+//     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 
-    ],
-    [
-    'text' => 'Reportar afluencia',
-    'route'  => 'admin.votantes.index',
-    'icon' => 'fas fa-vote-yea',
-    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+//     ],
+//     [
+//     'text' => 'Reportar afluencia',
+//     'route'  => 'admin.votantes.index',
+//     'icon' => 'fas fa-vote-yea',
+//     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
 
 
-    ],
-    [
-    'text' => 'Reportar E14',
-    'route'  => 'admin.tellers.index',
-    'icon' => 'fas fa-person-booth',
-    'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
-  ],
+//     ],
+//     [
+//     'text' => 'Reportar E14',
+//     'route'  => 'admin.tellers.index',
+//     'icon' => 'fas fa-person-booth',
+//     'can'  => 'Superuser-administrador-escrutador-coordinador-consultor',
+//   ],
     // [
     //     'text' => 'Enviar Fotos E14',
     //     'route'  => 'admin.qr.index',
