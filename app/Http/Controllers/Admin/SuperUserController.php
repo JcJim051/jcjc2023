@@ -37,8 +37,8 @@ class SuperUserController extends Controller
                             $sellers = Seller::get();
                         } else {
                             // Muestra solo los de su municipio
-                            $sellers = Seller::where('codmun', $municipio)
-                                             ->get();
+                            $municipios = explode(',', $municipio);
+                            $sellers = Seller::whereIn('codmun', $municipios)->get();
                         }
                 } else {
                     if ($role == 2) {
