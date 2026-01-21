@@ -232,7 +232,7 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->id == 1) {
                 return true;
             } else {
-                if ($user->role == 1) {
+                if ($user->role == 1 && $user->codzon !== 'Ruta') {
                     return true;
                 } else {
                     
@@ -257,7 +257,7 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->id == 1) {
                 return true;
             } else {
-                if ($user->role == 1) {
+                if ($user->role == 1 && $user->codzon !== 'Ruta') {
                     return true;
                 } else {
                     
@@ -295,7 +295,7 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->id == 1) {
                 return true;
             } else {
-                if ($user->role == 1) {
+                if ($user->role == 1 && $user->codzon !== 'Ruta') {
                     return true;
                 } else {
                     
