@@ -44,7 +44,11 @@ class TellerController extends Controller
                     } else {
 
                         if ($role == 3) {
-                            $sellers = Seller::where('mesa','<>', 'Rem')->where('codcor' , $coordinador)->get();
+                            $puestos = array_filter(array_map('trim', explode(',', $coordinador)));
+
+                            $sellers = Seller::where('mesa', '<>', 'Rem')
+                                ->whereIn('codcor', $puestos)
+                                ->get();
                         } else {
                                 if ($role == 4) {
                                     $sellers = Seller::where('mesa','<>', 'Rem')->get();

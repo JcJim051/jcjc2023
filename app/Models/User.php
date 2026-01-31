@@ -73,4 +73,23 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return url('user.profile') ;
     }
+        public function puestos()
+    {
+        if (!$this->codpuesto) return collect();
+
+        $ids = explode(',', $this->codpuesto);
+
+        return \App\Models\Puestos::whereIn('codpuesto', $ids)->get();
+    }
+    public function municipios()
+    {
+        if (!$this->mun) return collect();
+
+        $ids = explode(',', $this->mun);
+
+        return \App\Models\Puestos::whereIn('mun', $ids)
+            ->select('mun')
+            ->distinct()
+            ->get();
+    }
 }

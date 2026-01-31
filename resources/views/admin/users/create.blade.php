@@ -4,6 +4,17 @@
 
 @section('content')
 <br>
+@if ($errors->any())
+    <div class="m-3 alert alert-danger">
+        <strong>Ups, hay errores:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="mt-4 d-flex justify-content-center">
     <div class="card" style="width: 800px;">
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -16,10 +27,12 @@
                 </select>
             </div>
         </div>
+
         <form action="{{ route('admin.users.store') }}" method="POST">
             @csrf
             <div class="card-body">
                 <div class="row">
+
                     {{-- Nombre --}}
                     <div class="col-md-6">
                         <div class="form-group">
@@ -48,7 +61,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Rol</label>
-                            <select name="role" class="form-control" required>
+                            <select name="role" id="role" class="form-control" required>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
@@ -56,12 +69,11 @@
                         </div>
                     </div>
 
-                    {{-- Municipio --}}
+                    {{-- Municipios --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Municipio</label>
-                            <select id="mun" name="mun" class="form-control select2" required>
-                                <option value="">Seleccione...</option>
+                            <label>Municipio(s)</label>
+                            <select id="mun" name="mun[]" class="form-control select2" multiple>
                                 @foreach($municipios as $m)
                                     <option value="{{ $m->mun }}">{{ $m->mun }}</option>
                                 @endforeach
@@ -69,12 +81,12 @@
                         </div>
                     </div>
 
-                    {{-- Puesto --}}
+                    {{-- Puestos --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Puesto</label>
-                            <select id="codpuesto" name="codpuesto" class="form-control select2" required>
-                                <option value="">Seleccione un municipio primero...</option>
+                            <label>Puesto(s)</label>
+                            <select id="codpuesto" name="codpuesto[]" class="form-control select2" multiple>
+                                <option value="">Seleccione municipio(s) primero...</option>
                             </select>
                         </div>
                     </div>
@@ -89,6 +101,7 @@
 
                 </div>
             </div>
+
             <div class="text-right card-footer">
                 <button type="submit" class="btn btn-success">Crear</button>
                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancelar</a>
@@ -102,29 +115,60 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
 $(document).ready(function(){
-    $('.select2').select2();
+
+    $('.select2').select2({
+        placeholder: "Seleccione opciones",
+        width: '100%'
+    });
+
+    function configurarCamposPorRol() {
+        var rol = $('#role').val();
+
+        if (rol == 1) { // ADMIN
+            $('#mun').prop('disabled', false);
+            $('#codpuesto').prop('disabled', true).val(null).trigger('change');
+        } 
+        else if (rol == 3) { // COORDINADOR
+            $('#mun').prop('disabled', false);
+            $('#codpuesto').prop('disabled', false);
+        } 
+        else {
+            $('#mun').prop('disabled', false);
+            $('#codpuesto').prop('disabled', true).val(null).trigger('change');
+        }
+    }
+
+    configurarCamposPorRol();
+    $('#role').on('change', configurarCamposPorRol);
 
     $('#mun').on('change', function(){
-        var mun = $(this).val();
+        var rol = $('#role').val();
+        if (rol != 3) return; // Solo coordinador carga puestos
+
+        var municipios = $(this).val();
         var $codpuesto = $('#codpuesto');
 
-        $codpuesto.html('<option value="">Cargando...</option>');
+        $codpuesto.empty().append('<option>Cargando...</option>');
 
-        if(mun){
-            $.get('/admin/puntos/' + mun)
-                .done(function(data){
-                    $codpuesto.empty().append('<option value="">Seleccione...</option>');
-                    data.forEach(function(p){
-                        $codpuesto.append('<option value="'+p.codpuesto+'">'+p.codpuesto+' - '+p.nombre+'</option>');
+        if(municipios && municipios.length > 0){
+            $codpuesto.empty();
+
+            municipios.forEach(function(mun){
+                $.get('/admin/puntos/' + mun)
+                    .done(function(data){
+                        data.forEach(function(p){
+                            if ($codpuesto.find("option[value='"+p.codpuesto+"']").length === 0) {
+                                $codpuesto.append('<option value="'+p.codpuesto+'">'+p.codpuesto+' - '+p.nombre+'</option>');
+                            }
+                        });
                     });
-                })
-                .fail(function(){
-                    $codpuesto.empty().append('<option value="">Error al cargar puestos</option>');
-                });
+            });
+
         } else {
-            $codpuesto.empty().append('<option value="">Seleccione un municipio primero...</option>');
+            $codpuesto.empty().append('<option value="">Seleccione municipio(s) primero...</option>');
         }
     });
+
 });
 </script>
 @endsection

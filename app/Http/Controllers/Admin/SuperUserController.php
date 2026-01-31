@@ -46,7 +46,9 @@ class SuperUserController extends Controller
                     } else {
 
                         if ($role == 3) {
-                            $sellers = Seller::where('codcor' , $coordinador)->get();
+                            $puestos = array_filter(explode(',', $coordinador));
+                            $sellers = Seller::whereIn('codcor', $puestos)->get();
+                           
                         } else {
                                 if ($role == 4 or $role == 5) {
                                     $sellers = Seller::all();
