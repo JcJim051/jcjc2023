@@ -387,11 +387,11 @@
 @endsection
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script> console.log('de tu mano señor!'); </script>
        
-        <script src="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"></script>
+        
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/searchpanes/2.2.0/js/dataTables.searchPanes.min.js"></script>
@@ -405,50 +405,46 @@
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
         <script>
-        $(document).ready(function () {
-        $('#example').DataTable({
- 
-        
-              
-             searchPanes: {
-                 layout: 'columns-4',
-                 initCollapsed: true
-             },
-             "pageLength": 25,
-             //"responsive": true,
-             
-             "columnDefs": [
-                 {searchPanes: {show: false}},
-                 
-                //  { target: 0, visible: false},
-             
- 
-             ],
-             "dom":'frtip' ,
-             "scrollX": true,
-             "buttons": [
-                 {
-                 "extend": 'excelHtml5',
-                 "title": 'Alertas_preconteo_xls'
-                  },
-                  
-             ],
-             "language": { // Traducción al español
-              "searchPanes": {
-                 "title": {
-                     _: 'Filtros Aplicados - %d',
-                     0: 'Sin filtros',
-                     1: 'Un Filtro Aplicado'
-                         }
-                         // Agrega más traducciones aquí según tus necesidades
-                  }
-             },
-             
- 
-             }
-             );
-         });
- 
+     $(document).ready(function () {
+            $('#example').DataTable({
+                pageLength: 25,
+                scrollX: true,
+
+                // 👇 ESTA LÍNEA HACE QUE APAREZCA EL BOTÓN
+                dom: 'Bfrtip',
+
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Descargar Excel',
+                        title: 'Avance_por_Puesto',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ],
+
+                searchPanes: {
+                    layout: 'columns-4',
+                    initCollapsed: true
+                },
+
+                columnDefs: [
+                    { searchPanes: { show: false } }
+                ],
+
+                language: {
+                    searchPanes: {
+                        title: {
+                            _: 'Filtros Aplicados - %d',
+                            0: 'Sin filtros',
+                            1: 'Un Filtro Aplicado'
+                        }
+                    }
+                }
+            });
+        });
+
         
     
     
