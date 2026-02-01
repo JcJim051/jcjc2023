@@ -34,7 +34,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                       
                         <th>Correo</th>
                         <th>Rol</th>
                         <th>Código Zona</th>
@@ -115,7 +114,7 @@
                     }
                 ],
                 columnDefs: [
-                    { targets: 0, visible: false }
+                   
                 ],
                 language: {
                     search: "Buscar:",

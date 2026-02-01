@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Puestos;
+use App\Models\Seller;
 
 class PuestosController extends Controller
 {
     public function getByMunicipio($mun)
     {
-        $puntos = Puestos::where('mun', $mun)
-            ->select('codpuesto', 'nombre')
-            ->orderBy('codpuesto')
+        $puntos = Seller::where('codmun', $mun)
+            ->whereNotNull('codcor')
+            ->whereNotNull('puesto')
+            ->selectRaw('DISTINCT codcor as codpuesto, puesto as nombre')
+            ->orderBy('codcor')
             ->get();
-
+    
         return response()->json($puntos);
     }
+    
 }

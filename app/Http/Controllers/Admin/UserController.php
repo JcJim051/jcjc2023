@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Puestos;
+use App\Models\Seller;
 
 class UserController extends Controller
 {
@@ -20,10 +21,15 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $municipios = Puestos::select('mun')->distinct()->orderBy('mun')->get();
+        $municipios = Seller::select('codmun', 'municipio')->whereNotNull('codmun')
+        ->whereNotNull('municipio')
+        ->groupBy('codmun', 'municipio') // evita duplicados
+        ->orderBy('municipio')
+        ->get();
+      
         $puestos = Puestos::orderBy('codpuesto')->get();
 
-        return view('admin.users.create', compact('roles', 'municipios', 'puestos'));
+        return view('admin.users.create', compact('roles', 'municipios', ));
     }
 
     public function store(Request $request)
@@ -51,19 +57,58 @@ class UserController extends Controller
             ->with('success', 'Usuario creado correctamente.');
     }
 
-    public function edit(User $user)
-    {
-        $roles = Role::all();
-        $municipios = Puestos::select('mun')->distinct()->orderBy('mun')->get();
-        $puestos = Puestos::orderBy('codpuesto')->get();
+    // public function edit(User $user)
+    // {
+    //     $roles = Role::all();
+    //     $municipios = Puestos::select('mun')->distinct()->orderBy('mun')->get();
+    //     $puestos = Puestos::orderBy('codpuesto')->get();
 
-        // 👇 Convertimos texto "1,2,3" a array [1,2,3]
-        $user->mun = $user->mun ? explode(',', $user->mun) : [];
-        $user->codpuesto = $user->codpuesto ? explode(',', $user->codpuesto) : [];
-        $user->codzon = $user->codzon ? explode(',', $user->codzon) : [];
+    //     // 👇 Convertimos texto "1,2,3" a array [1,2,3]
+    //     $user->mun = $user->mun ? explode(',', $user->mun) : [];
+    //     $user->codpuesto = $user->codpuesto ? explode(',', $user->codpuesto) : [];
+    //     $user->codzon = $user->codzon ? explode(',', $user->codzon) : [];
 
-        return view('admin.users.edit', compact('user', 'roles', 'municipios', 'puestos'));
-    }
+    //     return view('admin.users.edit', compact('user', 'roles', 'municipios', ));
+    // }
+
+//     public function edit(User $user)
+// {
+//     $roles = Role::all();
+//         $municipios = Seller::select('codmun', 'municipio')->whereNotNull('codmun')
+//         ->whereNotNull('municipio')
+//         ->groupBy('codmun', 'municipio') // evita duplicados
+//         ->orderBy('municipio')
+//         ->get();
+      
+//         $puestos = Puestos::orderBy('codpuesto')->get();
+
+      
+
+//     $user->mun = $user->mun ? explode(',', $user->mun) : [];
+//     $user->codpuesto = $user->codpuesto ? explode(',', $user->codpuesto) : [];
+//     $user->codzon = $user->codzon ? explode(',', $user->codzon) : [];
+
+//     return view('admin.users.edit', compact('user', 'roles', 'municipios'));
+// }
+
+        public function edit(User $user)
+        {
+            $roles = Role::all();
+
+            $municipios = Seller::select('codmun', 'municipio')
+                ->whereNotNull('codmun')
+                ->whereNotNull('municipio')
+                ->groupBy('codmun', 'municipio')
+                ->orderBy('municipio')
+                ->get();
+
+            // 🔥 Convertimos texto guardado a arrays para los selects múltiples
+            $user->mun = $user->mun ? explode(',', $user->mun) : [];
+            $user->codpuesto = $user->codpuesto ? explode(',', $user->codpuesto) : [];
+            $user->codzon = $user->codzon ? explode(',', $user->codzon) : [];
+
+            return view('admin.users.edit', compact('user', 'roles', 'municipios'));
+        }
 
     public function update(Request $request, User $user)
     {

@@ -73,14 +73,18 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Municipio(s)</label>
-                            <select id="mun" name="mun[]" class="form-control select2" multiple>
+                            @php $munSeleccionados = old('mun', $user->mun ?? []); @endphp
+                    
+                            <select name="mun[]" id="mun" class="form-control select2" multiple>
                                 @foreach($municipios as $m)
-                                    <option value="{{ $m->mun }}">{{ $m->mun }}</option>
+                                    <option value="{{ $m->codmun }}"
+                                        {{ in_array($m->codmun, $munSeleccionados) ? 'selected' : '' }}>
+                                        {{ $m->codmun }} - {{ $m->municipio }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-
                     {{-- Puestos --}}
                     <div class="col-md-6">
                         <div class="form-group">
