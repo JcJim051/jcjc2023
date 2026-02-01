@@ -103,7 +103,7 @@
                         <div class="form-group">
                             <label>Código Zona (codzon)</label>
                             <input type="text" id="codzon" name="codzon" class="form-control"
-                                   value="{{ old('codzon', is_array($user->codzon) ? implode(',', $user->codzon) : $user->codzon) }}" readonly>
+                                   value="{{ old('codzon', is_array($user->codzon) ? implode(',', $user->codzon) : $user->codzon) }}">
                         </div>
                     </div>
 
@@ -135,6 +135,7 @@ $(document).ready(function(){
         if (rol == 1) { // ADMIN
             $('#mun').prop('disabled', false);
             $('#codpuesto').prop('disabled', true).val(null).trigger('change');
+            $('#codzon').prop('readonly', false);
         } 
         else if (rol == 3) { // COORDINADOR
             $('#mun').prop('disabled', false);

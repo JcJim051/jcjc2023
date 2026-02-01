@@ -131,6 +131,7 @@ $(document).ready(function(){
         if (rol == 1) { // ADMIN
             $('#mun').prop('disabled', false);
             $('#codpuesto').prop('disabled', true).val(null).trigger('change');
+            $('#codzon').prop('readonly', false);
         } 
         else if (rol == 3) { // COORDINADOR
             $('#mun').prop('disabled', false);
