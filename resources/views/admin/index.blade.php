@@ -46,7 +46,7 @@
 
                 @if($puestos->count())
                     @foreach($puestos as $p)
-                        <div>🗳️ {{ $p->puesto }} — {{ $p->municipio }}</div>
+                        <div>🗳️ {{ $p->nombre }} — {{ $p->municipio }}</div>
                     @endforeach
                     <br>
                     <strong>Códigos de Puesto:</strong> {{ Auth::user()->codpuesto }}

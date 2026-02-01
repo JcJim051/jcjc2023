@@ -58,9 +58,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+   
+
     protected $casts = [
-         'email_verified_at' => 'datetime',
+        'mun' => 'array',
+        'puesto' => 'array',
+        'email_verified_at' => 'datetime',
     ];
+    
 
     /**
      * The accessors to append to the model's array form.
