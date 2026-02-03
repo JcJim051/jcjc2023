@@ -105,7 +105,7 @@
                                 
                             
                             @foreach ($puestos as $puesto)
-                                <option value="{{$puesto->codpuesto}}"> {{$puesto->nombre}}</option>
+                                <option value="{{$puesto->codpuesto}}"> {{$puesto->mun}} - {{$puesto->nombre}}</option>
                             @endforeach
                             
                             
