@@ -259,11 +259,12 @@ class SuperUserController extends Controller
             // 🔎 4. Obtener extensión REAL basada en contenido
             $extension = $file->guessExtension() ?: 'pdf';
         
-            // 🧼 5. Obtener cédula segura desde la BD (nunca del request)
-            $cedula = preg_replace('/[^0-9]/', '', (string) $superuser->cedula);
+            // 🧼 5. Obtener cédula desde el request y limpiarla
+            $cedulaInput = $request->input('cedula');
+            $cedula = preg_replace('/[^0-9]/', '', (string) $cedulaInput);
         
             if (empty($cedula)) {
-                return back()->withErrors(['pdf' => 'No se pudo determinar la cédula del usuario.']);
+                return back()->withErrors(['cedula' => 'Debe ingresar una cédula válida.']);
             }
         
             // 🆔 6. Generar nombre único para evitar sobreescrituras
@@ -281,9 +282,11 @@ class SuperUserController extends Controller
                 Storage::disk('s3')->delete($superuser->pdf);
             }
         
-            // 💾 9. Guardar ruta final
+            // 💾 9. Guardar datos en el modelo
+            $superuser->cedula = $cedula; // ahora sí se guarda en BD
             $superuser->pdf = $path;
         }
+        
         
             // Actualizar otros campos validados
             $superuser->fill($validated); // llena los demás campos
