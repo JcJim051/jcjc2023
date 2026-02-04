@@ -226,32 +226,65 @@ class SuperUserController extends Controller
             'pdf.mimes'    => 'El archivo debe estar en formato PDF.',
             'pdf.max'      => 'El archivo PDF no puede pesar más de 2 MB.',
         ];
-        
+        // dd([
+        //     'hasFile_pdf' => $request->hasFile('pdf'),
+        //     'file_in_request' => $request->file('pdf'),
+        //     'all_files' => $request->allFiles(),
+        //     'post_max_size' => ini_get('post_max_size'),
+        //     'upload_max_filesize' => ini_get('upload_max_filesize'),
+        // ]);
         // Ejecutar validación
         $validated = $request->validate($rules, $messages);
 
-            if ($request->hasFile('pdf')) {
+        if ($request->hasFile('pdf')) {
 
-                // Borrar el PDF anterior si existe
-                if ($superuser->pdf) {
-                    Storage::disk('s3')->delete($superuser->pdf);
-                }
-            
-                // Obtener el archivo y la cédula
-                $file = $request->file('pdf');
-                $nombreArchivo = $superuser->cedula . '.' . $file->getClientOriginalExtension();
-            
-                // Guardar en el bucket con el nombre personalizado
-                $path = Storage::disk('s3')->putFileAs(
-                    'cedulas-pdf', // carpeta
-                    $file,         // archivo
-                    $nombreArchivo // nombre del archivo
-                );
-            
-                // Guardar la ruta en el modelo
-                $superuser->pdf = $path;
+            $file = $request->file('pdf');
+        
+            // 🛑 1. Verificar que el archivo realmente es válido
+            if (!$file->isValid()) {
+                return back()->withErrors(['pdf' => 'Error al subir el archivo. Intente nuevamente.']);
             }
-
+        
+            // 🧠 2. Validar MIME real (no confiar en la extensión)
+            $mime = $file->getMimeType();
+            if ($mime !== 'application/pdf') {
+                return back()->withErrors(['pdf' => 'El archivo debe ser un PDF válido.']);
+            }
+        
+            // 📏 3. Validar tamaño real (extra seguridad)
+            if ($file->getSize() > 2 * 1024 * 1024) {
+                return back()->withErrors(['pdf' => 'El PDF no puede superar los 2 MB.']);
+            }
+        
+            // 🔎 4. Obtener extensión REAL basada en contenido
+            $extension = $file->guessExtension() ?: 'pdf';
+        
+            // 🧼 5. Obtener cédula segura desde la BD (nunca del request)
+            $cedula = preg_replace('/[^0-9]/', '', (string) $superuser->cedula);
+        
+            if (empty($cedula)) {
+                return back()->withErrors(['pdf' => 'No se pudo determinar la cédula del usuario.']);
+            }
+        
+            // 🆔 6. Generar nombre único para evitar sobreescrituras
+            $nombreArchivo = $cedula . '_' . now()->timestamp . '_' . uniqid() . '.' . $extension;
+        
+            // ☁️ 7. Subir a S3
+            $path = Storage::disk('s3')->putFileAs('cedulas-pdf', $file, $nombreArchivo);
+        
+            if (!$path) {
+                return back()->withErrors(['pdf' => 'No se pudo guardar el archivo. Intente nuevamente.']);
+            }
+        
+            // 🗑 8. Borrar PDF anterior solo después de subir el nuevo correctamente
+            if ($superuser->pdf && Storage::disk('s3')->exists($superuser->pdf)) {
+                Storage::disk('s3')->delete($superuser->pdf);
+            }
+        
+            // 💾 9. Guardar ruta final
+            $superuser->pdf = $path;
+        }
+        
             // Actualizar otros campos validados
             $superuser->fill($validated); // llena los demás campos
             $superuser->save(); // guarda todo incluido PDF
@@ -294,6 +327,8 @@ class SuperUserController extends Controller
         return redirect()
             ->route('admin.revision.index')
             ->with('info', 'Revisión E24 guardada con éxito');
+
+           
     }
 
 
