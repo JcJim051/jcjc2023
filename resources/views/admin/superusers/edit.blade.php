@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 {!! Form::label("cedula", "Cédula") !!}
-                {!! Form::text("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cédula', 'required' => 'required' ]) !!}
+                {!! Form::number("cedula", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su cédula', 'required' => 'required' ]) !!}
 
                 @error('cedula')
                     <span class="text-danger">{{$message}}</span>
@@ -77,7 +77,7 @@
 
             <div class="form-group">
                 {!! Form::label("email", "Email") !!}
-                {!! Form::text("email", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su email','required' => 'required']) !!}
+                {!! Form::email("email", null, ["class" => "form-control","placeholder" => "Ingrese su email", "required" => "required"]) !!}
 
                 @error('email')
                     <span class="text-danger">{{$message}}</span>
@@ -90,7 +90,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6 ">
                             {!! Form::label("telefono", "Telefono") !!}
-                            {!! Form::text("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono', 'required' => 'required']) !!}
+                            {!! Form::number("telefono", null, ["class" => "form-control disabled", 'placeholder' => 'Ingrese su telefono', 'required' => 'required']) !!}
             
                             @error('telefono')
                                 <span class="text-danger">{{$message}}</span>
@@ -127,30 +127,30 @@
 
 
             <div class="row">
-               
                 <div class="col-sm-5 col-xs-12">
-
-                        {!! Form::label("pdf", "Pdf Cédula (max 2 mb)") !!} <br>
-                        {!! Form::file("pdf", null, ["class" => "form-control disabled", 'required' => 'required',  'accept' => '.pdf' ]) !!}
-
-                        @error('pdf')
-                            <span class="text-danger">El Archivo supero el peso, favor Comprimalo</span>
-                        @enderror
+                    {!! Form::label("pdf", "Pdf Cédula (max 2 mb)") !!} <br>
+            
+                    {!! Form::file("pdf", [
+                        "class" => "form-control",
+                        "accept" => ".pdf",
+                        $superuser->pdf ? '' : 'required' => 'required' // required solo si no hay PDF
+                    ]) !!}
+            
+                    @error('pdf')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
-
+            
                 <div class="col-sm-2 col-xs-12">
-                    <label for="">Documento cargado</label>
-                    <br>
+                    <label for="">Documento cargado</label><br>
                     @if ($superuser->pdf == null)
                         Sin cargar
                     @else
                         <a target="_blank" rel="noopener noreferrer" href="{{ $pdfUrl }}">Ver adjunto</a>
                     @endif
                 </div>
-                
-
-
             </div>
+            
 
             
 

@@ -269,6 +269,10 @@ class SuperUserController extends Controller
             'status'    => 'nullable|string|max:255',
             'statusani' => 'nullable|string|max:255',
             'observacion' => 'nullable|string|max:255',
+            'pdf' => $superuser->pdf 
+            ? 'nullable|file|mimes:pdf|max:2048' // puede dejar vacío
+            : 'required|file|mimes:pdf|max:2048', // obligatorio si no existe
+            
         ];
         
         // 🔹 Validación del PDF (2 MB máximo)
@@ -285,13 +289,7 @@ class SuperUserController extends Controller
             'pdf.mimes'    => 'El archivo debe estar en formato PDF.',
             'pdf.max'      => 'El archivo PDF no puede pesar más de 2 MB.',
         ];
-        // dd([
-        //     'hasFile_pdf' => $request->hasFile('pdf'),
-        //     'file_in_request' => $request->file('pdf'),
-        //     'all_files' => $request->allFiles(),
-        //     'post_max_size' => ini_get('post_max_size'),
-        //     'upload_max_filesize' => ini_get('upload_max_filesize'),
-        // ]);
+        
         // Ejecutar validación
         $validated = $request->validate($rules, $messages);
 
@@ -320,15 +318,16 @@ class SuperUserController extends Controller
         
             // 🧼 5. Obtener cédula desde el request y limpiarla
             $cedulaInput = $request->input('cedula');
+            
             $cedula = preg_replace('/[^0-9]/', '', (string) $cedulaInput);
-        
+            
             if (empty($cedula)) {
                 return back()->withErrors(['cedula' => 'Debe ingresar una cédula válida.']);
             }
         
             // 🆔 6. Generar nombre único para evitar sobreescrituras
             $nombreArchivo = $cedula . '_' . now()->timestamp . '_' . uniqid() . '.' . $extension;
-        
+            
             // ☁️ 7. Subir a S3
             $path = Storage::disk('s3')->putFileAs('cedulas-pdf', $file, $nombreArchivo);
         
