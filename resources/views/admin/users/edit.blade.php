@@ -27,6 +27,42 @@
                     <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Bloqueado</option>
                 </select>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Candidato(s)</label>
+            
+                    @php
+                        // Obtener los seleccionados: old() tiene prioridad, luego el valor del usuario (en edit)
+                        $candidatosSeleccionados = old(
+                            'candidatos',
+                            isset($user) && $user->candidatos !== null
+                                ? explode(',', $user->candidatos)
+                                : []
+                        );
+            
+                        // Convertimos todos los valores a enteros para evitar problemas de comparación
+                        $candidatosSeleccionados = array_map('intval', $candidatosSeleccionados);
+            
+                        // Lista de candidatos disponibles
+                        $listaCandidatos = [
+                            0   => 'General',
+                            101 => 'U101',
+                            103 => 'U103',
+                            4   => 'U04',
+                        ];
+                    @endphp
+            
+                    <select name="candidatos[]" form="formUser" id="candidatos" class="form-control select2" multiple>
+                        @foreach($listaCandidatos as $valor => $nombre)
+                            <option value="{{ $valor }}" {{ in_array($valor, $candidatosSeleccionados) ? 'selected' : '' }}>
+                                {{ $nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            
+                        
         </div>
 
         <form id="formUser" action="{{ route('admin.users.update', $user) }}" method="POST">
@@ -81,6 +117,7 @@
                             <label>Municipio(s)</label>
                             <select name="mun[]" id="mun" class="form-control select2" multiple>
                                 @foreach($municipios as $m)
+                                    <option value="all">Todos</option> {{-- Opción especial --}}
                                     <option value="{{ $m->codmun }}"
                                         {{ in_array($m->codmun, old('mun', $user->mun)) ? 'selected' : '' }}>
                                         {{ $m->codmun }} - {{ $m->municipio }}
@@ -89,6 +126,38 @@
                             </select>
                         </div>
                     </div>
+
+                    @push('js')
+                        <script>
+                        $(document).ready(function() {
+                            let $select = $('#mun');
+
+                            $select.select2({
+                                placeholder: "Seleccione municipios",
+                                width: '100%'
+                            });
+
+                            // Si selecciona "Todos"
+                            $select.on('select2:select', function(e) {
+                                if (e.params.data.id === 'all') {
+                                    // Selecciona todos los options
+                                    let allValues = [];
+                                    $select.find('option').each(function() {
+                                        if ($(this).val() !== 'all') allValues.push($(this).val());
+                                    });
+                                    $select.val(allValues).trigger('change.select2');
+                                }
+                            });
+
+                            // Si deselecciona "Todos"
+                            $select.on('select2:unselect', function(e) {
+                                if (e.params.data.id === 'all') {
+                                    $select.val(null).trigger('change.select2');
+                                }
+                            });
+                        });
+                        </script>
+                    @endpush
 
                     {{-- Puestos --}}
                     <div class="col-md-6">
@@ -103,7 +172,7 @@
                         <div class="form-group">
                             <label>Código Zona (codzon)</label>
                             <input type="text" id="codzon" name="codzon" class="form-control"
-                                   value="{{ old('codzon', is_array($user->codzon) ? implode(',', $user->codzon) : $user->codzon) }}">
+                                   value="{{ old('codzon', is_array($user->codzon) ? implode(',', $user->codzon) : $user->codzon) }}"s>
                         </div>
                     </div>
 

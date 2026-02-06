@@ -60,7 +60,45 @@ class AuthServiceProvider extends ServiceProvider
                 }
 
             }
-        });     
+        });   
+        
+        Gate::define('Superuser-administrador-escrutador-consultor-auditor-candidato', function($user){
+            if ($user->id == 1) {
+                return true;
+            } else {
+                if ($user->role == 1 && $user->codzon !== 'Ruta') {
+                    return true;
+                } else {
+                    
+                    if ($user->role == 2) {
+                        return true;
+                    } else {
+                        
+                        if ($user->role == 4) {
+                            return true;
+                        } else {
+                            
+                            if ($user->role == 6) {
+                                return true;
+                            } else {
+                                
+                                if ($user->role == 1 && $user->candidato !== '101') {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                                
+                
+                            }
+            
+                        }
+        
+                    }
+    
+                }
+
+            }
+        });  
 
         Gate::define('Superuser-administrador-consultor', function($user){
             if ($user->id == 1) {
@@ -107,6 +145,7 @@ class AuthServiceProvider extends ServiceProvider
                             } else {
                                 
                                 return false;
+                                
                 
                             }
             

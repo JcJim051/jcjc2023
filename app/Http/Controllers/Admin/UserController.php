@@ -34,23 +34,32 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role'     => 'required'
+            'role'     => 'required',
+            'status'     => 'required',
+            'candidatos' => 'required|array',
+            'candidatos.*' => 'integer|in:0,101,103,4', // valida cada elemento del array
         ]);
 
+      
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
             'role'     => $request->role,
+            
+
+
 
             // 👇 CONVERTIMOS ARRAYS A TEXTO
             'codzon'    => is_array($request->codzon) ? implode(',', $request->codzon) : $request->codzon,
             'codpuesto' => is_array($request->codpuesto) ? implode(',', $request->codpuesto) : $request->codpuesto,
             'mun'       => is_array($request->mun) ? implode(',', $request->mun) : $request->mun,
+            'candidatos'       => is_array($request->candidatos) ? implode(',', $request->candidatos) : $request->candidatos,
         ]);
 
         return redirect()->route('admin.users.index')
@@ -117,6 +126,8 @@ class UserController extends Controller
             'email'  => 'required|email|unique:users,email,' . $user->id,
             'role'   => 'required',
             'status' => 'required|in:0,1',
+            'candidatos' => 'required|array',
+            'candidatos.*' => 'integer|in:0,101,103,4', // valida cada elemento del array
         ]);
 
         $user->update([
@@ -124,11 +135,13 @@ class UserController extends Controller
             'email'     => $request->email,
             'role'      => $request->role,
             'status'    => $request->status,
+            'candidatos'    => $request->candidatos,
 
             // 👇 CONVERTIR ARRAYS
             'codzon'    => is_array($request->codzon) ? implode(',', $request->codzon) : $request->codzon,
             'codpuesto' => is_array($request->codpuesto) ? implode(',', $request->codpuesto) : $request->codpuesto,
             'mun'       => is_array($request->mun) ? implode(',', $request->mun) : $request->mun,
+            'candidatos'       => is_array($request->candidatos) ? implode(',', $request->candidatos) : $request->candidatos,
         ]);
 
         if ($request->filled('password')) {

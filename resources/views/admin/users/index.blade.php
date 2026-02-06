@@ -39,6 +39,7 @@
                         <th>Código Zona</th>
                         <th>Código Puesto</th>
                         <th>Municipio</th>
+                        <th>Candidato</th>
                       
                         <th style="background-color: hsl(25, 41%, 55%)">Acciones</th>
                     </tr>
@@ -65,8 +66,23 @@
                         </td>
                         <td>{{ $user->codzon }}</td>
                         <td>{{ $user->codpuesto }}</td>
-                        <td>{{ $user->mun }}</td>
-                       
+                        <td> 
+                            @if ($user->mun == "005,006,008,010,015,020,025,027,028,030,035,040,041,042,046,044,047,043,048,045,049,050,055,058,059,060,074,001,080")
+                                Todos
+                            @else
+                                {{ $user->mun }}
+                            @endif
+                          </td>
+                        <td>
+                            @php
+                                $candidatos = json_decode($user->candidatos, true);
+                            @endphp
+                            {{ is_array($candidatos) ? implode(', ', $candidatos) : $user->candidatos }}
+                        </td>
+
+
+
+                        
                         <td>
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-warning">Editar</a>
 

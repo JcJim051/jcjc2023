@@ -21,14 +21,63 @@
             <h5 class="mb-0">Crear Usuario</h5>
             <div>
                 <label for="status" class="mb-0 mr-2">Estado:</label>
-                <select name="status" id="status" class="form-control form-control-sm d-inline-block" style="width: 120px;">
-                    <option value="1" selected>Activo</option>
-                    <option value="0">Bloqueado</option>
+                <select name="status"
+                        id="status"
+                        form="formUser"
+                        class="form-control form-control-sm d-inline-block"
+                        style="width: 120px;">
+                    <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>Activo</option>
+                    <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Bloqueado</option>
                 </select>
             </div>
+            
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Candidato(s)</label>
+            
+                    @php
+                        $candidatosSeleccionados = old(
+                            'candidatos',
+                            isset($user) && $user->candidatos
+                                ? explode(',', $user->candidatos)
+                                : []
+                        );
+                    @endphp
+            
+                    <select name="candidatos[]"
+                            id="candidatos"
+                            class="form-control select2"
+                            form="formUser"
+                            multiple>
+                        
+                        <option value="0"
+                            {{ in_array('0', $candidatosSeleccionados) ? 'selected' : '' }}>
+                            General
+                        </option>
+            
+                        <option value="101"
+                            {{ in_array('101', $candidatosSeleccionados) ? 'selected' : '' }}>
+                            U101
+                        </option>
+            
+                        <option value="103"
+                            {{ in_array('103', $candidatosSeleccionados) ? 'selected' : '' }}>
+                            U103
+                        </option>
+            
+                        <option value="4"
+                            {{ in_array('4', $candidatosSeleccionados) ? 'selected' : '' }}>
+                            U04
+                        </option>
+                    </select>
+                </div>
+            </div>
+            
+            
+            
         </div>
 
-        <form action="{{ route('admin.users.store') }}" method="POST">
+        <form id="formUser" action="{{ route('admin.users.store') }}" method="POST">
             @csrf
             <div class="card-body">
                 <div class="row">
@@ -76,6 +125,7 @@
                             @php $munSeleccionados = old('mun', $user->mun ?? []); @endphp
                     
                             <select name="mun[]" id="mun" class="form-control select2" multiple>
+                                <option value="all">Todos</option> {{-- Opción especial --}}
                                 @foreach($municipios as $m)
                                     <option value="{{ $m->codmun }}"
                                         {{ in_array($m->codmun, $munSeleccionados) ? 'selected' : '' }}>
@@ -85,6 +135,37 @@
                             </select>
                         </div>
                     </div>
+                    @push('js')
+                        <script>
+                        $(document).ready(function() {
+                            let $select = $('#mun');
+
+                            $select.select2({
+                                placeholder: "Seleccione municipios",
+                                width: '100%'
+                            });
+
+                            // Si selecciona "Todos"
+                            $select.on('select2:select', function(e) {
+                                if (e.params.data.id === 'all') {
+                                    // Selecciona todos los options
+                                    let allValues = [];
+                                    $select.find('option').each(function() {
+                                        if ($(this).val() !== 'all') allValues.push($(this).val());
+                                    });
+                                    $select.val(allValues).trigger('change.select2');
+                                }
+                            });
+
+                            // Si deselecciona "Todos"
+                            $select.on('select2:unselect', function(e) {
+                                if (e.params.data.id === 'all') {
+                                    $select.val(null).trigger('change.select2');
+                                }
+                            });
+                        });
+                        </script>
+                    @endpush
                     {{-- Puestos --}}
                     <div class="col-md-6">
                         <div class="form-group">
@@ -131,7 +212,7 @@ $(document).ready(function(){
         if (rol == 1) { // ADMIN
             $('#mun').prop('disabled', false);
             $('#codpuesto').prop('disabled', true).val(null).trigger('change');
-            $('#codzon').prop('readonly', false);
+             $('#codzon').prop('readonly', false);
         } 
         else if (rol == 3) { // COORDINADOR
             $('#mun').prop('disabled', false);

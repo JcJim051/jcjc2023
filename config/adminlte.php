@@ -335,7 +335,7 @@ return [
         
 [   'text' => 'Indicadores',
     'icon'        => 'fas fa-tachometer-alt fa-rotate-90',  
-    'can'  => 'Superuser-administrador-escrutador-consultor-auditor',  
+    'can'  => 'Superuser-administrador-escrutador-consultor-auditor-candidato',  
     'submenu' => [
         [
             'text'        => 'Indicadores acreditación de testigos',
@@ -343,7 +343,7 @@ return [
             'icon'        => 'fas fa-tachometer-alt fa-fw',
             'label_color' => 'success',
             // 'can'  => 'Superuser-administrador-consultor-auditor',
-            'can'  => 'Superuser-administrador-escrutador-consultor-auditor',
+            'can'  => 'Superuser-administrador-escrutador-consultor-auditor-candidato',
         ],
         [   'text'        => 'Asistencia de testigos',
             'route'         => 'admin.asistencia.index',

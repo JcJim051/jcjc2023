@@ -6,59 +6,67 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use App\Models\Puestos;
+use App\Traits\Compartimentacion;
 
 class PosesionController extends Controller
-{
+{   
+    use Compartimentacion;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $role = auth()->user()->role;
-        $escrutador = auth()->user()->codzon;
-        $ruta = auth()->user()->codzon;
+    // public function index()
+    // {
+    //     $role = auth()->user()->role;
+    //     $escrutador = auth()->user()->codzon;
+    //     $ruta = auth()->user()->codzon;
         
-        $coordinador = auth()->user()->codpuesto;
-        $municipio = auth()->user()->mun;
+    //     $coordinador = auth()->user()->codpuesto;
+    //     $municipio = auth()->user()->mun;
 
-        if ($role == 1) {
-            // 1 = villao
-            if ($municipio == 1) {
-                $sellers = Seller::where('codmun' , 001)->get();
-            } else {
-               if ($municipio == 0) {
-                $sellers = Seller::where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
-               } else {
-                $sellers = Seller::all();
-               }            
+    //     if ($role == 1) {
+    //         // 1 = villao
+    //         if ($municipio == 1) {
+    //             $sellers = Seller::where('codmun' , 001)->get();
+    //         } else {
+    //            if ($municipio == 0) {
+    //             $sellers = Seller::where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
+    //            } else {
+    //             $sellers = Seller::all();
+    //            }            
                 
                    
                 
-            }
-        } else {
-            if ($role == 2) {
-                $sellers = Seller::where('codescru' , $escrutador)->get();
-            } else {
+    //         }
+    //     } else {
+    //         if ($role == 2) {
+    //             $sellers = Seller::where('codescru' , $escrutador)->get();
+    //         } else {
 
-                if ($role == 3) {
-                    $sellers = Seller::where('codcor' , $coordinador)->get();
-                } else {
+    //             if ($role == 3) {
+    //                 $sellers = Seller::where('codcor' , $coordinador)->get();
+    //             } else {
                         
-                     }
+    //                  }
 
 
-            }
-         }
+    //         }
+    //      }
 
 
 
+    //     return view('admin.posesion.index', compact('sellers'));
+
+
+    // }
+    public function index()
+    {
+        $user = auth()->user();
+        $sellers = $this->filtrarSellersPorUsuario($user);
+    
         return view('admin.posesion.index', compact('sellers'));
-
-
     }
-
     /**
      * Show the form for creating a new resource.
      *

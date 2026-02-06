@@ -72,7 +72,7 @@ class CreateSellersTable extends Migration
             $table->integer('reporte_1')->nullable();
             $table->integer('reporte_2')->nullable();
             $table->integer('reporte_3')->nullable();
-            $table->string('apelacion')->default('0')->nullable();
+            // $table->string('apelacion')->default('0')->nullable();
             $table->timestamps();
         });
     }

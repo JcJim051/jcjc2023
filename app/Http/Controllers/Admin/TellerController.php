@@ -15,64 +15,113 @@ class TellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $role = auth()->user()->role;
-        $escrutador = auth()->user()->codzon;
-        $ruta = auth()->user()->codzon;
-        $crisis = auth()->user()->codzon;
-        $coordinador = auth()->user()->codpuesto;
-        $municipio = auth()->user()->mun;
+    // public function index()
+    // {
+    //     $role = auth()->user()->role;
+    //     $escrutador = auth()->user()->codzon;
+    //     $ruta = auth()->user()->codzon;
+    //     $crisis = auth()->user()->codzon;
+    //     $coordinador = auth()->user()->codpuesto;
+    //     $municipio = auth()->user()->mun;
 
 
 
 
-                if ($role == 1) {
-                   if ($municipio == 1) {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'=', '001')->get();
-                   } else {
-                    if ($municipio == 0) {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
-                       } else {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->get();
-                       }    
-                   }
+    //             if ($role == 1) {
+    //                if ($municipio == 1) {
+    //                     $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'=', '001')->get();
+    //                } else {
+    //                 if ($municipio == 0) {
+    //                     $sellers = Seller::where('mesa','<>', 'Rem')->where('codmun' ,'<>', '001')->where('cod_ruta' , $ruta)->get();
+    //                    } else {
+    //                     $sellers = Seller::where('mesa','<>', 'Rem')->get();
+    //                    }    
+    //                }
                        
-                } else {
-                    if ($role == 2) {
-                        $sellers = Seller::where('mesa','<>', 'Rem')->where('codescru' , $escrutador)->get();
-                    } else {
+    //             } else {
+    //                 if ($role == 2) {
+    //                     $sellers = Seller::where('mesa','<>', 'Rem')->where('codescru' , $escrutador)->get();
+    //                 } else {
 
-                        if ($role == 3) {
-                            $puestos = array_filter(array_map('trim', explode(',', $coordinador)));
+    //                     if ($role == 3) {
+    //                         $puestos = array_filter(array_map('trim', explode(',', $coordinador)));
 
-                            $sellers = Seller::where('mesa', '<>', 'Rem')
-                                ->whereIn('codcor', $puestos)
-                                ->get();
-                        } else {
-                                if ($role == 4) {
-                                    $sellers = Seller::where('mesa','<>', 'Rem')->get();
-                                } else {
-                                    if ($role == 7) {
-                                        $sellers = Seller::where('codmesa_crisis','=',$crisis)->get();
-                                    } else {
+    //                         $sellers = Seller::where('mesa', '<>', 'Rem')
+    //                             ->whereIn('codcor', $puestos)
+    //                             ->get();
+    //                     } else {
+    //                             if ($role == 4) {
+    //                                 $sellers = Seller::where('mesa','<>', 'Rem')->get();
+    //                             } else {
+    //                                 if ($role == 7) {
+    //                                     $sellers = Seller::where('codmesa_crisis','=',$crisis)->get();
+    //                                 } else {
                                          
-                                    }
-                                }
-                             }
+    //                                 }
+    //                             }
+    //                          }
 
 
-                    }
-                 }
+    //                 }
+    //              }
 
                
 
+    //     return view('admin.tellers.index', compact('sellers'));
+
+    //     // $sellers = Seller::all();
+
+    //     // return view('admin.tellers.index', compact('sellers'));
+    // }
+    public function index()
+    {
+        $user = auth()->user();
+        $role = $user->role;
+        $idUser = $user->id;
+    
+        // Convertimos campos guardados como texto a arrays
+        $userCandidatos = $user->candidatos ? explode(',', $user->candidatos) : [];
+        $userMunicipios = $user->mun ? explode(',', $user->mun) : [];
+        $userPuestos = $user->codpuesto ? explode(',', $user->codpuesto) : [];
+        $escrutador = $user->codzon;
+    
+        $sellers = Seller::query();
+    
+        if ($role == 1) { // ADMIN
+            if ($idUser == 1 || in_array('999', $userMunicipios)) {
+                // Muestra todo
+                $sellers = $sellers->get();
+            } else {
+                // Filtra por municipios
+                $sellers = $sellers->whereIn('codmun', $userMunicipios);
+    
+                // Filtra por candidatos si tiene asignados
+                if (!empty($userCandidatos)) {
+                    $sellers = $sellers->whereIn('candidato', $userCandidatos);
+                }
+    
+                $sellers = $sellers->get();
+            }
+        } elseif ($role == 2) { // ESCRUTADOR
+            $sellers = $sellers->where('codescru', $escrutador)->get();
+        } elseif ($role == 3) { // COORDINADOR
+            $sellers = $sellers->whereIn('codcor', $userPuestos);
+    
+            // Filtra por candidatos
+            if (!empty($userCandidatos)) {
+                $sellers = $sellers->whereIn('candidato', $userCandidatos);
+            }
+    
+            $sellers = $sellers->get();
+        } elseif ($role == 4 || $role == 5) { // Otros roles
+            $sellers = $sellers->get();
+        } else {
+            $sellers = collect();
+        }
+    
         return view('admin.tellers.index', compact('sellers'));
-
-        // $sellers = Seller::all();
-
-        // return view('admin.tellers.index', compact('sellers'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.

@@ -9,63 +9,122 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\Compartimentacion;
 
 
 class SuperUserController extends Controller
 {
+    use Compartimentacion;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    //El inicial
+    // public function index()
+    // {
+
+    //     $role = auth()->user()->role;
+    //     $escrutador = auth()->user()->codzon;
+    //     $ruta = auth()->user()->codzon;
+    //     $coordinador = auth()->user()->codpuesto;
+    //     $municipio = auth()->user()->mun;
+    //     $idUser = auth()->id();
+
+
+
+    //             if ($role == 1) {
+    //                 // 1 = villa-{-.…o
+    //                     if ($idUser == 1 || $municipio == 999) {
+    //                         // Muestra todo
+    //                         $sellers = Seller::get();
+    //                     } else {
+    //                         // Muestra solo los de su municipio
+    //                         $municipios = explode(',', $municipio);
+    //                         $sellers = Seller::whereIn('codmun', $municipios)->get();
+    //                     }
+    //             } else {
+    //                 if ($role == 2) {
+    //                     $sellers = Seller::where('codescru' , $escrutador)->get();
+    //                 } else {
+
+    //                     if ($role == 3) {
+    //                         $puestos = array_filter(explode(',', $coordinador));
+    //                         $sellers = Seller::whereIn('codcor', $puestos)->get();
+                           
+    //                     } else {
+    //                             if ($role == 4 or $role == 5) {
+    //                                 $sellers = Seller::all();
+    //                             } else {
+    //                                 $sellers = [];
+    //                             }
+
+    //                          }
+
+
+    //                 }
+    //              }
+
+
+    //     return view('admin.superusers.index', compact('sellers'));
+    // }
+        // EL AJUSTADO POR CANDIDATO
+    // public function index()
+    // {
+    //     $user = auth()->user();
+    //     $role = $user->role;
+    //     $idUser = $user->id;
+    
+    //     // Convertimos campos guardados como texto a arrays
+    //     $userCandidatos = $user->candidatos ? explode(',', $user->candidatos) : [];
+    //     $userMunicipios = $user->mun ? explode(',', $user->mun) : [];
+    //     $userPuestos = $user->codpuesto ? explode(',', $user->codpuesto) : [];
+    //     $escrutador = $user->codzon;
+    
+    //     $sellers = Seller::query();
+    
+    //     if ($role == 1) { // ADMIN
+    //         if ($idUser == 1 || in_array('999', $userMunicipios)) {
+    //             // Muestra todo
+    //             $sellers = $sellers->get();
+    //         } else {
+    //             // Filtra por municipios
+    //             $sellers = $sellers->whereIn('codmun', $userMunicipios);
+    
+    //             // Filtra por candidatos si tiene asignados
+    //             if (!empty($userCandidatos)) {
+    //                 $sellers = $sellers->whereIn('candidato', $userCandidatos);
+    //             }
+    
+    //             $sellers = $sellers->get();
+    //         }
+    //     } elseif ($role == 2) { // ESCRUTADOR
+    //         $sellers = $sellers->where('codescru', $escrutador)->get();
+    //     } elseif ($role == 3) { // COORDINADOR
+    //         $sellers = $sellers->whereIn('codcor', $userPuestos);
+    
+    //         // Filtra por candidatos
+    //         if (!empty($userCandidatos)) {
+    //             $sellers = $sellers->whereIn('candidato', $userCandidatos);
+    //         }
+    
+    //         $sellers = $sellers->get();
+    //     } elseif ($role == 4 || $role == 5) { // Otros roles
+    //         $sellers = $sellers->get();
+    //     } else {
+    //         $sellers = collect();
+    //     }
+    
+    //     return view('admin.superusers.index', compact('sellers'));
+    // }
     public function index()
     {
-
-        $role = auth()->user()->role;
-        $escrutador = auth()->user()->codzon;
-        $ruta = auth()->user()->codzon;
-        $coordinador = auth()->user()->codpuesto;
-        $municipio = auth()->user()->mun;
-        $idUser = auth()->id();
-
-
-
-                if ($role == 1) {
-                    // 1 = villa-{-.…o
-                        if ($idUser == 1 || $municipio == 999) {
-                            // Muestra todo
-                            $sellers = Seller::get();
-                        } else {
-                            // Muestra solo los de su municipio
-                            $municipios = explode(',', $municipio);
-                            $sellers = Seller::whereIn('codmun', $municipios)->get();
-                        }
-                } else {
-                    if ($role == 2) {
-                        $sellers = Seller::where('codescru' , $escrutador)->get();
-                    } else {
-
-                        if ($role == 3) {
-                            $puestos = array_filter(explode(',', $coordinador));
-                            $sellers = Seller::whereIn('codcor', $puestos)->get();
-                           
-                        } else {
-                                if ($role == 4 or $role == 5) {
-                                    $sellers = Seller::all();
-                                } else {
-                                    $sellers = [];
-                                }
-
-                             }
-
-
-                    }
-                 }
-
+        $user = auth()->user();
+        $sellers = $this->filtrarSellersPorUsuario($user);
 
         return view('admin.superusers.index', compact('sellers'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
