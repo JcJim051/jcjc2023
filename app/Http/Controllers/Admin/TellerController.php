@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
 use Illuminate\Http\Request;
+use App\Traits\Compartimentacion;
 
 class TellerController extends Controller
 {
+    use Compartimentacion;
     /**
      * Display a listing of the resource.
      *
@@ -76,48 +78,7 @@ class TellerController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $role = $user->role;
-        $idUser = $user->id;
-    
-        // Convertimos campos guardados como texto a arrays
-        $userCandidatos = $user->candidatos ? explode(',', $user->candidatos) : [];
-        $userMunicipios = $user->mun ? explode(',', $user->mun) : [];
-        $userPuestos = $user->codpuesto ? explode(',', $user->codpuesto) : [];
-        $escrutador = $user->codzon;
-    
-        $sellers = Seller::query();
-    
-        if ($role == 1) { // ADMIN
-            if ($idUser == 1 || in_array('999', $userMunicipios)) {
-                // Muestra todo
-                $sellers = $sellers->get();
-            } else {
-                // Filtra por municipios
-                $sellers = $sellers->whereIn('codmun', $userMunicipios);
-    
-                // Filtra por candidatos si tiene asignados
-                if (!empty($userCandidatos)) {
-                    $sellers = $sellers->whereIn('candidato', $userCandidatos);
-                }
-    
-                $sellers = $sellers->get();
-            }
-        } elseif ($role == 2) { // ESCRUTADOR
-            $sellers = $sellers->where('codescru', $escrutador)->get();
-        } elseif ($role == 3) { // COORDINADOR
-            $sellers = $sellers->whereIn('codcor', $userPuestos);
-    
-            // Filtra por candidatos
-            if (!empty($userCandidatos)) {
-                $sellers = $sellers->whereIn('candidato', $userCandidatos);
-            }
-    
-            $sellers = $sellers->get();
-        } elseif ($role == 4 || $role == 5) { // Otros roles
-            $sellers = $sellers->get();
-        } else {
-            $sellers = collect();
-        }
+        $sellers = $this->filtrarSellersPorUsuario($user);
     
         return view('admin.tellers.index', compact('sellers'));
     }

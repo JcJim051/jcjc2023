@@ -161,19 +161,21 @@ class ConsultorController extends Controller
                      ->count();
 
          // calcular numero de puestos 
-         $puestosd = DB::table('puestos')
-                     ->where('mun','<>','3')
-                     ->count();
-         $puestosv = DB::table('puestos')
-                     ->where('mun','=','1')
-                     ->count();
-         $puestosm = DB::table('puestos')
-                     ->where('mun','=','0')
-                     ->count();
-                     
-        if ($role == 1) {
-            if ($mun == 1) {
-                $mesasok = DB::table('sellers')
+         $puestosd =  DB::table('sellers')
+                    ->where('codmun', '001')
+                    ->distinct('codcor')
+                    ->count('puesto');
+         $puestosv = DB::table('sellers')
+                    ->where('codmun', '001')
+                    ->distinct('codcor')
+                    ->count('puesto');
+
+         $puestosm = DB::table('sellers')
+                    ->where('codmun', '!=', '001')
+                    ->distinct('codcor')
+                    ->count('puesto');
+
+        $mesasok = DB::table('sellers')
                     ->select('codcor', 'municipio', 'puesto', 
                     DB::raw('SUM(mesa <> "Rem") as mesas'), 
                     DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
@@ -184,49 +186,63 @@ class ConsultorController extends Controller
                     ->groupBy('codcor', 'municipio', 'puesto')
                     ->orderBy('codcor')
                     ->get();
-            } else {
-                if ($mun == 0) {
-                    $mesasok = DB::table('sellers')
-                             ->select('codcor', 'municipio', 'puesto', 
-                             DB::raw('SUM(mesa <> "Rem") as mesas'), 
-                             DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
-                                 DB::raw('SUM(mesa = "Rem") as rem'),
-                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                     
+        // if ($role == 1) {
+        //     if ($mun == 1) {
+        //         $mesasok = DB::table('sellers')
+        //             ->select('codcor', 'municipio', 'puesto', 
+        //             DB::raw('SUM(mesa <> "Rem") as mesas'), 
+        //             DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
+        //                 DB::raw('SUM(mesa = "Rem") as rem'),
+        //                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+                  
+        //             ->where('codmun', '=', '001') 
+        //             ->groupBy('codcor', 'municipio', 'puesto')
+        //             ->orderBy('codcor')
+        //             ->get();
+        //     } else {
+        //         if ($mun == 0) {
+        //             $mesasok = DB::table('sellers')
+        //                      ->select('codcor', 'municipio', 'puesto', 
+        //                      DB::raw('SUM(mesa <> "Rem") as mesas'), 
+        //                      DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
+        //                          DB::raw('SUM(mesa = "Rem") as rem'),
+        //                          DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
                            
-                             ->where('cod_ruta' , $ruta)
-                             ->groupBy('codcor', 'municipio', 'puesto')
-                             ->orderBy('codcor')
-                             ->get();
-                } else {
-                    $mesasok = DB::table('sellers')
-                             ->select('codcor', 'municipio', 'puesto', 
-                                 DB::raw('SUM(mesa <> "Rem") as mesas'), 
-                                 DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
-                                 DB::raw('SUM(mesa = "Rem") as rem'),
-                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+        //                      ->where('cod_ruta' , $ruta)
+        //                      ->groupBy('codcor', 'municipio', 'puesto')
+        //                      ->orderBy('codcor')
+        //                      ->get();
+        //         } else {
+        //             $mesasok = DB::table('sellers')
+        //                      ->select('codcor', 'municipio', 'puesto', 
+        //                          DB::raw('SUM(mesa <> "Rem") as mesas'), 
+        //                          DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
+        //                          DB::raw('SUM(mesa = "Rem") as rem'),
+        //                          DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
                             
-                             ->groupBy('codcor', 'municipio', 'puesto')
-                             ->orderBy('codcor')
-                             ->get();
-                    }
-            }
-        } else {
-            if ($role == 4) {
-                $mesasok = DB::table('sellers')
-                             ->select('codcor', 'municipio', 'puesto', 
-                                 DB::raw('SUM(mesa <> "Rem") as mesas'), 
-                                 DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
-                                 DB::raw('SUM(mesa = "Rem") as rem'),
-                                 DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
+        //                      ->groupBy('codcor', 'municipio', 'puesto')
+        //                      ->orderBy('codcor')
+        //                      ->get();
+        //             }
+        //     }
+        //     } else {
+        //     if ($role == 4) {
+        //         $mesasok = DB::table('sellers')
+        //                      ->select('codcor', 'municipio', 'puesto', 
+        //                          DB::raw('SUM(mesa <> "Rem") as mesas'), 
+        //                          DB::raw('SUM(CASE WHEN status = 1 AND mesa != "Rem" THEN 1 ELSE 0 END) as mesas_ok'),
+        //                          DB::raw('SUM(mesa = "Rem") as rem'),
+        //                          DB::raw('SUM(mesa = "Rem" AND status = 1) as rem_ok'))
                             
-                             ->groupBy('codcor', 'municipio', 'puesto')
-                             ->orderBy('codcor')
-                             ->get();
-            } else {
-                $mesasok = null;
-            }
+        //                      ->groupBy('codcor', 'municipio', 'puesto')
+        //                      ->orderBy('codcor')
+        //                      ->get();
+        //     } else {
+        //         $mesasok = null;
+        //     }
             
-        }
+        // }
                      
 
         

@@ -28,7 +28,7 @@
                     @else
                         <th>Municipio</th>
                     @endif
-                    <th>clase</th>
+                    {{-- <th>clase</th> --}}
                     
                     <th>Puesto</th>
                     <th>Mesa</th>
@@ -62,7 +62,7 @@
                                 @endif                    
                             @endif
                         
-                            @if ($seller->codzon == 99)
+                            {{-- @if ($seller->codzon == 99)
                                 @if ($seller->status <> 0)
                                     <td style="color: rgb(0, 169, 14)" >Rural</td>
                                 @else
@@ -74,7 +74,7 @@
                                 @else
                                     <td style="color: red" >Urbano</td>
                                 @endif     
-                            @endif
+                            @endif --}}
                         
                     
                             @if ($seller->status <> 0)

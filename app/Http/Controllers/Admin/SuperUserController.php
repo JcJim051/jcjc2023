@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\Compartimentacion;
+use Illuminate\Support\Str;
 
 
 class SuperUserController extends Controller
@@ -292,6 +293,15 @@ class SuperUserController extends Controller
         
         // Ejecutar validación
         $validated = $request->validate($rules, $messages);
+
+        // Normalizar campos
+        if (isset($validated['nombre'])) {
+            $validated['nombre'] = strtolower(Str::ascii($validated['nombre']));
+        }
+
+        if (isset($validated['cedula'])) {
+            $validated['cedula'] = preg_replace('/[^0-9]/', '', (string)$validated['cedula']);
+        }
 
         if ($request->hasFile('pdf')) {
 
