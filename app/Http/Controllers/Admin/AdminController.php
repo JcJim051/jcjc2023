@@ -265,6 +265,7 @@ class AdminController extends Controller
     $user = auth()->user();
     $role = $user->role;
 
+    
     // 🎭 Nombre del rol
     $roles = [
         1 => 'Administrador',
@@ -303,8 +304,11 @@ class AdminController extends Controller
     // ================================
     // 🏫 TOTALES POR PUESTO (MULTIPLE)
     // ================================
+    $candidatos =$user->candidatos;
+    
     $basePuestos = Seller::whereIn('codcor', $puestos)
-        ->where('mesa','<>','Rem');
+        ->where('mesa','<>','Rem')
+        ->where('candidato', $candidatos);
 
     $tmc = $basePuestos->count();
 

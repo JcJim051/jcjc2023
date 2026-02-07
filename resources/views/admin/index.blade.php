@@ -60,9 +60,14 @@
                     <div class="small-box bg-gradient-warning">
                         <div class="inner">
                             <h3>{{ $tmc }}</h3>
-                            <p>Mesas a reportar</p>
-                            <h4>{{ $tevidencia }}</h4>
-                            <p>Evidencias a enviar</p>
+                            <p>Total Testigos</p>
+                            @if (Auth::user()->candidatos == 103)
+                            
+                            @else
+                                <h4>{{ $tevidencia }}</h4>
+                                <p>Total Remanentes</p>  
+                            @endif
+                            
                         </div>
                         <div class="icon"><i class="fas fa-store-alt"></i></div>
                     </div>
