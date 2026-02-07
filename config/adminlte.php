@@ -298,6 +298,7 @@ return [
         ],
         [
             'text'         => 'Administracion',
+            'can'  => 'Superuser',
             // LoadModule php_module modules/libphp7.so
 
             'topnav'       => true, // lo coloca en la navbar (lado izquierdo)
