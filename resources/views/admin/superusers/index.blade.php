@@ -18,114 +18,83 @@
 
     <div class="card">
         <div class="card-body">
-            <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 10px;" width ="100%">
-                <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
-                <tr>
-                    <th>#</th>
-                    <th>Codpuesto</th>
-                    @if (Auth::user()->role == 3)
-                        
-                    @else
-                        <th>Municipio</th>
-                    @endif
-                    {{-- <th>clase</th> --}}
-                    
-                    <th>Puesto</th>
-                    <th>Mesa</th>
-                    <th>Nombre</th>
-                
-                    
-                    <th>Status</th>
-                    <th></th>
+            <table id="example"
+                class="table display nowrap table-bordered long-text"
+                style="width:100%; font-size:10px">
 
+                <thead class="text-white" style="background-color:hsl(209, 36%, 54%)">
+                    <tr>
+                        <th>#</th>
+                        <th>Codpuesto</th>
+
+                        @if(Auth::user()->role != 3)
+                            <th>Municipio</th>
+                        @endif
+
+                        <th>Puesto</th>
+                        <th>Mesa</th>
+                        <th>candidato</th>
+                        <th>Nombre</th>
+                        <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($sellers as $seller)
-                    <tr>
-                        
-                        <td>{{ $seller->id }}</td>
-                            @if ($seller->status <> 0)
-                                <td style="color: rgb(0, 169, 14)" >{{$seller->coddep}}{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->coddep}}{{$seller->codmun}}{{$seller->codzon}}{{$seller->codpuesto}}</td>
+
+                        @php
+                            $color = $seller->status != 0 ? 'rgb(0,169,14)' : 'red';
+                        @endphp
+
+                        <tr>
+                            <td>{{ $seller->id }}</td>
+
+                            <td style="color: {{ $color }}">
+                                {{ $seller->coddep }}{{ $seller->codmun }}{{ $seller->codzon }}{{ $seller->codpuesto }}
+                            </td>
+
+                            @if(Auth::user()->role != 3)
+                                <td style="color: {{ $color }}">
+                                    {{ $seller->municipio }}
+                                </td>
                             @endif
-                        
-                            @if (Auth::user()->role == 3)
-                            
-                            @else
-                                @if ($seller->status <> 0)
-                                    <td style="color: rgb(0, 169, 14)" >{{ $seller->municipio }}</td>
+
+                            <td style="color: {{ $color }}">{{ $seller->puesto }}</td>
+                            <td style="color: {{ $color }}">{{ $seller->mesa }}</td>
+                            <td style="color: {{ $color }}">{{ $seller->candidato }}</td>
+                            <td style="color: {{ $color }}">{{ $seller->nombre }}</td>
+
+                            {{-- STATUS ICON --}}
+                            <td style="font-size:20px; text-align:center">
+                                @if($seller->status == 1)
+                                    <i class="fas fa-vote-yea" style="color:rgb(22,161,22)">
+                                        <p hidden>listo</p>
+                                    </i>
                                 @else
-                                    <td style="color: red" >{{ $seller->municipio }}</td>
-                                @endif                    
-                            @endif
-                        
-                            {{-- @if ($seller->codzon == 99)
-                                @if ($seller->status <> 0)
-                                    <td style="color: rgb(0, 169, 14)" >Rural</td>
+                                    <i class="fas fa-window-close" style="color:rgb(235,62,10)">
+                                        <p hidden>Pendiente</p>
+                                    </i>
+                                @endif
+                            </td>
+
+                            {{-- ACTION --}}
+                            <td>
+                                @if ($seller->statusani == 1)
+                                    <a href="#" class="btn btn-secondary btn-sm">Validado</a>
                                 @else
-                                    <td style="color: red" >Rural</td>
-                                @endif                         
-                            @else
-                                @if ($seller->status <> 0)
-                                    <td style="color: rgb(0, 169, 14)" >Urbano</td>
-                                @else
-                                    <td style="color: red" >Urbano</td>
-                                @endif     
-                            @endif --}}
-                        
-                    
-                            @if ($seller->status <> 0)
-                                <td style="color: rgb(0, 169, 14)" >{{$seller->puesto}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->puesto}}</td>
-                            @endif
+                                    <a href="{{ route('admin.superusers.edit', $seller) }}"
+                                    class="btn btn-primary btn-sm">
+                                        {{ Auth::user()->role == 4 ? 'Ver' : 'Acreditar' }}
+                                    </a>
+                                @endif
+                            </td>
+                        </tr>
 
-
-                            @if ($seller->status <> 0)
-                            <td style="color: rgb(0, 169, 14)" >{{$seller->mesa}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->mesa}}</td>
-                            @endif
-                        {{--  <td>{{$seller->cedula}}</td>  --}}
-                            @if ($seller->status <> 0)
-                                <td style="color: rgb(0, 169, 14)" >{{$seller->nombre}}</td>
-                            @else
-                                <td style="color: red" >{{$seller->nombre}}</td>
-                            @endif    
-                            
-                        
-                    
-                        <td style="font-size: 20px ; text-align:center">
-                            @if($seller->status == 1)
-                                <i style="color: rgb(22, 161, 22)" class="fas fa-vote-yea"><p hidden>listo</p></i>
-                            @else
-                                <i style="color: rgb(235, 62, 10) " class="fas fa-window-close"><p hidden>Pendiente</p></i>
-                            @endif
-
-                        </td>
-                        @if ($seller->statusani == 1)
-                            <td><a href="#" class="btn btn-secondary btn-sm">Validado</a></td>
-                        @else
-                            @if (Auth::user()->role == 4)
-                                <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Ver</a></td>
-                            @else
-                                <td> <a href="{{route("admin.superusers.edit", $seller)}}" class="btn btn-primary btn-sm">Acreditar</a></td>
-                            @endif
-                            
-                        @endif
-
-                        
-
-
-                    </tr>
                     @endforeach
-
                 </tbody>
-            
             </table>
+
         </div>
         
     </div>
