@@ -16,7 +16,7 @@
                 <div class="info-box-content">
 
                     <span class="info-box-text">Colegios en Departamento</span>
-                    <span class="info-box-number">{{$puestosd}}</span>
+                    <span class="info-box-number">{{$puestosd}}</span> 
                                            
                 </div>
                    
@@ -49,95 +49,187 @@
         </div>
        
     </div>
-    <div class="row">
+    @php
+    $candidatos = Auth::user()->candidatos
+        ? array_map('trim', explode(',', Auth::user()->candidatos))
+        : [];
+    @endphp
 
-        <div class="col-sm-2 col-xs-12" >
-            <div class="small-box bg-info bg-gradient-success" >
-                <div class="inner">
-                    <h3> {{$okd}} </h3>
-                    <p>Mesas Acreditadas Departamental</p>
+    @if (!in_array(103, $candidatos))
+        <div class="row">
+
+            <div class="col-sm-2 col-xs-12" >
+                <div class="small-box bg-info bg-gradient-success" >
+                    <div class="inner">
+                        <h3> {{$okd}} </h3>
+                        <p>Mesas Acreditadas Departamental</p>
+                        <span class="info-box-text">Remanentes</span>
+                        <span class="info-box-number"> {{$remokd}} </span>
+                    </div>
+                    
+                    <div class="icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3> {{$nookd}} </h3>
+                    <p>Mesas Faltantes Departamental</p>
                     <span class="info-box-text">Remanentes</span>
-                    <span class="info-box-number"> {{$remokd}} </span>
+                    <span class="info-box-number"> {{$remnookd}} </span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+
                 </div>
-                
-                <div class="icon">
+            </div>
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-success">
+                    <div class="inner">
+                    <h3>{{$okv}} </h3>
+                    <p>Mesas Acreditadas Villavicencio</p>
+                    <span class="info-box-text">Remanentes</span>
+                    <span class="info-box-number"> {{$remokv}} </span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-street-view"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3>{{$nookv}} </h3>
+                    <p>Mesas Faltantes VIllavicencio</p>
+                    <span class="info-box-text">Remanentes</span>
+                    <span class="info-box-number"> {{$remnookv}} </span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-store-alt"></i>
+                    </div>
+
+                </div>
+            </div><div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-success">
+                    <div class="inner">
+                    <h3> {{$okm}} </h3>
+                    <p>Mesas Acreditadas municipios</p>
+                    <span class="info-box-text">Remanentes</span>
+                    <span class="info-box-number"> {{$remokm}} </span>
+                    </div>
+                    <div class="icon">
                     <i class="fas fa-user-check"></i>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3> {{$nookm}} </h3>
+                    <p>Mesas Faltantes municipios</p>
+                    <span class="info-box-text">Remanentes</span>
+                    <span class="info-box-number"> {{$remnookm}} </span>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+    @else
+        <div class="row">
 
-        <div class="col-sm-2 col-xs-12">
-            <div class="small-box bg-info bg-gradient-danger ">
-                <div class="inner">
-                <h3> {{$nookd}} </h3>
-                <p>Mesas Faltantes Departamental</p>
-                <span class="info-box-text">Remanentes</span>
-                <span class="info-box-number"> {{$remnookd}} </span>
+            <div class="col-sm-2 col-xs-12" >
+                <div class="small-box bg-info bg-gradient-success" >
+                    <div class="inner">
+                        <h3> {{$okd}} </h3>
+                        <p>Mesas Acreditadas Departamental</p>
+                       
+                    </div>
+                    
+                    <div class="icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-user-slash"></i>
-                </div>
-
             </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3> {{$nookd}} </h3>
+                    <p>Mesas Faltantes Departamental</p>
+                   
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-success">
+                    <div class="inner">
+                    <h3>{{$okv}} </h3>
+                    <p>Mesas Acreditadas Villavicencio</p>
+                   
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-street-view"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3>{{$nookv}} </h3>
+                    <p>Mesas Faltantes VIllavicencio</p>
+                   
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-store-alt"></i>
+                    </div>
+
+                </div>
+            </div><div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-success">
+                    <div class="inner">
+                    <h3> {{$okm}} </h3>
+                    <p>Mesas Acreditadas municipios</p>
+                   
+                    </div>
+                    <div class="icon">
+                    <i class="fas fa-user-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-xs-12">
+                <div class="small-box bg-info bg-gradient-danger ">
+                    <div class="inner">
+                    <h3> {{$nookm}} </h3>
+                    <p>Mesas Faltantes municipios</p>
+                   
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-        <div class="col-sm-2 col-xs-12">
-            <div class="small-box bg-info bg-gradient-success">
-                <div class="inner">
-                <h3>{{$okv}} </h3>
-                <p>Mesas Acreditadas Villavicencio</p>
-                <span class="info-box-text">Remanentes</span>
-                <span class="info-box-number"> {{$remokv}} </span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-street-view"></i>
-                </div>
-            </div>
-        </div>
+    @endif
 
-        <div class="col-sm-2 col-xs-12">
-            <div class="small-box bg-info bg-gradient-danger ">
-                <div class="inner">
-                <h3>{{$nookv}} </h3>
-                <p>Mesas Faltantes VIllavicencio</p>
-                <span class="info-box-text">Remanentes</span>
-                <span class="info-box-number"> {{$remnookv}} </span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-store-alt"></i>
-                </div>
-
-            </div>
-        </div><div class="col-sm-2 col-xs-12">
-            <div class="small-box bg-info bg-gradient-success">
-                <div class="inner">
-                <h3> {{$okm}} </h3>
-                <p>Mesas Acreditadas municipios</p>
-                <span class="info-box-text">Remanentes</span>
-                <span class="info-box-number"> {{$remokm}} </span>
-                </div>
-                <div class="icon">
-                <i class="fas fa-user-check"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-2 col-xs-12">
-            <div class="small-box bg-info bg-gradient-danger ">
-                <div class="inner">
-                <h3> {{$nookm}} </h3>
-                <p>Mesas Faltantes municipios</p>
-                <span class="info-box-text">Remanentes</span>
-                <span class="info-box-number"> {{$remnookm}} </span>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-user-slash"></i>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-   
+      
 
        
     <div class="row">
@@ -227,55 +319,149 @@
     </div>
    
     @if (Auth::user()->role == 1 or Auth::user()->role == 4 )
-        <div class="card">
-            <div class="text-center card-header">
-                <h5>Avance por puesto</h5>
-            </div>
-            <div class="card-body">
-                <table id="example" class="table display nowrap table-bordered long-text" style="width:100%; font-size: 10px;" width ="100%">
-                    <thead class="text-white" style="background-color: hsl(209, 36%, 54%)">
-                            <tr>
-                            <th>Codpuesto</th>
-                            <th>Municipio</th>                    
-                            <th>Puesto</th>
-                            <th>Mesas</th>
-                            <th>mesa ok</th>
-                            <th>% mesa ok</th>
-                            <th>Rem</th>
-                            <th>Rem ok</th>
-                            <th>% rem ok</th>
-                        </tr>
-                    </thead>
-
+        @php
+            $candidatosUsuario = array_map('trim', explode(',', Auth::user()->candidatos));
+        @endphp
+        @if (in_array(103, $candidatosUsuario))
+                <div class="mt-4 card">
+                    <div class="text-center card-header">
+                        <h5>📊 Avance por Puesto y Candidato</h5>
+                    </div>
                 
-                    <tbody>
-                        @foreach ($mesasok as $mesasok)
-                        <tr>
-                            <td>{{$mesasok->codcor}}</td>                          
-                            <td>{{$mesasok->municipio}}</td>    
-                            <td>{{$mesasok->puesto}}</td> 
-                            <td>{{$mesasok->mesas}}</td> 
-                            <td>{{$mesasok->mesas_ok}}</td>  
-                            <td> <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->mesas == 0)0%@else{{($mesasok->mesas_ok/$mesasok->mesas)*100}}@endif%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->mesas == 0)0%@else{{round(($mesasok->mesas_ok/$mesasok->mesas)*100,0)}}@endif%</div>
-                                </div>
-                            </td>   
-                            <td>{{$mesasok->rem}}</td>   
-                            <td>{{$mesasok->rem_ok}}</td>   
-                            <td> <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: @if($mesasok->rem == 0)0%@else{{($mesasok->rem_ok/$mesasok->rem)*100}}%@endif" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@if($mesasok->rem == 0)0%@else{{round(($mesasok->rem_ok/$mesasok->rem)*100,1)}}%@endif</div>
-                                </div>
-                            </td>   
-                        </tr>
-                        @endforeach
-
-
-                    </tbody>
+                    <div class="card-body">
+                        <table id="tablaPuestos" class="table text-center table-bordered table-sm">
+                            <thead style="background-color:hsl(209, 36%, 54%); font-size: 12px; font-weight: 600;">
+                                <tr>
+                                    <th style="display:none; padding: 4px 6px;" rowspan="2">id</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">Municipio</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">Puesto</th>
+                            
+                                    <th style="padding: 4px 6px;" colspan="3">Mesas</th>
+                                    <th style="padding: 4px 6px;" colspan="3">Mesas OK</th>
+                            
+                                    <th style="padding: 4px 6px;" rowspan="2">% OK Total</th>
+                                </tr>
+                                <tr>
+                                    <th style="padding: 3px 6px;">101</th>
+                                    <th style="padding: 3px 6px;">103</th>
+                                    <th style="padding: 3px 6px;">04</th>
+                            
+                                    <th style="padding: 3px 6px;">101</th>
+                                    <th style="padding: 3px 6px;">103</th>
+                                    <th style="padding: 3px 6px;">04</th>
+                                </tr>
+                            </thead>
+             
+                            <tbody style=" font-size: 13px; font-weight: 600;">
+                            @foreach ($avancePuestos as $row)
+                                @php
+                                    $pctTotal = $row->total_mesas
+                                        ? round(($row->total_ok / $row->total_mesas) * 100, 1)
+                                        : 0;
                 
-                </table>
-            </div>
-            
-        </div>
+                                    $pctRem = $row->rem
+                                        ? round(($row->rem_ok / $row->rem) * 100, 1)
+                                        : 0;
+                                @endphp
+                
+                                <tr>
+                                    <td style="display:none">{{ $row->codcor}}</td>
+                                    <td>{{ $row->municipio }}</td>
+                                    <td class="text-start"><strong>{{ $row->puesto }}</strong></td>
+                
+                                    <td>{{ $row->mesas_101 }}</td>
+                                    <td>{{ $row->mesas_103 }}</td>
+                                    <td>{{ $row->mesas_04 }}</td>
+                
+                                    <td class="text-success">{{ $row->ok_101 }}</td>
+                                    <td class="text-success">{{ $row->ok_103 }}</td>
+                                    <td class="text-success">{{ $row->ok_04 }}</td>
+                
+                                    <td>
+                                        <span class="badge bg-secondary">{{ $pctTotal }}%</span>
+                                    </td>
+                
+                                    
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>           
+        @else
+                <div class="mt-4 card">
+                    <div class="text-center card-header">
+                        <h5>📊 Avance por Puesto y Candidato</h5>
+                    </div>
+                
+                    <div class="card-body">
+                        <table id="tablaPuestos" class="table text-center table-bordered table-sm">
+                            <thead style="background-color:hsl(209, 36%, 54%); font-size: 12px; font-weight: 600;">
+                                <tr>
+                                    <th style="display:none" rowspan="2">id</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">Municipio</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">Puesto</th>
+                
+                                    <th style="padding: 4px 6px;" colspan="3">Mesas</th>
+                                    <th style="padding: 4px 6px;" colspan="3">Mesas OK</th>
+                
+                                    <th style="padding: 4px 6px;" rowspan="2">% OK Total</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">Rem</th>
+                                    <th style="padding: 4px 6px;" rowspan="2">% Rem OK</th>
+                                </tr>
+                                <tr>
+                                    <th>101</th>
+                                    <th>103</th>
+                                    <th>04</th>
+                
+                                    <th>101</th>
+                                    <th>103</th>
+                                    <th>04</th>
+                                </tr>
+                            </thead>
+                
+                            <tbody style=" font-size: 13px; font-weight: 600;">
+                            @foreach ($avancePuestos as $row)
+                                @php
+                                    $pctTotal = $row->total_mesas
+                                        ? round(($row->total_ok / $row->total_mesas) * 100, 1)
+                                        : 0;
+                
+                                    $pctRem = $row->rem
+                                        ? round(($row->rem_ok / $row->rem) * 100, 1)
+                                        : 0;
+                                @endphp
+                
+                                <tr>
+                                    <td style="display:none">{{ $row->codcor }}</td>
+                                    <td>{{ $row->municipio }}</td>
+                                    <td class="text-start"><strong>{{ $row->puesto }}</strong></td>
+                
+                                    <td>{{ $row->mesas_101 }}</td>
+                                    <td>{{ $row->mesas_103 }}</td>
+                                    <td>{{ $row->mesas_04 }}</td>
+                
+                                    <td class="text-success">{{ $row->ok_101 }}</td>
+                                    <td class="text-success">{{ $row->ok_103 }}</td>
+                                    <td class="text-success">{{ $row->ok_04 }}</td>
+                
+                                    <td>
+                                        <span class="badge bg-secondary">{{ $pctTotal }}%</span>
+                                    
+                                    </td>
+                
+                                    <td>{{ $row->rem }}</td>
+                
+                                    <td>
+                                        <span class="badge bg-secondary">{{ $pctRem }}%</span>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+        @endif
     @else
         
     @endif
@@ -315,6 +501,11 @@
             </div>
         </div>
     </div> --}}
+ 
+    
+        
+
+    </div>
 
     <div class="row">
         <div  class="col-sm-12 col-xs-12 ">
@@ -712,6 +903,20 @@
                 setInterval(actualizarGraficos, 300000);
             });
         
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tablaPuestos').DataTable({
+                ordering: true,     // 🔹 habilita orden por columnas
+                searching: true,    // 🔍 buscador
+                paging: true,       // 📄 paginación
+                
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json"
+                }
+            });
+        });
     </script>
 
    
