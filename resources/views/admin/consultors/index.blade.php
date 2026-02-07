@@ -317,7 +317,49 @@
         </div>
         
     </div>
-   
+    <div class="row">
+
+        @php
+            $candidatos = [
+                101 => 'U101',
+                4   => 'U04',
+                103 => 'U103'
+            ];
+        @endphp
+    
+        @foreach ($candidatos as $cod => $label)
+            @php
+                $data = $avanceCandidatos[$cod] ?? null;
+    
+                $total = $data->total_mesas ?? 0;
+                $ok    = $data->mesas_ok ?? 0;
+                $pct   = $total ? round(($ok / $total) * 100, 1) : 0;
+            @endphp
+    
+            <div class="col-sm-4 col-xs-12">
+                <div class="info-box bg-gradient-info">
+                    <div class="text-center info-box-content">
+                        <span class="info-box-text">Avance {{ $label }}</span>
+    
+                        <span class="info-box-number">
+                            {{ $ok }} / {{ $total }}
+                        </span>
+    
+                        <div class="progress" style="height:6px">
+                            <div class="progress-bar bg-success"
+                                style="width: {{ $pct }}%">
+                            </div>
+                        </div>
+    
+                        <span class="progress-description">
+                            {{ $pct }}% mesas OK
+                        </span>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    
+    </div>
     @if (Auth::user()->role == 1 or Auth::user()->role == 4 )
         @php
             $candidatosUsuario = array_map('trim', explode(',', Auth::user()->candidatos));
@@ -329,7 +371,7 @@
                     </div>
                 
                     <div class="card-body">
-                        <table id="tablaPuestos" class="table text-center table-bordered table-sm">
+                        <table id="tablaPuesto103" class="table text-center table-bordered table-sm">
                             <thead style="background-color:hsl(209, 36%, 54%); font-size: 12px; font-weight: 600;">
                                 <tr>
                                     <th style="display:none; padding: 4px 6px;" rowspan="2">id</th>
@@ -389,6 +431,9 @@
                     </div>
                 </div>           
         @else
+                
+                
+                
                 <div class="mt-4 card">
                     <div class="text-center card-header">
                         <h5>📊 Avance por Puesto y Candidato</h5>
@@ -401,22 +446,36 @@
                                     <th style="display:none" rowspan="2">id</th>
                                     <th style="padding: 4px 6px;" rowspan="2">Municipio</th>
                                     <th style="padding: 4px 6px;" rowspan="2">Puesto</th>
-                
-                                    <th style="padding: 4px 6px;" colspan="3">Mesas</th>
-                                    <th style="padding: 4px 6px;" colspan="3">Mesas OK</th>
-                
-                                    <th style="padding: 4px 6px;" rowspan="2">% OK Total</th>
+                                    <th style="padding: 4px 6px;" colspan="3">Pacha</th>
+
                                     <th style="padding: 4px 6px;" rowspan="2">Rem</th>
                                     <th style="padding: 4px 6px;" rowspan="2">% Rem OK</th>
+                                    
+                                    <th style="padding: 4px 6px;" colspan="4">Mesas</th>
+                                    <th style="padding: 4px 6px;" colspan="4">Mesas OK</th>
+
+                                    
+                
+                                    <th style="padding: 4px 6px;" rowspan="2">% OK Total</th>
+                                   
+                                   
                                 </tr>
                                 <tr>
+
+                                    <th>mesas</th>
+                                    <th>mesas ok</th>
+                                    <th>%</th>
+
                                     <th>101</th>
                                     <th>103</th>
                                     <th>04</th>
+                                    <th class="bg-warning">Total</th>
+                                    
                 
                                     <th>101</th>
                                     <th>103</th>
                                     <th>04</th>
+                                    <th class="bg-warning" >Total</th>
                                 </tr>
                             </thead>
                 
@@ -433,28 +492,47 @@
                                 @endphp
                 
                                 <tr>
+
+                                  
                                     <td style="display:none">{{ $row->codcor }}</td>
                                     <td>{{ $row->municipio }}</td>
                                     <td class="text-start"><strong>{{ $row->puesto }}</strong></td>
+
+                                    <td>{{ $row->mesas_101+$row->mesas_04}}</td>
+                                    <td>{{ $row->ok_101 + $row->ok_04}}</td>
+                                    <td>
+                                        <span class="badge bg-success">
+                                            {{ round((($row->ok_101 + $row->ok_04) / ($row->mesas_101 + $row->mesas_04)) * 100, 1) }}%
+                                        </span>
+                                    </td>
+                                    
+
+                                    <td>{{ $row->rem }}</td>
+                
+                                    <td>
+                                        <span class="badge bg-success"  >{{ $pctRem }}%</span>
+                                    </td>
                 
                                     <td>{{ $row->mesas_101 }}</td>
                                     <td>{{ $row->mesas_103 }}</td>
                                     <td>{{ $row->mesas_04 }}</td>
+                                    <td class="text-success">{{ $row->mesas_04+$row->mesas_101+$row->mesas_103 }}</td>
                 
                                     <td class="text-success">{{ $row->ok_101 }}</td>
-                                    <td class="text-success">{{ $row->ok_103 }}</td>
+                                    <td class="text-warning">{{ $row->ok_103 }}</td>
                                     <td class="text-success">{{ $row->ok_04 }}</td>
+                                    <td class="text-success">{{ $row->ok_101+ $row->ok_103+$row->ok_04}}</td>
+                                    
+                                    
                 
                                     <td>
-                                        <span class="badge bg-secondary">{{ $pctTotal }}%</span>
+                                        <span class="badge bg-success">{{ $pctTotal }}%</span>
                                     
                                     </td>
                 
-                                    <td>{{ $row->rem }}</td>
-                
-                                    <td>
-                                        <span class="badge bg-secondary">{{ $pctRem }}%</span>
-                                    </td>
+                                
+                                    
+                                   
                                 </tr>
                             @endforeach
                             </tbody>
@@ -905,19 +983,60 @@
         
     </script>
 
+  
     <script>
         $(document).ready(function () {
             $('#tablaPuestos').DataTable({
-                ordering: true,     // 🔹 habilita orden por columnas
-                searching: true,    // 🔍 buscador
-                paging: true,       // 📄 paginación
-                
+                dom: 'Bfrtip',   // 👈 activa botones
+                paging: true,
+                searching: true,
+                ordering: true,
+        
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '📥 Descargar Excel',
+                        title: 'Avance_por_Puesto_y_Candidato',
+                        className: 'btn btn-success',
+                        exportOptions: {
+                            columns: ':visible' // exporta solo columnas visibles
+                        }
+                    }
+                ],
+        
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json"
                 }
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#tablaPuesto103').DataTable({
+                dom: 'Bfrtip',   // 👈 activa botones
+                paging: true,
+                searching: true,
+                ordering: true,
+        
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: '📥 Descargar Excel',
+                        title: 'Avance_por_Puesto_y_Candidato',
+                        className: 'btn btn-success',
+                        exportOptions: {
+                            columns: ':visible' // exporta solo columnas visibles
+                        }
+                    }
+                ],
+        
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json"
+                }
+            });
+        });
+    </script>
+        
 
    
 

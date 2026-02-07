@@ -247,14 +247,23 @@ class ConsultorController extends Controller
                 ->orderBy('codcor', 'asc')    // 👈 ORDEN PRINCIPAL
                 ->orderBy('puesto')      // 👈 ORDEN SECUNDARIO
                 ->get();
-            
+                $avanceCandidatos = DB::table('sellers')
+                                ->select(
+                                    'candidato',
+                                    DB::raw('SUM(CASE WHEN mesa <> "Rem" THEN 1 ELSE 0 END) as total_mesas'),
+                                    DB::raw('SUM(CASE WHEN mesa <> "Rem" AND status = 1 THEN 1 ELSE 0 END) as mesas_ok')
+                                )
+                                ->whereIn('candidato', [101, 4, 103])
+                                ->groupBy('candidato')
+                                ->get()
+                                ->keyBy('candidato');
 
 
         
 
        
                      
-        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm', 'puestosd', 'puestosv' , 'puestosm', 'mesasok', 'avancePuestos'))
+        return view('admin.consultors.index', compact('data', 'dat', 'not', 'lablemun', 'okmun', 'nookmun', 'okaniv','nookaniv', 'okanim','nookanim','remokd','remnookd','remokv','remnookv','remokm','remnookm', 'puestosd', 'puestosv' , 'puestosm', 'mesasok', 'avancePuestos','avanceCandidatos'))
                  ->with('okd', $okd)
                  ->with('nookd', $nookd)
                  ->with('nookv', $nookv)
