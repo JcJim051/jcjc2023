@@ -64,7 +64,7 @@
                             @if (Auth::user()->candidatos == 103)
                             
                             @else
-                                <h4>{{ $tevidencia }}</h4>
+                                <h4>{{ $remanentes }}</h4>
                                 <p>Total Remanentes</p>  
                             @endif
                             

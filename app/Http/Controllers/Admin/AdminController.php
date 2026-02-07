@@ -316,6 +316,12 @@ class AdminController extends Controller
     $tf2 = (clone $basePuestos)->count();
     $tfrec = (clone $basePuestos)->where('reclamacion', 1)->count();
 
+    $baseRem = Seller::whereIn('codcor', $puestos)
+        ->where('mesa','=','Rem')
+        ->where('candidato', $candidatos);
+
+    $remanentes = $baseRem->count();
+    
     $tevidencia = $tf1 + $tf2 + $tfrec;
 
     $tde = (clone $basePuestos)->whereNotNull('gob1')->count();
@@ -362,7 +368,7 @@ class AdminController extends Controller
         'rol','data','datas','dat','dats','not','nots',
         'tmc','tml','treml','tmcom','tremcom','tmlc','tremlc',
         'ttpc','trpc','tmrut','tremrut','tmlr','tremlr',
-        'tevidencia','tevidencia_enviada','tde'
+        'tevidencia','tevidencia_enviada','tde', 'remanentes',
     ));
 }
 
