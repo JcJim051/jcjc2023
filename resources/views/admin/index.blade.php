@@ -56,7 +56,7 @@
             </div>
 
             <div class="mt-3 row">
-                <div class="col-12">
+                <div class="mx-auto col-4">
                     <div class="small-box bg-gradient-warning">
                         <div class="inner">
                             <h3>{{ $tmc }}</h3>
@@ -72,8 +72,8 @@
                         <div class="icon"><i class="fas fa-store-alt"></i></div>
                     </div>
                 </div>
-
-                {{-- <div class="col-3">
+{{-- 
+                <div class="col-3">
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $tde }}</h3>
@@ -107,8 +107,8 @@
                         </div>
                         <div class="icon"><i class="fas fa-user-check"></i></div>
                     </div>
-                </div>
-            </div> --}}
+                </div> --}}
+            </div>
 
         {{-- ===================== ESCRUTADOR ===================== --}}
         @elseif ($rol == "Esctrutador")

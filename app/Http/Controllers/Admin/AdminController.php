@@ -305,10 +305,10 @@ class AdminController extends Controller
     // 🏫 TOTALES POR PUESTO (MULTIPLE)
     // ================================
     $candidatos = explode(',', $user->candidatos); // [101, 4]
-    
+
     $basePuestos = Seller::whereIn('codcor', $puestos)
-    ->where('mesa', '<>', 'Rem')
-    ->whereIn('candidato', $candidatos);
+        ->where('mesa', '<>', 'Rem')
+        ->whereIn('candidato', $candidatos);
 
     $tmc = $basePuestos->count();
 
