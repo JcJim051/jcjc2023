@@ -4,7 +4,7 @@
 @section('title', 'Acreditar')
 
 @section('content_header')
-    <h1 style="text-align:center">Acreditación de testigos electorales</h1>
+    <h1 style="text-align:center">Validacion de testigos electorales</h1>
 @stop
 
 @section('content')
@@ -59,7 +59,7 @@
 
                     <td style="font-size:18px; text-align:center">
                         @if($seller->statusani == 1)
-                            <i class="fas fa-vote-yea text-success"></i>
+                            <i class="fas fa-vote-yea text-success">.</i>
                         @else
                             <i class="fas fa-window-close text-danger"></i>
                         @endif
