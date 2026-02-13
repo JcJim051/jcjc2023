@@ -354,7 +354,12 @@ class SuperUserController extends Controller
             $superuser->cedula = $cedula; // ahora sí se guarda en BD
             $superuser->pdf = $path;
         }
-        
+            if (
+                isset($validated['observacion']) &&
+                in_array($validated['observacion'], ['CambiarCambiar No 101', 'Llamada 3'])
+            ) {
+                $validated['status'] = 0;
+            }
         
             // Actualizar otros campos validados
             $superuser->fill($validated); // llena los demás campos

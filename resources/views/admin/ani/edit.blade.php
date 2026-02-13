@@ -37,7 +37,18 @@
                                     <div class="col-6">
                                         
                                 
-                                        {!! Form::text("observacion", null, ["class" => "form-control", 'placeholder' => 'observacion corta']) !!}
+                                        {!! Form::select(
+                                            'observacion',
+                                            [    '' => 'Seleccione',
+                                                'Validado' => 'Validado',
+                                                'Llamada 1' => 'Llamada 1',
+                                                'Llamada 2' => 'Llamada 2',
+                                                'Llamada 3' => 'Llamada 3',
+                                                'Cambiar No 101' => 'Cambiar No 101',
+                                            ],
+                                            null,
+                                            ['class' => 'form-control']
+                                        ) !!}
                 
                                     </div>
                                     <div class="col-2">
@@ -72,7 +83,7 @@
                             {!! Form::hidden('puesto', null) !!}
                             {!! Form::hidden('mesa', null) !!}
                             {!! Form::hidden('codpar', null) !!}
-                            {!! Form::hidden('status', null) !!}
+                         
             
             
             
