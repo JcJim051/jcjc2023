@@ -356,9 +356,17 @@ class SuperUserController extends Controller
         }
             if (
                 isset($validated['observacion']) &&
-                in_array($validated['observacion'], ['CambiarCambiar No 101', 'Llamada 3'])
+                in_array($validated['observacion'], ['Cambiar No 101', 'Llamada 3'])
             ) {
                 $validated['status'] = 0;
+            }
+            // 🧼 Si vuelve a estado ACTIVO, limpiar observación
+            if (
+                $superuser->status == 0 &&
+                isset($validated['status']) &&
+                (int) $validated['status'] === 1
+            ) {
+                $validated['observacion'] = null;
             }
         
             // Actualizar otros campos validados
