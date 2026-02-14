@@ -128,7 +128,7 @@ $(document).ready(function () {
         }
     };
 
-    @if(Auth::user()->role == 1)
+    @if(Auth::user()->role == 1 || Auth::user()->role == 5)
         // SUPERUSER → SearchPanes
         config.dom = 'Plfrtip';
     @else
