@@ -33,8 +33,10 @@ class AniController extends Controller
                
             }else {
 
-                if ($role == 5 ) {
-                    $sellers = Seller::whereStatus("1")->get();
+                if ($role == 5) {
+                    $sellers = Seller::whereStatus(1)
+                        ->where('candidato', '!=', 103)
+                        ->get();
                 } else {
         
                 }

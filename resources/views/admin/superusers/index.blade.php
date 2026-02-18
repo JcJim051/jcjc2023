@@ -179,32 +179,32 @@
   
 </script> --}}
 
-<script>
-    $(document).ready(function () {
-    
-        let config = {
-            pageLength: 25,
-            responsive: true,
-            columnDefs: [
-                { targets: 0, visible: false }
-            ],
-            language: {
-                search: "Buscar:"
-            }
-        };
-    
-        @if(Auth::user()->role == 1) // SUPERUSER
-            config.dom = 'Prtip';
-            config.searchPanes = {
-                layout: 'columns-8',
-                initCollapsed: true
+    <script>
+        $(document).ready(function () {
+        
+            let config = {
+                pageLength: 25,
+                responsive: true,
+                columnDefs: [
+                    { targets: 0, visible: false }
+                ],
+                language: {
+                    search: "Buscar:"
+                }
             };
-        @else
-            config.dom = 'frtip'; // 🔥 buscador normal
-        @endif
-    
-        $('#example').DataTable(config);
-    });
+        
+            @if(Auth::user()->role == 1) // SUPERUSER
+                config.dom = 'Prtip';
+                config.searchPanes = {
+                    layout: 'columns-8',
+                    initCollapsed: true
+                };
+            @else
+                config.dom = 'frtip'; // 🔥 buscador normal
+            @endif
+        
+            $('#example').DataTable(config);
+        });
     </script>
     
 @endsection
