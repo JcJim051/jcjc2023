@@ -26,26 +26,17 @@
                         <th> municipio </th>
                         <th> puesto </th>
                         <th> mesa </th>
+                        <th> codcor </th>
                         <th> codpar </th>
                         <th> cedula </th>
                         <th> nombre </th>
                         <th> email </th>
                         <th> telefono </th>
                         <th> codescru </th>
-                        <th> codcor </th>
+                        <th> status ani </th>
                         <th> status </th>
-                        <th> pdf </th>
-                        <th> gob1 </th>
-                        <th> gob2 </th>
-                        <th> gob3 </th>
-                        <th> asa1 </th>
-                        <th> asa2 </th>
-                        <th> asa3 </th>
-                        <th> alc1 </th>
-                        <th> alc2 </th>
-                        <th> alc3 </th>
-                        <th> recuperados </th>
-                        <th> e14 </th>
+                        
+                        
                     </tr>
                 </thead>
 
@@ -60,26 +51,16 @@
                         <td> {{ $seller->municipio }}</td>
                         <td> {{ $seller->puesto }}</td>
                         <td> {{ $seller->mesa }}</td>
+                        <td> {{ $seller->codcor }}</td>
                         <td> {{ $seller->codpar }}</td>
                         <td> {{ $seller->cedula }}</td>
                         <td> {{ $seller->nombre }}</td>
                         <td> {{ $seller->email }}</td>
                         <td> {{ $seller->telefono }}</td>
                         <td> {{ $seller->codescru }}</td>
-                        <td> {{ $seller->codcor }}</td>
+                        <td> {{ $seller->statusani }}</td>
                         <td> {{ $seller->status }}</td>
-                        <td> {{ $seller->pdf }}</td>
-                        <td> {{ $seller->gob1 }}</td>
-                        <td> {{ $seller->gob2 }}</td>
-                        <td> {{ $seller->gob3 }}</td>
-                        <td> {{ $seller->asa1 }}</td>
-                        <td> {{ $seller->asa2 }}</td>
-                        <td> {{ $seller->asa3 }}</td>
-                        <td> {{ $seller->alc1 }}</td>
-                        <td> {{ $seller->alc2 }}</td>
-                        <td> {{ $seller->alc3 }}</td>
-                        <td> {{ $seller->recuperados }}</td>
-                        <td> {{ $seller->e14 }}</td>
+                        
                     </tr>
                     @endforeach
 
