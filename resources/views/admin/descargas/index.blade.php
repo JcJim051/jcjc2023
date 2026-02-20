@@ -26,6 +26,7 @@
                         <th> municipio </th>
                         <th> puesto </th>
                         <th> mesa </th>
+                        <th> candidato </th>
                         <th> codcor </th>
                         <th> codpar </th>
                         <th> cedula </th>
@@ -51,6 +52,7 @@
                         <td> {{ $seller->municipio }}</td>
                         <td> {{ $seller->puesto }}</td>
                         <td> {{ $seller->mesa }}</td>
+                        <td> {{ $seller->candidato }}</td>
                         <td> {{ $seller->codcor }}</td>
                         <td> {{ $seller->codpar }}</td>
                         <td> {{ $seller->cedula }}</td>
