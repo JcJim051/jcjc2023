@@ -33,9 +33,9 @@
                         <th> email </th>
                         <th> telefono </th>
                         <th> codescru </th>
-                        <th> status ani </th>
+                        <th> statusani </th>
                         <th> status </th>
-                        
+                        <th> observacion</th>
                         
                     </tr>
                 </thead>
@@ -60,6 +60,7 @@
                         <td> {{ $seller->codescru }}</td>
                         <td> {{ $seller->statusani }}</td>
                         <td> {{ $seller->status }}</td>
+                        <td> {{ $seller->observacion }}</td>
                         
                     </tr>
                     @endforeach
