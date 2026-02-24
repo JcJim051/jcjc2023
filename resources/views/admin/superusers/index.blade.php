@@ -35,6 +35,7 @@
                         <th>Mesa</th>
                         <th>candidato</th>
                         <th>Nombre</th>
+                        <th>Tel</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -64,6 +65,7 @@
                             <td style="color: {{ $color }}">{{ $seller->mesa }}</td>
                             <td style="color: {{ $color }}">{{ $seller->candidato }}</td>
                             <td style="color: {{ $color }}">{{ $seller->nombre }}</td>
+                            <td style="color: {{ $color }}">{{ $seller->telefono }}</td>
 
                             {{-- STATUS ICON --}}
                             <td style="font-size:20px; text-align:center">
